@@ -1,0 +1,8 @@
+.navbar {
+    background-color: #012169;
+    border-color: transparent;
+}
+
+.navbar-default .navbar-nav>li>a[href="reference/index.html"] {
+  display: none;
+}

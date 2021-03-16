@@ -1,0 +1,11 @@
+pandoc: 2.7.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  Scoring: Scoring.html
+  fintech-trading-competition: fintech-trading-competition.html
+last_built: 2021-03-16T19:00Z
+urls:
+  reference: https://gothic-hedge-society.github.io/fintech.trading.competition/reference
+  article: https://gothic-hedge-society.github.io/fintech.trading.competition/articles
+
