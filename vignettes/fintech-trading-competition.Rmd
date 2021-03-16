@@ -1,0 +1,46 @@
+---
+title: "Getting Started"
+author: "Jake Vestal"
+date: "3/12/2021"
+output: html_document
+---
+
+While you're creating your paper trading account, you'll encounter instructions
+from  Interactive Brokers (IBKR) regarding how to access your account for
+trading. 
+
+To get started, it's recommended you select from one of the three recommended
+client apps, outlined below:
+
+### 1) Trader Workstation (TWS)
+
+The Trader Workstation is IBKR's client app that connects to the brokerage and
+allows you to make trades and view real-time market data, including news &
+bulletins. TWS is intended to be installed on your computer (Mac, Windows,
+Unix) and can be customized to your liking following the documentation on IBKR's home page.
+
+To install TWS, you'll want to visit the 
+[TWS download page](https://www.interactivebrokers.com/en/index.php?f=16040) and
+install the correct version for your system. Log in using your IBKR credentials
+and start trading!
+
+### 2) IBKR Mobile
+
+Interactive Brokers offers a mobile app from which you can access your account
+to make trade and view market data. The app is available on 
+[Android](https://play.google.com/store/apps/details?id=atws.app&hl=en_US&gl=US)
+and [iOS](https://apps.apple.com/us/app/ibkr-mobile-invest-worldwide/id454558592).
+
+
+### 3) IB Gateway (IBG)
+
+IB Gateway is identical to TWS in every way except that there is no graphical
+user interface (GUI) -- you're expected to connect to a running instance of IBG
+using one of the various APIs made available by IBKR. To download, visit the
+[IBG download page](https://www.interactivebrokers.com/en/index.php?f=16457).
+
+### Traders' University
+
+IBKR maintains a set of videos on their [Traders' University](https://www.interactivebrokers.com/en/index.php?f=1350) site where
+you can learn about the different financial instruments and how to trade them
+using your system of choice.
