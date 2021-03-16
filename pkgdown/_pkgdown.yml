@@ -1,3 +1,7 @@
 template:
   params:
     bootswatch: darkly
+
+authors:
+  Jake Vestal:
+    href: "https://github.com/JakeVestal"
