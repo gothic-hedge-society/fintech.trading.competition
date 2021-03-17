@@ -17,7 +17,7 @@ First things first: This year (Spring 2021), a few participants have
 created multiple accounts, and others have created accounts using emails
 that differ from the ones used in the WuFoo sign-up sheet. In the
 future, functionality will be written into the onboarding process to
-avoid this, but for now, I (Jake) have manually matched each
+avoid this but for now, I (Jake) have manually matched each
 participant’s account number & username.
 
 It’s up to you to check and make sure that the account you’d like to use
@@ -503,7 +503,7 @@ Orianna\_xuan
 </tr>
 <tr>
 <td style="text-align:left;">
-DU3561424
+DU3629377
 </td>
 <td style="text-align:left;">
 PosDefinite

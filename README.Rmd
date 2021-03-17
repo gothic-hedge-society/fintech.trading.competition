@@ -28,7 +28,7 @@ be updated. Be sure to check the "NEWS" section for announcements, and the
 First things first: This year (Spring 2021), a few participants have created
 multiple accounts, and others have created accounts using emails that differ
 from the ones used in the WuFoo sign-up sheet. In the future, functionality will
-be written into the onboarding process to avoid this, but for now, I (Jake) have
+be written into the onboarding process to avoid this but for now, I (Jake) have
 manually matched each participant's account number & username.
 
 It's up to you to check and make sure that the account you'd like to use for the
@@ -43,8 +43,8 @@ on the Slack channel.
 
 ``` {r echo = FALSE, message = FALSE}
 rprojroot::find_package_root_file() %>%
-  file.path("inst", "participants", "joined_names_n_emails.csv") %>%
-  readr::read_csv() %>%
+  file.path("inst", "participants", "joined_names_n_emails.xlsx") %>%
+  readxl::read_xlsx() %>%
   dplyr::filter(!is.na(ID)) %>%
   dplyr::select(accountId, trader_name) %>%
   dplyr::arrange(trader_name) %>%
