@@ -4,9 +4,9 @@
 # Welcome to the 2021 Duke FINTECH Trading Competition
 
 This is the homepage of the Competition, and is the location where
-rankings will be updated. will be posted. Be sure to check the “NEWS”
-section for announcements, and the “Articles” section for important
-information such as scoring of results.
+rankings will be updated. Be sure to check the “NEWS” section for
+announcements, and the “Articles” section for important information such
+as scoring of results.
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -586,7 +586,7 @@ SHAHRK
 DU3629578
 </td>
 <td style="text-align:left;">
-Shibainu
+shiba2943
 </td>
 </tr>
 <tr>
