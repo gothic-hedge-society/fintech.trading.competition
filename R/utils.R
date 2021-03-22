@@ -1,5 +1,5 @@
 
-# Get Risk-free Rate (Daily CMT) -------------------------------------------------
+# Get Risk-free Rate (Daily CMT) -----------------------------------------------
 get_usdt_data <- function(url){
   xml2::read_html(url) %>%
     rvest::html_node(".t-chart") %>%

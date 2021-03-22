@@ -21,6 +21,9 @@ Ranking
 Trader
 </th>
 <th style="text-align:center;">
+School
+</th>
+<th style="text-align:center;">
 Daily Excess Return
 </th>
 <th style="text-align:center;">
@@ -40,6 +43,9 @@ Sharpe Ratio
 2TheMoon
 </td>
 <td style="text-align:center;">
+Duke
+</td>
+<td style="text-align:center;">
 0.00112%
 </td>
 <td style="text-align:center;">
@@ -55,6 +61,9 @@ Sharpe Ratio
 </td>
 <td style="text-align:center;">
 Beautylun
+</td>
+<td style="text-align:center;">
+Duke
 </td>
 <td style="text-align:center;">
 0.06204%
@@ -74,6 +83,9 @@ Beautylun
 Wall Street Legend
 </td>
 <td style="text-align:center;">
+Wake Forest
+</td>
+<td style="text-align:center;">
 0.35881%
 </td>
 <td style="text-align:center;">
@@ -89,6 +101,9 @@ Wall Street Legend
 </td>
 <td style="text-align:center;">
 SSites
+</td>
+<td style="text-align:center;">
+NC State
 </td>
 <td style="text-align:center;">
 0.00424%
@@ -108,6 +123,9 @@ SSites
 nonFortissimus
 </td>
 <td style="text-align:center;">
+UNC Chapel Hill
+</td>
+<td style="text-align:center;">
 0.00019%
 </td>
 <td style="text-align:center;">
@@ -123,6 +141,9 @@ nonFortissimus
 </td>
 <td style="text-align:center;">
 Chao\_No1
+</td>
+<td style="text-align:center;">
+Duke
 </td>
 <td style="text-align:center;">
 0.00065%
@@ -142,6 +163,9 @@ Chao\_No1
 endtimes
 </td>
 <td style="text-align:center;">
+NC State
+</td>
+<td style="text-align:center;">
 -0.00153%
 </td>
 <td style="text-align:center;">
@@ -157,6 +181,9 @@ endtimes
 </td>
 <td style="text-align:center;">
 Cheng-En
+</td>
+<td style="text-align:center;">
+Washington University
 </td>
 <td style="text-align:center;">
 -0.00172%
@@ -176,6 +203,9 @@ Cheng-En
 not\_on\_the\_moon
 </td>
 <td style="text-align:center;">
+Duke
+</td>
+<td style="text-align:center;">
 -0.00158%
 </td>
 <td style="text-align:center;">
@@ -191,6 +221,9 @@ not\_on\_the\_moon
 </td>
 <td style="text-align:center;">
 jw708
+</td>
+<td style="text-align:center;">
+Duke
 </td>
 <td style="text-align:center;">
 -0.00066%

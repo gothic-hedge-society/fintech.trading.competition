@@ -31,7 +31,7 @@ participating_student_reports %>%
     "Sharpe Ratio"        = round(Sharpe, 3)
   ) %>%
   dplyr::select(
-    Ranking, Trader, `Daily Excess Return`, `Daily Vol`, `Sharpe Ratio`
+    Ranking, Trader, School, `Daily Excess Return`, `Daily Vol`, `Sharpe Ratio`
   ) %>%
   kableExtra::kable(
     caption = paste0("Top 10 Sharpe Ratios as of ", Sys.Date()), 

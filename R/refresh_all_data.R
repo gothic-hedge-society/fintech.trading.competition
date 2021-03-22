@@ -24,7 +24,15 @@ refresh_all_data <- function(){
     file.path(., "inst", "participants", "joined_names_n_emails.xlsx") %>%
     readxl::read_xlsx() %>%
     dplyr::filter(!is.na(ID)) %>%
-    dplyr::select(accountId, ID, name, trader_name, primaryEmail)
+    dplyr::select(accountId, ID, name, trader_name, primaryEmail) %>%
+    dplyr::left_join(
+      rprojroot::find_package_root_file() %>%
+        file.path(., "inst", "participants", "participants.xlsx") %>%
+        readxl::read_xlsx() %>%
+        dplyr::filter(!is.na(trader_name)) %>%
+        dplyr::select(ID, School),
+      by = "ID"
+    )
 
   # Flex_query -----------------------------------------------------------------
   flex_query <- rprojroot::find_package_root_file() %>%
@@ -125,11 +133,12 @@ refresh_all_data <- function(){
     ) %>%
     dplyr::ungroup() %>%
     dplyr::full_join(
-      dplyr::select(participants, "accountId", "trader_name")
+      dplyr::select(participants, "accountId", "trader_name", "School")
     ) %>%
     dplyr::select(
-      "accountId",        "trader_name", "total",     "daily_returns", "rfr",
-      "daily_excess_rtn", "excess_gmrr", "daily_vol", "Sharpe"
+      "accountId",     "trader_name", "School",           "total",
+      "daily_returns", "rfr",         "daily_excess_rtn", "excess_gmrr",
+      "daily_vol",     "Sharpe"
     ) %>%
     dplyr::filter(!is.infinite(Sharpe)) %>%
     dplyr::arrange(dplyr::desc(Sharpe))
