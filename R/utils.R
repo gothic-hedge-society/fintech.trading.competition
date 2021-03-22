@@ -1,4 +1,23 @@
 
+# Get Risk-free Rate (Daily CMT) -------------------------------------------------
+get_usdt_data <- function(url){
+  xml2::read_html(url) %>%
+    rvest::html_node(".t-chart") %>%
+    rvest::html_table() %>%
+    tibble::as_tibble() %>%
+    dplyr::na_if("N/A") %>% {
+      xts::xts(
+        dplyr::select(., -"Date"),
+        order.by = as.Date(.$Date, format = "%m/%d/%y")
+      )
+    } %>% {
+      storage.mode(.) <- "numeric"
+      colnames(.) <- gsub(" ", "_", colnames(.))
+      .
+    }
+}
+
+
 # Data Munging -----------------------------------------------------------------
 # remove cols that all equal "", NA, 0, or "<NA>"
 remove_empty_cols <- function(a_tibble){
