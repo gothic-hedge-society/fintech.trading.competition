@@ -2,8 +2,13 @@
 title: "Sharpe Ratio Calculation"
 author: "Jake Vestal"
 date: "3/15/2021"
-output: html_document
 ---
+
+```{css, echo=FALSE}
+.dt-colnames {
+  color: #fcba03;
+}
+```
 
 ```{r setup, include = FALSE}
 library(magrittr)
