@@ -21,7 +21,8 @@ Imports:
     kableExtra,
     shiny,
     ggplot2,
-    scales
+    scales,
+    DT
 Depends: 
     R (>= 2.10)
 URL: https://gothic-hedge-society.github.io/fintech.trading.competition
