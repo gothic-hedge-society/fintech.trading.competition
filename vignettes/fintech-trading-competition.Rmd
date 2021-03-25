@@ -12,6 +12,13 @@ trading.
 To get started, it's recommended you select from one of the three recommended
 client apps, outlined below:
 
+### 0) Register for the Competition
+To register, all you need is to be a current graduate or undergrad student at an
+accredited university with a .edu email address. Follow the link posted on the
+main page to sign up. **At this time, registration for the Spring 2021 session
+is closed, but we are extremely excited to welcome students for the next session
+in the fall**!
+
 ### 1) Trader Workstation (TWS)
 
 The Trader Workstation is IBKR's client app that connects to the brokerage and

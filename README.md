@@ -264,3 +264,239 @@ Duke
 </tr>
 </tbody>
 </table>
+
+## Top 10 Daily Excess Returns as of 2021-03-25
+
+Updated for the available data range from 2021-03-11 to 2021-03-24.
+Calculated as the geometric mean of daily excess returns. Included for
+bragging rights :).
+
+<table>
+<caption>
+Top 10 Excess Returns 2021-03-25
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Ranking
+</th>
+<th style="text-align:center;">
+Trader
+</th>
+<th style="text-align:center;">
+School
+</th>
+<th style="text-align:center;">
+Daily Excess Return
+</th>
+<th style="text-align:center;">
+Daily Vol
+</th>
+<th style="text-align:center;">
+Sharpe Ratio
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+Wall Street Legend
+</td>
+<td style="text-align:center;">
+Wake Forest
+</td>
+<td style="text-align:center;">
+0.22673%
+</td>
+<td style="text-align:center;">
+1.76644%
+</td>
+<td style="text-align:center;">
+0.128
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+Beautylun
+</td>
+<td style="text-align:center;">
+Duke
+</td>
+<td style="text-align:center;">
+0.02636%
+</td>
+<td style="text-align:center;">
+0.15735%
+</td>
+<td style="text-align:center;">
+0.168
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+2TheMoon
+</td>
+<td style="text-align:center;">
+Duke
+</td>
+<td style="text-align:center;">
+0.01023%
+</td>
+<td style="text-align:center;">
+0.01647%
+</td>
+<td style="text-align:center;">
+0.621
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+8ig L0ng
+</td>
+<td style="text-align:center;">
+Wake Forest
+</td>
+<td style="text-align:center;">
+0.00228%
+</td>
+<td style="text-align:center;">
+0.04882%
+</td>
+<td style="text-align:center;">
+0.047
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+nonFortissimus
+</td>
+<td style="text-align:center;">
+UNC Chapel Hill
+</td>
+<td style="text-align:center;">
+0.00045%
+</td>
+<td style="text-align:center;">
+0.00193%
+</td>
+<td style="text-align:center;">
+0.233
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+endtimes
+</td>
+<td style="text-align:center;">
+NC State
+</td>
+<td style="text-align:center;">
+1e-04%
+</td>
+<td style="text-align:center;">
+0.01214%
+</td>
+<td style="text-align:center;">
+0.008
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+Stark
+</td>
+<td style="text-align:center;">
+NC State
+</td>
+<td style="text-align:center;">
+-0.00016%
+</td>
+<td style="text-align:center;">
+2e-05%
+</td>
+<td style="text-align:center;">
+-7.189
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+SHAHRK
+</td>
+<td style="text-align:center;">
+NC State
+</td>
+<td style="text-align:center;">
+-0.00018%
+</td>
+<td style="text-align:center;">
+0.00137%
+</td>
+<td style="text-align:center;">
+-0.131
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+Wwwwow
+</td>
+<td style="text-align:center;">
+Duke
+</td>
+<td style="text-align:center;">
+-2e-04%
+</td>
+<td style="text-align:center;">
+1e-04%
+</td>
+<td style="text-align:center;">
+-1.991
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+TradeBroker
+</td>
+<td style="text-align:center;">
+Duke
+</td>
+<td style="text-align:center;">
+-3e-04%
+</td>
+<td style="text-align:center;">
+0.00049%
+</td>
+<td style="text-align:center;">
+-0.608
+</td>
+</tr>
+</tbody>
+</table>

@@ -89,3 +89,30 @@ participating_student_reports %>%
     align   = rep('c', 5)
   )
 ```
+
+## Top 10 Daily Excess Returns as of `r Sys.Date()`
+Updated for the available data range from `r earliest_date` to 
+`r most_recent_date`. Calculated as the geometric mean of daily excess returns.
+Included for bragging rights :).
+
+``` {r echo = FALSE, message = FALSE}
+participating_student_reports %>%
+  dplyr::filter(!is.infinite(excess_gmrr)) %>%
+  dplyr::arrange(dplyr::desc(excess_gmrr)) %>%
+  head(10) %>%
+  dplyr::mutate(
+    "Ranking"             = 1:10,
+    "Trader"              = trader_name,
+    "Daily Excess Return" = paste0(round(excess_gmrr, 5), "%"),
+    "Daily Vol"           = paste0(round(daily_vol, 5), "%"),
+    "Sharpe Ratio"        = round(Sharpe, 3)
+  ) %>%
+  dplyr::select(
+    Ranking, Trader, School, `Daily Excess Return`, `Daily Vol`, `Sharpe Ratio`
+  ) %>%
+  kableExtra::kable(
+    caption = paste0("Top 10 Excess Returns ", Sys.Date()), 
+    escape  = FALSE,
+    align   = rep('c', 5)
+  )
+```
