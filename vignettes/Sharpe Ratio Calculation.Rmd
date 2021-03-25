@@ -1,0 +1,148 @@
+---
+title: "Sharpe Ratio Calculation"
+author: "Jake Vestal"
+date: "3/15/2021"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(magrittr)
+student_data <- tibble::tibble(
+  "EoD Portfolio Balance"  = c(
+    999950, 999890, 1000100, 1000050, 1000250, 1000075, 1000301
+  ),
+  "Port. Return (%/trd day)" = c(
+    NA, 
+    log(
+      `EoD Portfolio Balance`[-1] / 
+        `EoD Portfolio Balance`[-length(`EoD Portfolio Balance`)]
+    )
+  ),
+  "USDT 3 Mo CMT (%/yr)"      = rev(
+    c(
+      0.01, 0.03, 0.01, 0.01, 0.02, 0.02, 0.04
+    )
+  ) / 100,
+  "USDT 3 Mo CMT (%/trd day)" = `USDT 3 Mo CMT (%/yr)`/252,
+  "Excess Return (%/trd day)" = 
+    `Port. Return (%/trd day)` - `USDT 3 Mo CMT (%/trd day)`
+)
+
+gmrr_excess_return <- student_data$`Excess Return (%/trd day)`[-1] %>%
+  as.numeric() %>% {
+    prod(1 + .)^(1/length(.)) - 1
+  }
+
+portfolio_vol      <- sd(student_data$`Excess Return (%/trd day)`[-1])
+
+sharpe_ratio <- gmrr_excess_return / portfolio_vol
+```
+
+# Scoring for an example student
+As discussed in the
+[Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/)
+section, student performance is graded by Sharpe Ratio. Here, we walk through an
+example that explains how the Sharpe Ratio would be calculated for an example
+contest participant.
+
+### Example Student's Data
+Let's say that today's date is 23 March 2021, and a student has been
+participating in the competition for seven days. Her end-of-day (EoD) portfolio
+balance, daily portfolio return, risk free rates, and daily excess return are as
+given in the table below:
+
+``` {r echo = FALSE, message = FALSE}
+student_data %>%
+  DT::datatable(
+    filter = "none",
+    options = list(
+      columnDefs = list(
+        list(className = 'dt-center', targets = 0:5),
+        list(className = 'dt-colnames', targets = 0:5)
+      ),
+      dom        = "t",
+      ordering   = FALSE
+    ),
+    rownames = c(
+      "2021-03-23", "2021-03-22", "2021-03-19", "2021-03-18", "2021-03-17", 
+      "2021-03-16", "2021-03-15"
+    )
+  ) %>%
+  DT::formatCurrency("EoD Portfolio Balance") %>%
+  DT::formatPercentage("USDT 3 Mo CMT (%/yr)",  2) %>% 
+  DT::formatPercentage(
+    c(
+      "Port. Return (%/trd day)", "Excess Return (%/trd day)"
+    ),
+    4
+  ) %>%
+  DT::formatPercentage("USDT 3 Mo CMT (%/trd day)", 6)
+
+```
+
+The student's **daily portfolio returns** are the log returns of her daily
+portfolio value. For example, on 18 March 2018, she started the day with
+\$1,000,100.00 and ended with \$1,000,050.00 in total portfolio value. Therefore
+her return for that day was:
+```{r}
+paste0(round(log(1000050.00 / 1000100.00) * 100, 5), "%")
+```
+
+Note that there's no way to calculate a return on the very first day because
+there's nothing to compare it to.
+
+The **risk free rate**, $r_{f}$ is assumed to be the 3 month CMT rate as
+published by the US Department of the Treasury (USDT). A quick visit to the
+[USDT's website
+](https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/TextView.aspx?data=yieldYear&year=2021)
+confirms the rates presented in the table. The USDT presents CMT rates in an
+annualized format. Because the student's daily returns are on a *per trading day
+basis*, we convert the annualized CMTs to a trading day basis by dividing by 252
+-- the number of trading days in one year.
+
+The student's **excess return** on any given day is determined by how much her
+portfolio return exceeded the risk free rate on that day; in other words, her
+*excess return* is the difference between her portfolio's return and the risk
+free rate.
+
+The student's overall **geometric mean excess return** $R_{p}$ is calculated as:
+```{r}
+# Note that here, I'm rounding the returns to 4 digits, so the final answer will
+# differ slightly than the one reported in the table (and used for official
+# scoring) due to this rounding error.
+student_excess_gmrr <- (
+  (1 + -0.0061) * (1 + 0.0209) * (1 + -0.0050) * 
+    (1 + 0.0200) * (1 + -0.0176) * (1 + 0.0226)
+)^(1/6) - 1
+
+print(paste0(round(student_excess_gmrr*100, digits = 4), "%"))
+
+```
+
+The students **volatility of returns** $\sigma^{2}_{r}$ is the standard deviation of her excess gmrr:
+```{r}
+student_vol <- sd(c(-0.0061, 0.0209, -0.0050, 0.0200, -0.0176, 0.0226))
+print(paste0(round(student_vol*100, digits = 3), "%"))
+```
+
+Finally, we can calculate the Sharpe Ratio for this student.
+
+\begin{align*}
+{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}} 
+\end{align*}
+
+#### Wherein:
+
+\begin{align*}
+R_{p} & {\sf: Portfolio\ Return} \\
+r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
+\sigma^{2}_{r} & {\sf: Volatility\ of\ return}
+\end{align*}
+
+## Her Sharpe is:
+```{r}
+student_Sharpe <- student_excess_gmrr / student_vol
+print(student_Sharpe)
+```
+Note that we've already taken the "$-r_{f}$" into account when we used the
+excess gmrr instead of the gmrr of the daily returns.

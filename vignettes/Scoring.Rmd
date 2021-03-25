@@ -171,13 +171,13 @@ goes *down* when expected return goes down & vol goes up, and *up* when expected
 return goes up and vol goes down:
 
 \begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}} 
+{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}_{r}} 
 \end{align*}
 
 #### Wherein:
 
 \begin{align*}
-\langle E_{r} \rangle & {\sf: Expected\ Return} \\
+R_{p} & {\sf: Portfolio\ Return} \\
 r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
-\sigma^{2} & {\sf: Volatility\ of\ return}
+\sigma^{2}_r & {\sf: Volatility\ of\ return}
 \end{align*}
