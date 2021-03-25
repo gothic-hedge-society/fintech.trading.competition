@@ -4,7 +4,7 @@
 # Duke FINTECH Trading Competition 2021
 
 The daily standings for the top 10 traders will be posted here and
-updated daily. Be sure to check back often for updates!
+updated daily. Be sure to check back often for updates!!
 
 ## Standings: 2021-03-24
 
