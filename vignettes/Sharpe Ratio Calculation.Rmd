@@ -88,7 +88,7 @@ student_data %>%
 ```
 
 The student's **daily portfolio returns** are the log returns of her daily
-portfolio value. For example, on 18 March 2018, she started the day with
+portfolio value. For example, on 18 March 2021, she started the day with
 \$1,000,100.00 and ended with \$1,000,050.00 in total portfolio value. Therefore
 her return for that day was:
 ```{r}
