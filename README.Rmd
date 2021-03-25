@@ -13,13 +13,62 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 refresh_all_data()
+most_recent_date <- participating_student_reports$total %>%
+  lapply(
+    function(ttl){
+      as.character(as.Date(zoo::index(xts::last(ttl))))
+    }
+  ) %>%
+  unlist(use.names = FALSE) %>%
+  unique() %>%
+  as.Date()
+if(length(most_recent_date) != 1){
+  print(most_recent_date)
+  stop("more than one most recent date found!")
+}
+earliest_date <- participating_student_reports$total %>%
+  lapply(
+    function(ttl){
+      as.character(as.Date(zoo::index(xts::first(ttl))))
+    }
+  ) %>%
+  unlist(use.names = FALSE) %>%
+  unique() %>%
+  as.Date()
+if(length(most_recent_date) != 1){
+  print(most_recent_date)
+  stop("more than one earliest date found!")
+}
 ```
 
 # Duke FINTECH Trading Competition 2021
-The daily standings for the top 10 traders will be posted here and updated
-daily. Be sure to check back often for updates!!
+The Duke FINTECH Trading Competition is a free competition open to any currently enrolled graduate or undergraduate student with a .edu address.
 
-## Standings: `r Sys.Date()`
+Participants are granted paper trading accounts at [Interactive
+Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE),
+which enable them to trade equities, options, ETFs, futures, currencies, bonds,
+and more, all based on real-time streaming market data. Students use the same
+execution systems as professional traders: (IBKR's [Mobile
+App](https://www.interactivebrokers.com/en/index.php?f=1300), [Trader
+Workstation GUI](https://www.interactivebrokers.com/en/index.php?f=16040) and
+[IB Gateway](https://www.interactivebrokers.com/en/index.php?f=16457) -- the
+only difference is that they money they trade is simulated.
+
+The Spring 2021 session is currently underway. We are pleased that about 90
+students at various universities have signed up for this session, which is the
+very first offering of the competition outside of Duke.
+
+The Duke FINTECH Department is striving to be as inclusive and welcoming as
+possible to all students, and will be reaching out again next Fall for the next
+offering. Participation is welcome and encouraged, so please help spread the
+word for future semesters!
+
+Standings for the top 10 traders will be posted here and updated daily. This
+site will continue to grow as new features are brought onboard. Be sure to
+check back often for updates!!!
+
+## Standings as of `r Sys.Date()`
+Updated for the available data range from `r earliest_date` to `r most_recent_date`.
 
 ``` {r echo = FALSE, message = FALSE}
 participating_student_reports %>%
