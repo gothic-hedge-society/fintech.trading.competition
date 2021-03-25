@@ -16,7 +16,7 @@ App](https://www.interactivebrokers.com/en/index.php?f=1300), [Trader
 Workstation
 GUI](https://www.interactivebrokers.com/en/index.php?f=16040) and [IB
 Gateway](https://www.interactivebrokers.com/en/index.php?f=16457)) – the
-only difference is that they money they trade is simulated.
+only difference is that the money they trade is simulated.
 
 The Spring 2021 session is currently underway. We are pleased that about
 90 students at various universities have signed up for this session,
