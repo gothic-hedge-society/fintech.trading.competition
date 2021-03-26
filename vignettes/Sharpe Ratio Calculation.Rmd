@@ -92,6 +92,7 @@ portfolio value. For example, on 18 March 2021, she started the day with
 \$1,000,100.00 and ended with \$1,000,050.00 in total portfolio value. Therefore
 her return for that day was:
 ```{r}
+# 'log()' here is the natural log, not base 10.
 paste0(round(log(1000050.00 / 1000100.00) * 100, 5), "%")
 ```
 
