@@ -147,21 +147,24 @@ print(paste0(round(student_vol*100, digits = 3), "%"))
 Finally, we can calculate the Sharpe Ratio for this student.
 
 \begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}} 
+{\tt Sharpe\ Ratio} = \frac{R_{p,e}}{\sigma^{2}} 
 \end{align*}
 
 #### Wherein:
 
 \begin{align*}
-R_{p} & {\sf: Portfolio\ Return} \\
-r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
+R_{p,e} & {\sf: Excess\ Portfolio\ Return} \\
 \sigma^{2}_{r} & {\sf: Volatility\ of\ return}
 \end{align*}
+
+Note that we've already taken the "$-r_{f}$" into account when we used the
+excess gmrr instead of the gmrr of the daily returns; in other words, with this
+notation the term "$R_{p,e} - r_{f}$" (as written in the
+[Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/)
+section) equals $R_{p,e}$.
 
 ## Her Sharpe is:
 ```{r}
 student_Sharpe <- student_excess_gmrr / student_vol
 print(student_Sharpe)
 ```
-Note that we've already taken the "$-r_{f}$" into account when we used the
-excess gmrr instead of the gmrr of the daily returns.
