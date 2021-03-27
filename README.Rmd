@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 refresh_all_data()
+competition_start_date <- as.Date("2021-03-11")
 most_recent_date <- participating_student_reports$total %>%
   lapply(
     function(ttl){
@@ -26,23 +27,16 @@ if(length(most_recent_date) != 1){
   print(most_recent_date)
   stop("more than one most recent date found!")
 }
-earliest_date <- participating_student_reports$total %>%
-  lapply(
-    function(ttl){
-      as.character(as.Date(zoo::index(xts::first(ttl))))
-    }
-  ) %>%
-  unlist(use.names = FALSE) %>%
-  unique() %>%
-  as.Date()
-if(length(most_recent_date) != 1){
-  print(most_recent_date)
-  stop("more than one earliest date found!")
-}
+
 ```
 
 # Duke FINTECH Trading Competition 2021
-The Duke FINTECH Trading Competition is a free competition open to any currently enrolled graduate or undergraduate student with a .edu address.
+The Duke FINTECH Trading Competition is a free competition hosted by the [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
+
+The Competition is open to any currently enrolled graduate or undergraduate
+student with a .edu address. As posted in the [Official
+Announcement](https://fintech.meng.duke.edu/news/duke-fintech-program-announces-trading-competition),
+the winner of the competition will be awarded a **\$2,000 cash prize**!
 
 Participants are granted paper trading accounts at [Interactive
 Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE),
@@ -67,14 +61,22 @@ Standings for the top 10 traders will be posted here and updated daily. This
 site will continue to grow as new features are brought onboard. Be sure to
 check back often for updates!!!
 
-## Standings as of `r Sys.Date()`
-Updated for the available data range from `r earliest_date` to `r most_recent_date`.
+# Standings
+The information on this page was last refreshed on **`r Sys.time()`**.
+At that time, the data was available for the range from `r competition_start_date` to `r most_recent_date`.
 
+Standings are updated based on the data available at the time of the update. It
+takes time for students' account balances to be brought current -- results are
+usually available for the previous trading day at or after approximately 6PM EST
+on the next trading day.
+
+## Top Sharpe Ratios (competition standings)
+Participants are scored by their Sharpe Ratios. Current standings are: 
 ``` {r echo = FALSE, message = FALSE}
 participating_student_reports %>%
   head(10) %>%
   dplyr::mutate(
-    "Ranking"             = 1:10,
+    "Ranking"             = 1:nrow(.),
     "Trader"              = trader_name,
     "Daily Excess Return" = paste0(round(excess_gmrr, 5), "%"),
     "Daily Vol"           = paste0(round(daily_vol, 5), "%"),
@@ -84,16 +86,15 @@ participating_student_reports %>%
     Ranking, Trader, School, `Daily Excess Return`, `Daily Vol`, `Sharpe Ratio`
   ) %>%
   kableExtra::kable(
-    caption = paste0("Top 10 Sharpe Ratios as of ", Sys.Date()), 
+    caption = "Top 10 Sharpe Ratios", 
     escape  = FALSE,
     align   = rep('c', 5)
   )
 ```
 
-## Top 10 Daily Excess Returns as of `r Sys.Date()`
-Updated for the available data range from `r earliest_date` to 
-`r most_recent_date`. Calculated as the geometric mean of daily excess returns.
-Included for bragging rights :).
+## Top 10 Daily Excess Returns 
+Calculated as the geometric mean of daily excess returns. Included for bragging
+rights :).
 
 ``` {r echo = FALSE, message = FALSE}
 participating_student_reports %>%
@@ -111,7 +112,7 @@ participating_student_reports %>%
     Ranking, Trader, School, `Daily Excess Return`, `Daily Vol`, `Sharpe Ratio`
   ) %>%
   kableExtra::kable(
-    caption = paste0("Top 10 Excess Returns ", Sys.Date()), 
+    caption = "Top 10 Excess Returns", 
     escape  = FALSE,
     align   = rep('c', 5)
   )

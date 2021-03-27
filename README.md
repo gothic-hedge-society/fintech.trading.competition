@@ -3,9 +3,13 @@
 
 # Duke FINTECH Trading Competition 2021
 
-The Duke FINTECH Trading Competition is a free competition open to any
-currently enrolled graduate or undergraduate student with a .edu
-address.
+The Duke FINTECH Trading Competition is a free competition hosted by the
+[FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
+
+The Competition is open to any currently enrolled graduate or
+undergraduate student with a .edu address. As posted in the [Official
+Announcement](https://fintech.meng.duke.edu/news/duke-fintech-program-announces-trading-competition),
+the winner of the competition will be awarded a **$2,000 cash prize**!
 
 Participants are granted paper trading accounts at [Interactive
 Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE),
@@ -31,13 +35,23 @@ Standings for the top 10 traders will be posted here and updated daily.
 This site will continue to grow as new features are brought onboard. Be
 sure to check back often for updates!!!
 
-## Standings as of 2021-03-25
+# Standings
 
-Updated for the available data range from 2021-03-11 to 2021-03-24.
+The information on this page was last refreshed on **2021-03-26
+20:51:44**. At that time, the data was available for the range from
+2021-03-11 to 2021-03-24.
 
+Standings are updated based on the data available at the time of the
+update. It takes time for students’ account balances to be brought
+current – results are usually available for the previous trading day at
+or after approximately 6PM EST on the next trading day.
+
+## Top Sharpe Ratios (competition standings)
+
+Participants are scored by their Sharpe Ratios. Current standings are:
 <table>
 <caption>
-Top 10 Sharpe Ratios as of 2021-03-25
+Top 10 Sharpe Ratios
 </caption>
 <thead>
 <tr>
@@ -265,15 +279,14 @@ Duke
 </tbody>
 </table>
 
-## Top 10 Daily Excess Returns as of 2021-03-25
+## Top 10 Daily Excess Returns
 
-Updated for the available data range from 2021-03-11 to 2021-03-24.
 Calculated as the geometric mean of daily excess returns. Included for
 bragging rights :).
 
 <table>
 <caption>
-Top 10 Excess Returns 2021-03-25
+Top 10 Excess Returns
 </caption>
 <thead>
 <tr>
@@ -423,7 +436,27 @@ NC State
 7
 </td>
 <td style="text-align:center;">
-Stark
+Cayla S.
+</td>
+<td style="text-align:center;">
+Duke
+</td>
+<td style="text-align:center;">
+-0.00016%
+</td>
+<td style="text-align:center;">
+0%
+</td>
+<td style="text-align:center;">
+-Inf
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+ZANT
 </td>
 <td style="text-align:center;">
 NC State
@@ -432,30 +465,10 @@ NC State
 -0.00016%
 </td>
 <td style="text-align:center;">
-2e-05%
+0%
 </td>
 <td style="text-align:center;">
--7.189
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-SHAHRK
-</td>
-<td style="text-align:center;">
-NC State
-</td>
-<td style="text-align:center;">
--0.00018%
-</td>
-<td style="text-align:center;">
-0.00137%
-</td>
-<td style="text-align:center;">
--0.131
+-Inf
 </td>
 </tr>
 <tr>
@@ -463,19 +476,19 @@ NC State
 9
 </td>
 <td style="text-align:center;">
-Wwwwow
+<GU@LTER>
 </td>
 <td style="text-align:center;">
-Duke
+NC State
 </td>
 <td style="text-align:center;">
--2e-04%
+-0.00016%
 </td>
 <td style="text-align:center;">
-1e-04%
+0%
 </td>
 <td style="text-align:center;">
--1.991
+-Inf
 </td>
 </tr>
 <tr>
@@ -483,19 +496,19 @@ Duke
 10
 </td>
 <td style="text-align:center;">
-TradeBroker
+pton
 </td>
 <td style="text-align:center;">
-Duke
+Morehouse College
 </td>
 <td style="text-align:center;">
--3e-04%
+-0.00016%
 </td>
 <td style="text-align:center;">
-0.00049%
+0%
 </td>
 <td style="text-align:center;">
--0.608
+-Inf
 </td>
 </tr>
 </tbody>

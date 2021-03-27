@@ -79,6 +79,25 @@ refresh_all_data <- function(){
 
   statement_dates <- as.Date(zoo::index(flex_query[1,]$statement[[1]]))
 
+  most_recent_common_date <- flex_query$statement %>%
+    vapply(
+      function(stmt){
+        as.character(
+          zoo::index(stmt[max(which(as.numeric(stmt$total) > 0)),])
+        )
+      },
+      character(1)
+    ) %>%
+    unique() %>%
+    as.Date() %>%
+    sort() %>% {
+      as.Date(.[1])
+    }
+
+  statement_dates <- statement_dates[
+    which(statement_dates <= most_recent_common_date)
+  ]
+
   # ^GSPC ----------------------------------------------------------------------
   gspc <- paste0(
     "https://query1.finance.yahoo.com/v7/finance/download/%5EGSPC?period1=",
@@ -118,8 +137,9 @@ refresh_all_data <- function(){
 
   participating_student_reports <- flex_query %>%
     dplyr::mutate(
-      "total"            = list(statement$total),
-      "daily_returns"    = daily_rtns(statement$total),
+      "total"            = list(statement$total[as.character(statement_dates)]),
+      "daily_returns"    = statement$total[as.character(statement_dates)] %>%
+        daily_rtns(),
       "rfr"              = list(rfr),
       "daily_excess_rtn" = list(
         xts::xts(
@@ -140,7 +160,7 @@ refresh_all_data <- function(){
       "daily_returns", "rfr",         "daily_excess_rtn", "excess_gmrr",
       "daily_vol",     "Sharpe"
     ) %>%
-    dplyr::filter(!is.infinite(Sharpe)) %>%
+    dplyr::filter(!is.infinite(Sharpe) && !is.na(Sharpe)) %>%
     dplyr::arrange(dplyr::desc(Sharpe))
 
   usethis::use_data(gspc,                          overwrite = TRUE)
