@@ -15,7 +15,7 @@ Participants are granted paper trading accounts at [Interactive
 Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE),
 which enable them to trade equities, options, ETFs, futures, currencies,
 bonds, and more, all based on real-time streaming market data. Students
-use the same execution systems as professional traders: (IBKR’s [Mobile
+use the same execution systems as professional traders IBKR’s [Mobile
 App](https://www.interactivebrokers.com/en/index.php?f=1300), [Trader
 Workstation
 GUI](https://www.interactivebrokers.com/en/index.php?f=16040) and [IB
@@ -38,7 +38,7 @@ sure to check back often for updates!!!
 # Standings
 
 The information on this page was last refreshed on **2021-03-29
-19:48:52**. At that time, the data was available for the range from
+20:49:40**. At that time, the data was available for the range from
 2021-03-11 to 2021-03-26.
 
 Standings are updated based on the data available at the time of the
@@ -476,19 +476,19 @@ Washington University
 9
 </td>
 <td style="text-align:center;">
-Cayla S.
+Wwwwow
 </td>
 <td style="text-align:center;">
 Duke
 </td>
 <td style="text-align:center;">
--0.00016%
+-0.00019%
 </td>
 <td style="text-align:center;">
-0%
+9e-05%
 </td>
 <td style="text-align:center;">
--Inf
+-2.007
 </td>
 </tr>
 <tr>
@@ -496,19 +496,19 @@ Duke
 10
 </td>
 <td style="text-align:center;">
-ZANT
+SHAHRK
 </td>
 <td style="text-align:center;">
 NC State
 </td>
 <td style="text-align:center;">
--0.00016%
+-2e-04%
 </td>
 <td style="text-align:center;">
-0%
+0.00133%
 </td>
 <td style="text-align:center;">
--Inf
+-0.150
 </td>
 </tr>
 </tbody>

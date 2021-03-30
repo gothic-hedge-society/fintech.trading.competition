@@ -200,7 +200,7 @@ Participants are granted paper trading accounts at [Interactive
 Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE),
 which enable them to trade equities, options, ETFs, futures, currencies, bonds,
 and more, all based on real-time streaming market data. Students use the same
-execution systems as professional traders: (IBKR's [Mobile
+execution systems as professional traders IBKR's [Mobile
 App](https://www.interactivebrokers.com/en/index.php?f=1300), [Trader
 Workstation GUI](https://www.interactivebrokers.com/en/index.php?f=16040) and
 [IB Gateway](https://www.interactivebrokers.com/en/index.php?f=16457)) -- the
@@ -256,7 +256,7 @@ rights :).
 
 ``` {r echo = FALSE, message = FALSE}
 participating_student_reports %>%
-  dplyr::filter(!is.infinite(excess_gmrr)) %>%
+  dplyr::filter(!is.infinite(excess_gmrr) & !is.infinite(Sharpe)) %>%
   dplyr::arrange(dplyr::desc(excess_gmrr)) %>%
   head(10) %>%
   dplyr::mutate(

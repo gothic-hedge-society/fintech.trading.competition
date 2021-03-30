@@ -159,7 +159,7 @@ R_{p,e} & {\sf: Excess\ Portfolio\ Return} \\
 
 Note that we've already taken the "$-r_{f}$" into account when we used the
 excess gmrr instead of the gmrr of the daily returns; in other words, with this
-notation the term "$R_{p,e} - r_{f}$" (as written in the
+notation the term "$R_{p} - r_{f}$" (as written in the
 [Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/)
 section) equals $R_{p,e}$.
 
