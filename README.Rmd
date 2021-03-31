@@ -219,6 +219,8 @@ Standings for the top 10 traders will be posted here and updated daily. This
 site will continue to grow as new features are brought onboard. Be sure to
 check back often for updates!!!
 
+The competition started on **11 Mar 2021** and will conclude on **07 May 2021**.
+
 # Standings
 The information on this page was last refreshed on **`r Sys.time()`**.
 At that time, the data was available for the range from `r competition_start_date` to `r most_recent_date`.
