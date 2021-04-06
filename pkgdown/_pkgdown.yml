@@ -3,6 +3,7 @@ url: https://gothic-hedge-society.github.io/fintech.trading.competition
 template:
   params:
     bootswatch: darkly
+    ganalytics: G-9X0K4G58XL
 
 authors:
   Jake Vestal:
