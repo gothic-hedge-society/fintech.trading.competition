@@ -40,9 +40,9 @@ The competition started on **11 Mar 2021** and will conclude on **07 May
 
 # Standings
 
-The information on this page was last refreshed on **2021-04-12
-16:21:51**. At that time, the data was available for the range from
-2021-03-11 to 2021-04-09.
+The information on this page was last refreshed on **2021-04-13
+17:29:32**. At that time, the data was available for the range from
+2021-03-11 to 2021-04-12.
 
 Standings are updated based on the data available at the time of the
 update. It takes time for students’ account balances to be brought
@@ -90,13 +90,13 @@ Stark
 NC State
 </td>
 <td style="text-align:center;">
-0.00091%
+0.00088%
 </td>
 <td style="text-align:center;">
-0.0017%
+0.00166%
 </td>
 <td style="text-align:center;">
-0.535
+0.528
 </td>
 </tr>
 <tr>
@@ -110,38 +110,18 @@ TradeBroker
 Duke
 </td>
 <td style="text-align:center;">
-0.00193%
+0.00184%
 </td>
 <td style="text-align:center;">
-0.00373%
+0.00367%
 </td>
 <td style="text-align:center;">
-0.517
+0.501
 </td>
 </tr>
 <tr>
 <td style="text-align:center;">
 3
-</td>
-<td style="text-align:center;">
-endtimes
-</td>
-<td style="text-align:center;">
-NC State
-</td>
-<td style="text-align:center;">
-0.0031%
-</td>
-<td style="text-align:center;">
-0.01017%
-</td>
-<td style="text-align:center;">
-0.305
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4
 </td>
 <td style="text-align:center;">
 nonFortissimus
@@ -150,18 +130,18 @@ nonFortissimus
 UNC Chapel Hill
 </td>
 <td style="text-align:center;">
-0.00123%
+0.00116%
 </td>
 <td style="text-align:center;">
-0.00418%
+0.00409%
 </td>
 <td style="text-align:center;">
-0.293
+0.284
 </td>
 </tr>
 <tr>
 <td style="text-align:center;">
-5
+4
 </td>
 <td style="text-align:center;">
 Rot00
@@ -170,13 +150,33 @@ Rot00
 NC State
 </td>
 <td style="text-align:center;">
-0.00188%
+0.00242%
 </td>
 <td style="text-align:center;">
-0.00913%
+0.00927%
 </td>
 <td style="text-align:center;">
-0.205
+0.261
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+endtimes
+</td>
+<td style="text-align:center;">
+NC State
+</td>
+<td style="text-align:center;">
+0.00265%
+</td>
+<td style="text-align:center;">
+0.01015%
+</td>
+<td style="text-align:center;">
+0.261
 </td>
 </tr>
 <tr>
@@ -190,13 +190,13 @@ jw708
 Duke
 </td>
 <td style="text-align:center;">
-0.00163%
+0.00141%
 </td>
 <td style="text-align:center;">
-0.00861%
+0.00847%
 </td>
 <td style="text-align:center;">
-0.189
+0.166
 </td>
 </tr>
 <tr>
@@ -210,38 +210,18 @@ Joe\_Shmoe
 NC State
 </td>
 <td style="text-align:center;">
-0.00063%
+6e-04%
 </td>
 <td style="text-align:center;">
-0.0041%
+0.004%
 </td>
 <td style="text-align:center;">
-0.153
+0.151
 </td>
 </tr>
 <tr>
 <td style="text-align:center;">
 8
-</td>
-<td style="text-align:center;">
-Beautylun
-</td>
-<td style="text-align:center;">
-Duke
-</td>
-<td style="text-align:center;">
-0.01511%
-</td>
-<td style="text-align:center;">
-0.10269%
-</td>
-<td style="text-align:center;">
-0.147
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-9
 </td>
 <td style="text-align:center;">
 Cheng-En
@@ -250,13 +230,33 @@ Cheng-En
 Washington University
 </td>
 <td style="text-align:center;">
-0.00186%
+0.00183%
 </td>
 <td style="text-align:center;">
-0.01328%
+0.01296%
 </td>
 <td style="text-align:center;">
-0.140
+0.141
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+Beautylun
+</td>
+<td style="text-align:center;">
+Duke
+</td>
+<td style="text-align:center;">
+0.01315%
+</td>
+<td style="text-align:center;">
+0.10071%
+</td>
+<td style="text-align:center;">
+0.131
 </td>
 </tr>
 <tr>
@@ -264,19 +264,19 @@ Washington University
 10
 </td>
 <td style="text-align:center;">
-bw98
+<B@nk>
 </td>
 <td style="text-align:center;">
-Duke
+NC State
 </td>
 <td style="text-align:center;">
-0.00056%
+0.00164%
 </td>
 <td style="text-align:center;">
-0.00499%
+0.01265%
 </td>
 <td style="text-align:center;">
-0.112
+0.129
 </td>
 </tr>
 </tbody>
@@ -325,13 +325,13 @@ Wall Street Legend
 Wake Forest
 </td>
 <td style="text-align:center;">
-0.09143%
+0.08709%
 </td>
 <td style="text-align:center;">
-1.15641%
+1.12982%
 </td>
 <td style="text-align:center;">
-0.079
+0.077
 </td>
 </tr>
 <tr>
@@ -345,13 +345,13 @@ Not\_A\_Cat
 NC State
 </td>
 <td style="text-align:center;">
-0.06001%
+0.05675%
 </td>
 <td style="text-align:center;">
-1.17934%
+1.15232%
 </td>
 <td style="text-align:center;">
-0.051
+0.049
 </td>
 </tr>
 <tr>
@@ -365,13 +365,13 @@ Beautylun
 Duke
 </td>
 <td style="text-align:center;">
-0.01511%
+0.01315%
 </td>
 <td style="text-align:center;">
-0.10269%
+0.10071%
 </td>
 <td style="text-align:center;">
-0.147
+0.131
 </td>
 </tr>
 <tr>
@@ -385,38 +385,18 @@ endtimes
 NC State
 </td>
 <td style="text-align:center;">
-0.0031%
+0.00265%
 </td>
 <td style="text-align:center;">
-0.01017%
+0.01015%
 </td>
 <td style="text-align:center;">
-0.305
+0.261
 </td>
 </tr>
 <tr>
 <td style="text-align:center;">
 5
-</td>
-<td style="text-align:center;">
-TradeBroker
-</td>
-<td style="text-align:center;">
-Duke
-</td>
-<td style="text-align:center;">
-0.00193%
-</td>
-<td style="text-align:center;">
-0.00373%
-</td>
-<td style="text-align:center;">
-0.517
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-6
 </td>
 <td style="text-align:center;">
 Rot00
@@ -425,18 +405,58 @@ Rot00
 NC State
 </td>
 <td style="text-align:center;">
-0.00188%
+0.00242%
 </td>
 <td style="text-align:center;">
-0.00913%
+0.00927%
 </td>
 <td style="text-align:center;">
-0.205
+0.261
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+Wolf\_Investments22
+</td>
+<td style="text-align:center;">
+NC State
+</td>
+<td style="text-align:center;">
+0.00214%
+</td>
+<td style="text-align:center;">
+0.01919%
+</td>
+<td style="text-align:center;">
+0.112
 </td>
 </tr>
 <tr>
 <td style="text-align:center;">
 7
+</td>
+<td style="text-align:center;">
+TradeBroker
+</td>
+<td style="text-align:center;">
+Duke
+</td>
+<td style="text-align:center;">
+0.00184%
+</td>
+<td style="text-align:center;">
+0.00367%
+</td>
+<td style="text-align:center;">
+0.501
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
 </td>
 <td style="text-align:center;">
 Cheng-En
@@ -445,18 +465,38 @@ Cheng-En
 Washington University
 </td>
 <td style="text-align:center;">
-0.00186%
+0.00183%
 </td>
 <td style="text-align:center;">
-0.01328%
+0.01296%
 </td>
 <td style="text-align:center;">
-0.140
+0.141
 </td>
 </tr>
 <tr>
 <td style="text-align:center;">
-8
+9
+</td>
+<td style="text-align:center;">
+<B@nk>
+</td>
+<td style="text-align:center;">
+NC State
+</td>
+<td style="text-align:center;">
+0.00164%
+</td>
+<td style="text-align:center;">
+0.01265%
+</td>
+<td style="text-align:center;">
+0.129
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
 </td>
 <td style="text-align:center;">
 jw708
@@ -465,53 +505,13 @@ jw708
 Duke
 </td>
 <td style="text-align:center;">
-0.00163%
+0.00141%
 </td>
 <td style="text-align:center;">
-0.00861%
+0.00847%
 </td>
 <td style="text-align:center;">
-0.189
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-9
-</td>
-<td style="text-align:center;">
-JMLC
-</td>
-<td style="text-align:center;">
-NC State
-</td>
-<td style="text-align:center;">
-0.00137%
-</td>
-<td style="text-align:center;">
-0.02114%
-</td>
-<td style="text-align:center;">
-0.065
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-nonFortissimus
-</td>
-<td style="text-align:center;">
-UNC Chapel Hill
-</td>
-<td style="text-align:center;">
-0.00123%
-</td>
-<td style="text-align:center;">
-0.00418%
-</td>
-<td style="text-align:center;">
-0.293
+0.166
 </td>
 </tr>
 </tbody>
