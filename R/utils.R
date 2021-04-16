@@ -17,6 +17,37 @@ get_usdt_data <- function(url){
     }
 }
 
+# Calculate student reports
+student_reports <- function(flex_query, report_dates){
+  flex_query %>%
+    dplyr::mutate(
+      "total"            = list(statement$total[as.character(report_dates)]),
+      "daily_returns"    = statement$total[as.character(report_dates)] %>%
+        daily_rtns(),
+      "rfr"              = list(rfr),
+      "daily_excess_rtn" = list(
+        xts::xts(
+          zoo::coredata(daily_returns) - zoo::coredata(rfr[[1]]),
+          order.by = zoo::index(daily_returns)
+        )
+      ),
+      "excess_gmrr"      = gmrr(daily_excess_rtn),
+      "daily_vol"        = sd(daily_returns),
+      "Sharpe"           = excess_gmrr / daily_vol
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::full_join(
+      dplyr::select(participants, "accountId", "trader_name", "School")
+    ) %>%
+    dplyr::select(
+      "accountId",     "trader_name", "School",           "total",
+      "daily_returns", "rfr",         "daily_excess_rtn", "excess_gmrr",
+      "daily_vol",     "Sharpe"
+    ) %>%
+    dplyr::filter(!is.infinite(Sharpe) && !is.na(Sharpe)) %>%
+    dplyr::arrange(dplyr::desc(Sharpe))
+}
+
 
 # Data Munging -----------------------------------------------------------------
 # remove cols that all equal "", NA, 0, or "<NA>"
