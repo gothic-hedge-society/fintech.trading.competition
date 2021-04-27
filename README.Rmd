@@ -44,10 +44,6 @@ missing_accounts <- flex_query %>%
   grep("^DU", ., value = TRUE) %>% 
   intersect(participants$accountId)
 
-if(isTRUE(length(missing_accounts) > 0)){
-  stop(paste0("Missing accounts: ", paste(missing_accounts, collapse = ", ")))
-}
-
 flex_query <- flex_query %>%
   xml2::xml_child("FlexStatements") %>%
   xml2::xml_children() %>%
@@ -224,6 +220,19 @@ The competition started on **11 Mar 2021** and will conclude on **07 May 2021**.
 # Standings
 The information on this page was last refreshed on **`r Sys.time()`**.
 At that time, the data was available for the range from `r competition_start_date` to `r most_recent_date`.
+
+```{r, echo=FALSE}
+if(isTRUE(length(missing_accounts) > 0)){
+  print(
+    paste0(
+      "Data not yet available for accounts: ", 
+      paste(missing_accounts, collapse = ", ")
+    )
+  )
+} else {
+  print("All accounts are up to date.")
+}
+```
 
 Standings are updated based on the data available at the time of the update. It
 takes time for students' account balances to be brought current -- results are
