@@ -106,9 +106,9 @@ statement_dates <- statement_dates[
 # ^GSPC ----------------------------------------------------------------------
 gspc <- paste0(
   "https://query1.finance.yahoo.com/v7/finance/download/%5EGSPC?period1=",
-  as.numeric(as.POSIXct(statement_dates[1])),
+  sprintf("%.0f", as.numeric(as.POSIXct(statement_dates[1]))),
   "&period2=",
-  as.numeric(as.POSIXct(Sys.Date())),
+  sprintf("%.0f", as.numeric(as.POSIXct(Sys.Date()))),
   "&interval=1d&events=history&includeAdjustedClose=true"
 ) %>%
   readr::read_csv(col_types = "Dnnnnnn") %>%
