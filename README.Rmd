@@ -8,12 +8,12 @@ always_allow_html: yes
 ```{r, include = FALSE}
 devtools::load_all(".")
 
-# knitr::opts_chunk$set(
-#   collapse = TRUE,
-#   comment = "#>",
-#   fig.path = "man/figures/README-",
-#   out.width = "100%"
-# )
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
 
 competition_start_date <- as.Date("2021-03-11")
 
@@ -288,12 +288,3 @@ if(isTRUE(length(missing_accounts) > 0)){
 }
 ```
 
-
-# Test purposes only:
-```{r}
-# Source: http://www.htmlwidgets.org/showcase_plotly.html
-library(plotly)
-p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
-            geom_bar(position = "dodge")
-ggplotly(p)
-```

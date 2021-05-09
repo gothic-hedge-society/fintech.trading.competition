@@ -41,7 +41,7 @@ The competition started on **11 Mar 2021** and will conclude on **07 May
 # Standings
 
 The information on this page was last refreshed on **2021-05-09
-18:07:21**. At that time, the data was available for the range from
+18:13:47**. At that time, the data was available for the range from
 2021-03-11 to 2021-05-07.
 
 Standings are updated based on the data available at the time of the
@@ -517,36 +517,4 @@ NC State
 </tbody>
 </table>
 
-    ## [1] "All accounts are up to date."
-
-# Test purposes only:
-
-``` r
-# Source: http://www.htmlwidgets.org/showcase_plotly.html
-library(plotly)
-```
-
-    ## Loading required package: ggplot2
-
-    ## 
-    ## Attaching package: 'plotly'
-
-    ## The following object is masked from 'package:ggplot2':
-    ## 
-    ##     last_plot
-
-    ## The following object is masked from 'package:stats':
-    ## 
-    ##     filter
-
-    ## The following object is masked from 'package:graphics':
-    ## 
-    ##     layout
-
-``` r
-p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
-            geom_bar(position = "dodge")
-ggplotly(p)
-```
-
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+    #> [1] "All accounts are up to date."
