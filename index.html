@@ -102,8 +102,27 @@
 <div id="standings" class="section level1">
 <h1 class="hasAnchor">
 <a href="#standings" class="anchor"></a>Standings</h1>
-<p>The information on this page was last refreshed on <strong>2021-05-09 16:38:21</strong>. At that time, the data was available for the range from 2021-03-11 to 2021-05-07.</p>
+<p>The information on this page was last refreshed on <strong>2021-05-09 17:15:29</strong>. At that time, the data was available for the range from 2021-03-11 to 2021-05-07.</p>
 <p>Standings are updated based on the data available at the time of the update. It takes time for students’ account balances to be brought current – results are usually available for the previous trading day at or after approximately 6PM EST on the next trading day.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Source: http://www.htmlwidgets.org/showcase_plotly.html</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">plotly</span><span class="op">)</span>
+<span class="co">#&gt; Loading required package: ggplot2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'plotly'</span>
+<span class="co">#&gt; The following object is masked from 'package:ggplot2':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     last_plot</span>
+<span class="co">#&gt; The following object is masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter</span>
+<span class="co">#&gt; The following object is masked from 'package:graphics':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     layout</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">diamonds</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cut</span>, fill <span class="op">=</span> <span class="va">clarity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+            <span class="fu">geom_bar</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span>
+<span class="fu">ggplotly</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
 <div id="top-sharpe-ratios-competition-standings" class="section level2">
 <h2 class="hasAnchor">
 <a href="#top-sharpe-ratios-competition-standings" class="anchor"></a>Top Sharpe Ratios (competition standings)</h2>
@@ -567,7 +586,7 @@ NC State
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#&gt; [1] "All accounts are up to date."</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#&gt; [1] "All accounts are up to date."</span></span></code></pre></div>
 </div>
 </div>
 
