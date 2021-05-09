@@ -1,5 +1,5 @@
 ---
-output: github_document
+output: html_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -285,4 +285,14 @@ if(isTRUE(length(missing_accounts) > 0)){
 } else {
   print("All accounts are up to date.")
 }
+```
+
+
+# Test purposes only:
+```{r}
+# Source: http://www.htmlwidgets.org/showcase_plotly.html
+library(plotly)
+p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
+            geom_bar(position = "dodge")
+ggplotly(p)
 ```

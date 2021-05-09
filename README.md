@@ -41,13 +41,35 @@ The competition started on **11 Mar 2021** and will conclude on **07 May
 # Standings
 
 The information on this page was last refreshed on **2021-05-09
-16:38:21**. At that time, the data was available for the range from
+17:15:29**. At that time, the data was available for the range from
 2021-03-11 to 2021-05-07.
 
 Standings are updated based on the data available at the time of the
 update. It takes time for students’ account balances to be brought
 current – results are usually available for the previous trading day at
 or after approximately 6PM EST on the next trading day.
+
+``` r
+# Source: http://www.htmlwidgets.org/showcase_plotly.html
+library(plotly)
+#> Loading required package: ggplot2
+#> 
+#> Attaching package: 'plotly'
+#> The following object is masked from 'package:ggplot2':
+#> 
+#>     last_plot
+#> The following object is masked from 'package:stats':
+#> 
+#>     filter
+#> The following object is masked from 'package:graphics':
+#> 
+#>     layout
+p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
+            geom_bar(position = "dodge")
+ggplotly(p)
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 ## Top Sharpe Ratios (competition standings)
 
