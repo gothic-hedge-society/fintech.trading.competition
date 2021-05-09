@@ -41,7 +41,7 @@ The competition started on **11 Mar 2021** and will conclude on **07 May
 # Standings
 
 The information on this page was last refreshed on **2021-05-09
-18:13:47**. At that time, the data was available for the range from
+18:22:47**. At that time, the data was available for the range from
 2021-03-11 to 2021-05-07.
 
 Standings are updated based on the data available at the time of the
@@ -516,5 +516,3 @@ NC State
 </tr>
 </tbody>
 </table>
-
-    #> [1] "All accounts are up to date."

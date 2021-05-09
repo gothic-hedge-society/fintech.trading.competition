@@ -274,17 +274,3 @@ participating_student_reports %>%
     align   = rep('c', 5)
   )
 ```
-
-```{r, echo=FALSE}
-if(isTRUE(length(missing_accounts) > 0)){
-  print(
-    paste0(
-      "Data not yet available for accounts: ", 
-      paste(missing_accounts, collapse = ", ")
-    )
-  )
-} else {
-  print("All accounts are up to date.")
-}
-```
-
