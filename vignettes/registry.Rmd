@@ -14,10 +14,5 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(fintech.trading.competition)
-```
-
-
 Check back here after you've opened your paper trading account to confirm that
 your tradername appears beside the correct account number.

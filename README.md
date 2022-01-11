@@ -63,7 +63,7 @@ may register for the competition by following these steps:
     simple alphanumeric string like “jakev9914”. Test that your account
     is live by logging in to TWS.
 8.  Check the
-    [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/)
+    [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html)
     to confirm that the tradername you’ve chosen appears alongside the
     correct account number of your paper trader.
 9.  Once your tradername appears alongside your paper trader’s account
