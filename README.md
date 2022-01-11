@@ -85,7 +85,7 @@ may register for the competition by following these steps:
 # Rules
 
 1.  The competition will begin on Wednesday, 19 Jan 2022 at 9:30am EST.
-2.  The competition will end on Friday, 19 Jan 2022 at 4pm EST.
+2.  The competition will end on Wednesday, 13 Apr 2022 at 4pm EST.
 3.  You can begin making trades as soon as you like, but only your
     end-of-day portfolio values within these dates (inclusive) will be
     used for scoring. Because the competition is scored based on Sharpe
