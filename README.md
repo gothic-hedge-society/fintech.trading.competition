@@ -27,14 +27,18 @@ onboard so be sure to check back often for updates!!!
 # Prizes
 
 As is fitting for this competition prizes will be awarded in USD and ZEN
-cryptocurrency, provided by our sponsors! All prizes will be awarded 50%
-ZEN and 50% USD.
+cryptocurrency, provided by our sponsors! All prizes will be awarded 1/3
+ZEN and 2/3 USD.
 
-##### 1st Prize is $2,500
+##### 1st Prize is $3,000
 
-##### 2nd Prize is $1,500
+##### 2nd Prize is $2,000
 
-##### 3rd Prize is $1,000
+##### 3rd Prize is $1,250
+
+##### 4th Prize is $750
+
+##### 5th Prize is $500
 
 # Registration
 
