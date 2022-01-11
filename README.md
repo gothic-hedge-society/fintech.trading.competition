@@ -38,8 +38,8 @@ ZEN and 50% USD.
 
 # Registration
 
-Currently enrolled graduate or undergraduate student with a .edu address
-may register for the competition by following these steps:
+Currently enrolled graduate or undergraduate students with a .edu
+address may register for the competition by following these steps:
 
 1.  Visit the [registration
     page](https://dukefinance.wufoo.com/forms/2022-duke-fintech-trading-competition/)  
