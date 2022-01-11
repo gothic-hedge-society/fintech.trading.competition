@@ -27,7 +27,8 @@ often for updates!!!
 Currently enrolled graduate or undergraduate student with a .edu address may
 register for the competition by following these steps:
 
-1. Visit **LINK** and provide the requested information using your .edu email. 
+1. Visit the [registration page](https://dukefinance.wufoo.com/forms/2022-duke-fintech-trading-competition/)  
+and provide the requested information using your .edu email. 
     - You'll be asked for a trader username -- choose wisely! You may use your
     real name if you want, but understand that when daily standings and
     performance updates are pushed to the website, this is the name that will
@@ -61,7 +62,17 @@ you're all set! You're encouraged to say 'hi' in the Slack channel.
 
 # Rules
 1. The competition will begin on Wednesday, 19 Jan 2022 at 9:30am EST.
-2. The competition will end on Friday, 19 Jan 2022 at 9:30am EST.
-
-
-
+2. The competition will end on Friday, 19 Jan 2022 at 4pm EST.
+3. You can begin making trades as soon as you like, but only your end-of-day
+portfolio values within these dates (inclusive) will be used for scoring.
+Because the competition is scored based on Sharpe Ratio, it doesn't matter if
+different participants begin the competition with different positions and cash.
+4. If your account isn't activated by the start of the competition, then you
+aren't eligible to participate so be sure to activate early!
+5. Scoring will be based on Sharpe Ratio (highest wins). Please see the
+following pages for more detailed information:
+    - [Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html) 
+      basic idea
+    - [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe%20Ratio%20Calculation.html)
+6. **No account resets are allowed**. Be sure that any orders you make on your
+trading account are what you want -- use the Demo account features for practice.

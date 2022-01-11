@@ -29,25 +29,25 @@ onboard so be sure to check back often for updates!!!
 Currently enrolled graduate or undergraduate student with a .edu address
 may register for the competition by following these steps:
 
-1.  Visit **LINK** and provide the requested information using your .edu
-    email.
+1.  Visit the [registration
+    page](https://dukefinance.wufoo.com/forms/2022-duke-fintech-trading-competition/)  
+    and provide the requested information using your .edu email.
     -   You’ll be asked for a trader username – choose wisely! You may
         use your real name if you want, but understand that when daily
         standings and performance updates are pushed to the website,
-        this is the name that will appear to the world.
-    -   Also remember that the world knows your school, department, and
-        username, so use ribald humor at your own risk.
+        this is the name that will appear to the world alongside your
+        school, department, and username.
 2.  Within one business day, you’ll receive two emails:
-    -   a welcome email from Duke FINTECH including an invitation to the
+    -   A welcome email from Duke FINTECH including an invitation to the
         official trading competition Slack channel
-    -   an invitation email from Interactive Brokers (IBKR) for creating
+    -   An invitation email from Interactive Brokers (IBKR) for creating
         a new paper trading account
 3.  Join the Slack channel
 4.  Follow the link in your IBKR invitation email and fill out the
     application for a new paper trading account.
-    -   **BE SURE TO RECORD YOUR PAPER TRADING ACCOUNT USERNAME AND
-        PASSWORD**. This information will display in a yellow box after
-        you submit the form.
+    -   **BE CERTAIN TO RECORD YOUR PAPER TRADING ACCOUNT NUMBER,
+        USERNAME AND PASSWORD**. This information will display in a
+        yellow box after you submit the form.
     -   You must complete this step and create a new paper trader even
         if you already have a paper trading account with IBKR.
 5.  Wait. It takes about **one business day** for your paper trading
@@ -59,4 +59,35 @@ may register for the competition by following these steps:
     page. Install TWS and explore the Demo account for a bit while you
     wait for your account to activate.
 7.  Once it’s active, you will be able to log in to your paper trader
-    using the credentials from **Step 4**.
+    using the credentials from **Step 4**. Your username will be a
+    simple alphanumeric string like “jakev9914”. Test that your account
+    is live by logging in to TWS.
+8.  Check the
+    [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/)
+    to confirm that the tradername you’ve chosen appears alongside the
+    correct account number of your paper trader.
+9.  Once your tradername appears alongside your paper trader’s account
+    number, you’re all set! You’re encouraged to say ‘hi’ in the Slack
+    channel.
+
+# Rules
+
+1.  The competition will begin on Wednesday, 19 Jan 2022 at 9:30am EST.
+2.  The competition will end on Friday, 19 Jan 2022 at 4pm EST.
+3.  You can begin making trades as soon as you like, but only your
+    end-of-day portfolio values within these dates (inclusive) will be
+    used for scoring. Because the competition is scored based on Sharpe
+    Ratio, it doesn’t matter if different participants begin the
+    competition with different positions and cash.
+4.  If your account isn’t activated by the start of the competition,
+    then you aren’t eligible to participate so be sure to activate
+    early!
+5.  Scoring will be based on Sharpe Ratio (highest wins). Please see the
+    following pages for more detailed information:
+    -   [Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html)
+        basic idea
+    -   [Sharpe Ratio
+        Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe%20Ratio%20Calculation.html)
+6.  **No account resets are allowed**. Be sure that any orders you make
+    on your trading account are what you want – use the Demo account
+    features for practice.
