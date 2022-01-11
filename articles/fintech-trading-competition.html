@@ -26,6 +26,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fintech.trading.competition</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2021.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2021.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/fintech-trading-competition.html">Get started</a>
 </li>
@@ -89,9 +85,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
-                        <h4 class="author">Jake Vestal</h4>
+                        <h4 data-toc-skip class="author">Jake Vestal</h4>
             
-            <h4 class="date">3/12/2021</h4>
+            <h4 data-toc-skip class="date">1/11/2022</h4>
       
       
       <div class="hidden name"><code>fintech-trading-competition.Rmd</code></div>
@@ -100,33 +96,34 @@
 
     
     
-<p>While you’re creating your paper trading account, you’ll encounter instructions from Interactive Brokers (IBKR) regarding how to access your account for trading.</p>
-<p>To get started, it’s recommended you select from one of the three recommended client apps, outlined below:</p>
-<div id="register-for-the-competition" class="section level3">
-<h3 class="hasAnchor">
-<a href="#register-for-the-competition" class="anchor"></a>0) Register for the Competition</h3>
-<p>To register, all you need is to be a current graduate or undergrad student at an accredited university with a .edu email address. Follow the link posted on the main page to sign up. <strong>At this time, registration for the Spring 2021 session is closed, but we are extremely excited to welcome students for the next session in the fall</strong>!</p>
+<p>There are three (3) main apps available for Mac, Windows, and Unix that allow you to access your trading account once it’s been set up. If you’ve just filled out your IBKR paper trading form and are waiting for it to activate, you might be interested to experiment with the “demo” option available in each app. You can even make trades while you’re logged in as ‘demo’, but your positions and earnings won’t be saved and won’t count towards competition scoring in any way.</p>
+<p>You’ll need to install one or more of these apps to be able to manage your account. Each is described below.</p>
+<p>It is highly recommended that you download and use Trader Workstation (TWS), at least at first, so that you can familiarize yourself with important operations such as trade order entry, charting, the various financial assets, and so on in a graphical environment.</p>
+<div class="section level3">
+<h3 id="client-portal">0) Client Portal<a class="anchor" aria-label="anchor" href="#client-portal"></a>
+</h3>
+<p>The <a href="https://ndcdyn.interactivebrokers.com/sso/Login?forwardTo=22&amp;locale=en_US" class="external-link">Client Portal</a> is your account management website where you can view basic info about your account, including statements, balances, and trading activity.</p>
 </div>
-<div id="trader-workstation-tws" class="section level3">
-<h3 class="hasAnchor">
-<a href="#trader-workstation-tws" class="anchor"></a>1) Trader Workstation (TWS)</h3>
-<p>The Trader Workstation is IBKR’s client app that connects to the brokerage and allows you to make trades and view real-time market data, including news &amp; bulletins. TWS is intended to be installed on your computer (Mac, Windows, Unix) and can be customized to your liking following the documentation on IBKR’s home page.</p>
-<p>To install TWS, you’ll want to visit the <a href="https://www.interactivebrokers.com/en/index.php?f=16040">TWS download page</a> and install the correct version for your system. Log in using your IBKR credentials and start trading!</p>
+<div class="section level3">
+<h3 id="trader-workstation-tws">1) Trader Workstation (TWS)<a class="anchor" aria-label="anchor" href="#trader-workstation-tws"></a>
+</h3>
+<p>TWS is IBKR’s graphical client app that connects to the brokerage and allows you to make trades and view real-time market data, including news &amp; bulletins. TWS is intended to be installed on your computer and can be customized to your liking following the documentation on IBKR’s home page.</p>
+<p>To install TWS, you’ll want to visit the <a href="https://www.interactivebrokers.com/en/index.php?f=16040" class="external-link">TWS download page</a> and install the correct version for your system. Log in using your IBKR credentials and start trading!</p>
 </div>
-<div id="ibkr-mobile" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ibkr-mobile" class="anchor"></a>2) IBKR Mobile</h3>
-<p>Interactive Brokers offers a mobile app from which you can access your account to make trade and view market data. The app is available on <a href="https://play.google.com/store/apps/details?id=atws.app&amp;hl=en_US&amp;gl=US">Android</a> and <a href="https://apps.apple.com/us/app/ibkr-mobile-invest-worldwide/id454558592">iOS</a>.</p>
+<div class="section level3">
+<h3 id="ibkr-mobile">2) IBKR Mobile<a class="anchor" aria-label="anchor" href="#ibkr-mobile"></a>
+</h3>
+<p>Interactive Brokers offers a mobile app from which you can access your account to make trade and view market data. The app is available on <a href="https://play.google.com/store/apps/details?id=atws.app&amp;hl=en_US&amp;gl=US" class="external-link">Android</a> and <a href="https://apps.apple.com/us/app/ibkr-mobile-invest-worldwide/id454558592" class="external-link">iOS</a>.</p>
 </div>
-<div id="ib-gateway-ibg" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ib-gateway-ibg" class="anchor"></a>3) IB Gateway (IBG)</h3>
-<p>IB Gateway is identical to TWS in every way except that there is no graphical user interface (GUI) – you’re expected to connect to a running instance of IBG using one of the various APIs made available by IBKR. To download, visit the <a href="https://www.interactivebrokers.com/en/index.php?f=16457">IBG download page</a>.</p>
+<div class="section level3">
+<h3 id="ib-gateway-ibg">3) IB Gateway (IBG)<a class="anchor" aria-label="anchor" href="#ib-gateway-ibg"></a>
+</h3>
+<p>IB Gateway is identical to TWS in every way except that there is no graphical user interface (GUI) – you’re expected to connect to a running instance of IBG using one of the various APIs made available by IBKR. To download, visit the <a href="https://www.interactivebrokers.com/en/index.php?f=16457" class="external-link">IBG download page</a>. Use this if you plan on making trades with an external system such as an app you’ve written in a language like R or Python.</p>
 </div>
-<div id="traders-university" class="section level3">
-<h3 class="hasAnchor">
-<a href="#traders-university" class="anchor"></a>Traders’ University</h3>
-<p>IBKR maintains a set of videos on their <a href="https://www.interactivebrokers.com/en/index.php?f=1350">Traders’ University</a> site where you can learn about the different financial instruments and how to trade them using your system of choice.</p>
+<div class="section level3">
+<h3 id="traders-university">Traders’ University<a class="anchor" aria-label="anchor" href="#traders-university"></a>
+</h3>
+<p>IBKR maintains a set of videos on their <a href="https://www.interactivebrokers.com/en/index.php?f=1350" class="external-link">Traders’ University</a> site where you can learn about the different financial instruments and how to trade them using your system of choice.</p>
 </div>
   </div>
 
@@ -139,11 +136,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://github.com/JakeVestal">Jake Vestal</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://github.com/JakeVestal" class="external-link">Jake Vestal</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -151,6 +150,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -26,6 +26,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fintech.trading.competition</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2021.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2021.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/fintech-trading-competition.html">Get started</a>
 </li>
@@ -85,17 +81,17 @@
 
       
 
-      </header><script src="Sharpe%20Ratio%20Calculation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="Sharpe%20Ratio%20Calculation_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="Sharpe%20Ratio%20Calculation_files/jquery-3.5.1/jquery.min.js"></script><link href="Sharpe%20Ratio%20Calculation_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="Sharpe%20Ratio%20Calculation_files/datatables-binding-0.18/datatables.js"></script><link href="Sharpe%20Ratio%20Calculation_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="Sharpe%20Ratio%20Calculation_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="Sharpe%20Ratio%20Calculation_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="Sharpe%20Ratio%20Calculation_files/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="Sharpe%20Ratio%20Calculation_files/crosstalk-1.1.1/js/crosstalk.min.js"></script><div class="row">
+      </header><script src="Sharpe%20Ratio%20Calculation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="Sharpe%20Ratio%20Calculation_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="Sharpe%20Ratio%20Calculation_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="Sharpe%20Ratio%20Calculation_files/datatables-binding-0.20/datatables.js"></script><script src="Sharpe%20Ratio%20Calculation_files/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="Sharpe%20Ratio%20Calculation_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="Sharpe%20Ratio%20Calculation_files/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="Sharpe%20Ratio%20Calculation_files/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="Sharpe%20Ratio%20Calculation_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="Sharpe%20Ratio%20Calculation_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Sharpe Ratio Calculation</h1>
-                        <h4 class="author">Jake Vestal</h4>
+                        <h4 data-toc-skip class="author">Jake Vestal</h4>
             
-            <h4 class="date">3/15/2021</h4>
+            <h4 data-toc-skip class="date">3/15/2021</h4>
       
       
       <div class="hidden name"><code>Sharpe Ratio Calculation.Rmd</code></div>
@@ -109,28 +105,28 @@
   color: #fcba03;
 }
 </style>
-<div id="scoring-for-an-example-student" class="section level1">
-<h1 class="hasAnchor">
-<a href="#scoring-for-an-example-student" class="anchor"></a>Scoring for an example student</h1>
+<div class="section level1">
+<h1 id="scoring-for-an-example-student">Scoring for an example student<a class="anchor" aria-label="anchor" href="#scoring-for-an-example-student"></a>
+</h1>
 <p>As discussed in the <a href="https://gothic-hedge-society.github.io/fintech.trading.competition/">Scoring</a> section, student performance is graded by Sharpe Ratio. Here, we walk through an example that explains how the Sharpe Ratio would be calculated for an example contest participant.</p>
-<div id="matching-up-calculations-w-excel-and-other-programs" class="section level3">
-<h3 class="hasAnchor">
-<a href="#matching-up-calculations-w-excel-and-other-programs" class="anchor"></a>Matching up Calculations w/ Excel and Other Programs</h3>
+<div class="section level3">
+<h3 id="matching-up-calculations-w-excel-and-other-programs">Matching up Calculations w/ Excel and Other Programs<a class="anchor" aria-label="anchor" href="#matching-up-calculations-w-excel-and-other-programs"></a>
+</h3>
 <p>As simple as it may seem, calculating logarithms can differ slightly (or sometimes, significantly) depending on the precision of the program you use. It’s possible to get different answers for the same log calcs in Excel, R, and Python, and the difference gets magnified when calculating GMRR.</p>
 <p>Therefore, don’t worry too much if you try to follow along this example and wind up with numbers that differ slightly. For the purposes of fairness in the competition, it only matters that we use the same program for everyone – which, in this case, is the <em>log</em>() function in R.</p>
 </div>
-<div id="example-students-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-students-data" class="anchor"></a>Example Student’s Data</h3>
+<div class="section level3">
+<h3 id="example-students-data">Example Student’s Data<a class="anchor" aria-label="anchor" href="#example-students-data"></a>
+</h3>
 <p>Let’s say that today’s date is 23 March 2021, and a student has been participating in the competition for seven days. Her end-of-day (EoD) portfolio balance, daily portfolio return, risk free rates, and daily excess return are as given in the table below:</p>
-<div id="htmlwidget-a49bed1de8c34548312a" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a49bed1de8c34548312a">{"x":{"filter":"none","data":[["2021-03-15","2021-03-16","2021-03-17","2021-03-18","2021-03-19","2021-03-22","2021-03-23"],[999950,999890,1000100,1000050,1000250,1000075,1000301],[null,-6.00048004019938e-05,0.000210001050776989,-4.99962502916515e-05,0.0001999700051658,-0.000174971567566751,0.000225957520947672],[0.0004,0.0002,0.0002,0.0001,0.0001,0.0003,0.0001],[1.58730158730159e-06,7.93650793650794e-07,7.93650793650794e-07,3.96825396825397e-07,3.96825396825397e-07,1.19047619047619e-06,3.96825396825397e-07],[null,-6.07984511956446e-05,0.000209207399983338,-5.03930756884769e-05,0.000199573179768975,-0.000176162043757227,0.000225560695550846]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>EoD Portfolio Balance<\/th>\n      <th>Port. Return (%/trd day)<\/th>\n      <th>USDT 3 Mo CMT (%/yr)<\/th>\n      <th>USDT 3 Mo CMT (%/trd day)<\/th>\n      <th>Excess Return (%/trd day)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 6, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 4, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 4, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\");\n  }"},{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"$\", 2, 3, \",\", \".\", true);\n  }"},{"className":"dt-center","targets":[0,1,2,3,4,5]},{"className":"dt-colnames","targets":[0,1,2,3,4,5]},{"orderable":false,"targets":0}],"dom":"t","ordering":false,"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script><p>The student’s <strong>daily portfolio returns</strong> are the log returns of her daily portfolio value. For example, on 18 March 2021, she started the day with $1,000,100.00 and ended with $1,000,050.00 in total portfolio value. Therefore her return for that day was:</p>
+<div id="htmlwidget-cadb3e342d1045f7b8ce" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cadb3e342d1045f7b8ce">{"x":{"filter":"none","vertical":false,"data":[["2021-03-15","2021-03-16","2021-03-17","2021-03-18","2021-03-19","2021-03-22","2021-03-23"],[999950,999890,1000100,1000050,1000250,1000075,1000301],[null,-6.00048004019938e-05,0.000210001050776989,-4.99962502916515e-05,0.0001999700051658,-0.000174971567566751,0.000225957520947672],[0.0004,0.0002,0.0002,0.0001,0.0001,0.0003,0.0001],[1.58730158730159e-06,7.93650793650794e-07,7.93650793650794e-07,3.96825396825397e-07,3.96825396825397e-07,1.19047619047619e-06,3.96825396825397e-07],[null,-6.07984511956446e-05,0.000209207399983338,-5.03930756884769e-05,0.000199573179768975,-0.000176162043757227,0.000225560695550846]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>EoD Portfolio Balance<\/th>\n      <th>Port. Return (%/trd day)<\/th>\n      <th>USDT 3 Mo CMT (%/yr)<\/th>\n      <th>USDT 3 Mo CMT (%/trd day)<\/th>\n      <th>Excess Return (%/trd day)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 6, 3, \",\", \".\");\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 4, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 4, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\");\n  }"},{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"$\", 2, 3, \",\", \".\", true);\n  }"},{"className":"dt-center","targets":[0,1,2,3,4,5]},{"className":"dt-colnames","targets":[0,1,2,3,4,5]},{"orderable":false,"targets":0}],"dom":"t","ordering":false,"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script><p>The student’s <strong>daily portfolio returns</strong> are the log returns of her daily portfolio value. For example, on 18 March 2021, she started the day with $1,000,100.00 and ended with $1,000,050.00 in total portfolio value. Therefore her return for that day was:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># 'log()' here is the natural log, not base 10.</span>
-<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">1000050.00</span> <span class="op">/</span> <span class="fl">1000100.00</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">5</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "-0.005%"</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1000050.00</span> <span class="op">/</span> <span class="fl">1000100.00</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">5</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] "-0.005%"</span></code></pre>
 <p>Note that there’s no way to calculate a return on the very first day because there’s nothing to compare it to.</p>
-<p>The <strong>risk free rate</strong>, <span class="math inline">\(r_{f}\)</span> is assumed to be the 3 month CMT rate as published by the US Department of the Treasury (USDT). A quick visit to the <a href="https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/TextView.aspx?data=yieldYear&amp;year=2021">USDT’s website</a> confirms the rates presented in the table. The USDT presents CMT rates in an annualized format. Because the student’s daily returns are on a <em>per trading day basis</em>, we convert the annualized CMTs to a trading day basis by dividing by 252 – the number of trading days in one year.</p>
+<p>The <strong>risk free rate</strong>, <span class="math inline">\(r_{f}\)</span> is assumed to be the 3 month CMT rate as published by the US Department of the Treasury (USDT). A quick visit to the <a href="https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/TextView.aspx?data=yieldYear&amp;year=2021" class="external-link">USDT’s website</a> confirms the rates presented in the table. The USDT presents CMT rates in an annualized format. Because the student’s daily returns are on a <em>per trading day basis</em>, we convert the annualized CMTs to a trading day basis by dividing by 252 – the number of trading days in one year.</p>
 <p>The student’s <strong>excess return</strong> on any given day is determined by how much her portfolio return exceeded the risk free rate on that day; in other words, her <em>excess return</em> is the difference between her portfolio’s return and the risk free rate.</p>
 <p>The student’s overall <strong>geometric mean excess return</strong> <span class="math inline">\(R_{p}\)</span> is calculated as:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -142,20 +138,20 @@
     <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">0.0200</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="op">-</span><span class="fl">0.0176</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">0.0226</span><span class="op">)</span>
 <span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">6</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">student_excess_gmrr</span><span class="op">*</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "0.5674%"</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">student_excess_gmrr</span><span class="op">*</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] "0.5674%"</span></code></pre>
 <p>The students <strong>volatility of returns</strong> <span class="math inline">\(\sigma^{2}_{r}\)</span> is the standard deviation of her excess gmrr:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">student_vol</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.0061</span>, <span class="fl">0.0209</span>, <span class="op">-</span><span class="fl">0.0050</span>, <span class="fl">0.0200</span>, <span class="op">-</span><span class="fl">0.0176</span>, <span class="fl">0.0226</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">student_vol</span><span class="op">*</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "1.742%"</code></pre>
+<code class="sourceCode R"><span class="va">student_vol</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.0061</span>, <span class="fl">0.0209</span>, <span class="op">-</span><span class="fl">0.0050</span>, <span class="fl">0.0200</span>, <span class="op">-</span><span class="fl">0.0176</span>, <span class="fl">0.0226</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">student_vol</span><span class="op">*</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] "1.742%"</span></code></pre>
 <p>Finally, we can calculate the Sharpe Ratio for this student.</p>
 <p><span class="math display">\[\begin{align*}
 {\tt Sharpe\ Ratio} = \frac{R_{p,e}}{\sigma^{2}} 
 \end{align*}\]</span></p>
-<div id="wherein" class="section level4">
-<h4 class="hasAnchor">
-<a href="#wherein" class="anchor"></a>Wherein:</h4>
+<div class="section level4">
+<h4 id="wherein">Wherein:<a class="anchor" aria-label="anchor" href="#wherein"></a>
+</h4>
 <p><span class="math display">\[\begin{align*}
 R_{p,e} &amp; {\sf: Excess\ Portfolio\ Return} \\
 \sigma^{2}_{r} &amp; {\sf: Volatility\ of\ return}
@@ -163,13 +159,13 @@ R_{p,e} &amp; {\sf: Excess\ Portfolio\ Return} \\
 <p>Note that we’ve already taken the “<span class="math inline">\(-r_{f}\)</span>” into account when we used the excess gmrr instead of the gmrr of the daily returns; in other words, with this notation the term “<span class="math inline">\(R_{p} - r_{f}\)</span>” (as written in the <a href="https://gothic-hedge-society.github.io/fintech.trading.competition/">Scoring</a> section) equals <span class="math inline">\(R_{p,e}\)</span>.</p>
 </div>
 </div>
-<div id="her-sharpe-is" class="section level2">
-<h2 class="hasAnchor">
-<a href="#her-sharpe-is" class="anchor"></a>Her Sharpe is:</h2>
+<div class="section level2">
+<h2 id="her-sharpe-is">Her Sharpe is:<a class="anchor" aria-label="anchor" href="#her-sharpe-is"></a>
+</h2>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">student_Sharpe</span> <span class="op">&lt;-</span> <span class="va">student_excess_gmrr</span> <span class="op">/</span> <span class="va">student_vol</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">student_Sharpe</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.3256717</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">student_Sharpe</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] 0.3256717</span></code></pre>
 </div>
 </div>
   </div>
@@ -185,11 +181,13 @@ R_{p,e} &amp; {\sf: Excess\ Portfolio\ Return} \\
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://github.com/JakeVestal">Jake Vestal</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://github.com/JakeVestal" class="external-link">Jake Vestal</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -197,6 +195,8 @@ R_{p,e} &amp; {\sf: Excess\ Portfolio\ Return} \\
 
   
 
+
+  
 
   </body>
 </html>
