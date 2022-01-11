@@ -1,3 +1,5 @@
 ibflex
 requests
 beautifulsoup4
+numpy
+pandas

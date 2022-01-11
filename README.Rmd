@@ -5,272 +5,63 @@ always_allow_html: yes
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
-devtools::load_all(".")
-
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-
-competition_start_date <- as.Date("2021-03-11")
-
-# Participants -----------------------------------------------------------------
-participants <- rprojroot::find_package_root_file() %>%
-  file.path(., "inst", "joined_names_n_emails.xlsx") %>%
-  readxl::read_xlsx() %>%
-  dplyr::filter(!is.na(ID)) %>%
-  dplyr::select(accountId, ID, name, trader_name, primaryEmail) %>%
-  dplyr::left_join(
-    rprojroot::find_package_root_file() %>%
-      file.path(., "inst", "participants.xlsx") %>%
-      readxl::read_xlsx() %>%
-      dplyr::filter(!is.na(trader_name)) %>%
-      dplyr::select(ID, School),
-    by = "ID"
-  )
-
-# Flex_query -------------------------------------------------------------------
-flex_query <- rprojroot::find_package_root_file() %>%
-  file.path(., "inst", "FINTECH_Trading_Competition.xml") %>%
-  xml2::read_xml()
-
-missing_accounts <- flex_query %>%
-  xml2::xml_child("Message") %>%
-  xml2::xml_text() %>%
-  strsplit(",| ") %>% 
-  unlist(use.names = FALSE) %>%
-  grep("^DU", ., value = TRUE) %>% 
-  intersect(participants$accountId)
-
-flex_query <- flex_query %>%
-  xml2::xml_child("FlexStatements") %>%
-  xml2::xml_children() %>%
-  lapply(
-    function(xml_statement){
-      dplyr::inner_join(
-        xml_statement %>%
-          xml2::xml_child("AccountInformation ") %>%
-          xml2::xml_attrs() %>%
-          tibble::as_tibble_row(),
-        xml_statement %>%
-          xml2::xml_child("EquitySummaryInBase") %>%
-          xml2::xml_children() %>%
-          lapply(
-            function(EquitySummaryByReportDateInBase){
-              xml2::xml_attrs(EquitySummaryByReportDateInBase) %>%
-                tibble::as_tibble_row()  %>%
-                dplyr::select(accountId, reportDate, total)
-            }
-          ) %>%
-          purrr::reduce(dplyr::bind_rows),
-        by = "accountId"
-      )
-    }
-  ) %>%
-  purrr::reduce(dplyr::bind_rows) %>%
-  remove_empty_cols() %>%
-  dplyr::nest_by(accountId, name, primaryEmail, .key = "statement") %>%
-  dplyr::filter(accountId %in% participants$accountId) %>%
-  dplyr::mutate(
-    statement = list(
-      xts::xts(
-        statement[,setdiff(colnames(statement), "reportDate")],
-        order.by = as.Date(statement$reportDate)
-      )[paste0(competition_start_date, "/")]
-    )
-  )
-
-statement_dates <- as.Date(zoo::index(flex_query[1,]$statement[[1]]))
-
-most_recent_common_date <- flex_query$statement %>%
-  vapply(
-    function(stmt){
-      as.character(
-        zoo::index(stmt[max(which(as.numeric(stmt$total) > 0)),])
-      )
-    },
-    character(1)
-  ) %>%
-  unique() %>%
-  as.Date() %>%
-  sort() %>% {
-    as.Date(.[1])
-  }
-
-statement_dates <- statement_dates[
-  which(statement_dates <= most_recent_common_date)
-]
-
-# ^GSPC ----------------------------------------------------------------------
-gspc <- paste0(
-  "https://query1.finance.yahoo.com/v7/finance/download/%5EGSPC?period1=",
-  sprintf("%.0f", as.numeric(as.POSIXct(statement_dates[1]))),
-  "&period2=",
-  sprintf("%.0f", as.numeric(as.POSIXct(Sys.Date()))),
-  "&interval=1d&events=history&includeAdjustedClose=true"
-) %>%
-  readr::read_csv(col_types = "Dnnnnnn") %>%
-  as.data.frame() %>%
-  tibble::column_to_rownames("Date") %>%
-  xts::as.xts() %>% {
-    .[statement_dates]
-  }
-
-# Benchmark ------------------------------------------------------------------
-benchmark <- gspc[statement_dates]$`Adj Close` %>%
-  daily_rtns() %>% {
-    . <- .[[1]]
-    colnames(.) <- "SP500 Daily Rtn"
-    .
-  }
-
-# year-to-date rfr
-rfr <- paste0(
-  "https://www.treasury.gov/resource-center/data-chart-center/",
-  "interest-rates/pages/TextView.aspx?data=yieldYear&year=",
-  format(Sys.Date(), format = "%Y")
-) %>%
-  get_usdt_data() %>% {
-    .[statement_dates, "3_mo"]
-  } %>% {
-    xts::xts(zoo::coredata(.) / 252, order.by = zoo::index(.))
-  } %>% {
-    .[statement_dates]
-  }
-
-participating_student_reports <- flex_query %>%
-  dplyr::mutate(
-    "total"            = list(statement$total[as.character(statement_dates)]),
-    "daily_returns"    = statement$total[as.character(statement_dates)] %>%
-      daily_rtns(),
-    "rfr"              = list(rfr),
-    "daily_excess_rtn" = list(
-      xts::xts(
-        zoo::coredata(daily_returns) - zoo::coredata(rfr[[1]]),
-        order.by = zoo::index(daily_returns)
-      )
-    ),
-    "excess_gmrr"      = gmrr(daily_excess_rtn),
-    "daily_vol"        = sd(daily_returns),
-    "Sharpe"           = excess_gmrr / daily_vol
-  ) %>%
-  dplyr::ungroup() %>%
-  dplyr::full_join(
-    dplyr::select(participants, "accountId", "trader_name", "School")
-  ) %>%
-  dplyr::select(
-    "accountId",     "trader_name", "School",           "total",
-    "daily_returns", "rfr",         "daily_excess_rtn", "excess_gmrr",
-    "daily_vol",     "Sharpe"
-  ) %>%
-  dplyr::filter(!is.infinite(Sharpe) && !is.na(Sharpe)) %>%
-  dplyr::arrange(dplyr::desc(Sharpe))
-
-most_recent_date <- participating_student_reports$total %>%
-  lapply(
-    function(ttl){
-      as.character(as.Date(zoo::index(xts::last(ttl))))
-    }
-  ) %>%
-  unlist(use.names = FALSE) %>%
-  unique() %>%
-  as.Date()
-if(length(most_recent_date) != 1){
-  print(most_recent_date)
-  stop("more than one most recent date found!")
-}
-
-```
-
-# Duke FINTECH Trading Competition 2021
+# Duke FINTECH Trading Competition 2022
 The Duke FINTECH Trading Competition is a free competition hosted by the [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
 
 The Competition is open to any currently enrolled graduate or undergraduate
-student with a .edu address. As posted in the [Official
-Announcement](https://fintech.meng.duke.edu/news/duke-fintech-program-announces-trading-competition),
-the winner of the competition will be awarded a **\$2,000 cash prize**!
+student so long as they have an email address with a .edu extension. 
 
-Participants are granted paper trading accounts at [Interactive
-Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE),
-which enable them to trade equities, options, ETFs, futures, currencies, bonds,
-and more, all based on real-time streaming market data. Students use the same
-execution systems as professional traders IBKR's [Mobile
-App](https://www.interactivebrokers.com/en/index.php?f=1300), [Trader
-Workstation GUI](https://www.interactivebrokers.com/en/index.php?f=16040) and
-[IB Gateway](https://www.interactivebrokers.com/en/index.php?f=16457)) -- the
-only difference is that the money they trade is simulated.
+Participating students are issued $1 million in simulated currency within a
+paper trading account provided by [Interactive Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE).
+Students will have the opportunity to trade equities, fxed income, derivatives,
+ETFs, cryptocurrencies, and more, all based on real-time streaming market data
+using the same user interface and features utilized by professional traders.
 
-The Spring 2021 session is currently underway. We are pleased that about 90
-students at various universities have signed up for this session, which is the
-very first offering of the competition outside of Duke.
+The FINTECH program at Duke is inclusive and welcoming. Participation is welcome
+and encouraged, so please help spread the word! Standings for the top 10 traders
+will be posted here and updated daily as data become available. This site will
+continue to grow as new features are brought onboard so be sure to check back
+often for updates!!!
 
-The Duke FINTECH Department is striving to be as inclusive and welcoming as
-possible to all students, and will be reaching out again next Fall for the next
-offering. Participation is welcome and encouraged, so please help spread the
-word for future semesters!
+# Registration
+Currently enrolled graduate or undergraduate student with a .edu address may
+register for the competition by following these steps:
 
-Standings for the top 10 traders will be posted here and updated daily. This
-site will continue to grow as new features are brought onboard. Be sure to
-check back often for updates!!!
+1. Visit **LINK** and provide the requested information using your .edu email. 
+    - You'll be asked for a trader username -- choose wisely! You may use your
+    real name if you want, but understand that when daily standings and
+    performance updates are pushed to the website, this is the name that will
+    appear to the world alongside your school, department, and username.
+2. Within one business day, you'll receive two emails:
+    - A welcome email from Duke FINTECH including an invitation to the official
+    trading competition Slack channel
+    - An invitation email from Interactive Brokers (IBKR) for creating a new
+    paper trading account
+3. Join the Slack channel
+4. Follow the link in your IBKR invitation email and fill out the application
+for a new paper trading account. 
+    - **BE CERTAIN TO RECORD YOUR PAPER TRADING ACCOUNT NUMBER, USERNAME AND PASSWORD**.
+    This information will display in a yellow box after you submit the form.
+    - You must complete this step and create a new paper trader even if you
+    already have a paper trading account with IBKR.
+5. Wait. It takes about **one business day** for your paper trading account
+to activate -- most of that time is due to obtaining your permissions for market
+data subscriptions from the various exchanges.
+6. Visit the [Getting Started](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/fintech-trading-competition.html) 
+page. Install TWS and explore the Demo account for a bit while you wait for your
+account to activate.
+7. Once it's active, you will be able to log in to your paper trader using the
+credentials from **Step 4**. Your username will be a simple alphanumeric string
+like "jakev9914". Test that your account is live by logging in to TWS.
+8. Check the [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/) 
+to confirm that the tradername you've chosen appears alongside the correct
+account number of your paper trader.
+9. Once your tradername appears alongside your paper trader's account number,
+you're all set! You're encouraged to say 'hi' in the Slack channel.
 
-The competition started on **11 Mar 2021** and will conclude on **07 May 2021**.
+# Rules
+1. The competition will begin on Wednesday, 19 Jan 2022 at 9:30am EST.
+2. The competition will end on Friday, 19 Jan 2022 at 9:30am EST.
 
-# Standings
-The information on this page was last refreshed on **`r Sys.time()`**.
-At that time, the data was available for the range from `r competition_start_date` to `r most_recent_date`.
 
-Standings are updated based on the data available at the time of the update. It
-takes time for students' account balances to be brought current -- results are
-usually available for the previous trading day at or after approximately 6PM EST
-on the next trading day.
 
-## Top Sharpe Ratios (competition standings)
-Participants are scored by their Sharpe Ratios. Current standings are: 
-``` {r echo = FALSE, message = FALSE}
-participating_student_reports %>%
-  head(10) %>%
-  dplyr::mutate(
-    "Ranking"             = 1:nrow(.),
-    "Trader"              = trader_name,
-    "Daily Excess Return" = paste0(round(excess_gmrr, 5), "%"),
-    "Daily Vol"           = paste0(round(daily_vol, 5), "%"),
-    "Sharpe Ratio"        = round(Sharpe, 3)
-  ) %>%
-  dplyr::select(
-    Ranking, Trader, School, `Daily Excess Return`, `Daily Vol`, `Sharpe Ratio`
-  ) %>%
-  kableExtra::kable(
-    caption = "Top 10 Sharpe Ratios", 
-    escape  = FALSE,
-    align   = rep('c', 5)
-  )
-```
-
-## Top 10 Daily Excess Returns 
-Calculated as the geometric mean of daily excess returns. Included for bragging
-rights :).
-
-``` {r echo = FALSE, message = FALSE}
-participating_student_reports %>%
-  dplyr::filter(!is.infinite(excess_gmrr) & !is.infinite(Sharpe)) %>%
-  dplyr::arrange(dplyr::desc(excess_gmrr)) %>%
-  head(10) %>%
-  dplyr::mutate(
-    "Ranking"             = 1:10,
-    "Trader"              = trader_name,
-    "Daily Excess Return" = paste0(round(excess_gmrr, 5), "%"),
-    "Daily Vol"           = paste0(round(daily_vol, 5), "%"),
-    "Sharpe Ratio"        = round(Sharpe, 3)
-  ) %>%
-  dplyr::select(
-    Ranking, Trader, School, `Daily Excess Return`, `Daily Vol`, `Sharpe Ratio`
-  ) %>%
-  kableExtra::kable(
-    caption = "Top 10 Excess Returns", 
-    escape  = FALSE,
-    align   = rep('c', 5)
-  )
-```

@@ -1,30 +1,37 @@
 ---
 title: "Getting Started"
 author: "Jake Vestal"
-date: "3/12/2021"
+date: "1/11/2022"
 output: html_document
 ---
 
-While you're creating your paper trading account, you'll encounter instructions
-from  Interactive Brokers (IBKR) regarding how to access your account for
-trading. 
+There are three (3) main apps available for Mac, Windows, and Unix that allow
+you to access your trading account once it's been set up. If you've just filled
+out your IBKR paper trading form and are waiting for it to activate, you might
+be interested to experiment with the "demo" option available in each app. You
+can even make trades while you're logged in as 'demo', but your positions and
+earnings won't be saved and won't count towards competition scoring in any way.
 
-To get started, it's recommended you select from one of the three recommended
-client apps, outlined below:
+You'll need to install one or more of these apps to be able to manage your
+account. Each is described below.
 
-### 0) Register for the Competition
-To register, all you need is to be a current graduate or undergrad student at an
-accredited university with a .edu email address. Follow the link posted on the
-main page to sign up. **At this time, registration for the Spring 2021 session
-is closed, but we are extremely excited to welcome students for the next session
-in the fall**!
+It is highly recommended that you download and use Trader Workstation (TWS), at
+least at first, so that you can familiarize yourself with important operations
+such as trade order entry, charting, the various financial assets, and so on in
+a graphical environment.
+
+### 0) Client Portal
+
+The [Client Portal](https://ndcdyn.interactivebrokers.com/sso/Login?forwardTo=22&locale=en_US)
+is your account management website where you can view basic info about your
+account, including statements, balances, and trading activity.
 
 ### 1) Trader Workstation (TWS)
 
-The Trader Workstation is IBKR's client app that connects to the brokerage and
-allows you to make trades and view real-time market data, including news &
-bulletins. TWS is intended to be installed on your computer (Mac, Windows,
-Unix) and can be customized to your liking following the documentation on IBKR's home page.
+TWS is IBKR's graphical client app that connects to the brokerage and allows you
+to make trades and view real-time market data, including news & bulletins. TWS
+is intended to be installed on your computer and can be customized to your
+liking following the documentation on IBKR's home page.
 
 To install TWS, you'll want to visit the 
 [TWS download page](https://www.interactivebrokers.com/en/index.php?f=16040) and
@@ -45,9 +52,11 @@ IB Gateway is identical to TWS in every way except that there is no graphical
 user interface (GUI) -- you're expected to connect to a running instance of IBG
 using one of the various APIs made available by IBKR. To download, visit the
 [IBG download page](https://www.interactivebrokers.com/en/index.php?f=16457).
+Use this if you plan on making trades with an external system such as an app
+you've written in a language like R or Python.
 
 ### Traders' University
 
-IBKR maintains a set of videos on their [Traders' University](https://www.interactivebrokers.com/en/index.php?f=1350) site where
-you can learn about the different financial instruments and how to trade them
-using your system of choice.
+IBKR maintains a set of videos on their [Traders' University](https://www.interactivebrokers.com/en/index.php?f=1350) 
+site where you can learn about the different financial instruments and how to
+trade them using your system of choice.
