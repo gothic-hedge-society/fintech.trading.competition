@@ -1,4 +1,4 @@
-# Fetch most recent Wufoo respondants and save as json text
+# Fetch most recent Wufoo respondants and save as csv
 # By Jake Vestal
 
 import requests
