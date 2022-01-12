@@ -5,6 +5,10 @@ template:
     bootswatch: darkly
     ganalytics: G-9X0K4G58XL
 
+navbar:
+  structure:
+    left:  [intro, articles]
+
 authors:
   Jake Vestal:
     href: "https://github.com/JakeVestal"
