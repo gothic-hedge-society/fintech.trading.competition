@@ -1,7 +1,5 @@
 ---
 title: "Sharpe Ratio Calculation"
-author: "Jake Vestal"
-date: "3/15/2021"
 ---
 
 ```{css, echo=FALSE}
@@ -45,7 +43,7 @@ sharpe_ratio <- gmrr_excess_return / portfolio_vol
 
 # Scoring for an example student
 As discussed in the
-[Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/)
+[Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html)
 section, student performance is graded by Sharpe Ratio. Here, we walk through an
 example that explains how the Sharpe Ratio would be calculated for an example
 contest participant.

@@ -1,8 +1,8 @@
 ---
-title: "Registry"
+title: "reference_data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Registry}
+  %\VignetteIndexEntry{reference_data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,5 +14,5 @@ knitr::opts_chunk$set(
 )
 ```
 
-Check back here after you've opened your paper trading account to confirm that
-your tradername appears beside the correct account number.
+When the competition starts, the reference data used for scoring and reporting
+will be presented here.

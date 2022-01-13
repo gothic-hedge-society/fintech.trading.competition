@@ -7,7 +7,21 @@ template:
 
 navbar:
   structure:
-    left:  [intro, articles]
+    left:  [intro, articles, registry] #, refdata]
+  components:
+    articles:
+      text: Scoring Info
+      menu:
+      - text: General Idea
+        href: articles/Scoring.html
+      - text: Scoring Example
+        href: articles/Sharpe Ratio Calculation.html
+    registry:
+      text: Registry
+      href: articles/Registry.html
+    # refdata:
+    #   text: Reference Data
+    #   href: articles/reference_data.html
 
 authors:
   Jake Vestal:

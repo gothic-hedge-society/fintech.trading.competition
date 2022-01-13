@@ -66,7 +66,7 @@ account to activate.
 7. Once it's active, you will be able to log in to your paper trader using the
 credentials from **Step 4**. Your username will be a simple alphanumeric string
 like "jakev9914". Test that your account is live by logging in to TWS.
-8. Check the [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html)
+8. Check the [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Registry.html)
 to confirm that the tradername you've chosen appears alongside the correct
 account number of your paper trader.
 9. Once your tradername appears alongside your paper trader's account number,

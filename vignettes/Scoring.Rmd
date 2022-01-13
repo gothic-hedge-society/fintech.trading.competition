@@ -1,7 +1,5 @@
 ---
 title: "Scoring"
-author: "Jake Vestal"
-date: "3/15/2021"
 output: html_document
 ---
 
