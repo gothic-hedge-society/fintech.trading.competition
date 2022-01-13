@@ -79,7 +79,7 @@ address may register for the competition by following these steps:
     simple alphanumeric string like “jakev9914”. Test that your account
     is live by logging in to TWS.
 8.  Check the
-    [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html)
+    [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Registry.html)
     to confirm that the tradername you’ve chosen appears alongside the
     correct account number of your paper trader.
 9.  Once your tradername appears alongside your paper trader’s account
@@ -107,3 +107,11 @@ address may register for the competition by following these steps:
 6.  **No account resets are allowed**. Be sure that any orders you make
     on your trading account are what you want – use the Demo account
     features for practice.
+7.  **You must make one trade during the first week**. If you don’t
+    trade during the first week, your account will be deleted, your
+    tradername will be removed from the Registry and from the Slack
+    channel, and a “dropout” note will be added to your University. If
+    you don’t want to trade during the first week, then simply make a
+    small trade such as buying one share of the many ‘penny stocks’
+    available for $5 USD or less to satisfy this requirement. If you
+    can’t access your account, ask for help on the Slack channel.
