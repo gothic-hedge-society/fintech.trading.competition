@@ -64,6 +64,10 @@ address may register for the competition by following these steps:
     -   **BE CERTAIN TO RECORD YOUR PAPER TRADING ACCOUNT NUMBER,
         USERNAME AND PASSWORD**. This information will display in a
         yellow box after you submit the form.
+    -   **BE CERTAIN TO USE THE SAME EMAIL THAT YOU USED TO REGISTER FOR
+        THE COMPETITION**. We’ll be using your email to join your paper
+        trader to account to your registration info (tradername, school,
+        etc) for the competition so it’s important that these match.
     -   You must complete this step and create a new paper trader even
         if you already have a paper trading account with IBKR.
 5.  Wait. It takes about **one business day** for your paper trading
@@ -79,7 +83,7 @@ address may register for the competition by following these steps:
     simple alphanumeric string like “jakev9914”. Test that your account
     is live by logging in to TWS.
 8.  Check the
-    [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Registry.html)
+    [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html)
     to confirm that the tradername you’ve chosen appears alongside the
     correct account number of your paper trader.
 9.  Once your tradername appears alongside your paper trader’s account
