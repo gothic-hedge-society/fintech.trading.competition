@@ -3,7 +3,6 @@
 
 import requests
 from bs4 import BeautifulSoup
-import os
 import pandas as pd
 
 def fetch_usdt_rates(YYYY):
