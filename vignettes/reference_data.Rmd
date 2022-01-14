@@ -18,15 +18,15 @@ When the competition starts, the reference data used for scoring and reporting
 will be presented here.
 
 ```{r echo=FALSE}
-library('magrittr')
-ref_data <- Sys.getenv("APP_BASE_PATH") %>%
-  file.path(
-    ., paste0("duke_fintech_trading_competition_", "2022"), "usdt_3mo_cmt.csv" 
-  ) %>%
-  readr::read_csv()
-
-DT::datatable(
-  ref_data,
-  class = "cell-border stripe"
-)
+# library('magrittr')
+# ref_data <- Sys.getenv("APP_BASE_PATH") %>%
+#   file.path(
+#     ., paste0("duke_fintech_trading_competition_", "2022"), "usdt_3mo_cmt.csv" 
+#   ) %>%
+#   readr::read_csv()
+# 
+# DT::datatable(
+#   ref_data,
+#   class = "cell-border stripe"
+# )
 ```
