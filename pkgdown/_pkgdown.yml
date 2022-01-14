@@ -8,6 +8,7 @@ template:
 navbar:
   structure:
     left:  [intro, articles, registry] #, refdata]
+    right: [github]
   components:
     articles:
       text: Scoring Info
@@ -19,6 +20,10 @@ navbar:
     registry:
       text: Registry
       href: articles/registry.html
+    github:
+      icon: fa-github
+      href: https://github.com/gothic-hedge-society/fintech.trading.competition
+      aria-label: GitHub
     # refdata:
     #   text: Reference Data
     #   href: articles/reference_data.html
