@@ -5,6 +5,4 @@
 #'
 #' @format A data frame
 #'
-#' @export
-#'
 "registry"

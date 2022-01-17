@@ -8,7 +8,7 @@ vignette: >
 ---
 
 ```{r, setup, include = FALSE}
-library('magrittr')
+library('fintech.trading.competition')
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -18,8 +18,9 @@ knitr::opts_chunk$set(
 The following traders have registered and are currently setting up their IBKR
 paper trader accounts:
 ```{r, echo = FALSE}
+print(getwd())
 DT::datatable(
-  fintech.trading.competition::registry,
+  registry,
   extensions = 'Scroller', 
   rownames   = FALSE,
   options = list(
