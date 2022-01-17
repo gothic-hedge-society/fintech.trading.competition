@@ -8,11 +8,22 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+devtools::load_all(".")
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
-Check back here after you've opened your paper trading account to confirm that
-your tradername appears beside the correct account number.
+The following traders have registered and are currently setting up their IBKR paper trader accounts:
+```{r, echo = FALSE}
+DT::datatable(
+  registry,
+  extensions = 'Scroller', 
+  options = list(
+    deferRender = TRUE,
+    scrollY     = 500,
+    scroller    = TRUE
+  )
+)
+```
