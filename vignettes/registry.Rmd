@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, setup, include = FALSE}
+```{r, setup, include=FALSE, echo=FALSE}
 library('fintech.trading.competition')
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -15,16 +15,32 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{css, echo=FALSE}
+.dataTables_filter label {
+  font-size: 18px;
+  color: greenyellow;
+}
+```
+
 The following traders have registered and are currently setting up their IBKR
 paper trader accounts:
 ```{r, echo = FALSE}
-print(getwd())
 DT::datatable(
   registry,
   extensions = 'Scroller', 
   rownames   = FALSE,
   options = list(
     columnDefs = list(list(className = 'dt-center', targets = '_all')),
+    initComplete = DT::JS(
+      "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '20px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+    ),
     deferRender = TRUE,
     ordering    = FALSE,
     scrollY     = 500,
