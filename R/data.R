@@ -4,8 +4,7 @@
 #' status in the onboarding process.
 #'
 #' @format A data frame
-# #' \describe{
-# #'   \item{carat}{weight of the diamond, in carats}
-# #' }
+#'
+#' @export
 #'
 "registry"

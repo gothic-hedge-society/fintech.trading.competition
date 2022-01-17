@@ -19,7 +19,7 @@ The following traders have registered and are currently setting up their IBKR
 paper trader accounts:
 ```{r, echo = FALSE}
 DT::datatable(
-  fintech.trading.competition:::registry,
+  fintech.trading.competition::registry,
   extensions = 'Scroller', 
   rownames   = FALSE,
   options = list(
