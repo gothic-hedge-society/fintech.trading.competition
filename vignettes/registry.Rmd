@@ -15,7 +15,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-The following traders have registered and are currently setting up their IBKR paper trader accounts:
+The following traders have registered and are currently setting up their IBKR
+paper trader accounts:
 ```{r, echo = FALSE}
 DT::datatable(
   fintech.trading.competition::registry,
