@@ -2,8 +2,11 @@
 # Sends personalized invite emails
 # By Jake Vestal
 
+import time
 import win32com.client as win32
 import win32clipboard as clip
+from pprint import pprint
+from math import ceil
 
 def welcome_new_registrants(newly_registered, full_wufoo_form, ibkr_max, sbj):
 
@@ -25,7 +28,7 @@ def welcome_new_registrants(newly_registered, full_wufoo_form, ibkr_max, sbj):
 
         invite_string = ", ".join(chunk)
         print('Please invite the following batch:')
-        print(invite_string)
+        pprint(invite_string)
         clip.OpenClipboard()
         clip.EmptyClipboard()
         clip.SetClipboardText(invite_string, clip.CF_UNICODETEXT)

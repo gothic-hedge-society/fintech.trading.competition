@@ -10,11 +10,12 @@ REMEMBER: It is important that you use the same email for registering with IBKR 
 
 If you received your IBKR paper trader invite email more than once, don't worry about it -- YOU ONLY HAVE TO SUBMIT THE FORM ONE TIME. Just be sure to record your username, password, and account ID in a safe place.
 
-In the meantime, please join the competition Slack channel using this link: https://join.slack.com/t/2022dukefinte-gho7286/shared_invite/zt-122pv570g-ysNQlBUAyCvxxfGmZx~F4A.
-You are welcome to configure your account to display your real name or your trader name.
+WE WILL ONLY OFFICIALLY START THE COMPETITION ONCE EVERYONE'S PAPER TRADER HAS BECOME ACTIVATED AND AVAILABLE. We'll probably need to wait a few days after the official 'start date' for this to take place, but rest assured, the contest will not place anyone at an unfair advantage.
+
+In the meantime, please join the competition Slack channel using this link: https://join.slack.com/t/2022dukefinte-gho7286/shared_invite/zt-122pv570g-ysNQlBUAyCvxxfGmZx~F4A. You are welcome to configure your account to display your real name or your trader name.
 
 You may respond to this email address -- which is monitored -- with any questions, but the Slack channel will probably get you the fastest answers.
 
 Best Regards,
 Prof Jake Vestal
-contest creator
+Contest Creator
