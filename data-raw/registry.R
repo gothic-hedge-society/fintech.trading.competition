@@ -1,8 +1,12 @@
 ## code to prepare `registry` dataset goes here
 
+library('magrittr')
+
 registry <- readr::read_csv(
   file.path(
-    Sys.getenv("APP_BASE_PATH"), "invited", "invited.csv",
+    Sys.getenv("APP_BASE_PATH"),
+    "duke_fintech_trading_competition_2022",
+    "invited.csv",
     fsep = "\\"
   )
 ) %>%
@@ -15,7 +19,7 @@ registry <- readr::read_csv(
         fsep = "\\"
       )
     ),
-    by='email'
+    by=c('invited' = 'email')
   ) %>%
   dplyr::select(tradername) %>%
   unique()

@@ -10,6 +10,10 @@ from math import ceil
 
 def welcome_new_registrants(newly_registered, full_wufoo_form, ibkr_max, sbj):
 
+    if len(newly_registered) == 0:
+        print('No new registrants detected')
+        return
+
     def chunkify(x, n):
         chunks = list()
         for i in range(0, ceil(len(x) / n)):
