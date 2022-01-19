@@ -45,7 +45,6 @@ registry <- xml2::read_xml(
   dplyr::rename(status = account_id) %>%
   dplyr::arrange(tradername)
 
-registry$status[!is.na(registry$status)] <- "ACTIVE"
 registry$status[is.na(registry$status)]  <- "pending account creation"
 
 usethis::use_data(registry, overwrite = TRUE)

@@ -22,8 +22,22 @@ knitr::opts_chunk$set(
 }
 ```
 
-The following traders have registered and are currently setting up their IBKR
-paper trader accounts:
+### Key
+
+#### If your tradername doesn't appear here:
+You've submitted your registration form but this website hasn't yet
+refreshed and picked up your updated information.
+
+#### 'pending account creation'
+You've been sent a welcome email and an IBKR paper trading account invitation.
+Join the Slack channel, submit your IBKR form, and wait (about one business day)
+
+#### An Account ID
+Your account is set up and you're ready. The system has matched your tradername
+to the given Account ID- you'll want to confirm that that's correct. Use the
+Slack channel if there's an issue.
+
+
 ```{r, echo = FALSE}
 DT::datatable(
   registry,
