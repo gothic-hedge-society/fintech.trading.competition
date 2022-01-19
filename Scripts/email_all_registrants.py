@@ -1,11 +1,24 @@
-# Fetch most recent Wufoo respondants and save as csv
+# Sends the welcome email to participants who just registered on WuFoo
 # By Jake Vestal
 
+import time
+import win32com.client as win32
+import codecs
 import requests
 from bs4 import BeautifulSoup
 import os
 import json
 import pandas as pd
+
+with codecs.open(
+        'C:\\Users\\vcm\\Desktop\\fintech.trading.competition\\Scripts\\Email Templates\\IBKR_is_down.html',
+        'r') as f:
+    message_body = f.read()
+
+subject = 'DUKE FINTECH TRADING COMPETITION UPDATE 18 Jan'
+
+########################################################################################################################
+# Refresh local WuFoo
 
 def get_wufoo_data(url, un, pwd):
     req = requests.get(url, auth = (un, pwd))
@@ -33,3 +46,23 @@ competition_registrants = competition_registrants.rename(columns={
 })
 
 competition_registrants.to_csv('C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\wufoo_registrants.csv', index = False)
+
+registrants = list(filter(lambda x:'.edu' in x, competition_registrants['email']))
+
+
+for invite_email in registrants:
+
+    print('emailing: ', invite_email)
+
+    participant_row = competition_registrants.loc[competition_registrants['email'] == invite_email]
+
+    outlook = win32.Dispatch('outlook.application')
+    mail = outlook.CreateItem(0)
+
+    mail.To = invite_email
+    mail.Subject = subject
+    mail.Body = message_body.replace('firstname', participant_row.iloc[0]['first_name'])
+
+    mail.Send()
+
+    time.sleep(2.5)
