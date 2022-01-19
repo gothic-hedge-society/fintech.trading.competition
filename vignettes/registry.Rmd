@@ -8,7 +8,7 @@ vignette: >
 ---
 
 ```{r, setup, include=FALSE, echo=FALSE}
-library('fintech.trading.competition')
+devtools::load_all(".")
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"

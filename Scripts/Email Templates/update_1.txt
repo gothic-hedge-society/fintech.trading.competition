@@ -1,0 +1,15 @@
+Dear tradername,
+
+Because IBKR's paper trader servers were unable to enroll new participants yesterday, 18 Jan, I've made some slight changes to the rules for our competition. You can check the updated rules at www.fintechtradingcompetition.com, but the bottom line is that registration closes today, 19 Jan. I'll allow a few business days to accomidate those traders who couldn't get their accounts set up on Tuesday, but we'll be moving forward soon so if you haven't submitted your IBKR paper trader request, please go ahead and do it ASAP!
+
+You only need to submit ONE paper trader form. I'll be deleting extras -- that's one of the reasons for Rule 7.
+
+Unfortunately, I don't have a way of viewing which IBKR paper traders have been submitted, but not yet activated, but I'll be updating the Registry (https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html) as often as I'm able during the next few days as information becomes available to me.
+
+If your account is set up you can start trading, but remember that you won't be scored for a few days until all participants get set up... not that it should really make a difference anyway because we're ranking you on Sharpe Ratio (which you should look over in the Scoring section on the website if you haven't yet).
+
+Be sure to join the Slack channel, and use it for questions and comments! https://join.slack.com/t/2022dukefinte-gho7286/shared_invite/zt-122pv570g-ysNQlBUAyCvxxfGmZx~F4A
+
+Best Regards,
+Prof Jake Vestal
+Contest Creator
