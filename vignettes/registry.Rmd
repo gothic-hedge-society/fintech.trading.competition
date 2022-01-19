@@ -50,7 +50,7 @@ tibble::tibble(
   )
 ```
 
-last updated: `r Sys.time()`
+last updated: `r paste0(as.POSIXct(format(Sys.time()),tz="EST"), ' EST')`
 
 ### Key
 
