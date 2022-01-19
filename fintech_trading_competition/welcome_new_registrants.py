@@ -1,89 +1,56 @@
-########################################################################################################################
-# Check to see who's already been invited
+# Gives a handy string to copy into IBKR for invites
+# Sends personalized invite emails
+# By Jake Vestal
 
+import win32com.client as win32
+import win32clipboard as clip
 
-signed_up_emails =
+def welcome_new_registrants(newly_registered, full_wufoo_form, ibkr_max, sbj):
 
+    def chunkify(x, n):
+        chunks = list()
+        for i in range(0, ceil(len(x) / n)):
+            chunks.append(x[(i * n):((i + 1) * n)])
+        return chunks
 
+    # Take 10 at a time, IBKR can't handle more than that
+    invite_chunks = chunkify(newly_registered, ibkr_max)
 
-print(chunkify(, 10))
+    with open(
+        'C:\\Users\\vcm\\Desktop\\fintech.trading.competition\\Scripts\\' + \
+            'Email Templates\\welcome_new_registrant.txt', 'r') as f:
+        message_body = f.read()
 
+    for chunk in invite_chunks:
 
+        invite_string = ", ".join(chunk)
+        print('Please invite the following batch:')
+        print(invite_string)
+        clip.OpenClipboard()
+        clip.EmptyClipboard()
+        clip.SetClipboardText(invite_string, clip.CF_UNICODETEXT)
+        clip.CloseClipboard()
+        print('This string has been added to the clipboard.')
+        input('Press any key when ready.')
 
-need_to_invite =
+        for invite_email in chunk:
 
-invite_batch = list(need_to_invite)[:10]
+            print('inviting: ', invite_email)
 
-with codecs.open(
-        'C:\\Users\\vcm\\Desktop\\fintech.trading.competition\\Scripts\\Email Templates\\welcome_new_registrant.html',
-        'r') as f:
-    message_body = f.read()
+            participant_row = full_wufoo_form.loc[
+                full_wufoo_form['email'] == invite_email
+            ]
 
-print('Please invite the following batch')
-print(', '.join(invite_batch))
-input('Press any key when ready.')
+            outlook = win32.Dispatch('outlook.application')
+            mail = outlook.CreateItem(0)
+            mail.To = invite_email
+            mail.Subject = sbj
+            mail.Body = message_body.replace(
+                'yourusername', participant_row.iloc[0]['tradername']
+            ).replace(
+                'firstname', participant_row.iloc[0]['first_name']
+            )
 
-for invite_email in invite_batch:
+            mail.Send()
 
-    print('inviting: ', invite_email)
-
-    participant_row = competition_registrants.loc[competition_registrants['email'] == invite_email]
-
-    outlook = win32.Dispatch('outlook.application')
-    mail = outlook.CreateItem(0)
-
-    mail.To = invite_email
-    mail.Subject = 'Welcome to the 2022 FINTECH Trading Competition!'
-    mail.Body = message_body.replace('yourusername', participant_row.iloc[0]['tradername'])
-    mail.Body = mail.Body.replace('firstname', participant_row.iloc[0]['first_name'])
-
-    mail.Send()
-
-    time.sleep(2.5)
-
-
-
-
-
-    def get_wufoo_data(url, un, pwd):
-        req = requests.get(url, auth=(un, pwd))
-        soup = BeautifulSoup(req.text, 'html.parser')
-        return json.loads(soup.text)
-
-    def fetch_entries(pgstart):
-        # Fetches all entries for a single WuFoo form page of 100
-        entries_json = get_wufoo_data(
-            os.getenv('WUFOO_ENTRIES_URL').replace("pgstart", str(pgstart)),
-            os.getenv('WUFOO_UN'), os.getenv('WUFOO_PWD')
-        )['Entries']
-        return pd.json_normalize(entries_json)
-
-    number_of_entries_json = get_wufoo_data(
-        os.getenv('WUFOO_COUNT_URL'),
-        os.getenv('WUFOO_UN'),
-        os.getenv('WUFOO_PWD')
-    )
-    number_of_entries = int(number_of_entries_json['EntryCount'])
-    competition_registrants = fetch_entries(0)
-
-    while competition_registrants.shape[0] < number_of_entries:
-        competition_registrants = competition_registrants.append(
-            fetch_entries(competition_registrants.shape[0]),
-            ignore_index=True
-        )
-
-    competition_registrants = competition_registrants.rename(columns={
-        'EntryId': 'id', 'Field1': 'first_name', 'Field2': 'last_name',
-        'Field3': 'email', 'Field4': 'School', 'Field124': 'graduation_year',
-        'Field120': 'undergrad_major', 'Field10': 'graduate_dept',
-        'Field118': 'sex', 'Field116': 'country', 'Field5': 'tradername',
-        'Field126': 'linkedin'
-    })
-
-    competition_registrants.to_csv(
-        os.getenv('APP_BASE_PATH') + '\\duke_fintech_trading_competition_' + \
-        '2022' + '\\wufoo_registrants.csv',
-        index = False
-    )
-
-    return competition_registrants
+            time.sleep(2.5)

@@ -37,4 +37,4 @@ def fetch_emailed_participants(subject):
         index=False
     )
 
-    return list(invited['invited'])
+    return invited['invited'].values
