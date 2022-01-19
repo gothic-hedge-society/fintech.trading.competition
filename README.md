@@ -40,7 +40,7 @@ ZEN and 2/3 USD.
 
 ##### 5th Prize is $500
 
-# Registration
+# Registration – ENDS TODAY
 
 Currently enrolled graduate or undergraduate students with a .edu
 address may register for the competition by following these steps:
@@ -68,6 +68,8 @@ address may register for the competition by following these steps:
         THE COMPETITION**. We’ll be using your email to join your paper
         trader to account to your registration info (tradername, school,
         etc) for the competition so it’s important that these match.
+    -   **DO THIS AS SOON AS YOU CAN**
+    -   use the Slack channel to ask for help if you need it.
     -   You must complete this step and create a new paper trader even
         if you already have a paper trading account with IBKR.
 5.  Wait. It takes about **one business day** for your paper trading
@@ -92,7 +94,19 @@ address may register for the competition by following these steps:
 
 # Rules
 
-1.  The competition will begin on Wednesday, 19 Jan 2022 at 9:30am EST.
+1.  Registration ENDS on Wednesday, 19 Jan 2022 at 9:30am EST. No new
+    participants may sign up after that date.
+
+-   You can start trading as soon as your IBKR paper trader account
+    activates, but realize that **we’ll only start scoring the
+    competition once everyone’s trader is set up**.
+-   We’ll use the rule of reasonableness here – it sometimes takes a few
+    days for a paper trader account to get connected to market exchanges
+    and activate, but we won’t delay the start of the competition simply
+    because some participants choose to not make a good faith effort to
+    get set up promtly.
+-   Use the Slack channel and check back on this website as needed.
+
 2.  The competition will end on Wednesday, 13 Apr 2022 at 4pm EST.
 3.  You can begin making trades as soon as you like, but only your
     end-of-day portfolio values within these dates (inclusive) will be
