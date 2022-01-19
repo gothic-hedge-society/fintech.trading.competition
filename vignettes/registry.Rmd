@@ -17,10 +17,40 @@ knitr::opts_chunk$set(
 
 ```{css, echo=FALSE}
 .dataTables_filter label {
-  font-size: 18px;
-  color: greenyellow;
+font-size: 18px;
+color: greenyellow;
 }
 ```
+
+
+```{r, echo = FALSE}
+tibble::tibble(
+  'status' = c('READY', 'INCOMPLETE'),
+  'count'  = c(
+    length(which(registry$status != 'pending account creation')),
+    length(which(registry$status == 'pending account creation'))
+  )
+) %>%
+  plotly::plot_ly(
+    labels = ~status, 
+    textposition = 'inside',
+    textinfo = 'label+percent',
+    insidetextfont = list(color = '#FFFFFF'),
+    values = ~count, 
+    type   = 'pie',
+    marker = list(
+      colors     = c('rgb(132,186,91)', 'rgb(128,133,133)'),
+      line       = list(color = '#FFFFFF', width = 1)
+    ),
+    showlegend = FALSE
+  ) %>% 
+  plotly::layout(
+    xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+    yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE)
+  )
+```
+
+last updated: `r Sys.time()`
 
 ### Key
 
