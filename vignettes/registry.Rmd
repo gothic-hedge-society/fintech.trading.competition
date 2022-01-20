@@ -96,11 +96,7 @@ shiny::tagList(
 ```
 
 
-```{r}
-
-```
-
-last updated: `r paste0(as.POSIXct(format(Sys.time()),tz="EST"), ' EST')`
+last updated: `r lubridate::with_tz(Sys.time(), tzone = 'EST')`
 
 ### Key
 
