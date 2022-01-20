@@ -20,10 +20,24 @@ wufoo_registry <- readr::read_csv(
   )
 ) %>%
   dplyr::mutate(
-    'School' = school_recode_key$correct_name[
-      school_recode_key$form_name == School
-    ]
+    'School' = School %>%
+      vapply(
+        function(school){
+          unique(
+            school_recode_key$correct_name[
+              school_recode_key$form_name == school
+            ]
+          )
+        },
+        character(1)
+      )
   )
+
+# For participants who created more than one account and messaged me
+specified_account_ids <- tibble::tibble(
+  email      = "2016110029@email.szu.edu.cn",
+  account_id = "DU5047458"
+)
 
 flex_statement <- list.files(
   path       = file.path(
@@ -60,7 +74,12 @@ flex_statement <- list.files(
     }
   ) %>%
   purrr::reduce(dplyr::bind_rows) %>%
-  dplyr::nest_by(account_id, name, email) %>% {
+  dplyr::nest_by(account_id, name, email) %>%
+  dplyr::filter(
+    !(email %in% specified_account_ids$email) | (
+      account_id %in% specified_account_ids$account_id
+    )
+  ) %>% {
     .[!duplicated(.$email),]
   }
 
