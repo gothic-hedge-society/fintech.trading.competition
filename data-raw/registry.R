@@ -110,7 +110,8 @@ school_stats <- full_registry %>%
       data$account_id
     )
   ) %>%
-  dplyr::ungroup()
+  dplyr::ungroup() %>%
+  dplyr::arrange(School)
 
 
 usethis::use_data(registry, overwrite = TRUE)
