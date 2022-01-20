@@ -40,7 +40,7 @@ ZEN and 2/3 USD.
 
 ##### 5th Prize is $500
 
-# Registration – ENDS TODAY
+# Registration for 2022 is now CLOSED. No new applicants will be onboarded.
 
 Currently enrolled graduate or undergraduate students with a .edu
 address may register for the competition by following these steps:

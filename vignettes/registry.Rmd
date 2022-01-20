@@ -63,7 +63,8 @@ by_school_plot <- school_stats %>%
     x = .$completion * 100,
     y = .$School,
     type = 'bar',
-    orientation = 'h'
+    orientation = 'h',
+    height = 900
   ) %>% 
   plotly::layout(
     paper_bgcolor='rgba(0,0,0,0)',
@@ -72,7 +73,7 @@ by_school_plot <- school_stats %>%
     yaxis = list(color = 'GhostWhite')
   )
 
-shiny::fluidPage(
+shiny::tagList(
   shiny::fluidRow(
     shiny::column(
       width = 4, 
@@ -82,11 +83,12 @@ shiny::fluidPage(
       shiny::fluidRow(completion_plot)
     ),
     shiny::column(
+      
       width = 8,
       shiny::fluidRow(
         shiny::tags$h3('Completion by School', style = 'text-align: center')
       ),
-      shiny::fluidRow(by_school_plot)
+      shiny::div(by_school_plot, style='height: 400px;overflow-y: scroll;')
     )
   )
 )
