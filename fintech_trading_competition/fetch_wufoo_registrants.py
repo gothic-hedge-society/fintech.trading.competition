@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import os
 import json
 import pandas as pd
+from math import ceil
 
 def fetch_wufoo_registrants():
 
@@ -28,9 +29,17 @@ def fetch_wufoo_registrants():
         os.getenv('WUFOO_PWD')
     )
     number_of_entries = int(number_of_entries_json['EntryCount'])
-    competition_registrants = fetch_entries(0)
 
-    while competition_registrants.shape[0] < number_of_entries:
+    print('Fetching first WuFoo batch...')
+
+    competition_registrants = fetch_entries(0)
+    number_of_fetches = ceil(number_of_entries/100)
+
+    for i in range(1, number_of_fetches):
+        print(
+            'Fetching next WuFoo batch (' + str(i) + ' of ' + \
+            str(number_of_fetches - 1) + ')'
+        )
         competition_registrants = competition_registrants.append(
             fetch_entries(competition_registrants.shape[0]),
             ignore_index=True
@@ -43,6 +52,8 @@ def fetch_wufoo_registrants():
         'Field118': 'sex', 'Field116': 'country', 'Field5': 'tradername',
         'Field126': 'linkedin'
     })
+
+    competition_registrants.email = competition_registrants.email.str.lower()
 
     competition_registrants.to_csv(
         os.getenv('APP_BASE_PATH') + '\\duke_fintech_trading_competition_' + \

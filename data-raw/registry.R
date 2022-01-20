@@ -2,14 +2,49 @@
 
 library('magrittr')
 
-registry <- xml2::read_xml(
+school_recode_key <- readr::read_csv(
   file.path(
     Sys.getenv("APP_BASE_PATH"),
     "duke_fintech_trading_competition_2022",
-    "EoD_Balances_and_IDs.xml",
+    "school_recode_key.csv",
+    fsep = "\\"
+  )
+)
+
+wufoo_registry <- readr::read_csv(
+  file.path(
+    Sys.getenv("APP_BASE_PATH"),
+    "duke_fintech_trading_competition_2022",
+    "registry.csv",
     fsep = "\\"
   )
 ) %>%
+  dplyr::mutate(
+    'School' = school_recode_key$correct_name[
+      school_recode_key$form_name == School
+    ]
+  )
+
+flex_statement <- list.files(
+  path       = file.path(
+    Sys.getenv("APP_BASE_PATH"), "..", "Downloads", fsep = "\\"
+  ),
+  pattern    = "EoD_Balances_and_IDs",
+  full.names = TRUE
+) %>%
+  gsub("/", "\\\\", .) %>%
+  stats::setNames(.,.) %>%
+  vapply(
+    function(flex_file_path){
+      gsub("^(.*)\\(", "", flex_file_path) %>%
+        gsub("\\)\\.xml$", "", .) %>%
+        as.numeric()
+    },
+    numeric(1)
+  ) %>% {
+    names(.[which.max(.)])
+  } %>%
+  xml2::read_xml() %>%
   xml2::xml_child('FlexStatements') %>%
   xml2::xml_contents() %>%
   lapply(
@@ -25,26 +60,39 @@ registry <- xml2::read_xml(
     }
   ) %>%
   purrr::reduce(dplyr::bind_rows) %>%
-  dplyr::nest_by(account_id, name, email) %>%
-  dplyr::select(-data) %>%
-  dplyr::ungroup() %>%
-  dplyr::right_join(
-    readr::read_csv(
-      file.path(
-        Sys.getenv("APP_BASE_PATH"),
-        "duke_fintech_trading_competition_2022",
-        "wufoo_registrants.csv",
-        fsep = "\\"
-      )
-    ) %>%
-      dplyr::select(email, tradername),
-    by = 'email'
-  ) %>%
-  dplyr::filter(!duplicated(email)) %>%
-  dplyr::select(tradername, account_id) %>%
-  dplyr::rename(status = account_id) %>%
-  dplyr::arrange(tradername)
+  dplyr::nest_by(account_id, name, email) %>% {
+    .[!duplicated(.$email),]
+  }
 
-registry$status[is.na(registry$status)]  <- "pending account creation"
+na_replace <- "account pending creation"
+full_registry <- dplyr::left_join(
+  wufoo_registry, flex_statement[c("account_id", "name", "email")]
+) %>% {
+  .$account_id[is.na(.$account_id)] <- na_replace
+  .
+}
+
+readr::write_csv(
+  full_registry,
+  file.path(
+    Sys.getenv("APP_BASE_PATH"),
+    "duke_fintech_trading_competition_2022",
+    "full_registry.csv",
+    fsep = "\\"
+  )
+)
+
+registry <- full_registry[c("tradername", "account_id")]
+
+school_stats <- full_registry %>%
+  dplyr::nest_by(School) %>%
+  dplyr::summarise(
+    'completion' = length(which(data$account_id != na_replace))/length(
+      data$account_id
+    )
+  ) %>%
+  dplyr::ungroup()
+
 
 usethis::use_data(registry, overwrite = TRUE)
+usethis::use_data(school_stats, overwrite = TRUE)

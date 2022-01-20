@@ -22,13 +22,19 @@ color: greenyellow;
 }
 ```
 
+This page tracks the status of competition participants as they set up their
+paper traders provided by [Interactive Brokers](https://www.interactivebrokers.com/en/home.php).
 
-```{r, echo = FALSE}
-tibble::tibble(
+Check back here often - if the account ID logged for your tradername is not
+correct, respond to the Duke Fintech Trading Competition email address or post
+in the Slack channel ASAP.
+
+```{r, echo = FALSE, figures-side, fig.show="hold", out.width="50%"}
+completion_plot <- tibble::tibble(
   'status' = c('READY', 'INCOMPLETE'),
   'count'  = c(
-    length(which(registry$status != 'pending account creation')),
-    length(which(registry$status == 'pending account creation'))
+    length(which(registry$account_id != 'account pending creation')),
+    length(which(registry$account_id == 'account pending creation'))
   )
 ) %>%
   plotly::plot_ly(
@@ -46,8 +52,50 @@ tibble::tibble(
   ) %>% 
   plotly::layout(
     xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-    yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE)
+    yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)'
   )
+
+by_school_plot <- school_stats %>%
+  dplyr::arrange(School) %>%
+  plotly::plot_ly(
+    x = .$completion * 100,
+    y = .$School,
+    type = 'bar',
+    orientation = 'h'
+  ) %>% 
+  plotly::layout(
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+    xaxis = list(color = 'DarkGoldenRod', ticksuffix = '%'),
+    yaxis = list(color = 'GhostWhite')
+  )
+
+shiny::fluidPage(
+  shiny::fluidRow(
+    shiny::column(
+      width = 4, 
+      shiny::fluidRow(
+        shiny::tags$h3('Overall Completion', style = 'text-align: center')
+      ),
+      shiny::fluidRow(completion_plot)
+    ),
+    shiny::column(
+      width = 8,
+      shiny::fluidRow(
+        shiny::tags$h3('Completion by School', style = 'text-align: center')
+      ),
+      shiny::fluidRow(by_school_plot)
+    )
+  )
+)
+
+```
+
+
+```{r}
+
 ```
 
 last updated: `r paste0(as.POSIXct(format(Sys.time()),tz="EST"), ' EST')`
