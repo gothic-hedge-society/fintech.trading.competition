@@ -1,0 +1,41 @@
+Currently enrolled graduate or undergraduate students with a .edu address may
+register for the competition by following these steps:
+
+1. Visit the [registration page](https://dukefinance.wufoo.com/forms/2022-duke-fintech-trading-competition/)  
+and provide the requested information using your .edu email. 
+    - You'll be asked for a trader username -- choose wisely! You may use your
+    real name if you want, but understand that when daily standings and
+    performance updates are pushed to the website, this is the name that will
+    appear to the world alongside your school, department, and username.
+2. Within one business day, you'll receive two emails:
+    - A welcome email from Duke FINTECH including an invitation to the official
+    trading competition Slack channel
+    - An invitation email from Interactive Brokers (IBKR) for creating a new
+    paper trading account
+3. Join the Slack channel
+4. Follow the link in your IBKR invitation email and fill out the application
+for a new paper trading account. 
+    - **BE CERTAIN TO RECORD YOUR PAPER TRADING ACCOUNT NUMBER, USERNAME AND PASSWORD**.
+    This information will display in a yellow box after you submit the form.
+    - **BE CERTAIN TO USE THE SAME EMAIL THAT YOU USED TO REGISTER FOR THE COMPETITION**.
+    We'll be using your email to join your paper trader to account to your 
+    registration info (tradername, school, etc) for the competition so it's 
+    important that these match.
+    - **DO THIS AS SOON AS YOU CAN**
+    - use the Slack channel to ask for help if you need it.
+    - You must complete this step and create a new paper trader even if you
+    already have a paper trading account with IBKR.
+5. Wait. It takes about **one business day** for your paper trading account
+to activate -- most of that time is due to obtaining your permissions for market
+data subscriptions from the various exchanges.
+6. Visit the [Getting Started](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/fintech-trading-competition.html) 
+page. Install TWS and explore the Demo account for a bit while you wait for your
+account to activate.
+7. Once it's active, you will be able to log in to your paper trader using the
+credentials from **Step 4**. Your username will be a simple alphanumeric string
+like "jakev9914". Test that your account is live by logging in to TWS.
+8. Check the [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html)
+to confirm that the tradername you've chosen appears alongside the correct
+account number of your paper trader.
+9. Once your tradername appears alongside your paper trader's account number,
+you're all set! You're encouraged to say 'hi' in the Slack channel.

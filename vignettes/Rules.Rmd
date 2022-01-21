@@ -1,0 +1,49 @@
+---
+title: "Rules"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Rules}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Rules
+1. Registration ENDS on Wednesday, 19 Jan 2022 at 9:30am EST. No new
+participants may sign up after that date.
+  - You can start trading as soon as your IBKR paper trader account activates, 
+  but realize that **we'll only start scoring the competition once everyone's 
+  trader is set up**.
+  - We'll use the rule of reasonableness here -- it sometimes takes a few days
+  for a paper trader account to get connected to market exchanges and activate,
+  but we won't delay the start of the competition simply because some
+  participants choose to not make a good faith effort to get set up promtly.
+  - Use the Slack channel and check back on this website as needed.
+2. The competition will end on Wednesday, 13 Apr 2022 at 4pm EST.
+3. You can begin making trades as soon as you like, but only your end-of-day
+portfolio values within these dates (inclusive) will be used for scoring.
+Because the competition is scored based on Sharpe Ratio, it doesn't matter if
+different participants begin the competition with different positions and cash.
+4. If your account isn't activated by the start of the competition, then you
+aren't eligible to participate so be sure to activate early!
+5. Scoring will be based on Sharpe Ratio (highest wins). Please see the
+following pages for more detailed information:
+    - [Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html) 
+      basic idea
+    - [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe%20Ratio%20Calculation.html)
+6. **No account resets are allowed**. Be sure that any orders you make on your
+trading account are what you want -- use the Demo account features for practice.
+7. **You must make one trade during the first week**. If you don't trade during
+the first week, your account will be deleted, your tradername will be removed
+from the Registry and from the Slack channel, and a "dropout" note will be added
+to your University. If you don't want to trade during the first week, then
+simply make a small trade such as buying one share of the many 'penny stocks'
+available for $5 USD or less to satisfy this requirement. If you can't access
+your account, ask for help on the Slack channel.
+

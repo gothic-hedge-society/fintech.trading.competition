@@ -29,7 +29,7 @@ Check back here often - if the account ID logged for your tradername is not
 correct, respond to the Duke Fintech Trading Competition email address or post
 in the Slack channel ASAP.
 
-```{r, echo = FALSE, figures-side, fig.show="hold", out.width="50%"}
+```{r, echo = FALSE}
 completion_plot <- tibble::tibble(
   'status' = c('READY', 'INCOMPLETE'),
   'count'  = c(
@@ -58,18 +58,41 @@ completion_plot <- tibble::tibble(
   )
 
 by_school_plot <- school_stats %>%
+  dplyr::mutate(
+    'bar_color' = completion %>%
+      vapply(
+        function(comp_pct){
+          if(comp_pct < 0.5){
+            return('rgb(139, 0, 0)')
+          } else if(comp_pct < 1){
+            return('rgba(55, 128, 191)')
+          } else {
+            return('rgb(132,186,91)') 
+          }
+        },
+        character(1)
+      )
+  ) %>%
   plotly::plot_ly(
-    x = .$completion * 100,
-    y = .$School,
-    type = 'bar',
-    orientation = 'h',
-    height = 900
+    x           = .$completion * 100,
+    y           = .$School,
+    type        = 'bar',
+    color       = .$bar_color,
+    height      = 900,
+    orientation = 'h'
   ) %>% 
   plotly::layout(
-    paper_bgcolor='rgba(0,0,0,0)',
-    plot_bgcolor='rgba(0,0,0,0)',
-    xaxis = list(color = 'DarkGoldenRod', ticksuffix = '%'),
-    yaxis = list(color = 'GhostWhite', autorange = 'reversed')
+    xaxis = list(
+      color      = 'DarkGoldenRod', 
+      ticksuffix = '%'
+    ),
+    yaxis = list(
+      color     = 'GhostWhite', 
+      autorange = 'reversed'
+    ),
+    showlegend    = FALSE,
+    plot_bgcolor  ='rgba(0,0,0,0)',
+    paper_bgcolor ='rgba(0,0,0,0)'
   )
 
 shiny::tagList(

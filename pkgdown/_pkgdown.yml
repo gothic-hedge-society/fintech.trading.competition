@@ -11,12 +11,14 @@ navbar:
     right: [github]
   components:
     articles:
-      text: Scoring Info
+      text: Rules & Scoring
       menu:
       - text: General Idea
         href: articles/Scoring.html
       - text: Scoring Example
         href: articles/Sharpe Ratio Calculation.html
+      - text: Rules
+        href: articles/Rules.html
     registry:
       text: Registry
       href: articles/registry.html
@@ -27,6 +29,10 @@ navbar:
     # refdata:
     #   text: Reference Data
     #   href: articles/reference_data.html
+
+home:
+  sidebar:
+    html: inst/sidebar.html
 
 authors:
   Jake Vestal:
