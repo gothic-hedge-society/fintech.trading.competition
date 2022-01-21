@@ -3,7 +3,7 @@
 # By Jake Vestal
 
 from fintech_trading_competition import *
-import pandas as pd
+import os
 
 # Fully up-to-date and complete WuFoo form
 competition_registrants = fetch_wufoo_registrants()
@@ -48,7 +48,16 @@ registry = competition_registrants[
 
 # Save the registry
 registry.to_csv(
-    'C:\\Users\\vcm\\Desktop\\' + \
-    'duke_fintech_trading_competition_2022\\registry.csv',
+    os.getenv('APP_BASE_PATH') + \
+    '\\duke_fintech_trading_competition_2022\\registry.csv',
     index = False
 )
+
+# Refresh the R package
+import subprocess
+
+command = 'Rscript'
+path2script = os.getenv('APP_BASE_PATH') + \
+    '\\fintech.trading.competition\\data-raw\\registry.R'
+cmd = [command, path2script]
+registry_response = subprocess.check_output(cmd, universal_newlines=True)
