@@ -75,7 +75,7 @@ by_school_plot <- school_stats %>%
   ) %>%
   plotly::plot_ly(
     x           = .$completion * 100,
-    y           = .$School,
+    y           = .$school,
     type        = 'bar',
     color       = .$bar_color,
     height      = 900,
