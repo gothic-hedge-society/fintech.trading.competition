@@ -17,8 +17,8 @@ knitr::opts_chunk$set(
 
 ```{css, echo=FALSE}
 .dataTables_filter label {
-font-size: 18px;
-color: greenyellow;
+  font-size: 18px;
+  color: greenyellow;
 }
 ```
 

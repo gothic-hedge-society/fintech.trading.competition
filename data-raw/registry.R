@@ -20,7 +20,7 @@ wufoo_registry <- readr::read_csv(
   )
 ) %>%
   dplyr::mutate(
-    'School' = School %>%
+    'school' = School %>%
       vapply(
         function(school){
           unique(
@@ -101,17 +101,24 @@ readr::write_csv(
   )
 )
 
-registry <- full_registry[c("tradername", "account_id")]
+registry <- full_registry[c("tradername", "account_id")] %>%
+  dplyr::arrange(tradername)
 
 school_stats <- full_registry %>%
-  dplyr::nest_by(School) %>%
+  dplyr::nest_by(school) %>%
   dplyr::summarise(
     'completion' = length(which(data$account_id != na_replace))/length(
       data$account_id
     )
   ) %>%
   dplyr::ungroup() %>%
-  dplyr::arrange(School)
+  dplyr::arrange(school)
+
+Sys.Date() %>%
+  as.character() %>%
+  gsub("-", "\\.", .) %>%
+  desc::desc_set_version()
 
 usethis::use_data(registry, overwrite = TRUE)
 usethis::use_data(school_stats, overwrite = TRUE)
+
