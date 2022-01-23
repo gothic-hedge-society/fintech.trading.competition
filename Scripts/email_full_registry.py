@@ -21,35 +21,31 @@ with codecs.open(
         '\\Email Templates\\update_2.html', 'r') as f:
     message_body_update = f.read()
 
-invited = pd.read_csv(
+full_registry = pd.read_csv(
     'C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\' + \
     'full_registry.csv'
 )
 
-for i, row in invited.iterrows():
+for i, row in full_registry[2:].iterrows():
 
     print('emailing: ', row.email)
 
     outlook = win32.Dispatch('outlook.application')
     mail = outlook.CreateItem(0)
     mail.To = row.email
-    mail.Subject = subject
-    mail.Body = message_body.replace(
-        'tradername', row.tradername
-    )
+
+    if row.account_id == 'account pending creation':
+        mail.Subject = subject_chaser
+        mail.HTMLBody = message_body_chaser.replace(
+            'first_name', row.first_name).replace('tradername', row.tradername)
+        attachment = os.getenv('APP_BASE_PATH') + "\\fintech.trading.competition" + \
+                     "\\Scripts\\Email Templates\\paper_trader_invite.png"
+        mail.Attachments.Add(attachment)
+    else:
+        mail.Subject = subject_update
+        mail.HTMLBody = message_body_update.replace(
+            'first_name', row.first_name).replace(
+            'tradername', row.tradername).replace('account_id', row.account_id)
 
     mail.Send()
-
     time.sleep(2.5)
-
-mail = win32.Dispatch('outlook.application').CreateItem(0)
-mail.To = 'jmv13@duke.edu'
-mail.Subject = 'test'
-mail.HTMLBody = message_body
-
-attachment  = os.getenv('APP_BASE_PATH') + "\\fintech.trading.competition" + \
-    "\\Scripts\\Email Templates\\paper_trader_invite.png"
-mail.Attachments.Add(attachment)
-mail.Send()
-
-

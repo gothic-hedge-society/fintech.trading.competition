@@ -1,5 +1,6 @@
 ---
 title: "Sharpe Ratio Calculation"
+output: html_document
 ---
 
 ```{css, echo=FALSE}

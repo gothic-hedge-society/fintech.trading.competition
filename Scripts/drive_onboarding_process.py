@@ -53,6 +53,8 @@ registry.to_csv(
     index = False
 )
 
+print('refreshing R package...')
+
 # Refresh the R package
 import subprocess
 

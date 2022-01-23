@@ -146,8 +146,8 @@ investment is 0, just as it should be.
 You're going to be managing a portfolio -- some set of bonds, stocks, currency
 trades, etc, on which you earn a **portfolio return** $R_{p}$. As an investor,
 you only care about earning a return that is *better* than the risk-free rate
-$r_{f}$ because risk-free rate because otherwise, why are you even bothering to
-invest? Better to just buy government debt.
+$r_{f}$ because otherwise, why are you even bothering to invest? Better to just
+buy government debt.
 
 In other words, what you really care about is your portfolio's **Excess Return**
 over the risk free rate.

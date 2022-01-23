@@ -7,9 +7,12 @@ template:
 
 navbar:
   structure:
-    left:  [intro, articles, registry] #, refdata]
+    left:  [sign_up, intro, articles, registry] #, refdata]
     right: [github]
   components:
+    sign_up:
+      text: Sign Up
+      href: articles/sign_up.html
     articles:
       text: Rules & Scoring
       menu:
