@@ -95,11 +95,11 @@ page. Install TWS and explore the Demo account for a bit while you wait for your
 account to activate.
 
 ### Step 7: ACTIVATED!
-You'll know your account is ACTIVE when:
-    - you can log in to TWS with the credentials you set up in **Step 3**. 
-    - Sometimes there will be an awkward **'limbo period'** during which you'll
-    be able to log in to your PORTAL using a browser, but you'll get an
-    "**invalid username or password** error when you try logging in to TWS:
+You'll know your account is ACTIVE when you can log in to TWS with the
+credentials you set up in **Step 3**. Sometimes there will be an awkward
+**'limbo period'** during which you'll be able to log in to your PORTAL using a
+browser, but you'll get an "**invalid username or password** error when you try
+logging in to TWS:
 
 <center> ![language error](limbo_error.png) </center>
 
