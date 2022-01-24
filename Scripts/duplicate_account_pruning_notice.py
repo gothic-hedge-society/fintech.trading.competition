@@ -4,15 +4,11 @@
 import time
 import win32com.client as win32
 import codecs
-import requests
-from bs4 import BeautifulSoup
-import os
-import json
 import pandas as pd
+import math
 
-
-subject = 'DUKE FINTECH TRADING COMPETITION SET TO BEGIN'
-message_filename = 'start_and_pruning.html'
+subject = 'DELETING DUPLICATE ACCOUNT'
+message_filename = 'duplicate_account_pruning_notice.html'
 
 with codecs.open(
         'C:\\Users\\vcm\\Desktop\\fintech.trading.competition\\Scripts' + \
@@ -31,7 +27,7 @@ with codecs.open(
 
 email_df = pd.read_csv(
     'C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\' + \
-    'limbo_accounts.csv'
+    'accounts_to_prune.csv'
 )
 
 for i, row in email_df.iterrows():
@@ -43,8 +39,8 @@ for i, row in email_df.iterrows():
     mail.To = row.email
     mail.Subject = subject
     mail.HTMLBody = message_body.replace(
-        'first_name', row.first_name
-    )
+        'name', row['name']
+    ).replace('duplicate_account', row.account_id)
 
     mail.Send()
 
