@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# Scoring is set to begin on Tuesday, 25 Jan 2022!
+
 # Duke FINTECH Trading Competition 2022
 
 Registration for the 2022 Duke FINTECH Trading Competition has now
