@@ -26,7 +26,7 @@ full_registry = pd.read_csv(
     'full_registry.csv'
 )
 
-for i, row in full_registry[2:].iterrows():
+for i, row in full_registry.iterrows():
 
     print('emailing: ', row.email)
 

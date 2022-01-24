@@ -11,20 +11,25 @@ import json
 import pandas as pd
 
 
-subject = 'DUKE FINTECH TRADING COMPETITION UPDATE 19 Jan'
-message_filename = 'update_1.txt'
+subject = 'DUKE FINTECH TRADING COMPETITION SET TO BEGIN'
+message_filename = 'start_and_pruning.html'
 
 with codecs.open(
         'C:\\Users\\vcm\\Desktop\\fintech.trading.competition\\Scripts' + \
         '\\Email Templates\\' + message_filename, 'r') as f:
     message_body = f.read()
 
-invited = pd.read_csv(
-    'C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\' + \
-    'wufoo_registrants.csv'
-).drop_duplicates(subset=['email'])
+# invited = pd.read_csv(
+#     'C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\' + \
+#     'wufoo_registrants.csv'
+# ).drop_duplicates(subset=['email'])
 
-for i, row in invited.iterrows():
+full_registry = pd.read_csv(
+    'C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\' + \
+    'full_registry.csv'
+)
+
+for i, row in full_registry.iterrows():
 
     print('emailing: ', row.email)
 
@@ -32,8 +37,8 @@ for i, row in invited.iterrows():
     mail = outlook.CreateItem(0)
     mail.To = row.email
     mail.Subject = subject
-    mail.Body = message_body.replace(
-        'tradername', row.tradername
+    mail.HTMLBody = message_body.replace(
+        'first_name', row.first_name
     )
 
     mail.Send()
