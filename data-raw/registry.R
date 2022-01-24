@@ -97,10 +97,12 @@ na_replace <- "account pending creation"
 full_registry <- dplyr::left_join(
   wufoo_registry, flex_statement[c("account_id", "name", "email")]
 ) %>% {
-  .$account_id[is.na(.$account_id)] <- na_replace
-  .$account_id[match(limbo_accounts$email, .$email)] <- paste0(
+  .$account_id[
+    intersect(which(is.na(.$account_id)), match(limbo_accounts$email, .$email))
+  ] <- paste0(
     limbo_accounts$pending_account_id, " (limbo)"
   )
+  .$account_id[is.na(.$account_id)] <- na_replace
   .
 }
 
