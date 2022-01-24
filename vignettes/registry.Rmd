@@ -130,6 +130,10 @@ refreshed and picked up your updated information.
 You've been sent a welcome email and an IBKR paper trading account invitation.
 Join the Slack channel, submit your IBKR form, and wait (about one business day)
 
+#### An Account ID with "(limbo)"
+You've signed up and sent your account ID to **The Architect** who has added you
+to the system; however, your account isn't fully active yet.
+
 #### An Account ID
 Your account is set up and you're ready. The system has matched your tradername
 to the given Account ID- you'll want to confirm that that's correct. Use the

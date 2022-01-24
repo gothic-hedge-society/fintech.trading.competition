@@ -35,8 +35,8 @@ wufoo_registry <- readr::read_csv(
 
 # For participants who created more than one account and messaged me
 specified_account_ids <- tibble::tibble(
-  email      = "2016110029@email.szu.edu.cn",
-  account_id = "DU5047458"
+  email      = c("2016110029@email.szu.edu.cn", "eyz@princeton.edu"),
+  account_id = c("DU5047458", "DU5124984")
 )
 
 flex_statement <- list.files(
@@ -83,11 +83,24 @@ flex_statement <- list.files(
     .[!duplicated(.$email),]
   }
 
+limbo_accounts <- readr::read_csv(
+  file.path(
+    Sys.getenv("APP_BASE_PATH"),
+    "duke_fintech_trading_competition_2022",
+    "limbo_accounts.csv",
+    fsep = "\\"
+  )
+) %>%
+  dplyr::filter(!is.na(pending_account_id))
+
 na_replace <- "account pending creation"
 full_registry <- dplyr::left_join(
   wufoo_registry, flex_statement[c("account_id", "name", "email")]
 ) %>% {
   .$account_id[is.na(.$account_id)] <- na_replace
+  .$account_id[match(limbo_accounts$email, .$email)] <- paste0(
+    limbo_accounts$pending_account_id, " (limbo)"
+  )
   .
 }
 
@@ -103,6 +116,7 @@ readr::write_csv(
 
 registry <- full_registry[c("tradername", "account_id")] %>%
   dplyr::arrange(tradername)
+
 
 school_stats <- full_registry %>%
   dplyr::nest_by(school) %>%
