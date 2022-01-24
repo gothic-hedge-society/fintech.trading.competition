@@ -19,12 +19,17 @@ with codecs.open(
         '\\Email Templates\\' + message_filename, 'r') as f:
     message_body = f.read()
 
-# invited = pd.read_csv(
+# email_df = pd.read_csv(
 #     'C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\' + \
 #     'wufoo_registrants.csv'
 # ).drop_duplicates(subset=['email'])
 
-full_registry = pd.read_csv(
+# email_df = pd.read_csv(
+#     'C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\' + \
+#     'full_registry.csv'
+# )
+
+email_df = pd.read_csv(
     'C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\' + \
     'full_registry.csv'
 )
