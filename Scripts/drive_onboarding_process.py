@@ -61,13 +61,13 @@ registry.to_csv(
     index = False
 )
 
-print('refreshing R package...')
-
-# Refresh the R package
-import subprocess
-
-command = 'Rscript'
-path2script = os.getenv('APP_BASE_PATH') + \
-    '\\fintech.trading.competition\\data-raw\\registry.R'
-cmd = [command, path2script]
-registry_response = subprocess.check_output(cmd, universal_newlines=True)
+# print('refreshing R package...')
+#
+# # Refresh the R package
+# import subprocess
+#
+# command = 'Rscript'
+# path2script = os.getenv('APP_BASE_PATH') + \
+#     '\\fintech.trading.competition\\data-raw\\registry.R'
+# cmd = [command, path2script]
+# registry_response = subprocess.check_output(cmd, universal_newlines=True)
