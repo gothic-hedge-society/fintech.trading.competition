@@ -25,6 +25,8 @@ all_signed_up_emails_to_date = set(
     filter(email_filter, competition_registrants.email)
 )
 
+print("Fetching participants who've been welcomed")
+
 # Fetch a list of the participating emails that have already been emailed their
 #   IBKR forms and welcome messages
 sbjct = "Welcome to the 2022 FINTECH Trading Competition!"
@@ -33,13 +35,19 @@ already_welcomed = set([x.lower() for x in fetch_emailed_participants(sbjct)])
 # Need to invite the registrants who signed up but haven't been welcomed:
 need_to_invite = list(all_signed_up_emails_to_date.difference(already_welcomed))
 
+print("Welcoming new registrants...")
+
 # Go through the email invitiation process
 welcome_new_registrants(need_to_invite, competition_registrants, 10, sbjct)
+
+print("Updating invited participant list...")
 
 # Re-fetch all invited participants
 all_invited_participants = set(
     filter(email_filter, fetch_emailed_participants(sbjct))
 )
+
+print("Saving the registry")
 
 # Now have the registry csv
 registry = competition_registrants[

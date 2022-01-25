@@ -84,9 +84,15 @@ flex_statement_full$email[
 ] <- "chanelchu@utexas.edu"
 
 # For participants who created more than one account and messaged me
-specified_account_ids <- tibble::tibble(
-  email      = c("2016110029@email.szu.edu.cn", "eyz@princeton.edu"),
-  account_id = c("DU5047458", "DU5124984")
+specified_account_ids <- suppressMessages(
+  readr::read_csv(
+    file.path(
+      Sys.getenv("APP_BASE_PATH"),
+      "duke_fintech_trading_competition_2022",
+      "specified_account_ids.csv",
+      fsep = "\\"
+    )
+  )
 )
 
 # Filter the full flex statement down to valid accounts only
@@ -203,8 +209,10 @@ school_stats <- full_registry %>%
 
 Sys.Date() %>%
   as.character() %>%
-  gsub("-", "\\.", .) %>%
-  suppressMessages(desc::desc_set_version())
+  gsub("-", "\\.", .) %>% {
+    suppressMessages(desc::desc_set_version(.))
+    invisible()
+  }
 
 usethis::use_data(registry, overwrite = TRUE)
 usethis::use_data(school_stats, overwrite = TRUE)
