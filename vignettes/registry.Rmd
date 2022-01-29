@@ -152,7 +152,7 @@ refreshed and picked up your updated information.
 #### 'account not yet active'
 An IBKR account with your email does not yet appear in the response when the
 Trading Competition App queries IBKR. This is either because you haven't
-completed your Paper Trader Invitation form yet, or because but your account is
+completed your Paper Trader Invitation form yet, or because your account is
 still in the activation process, which can take one business day or longer.
 
 #### An Account ID

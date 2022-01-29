@@ -3,6 +3,9 @@
 
 # Scoring is set to begin on Tuesday, 25 Jan 2022!
 
+We’ll be reporting the leaderboard here once about a week’s worth of the
+contestants’ trading data becomes available.
+
 # Duke FINTECH Trading Competition 2022
 
 Registration for the 2022 Duke FINTECH Trading Competition has now

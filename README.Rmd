@@ -6,6 +6,8 @@ always_allow_html: yes
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # Scoring is set to begin on Tuesday, 25 Jan 2022!
+We'll be reporting the leaderboard here once about a week's worth of the
+contestants' trading data becomes available.
 
 
 # Duke FINTECH Trading Competition 2022
