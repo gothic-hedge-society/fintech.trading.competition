@@ -105,77 +105,12 @@ flex_statement <- flex_statement_full %>%
     .[!duplicated(.$email),]
   }
 
-# Accounts that are valid but don't appear in flex statement yet
-limbo_accounts <- suppressMessages(
-  readr::read_csv(
-    file.path(
-      Sys.getenv("APP_BASE_PATH"),
-      "duke_fintech_trading_competition_2022",
-      "limbo_accounts.csv",
-      fsep = "\\"
-    )
-  )
-) %>%
-  dplyr::filter(
-    !is.na(pending_account_id) & !(
-      pending_account_id %in% flex_statement$account_id
-    )
-  ) %>%
-  dplyr::arrange(email)
-
 # Create full registry by left-joining WuFoo data with the flex statement
 full_registry <- dplyr::left_join(
   wufoo_registry, flex_statement[c("account_id", "name", "email")], by = "email"
 ) %>% {
-  .$account_id[
-    intersect(which(is.na(.$account_id)), match(limbo_accounts$email, .$email))
-  ] <- paste0(
-    limbo_accounts$pending_account_id, " (limbo)"
-  )
-  .$account_id[is.na(.$account_id)] <- "account pending creation"
+  .$account_id[is.na(.$account_id)] <- "not yet active"
   .
-}
-
-# Accounts that are written down in 'limbo' or appearing in the filtered flex
-#   statement are valid.
-valid_accounts <- c(
-  limbo_accounts$account_id,
-  flex_statement$account_id[!is.na(flex_statement$account_id)]
-) %>%
-  unique()
-
-# All other accounts are NOT valid and need to be pruned.
-accounts_to_prune <- flex_statement_full %>%
-  dplyr::filter(
-    account_id %in% setdiff(flex_statement_full$account_id, valid_accounts)
-  ) %>%
-  dplyr::select(-data)
-
-if(isTRUE(nrow(accounts_to_prune) > 0)){
-
-  prune_string <- paste0(accounts_to_prune$account_id, collapse = ", ")
-
-  usethis::ui_info(paste0("Need to prune these accounts: ", prune_string))
-  clipr::write_clip(prune_string)
-  usethis::ui_info("This string has been copied to the clipboard.")
-
-  accounts_to_prune_path <- file.path(
-    Sys.getenv("APP_BASE_PATH"),
-    "duke_fintech_trading_competition_2022",
-    "accounts_to_prune.csv",
-    fsep = "\\"
-  )
-
-  if(file.exists(accounts_to_prune_path)){
-    accounts_to_prune <- accounts_to_prune_path %>% {
-      suppressMessages(readr::read_csv(.))
-    } %>%
-      dplyr::bind_rows(accounts_to_prune) %>%
-      unique()
-  }
-
-  readr::write_csv(accounts_to_prune, accounts_to_prune_path)
-
 }
 
 readr::write_csv(
@@ -198,9 +133,8 @@ school_stats <- full_registry %>%
       dplyr::summarise(
         .,
         'completion' = length(
-          which(data$account_id != "account pending creation")
-        )/length(data$account_id),
-        'limbo' = sum(grepl("limbo", data$account_id))
+          which(data$account_id != "not yet active")
+        )/length(data$account_id)
       )
     )
   } %>%

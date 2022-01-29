@@ -1,0 +1,175 @@
+---
+title: "Announcement"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Announcement}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{css, echo = FALSE}
+h1 {
+text-align:center;
+}
+```
+
+
+```{r, echo = FALSE}
+
+shiny::tagList(
+  shiny::fluidRow(
+    style = "text-align:center; padding-top:50px;",
+    shiny::span(
+      "Duke FinTech Annual InterCollegiate\n\nTrading Competition",
+      class = "announcement-title"
+    )
+  ),
+  shiny::fluidRow(
+    shiny::span(
+      paste0(
+        "The annual trading competition sponsored by Duke’s Master of ",
+        "Engineering in FinTech program kicks off this month supported by ",
+        "some extraordinary companies."
+      ),
+      class = "basic-text"
+    ),
+    style = "padding-top:10px;padding-bottom:10px"
+  ),
+  shiny::fluidRow(
+    style = "display: flex; align-items: center; justify-content: center;",
+    shiny::column(
+      width = 4, 
+      shiny::a(shiny::img(src = "finvc_logo.png"), href = "https://finvc.co/")
+    ),
+    shiny::column(
+      width = 4, 
+      shiny::a(shiny::img(src = "horizen_logo.png"), href = "https://www.horizen.io/")
+    ),
+    shiny::column(
+      width = 4,
+      shiny::a(shiny::img(src = "mesh_logo.png"), href = "https://mesh.xyz/")
+    )
+  ),
+  shiny::fluidRow(
+    shiny::span(
+      paste0(
+        "This annual event welcomes students from schools across the globe to",
+        " compete against their peers for cash prizes, and maybe more ",
+        "important, bragging rights.  To better reflect the nature of the ",
+        "program the winner is selected by risk adjusted return (Sharpe Ratio)",
+        ", rather than simply total return.  This provides students with the ",
+        "opportunity to test out unique quantitative algorithms and other ",
+        "methodologies."
+      ),
+      class = "basic-text"
+    ),
+    style = "padding-top:10px"
+  ),
+  shiny::fluidRow(
+    shiny::span(
+      paste0(
+        "This year’s competition is led again by Professor Jake Vestal and ",
+        "features all of the listed asset classes that one might expect, but",
+        " also cryptocurrencies, in collaboration with the "
+      ),
+      class = "basic-text"
+    ),
+    shiny::a(
+      "Student Trading Lab", 
+      href = "https://www.interactivebrokers.com/en/accounts/educator.php",
+      class = "IBKR-link"
+    ),
+    shiny::span(
+      " at Interactive Brokers.  Here is a list of the schools of the early ",
+      "registrants:",
+      class = "basic-text"
+    ),
+    style = "padding-top:10px;padding-bottom:10px;"
+  ),
+  shiny::fluidRow(
+    shiny::column(
+      width = 6,
+      shiny::p('Beijing University of Technology', class = 'school-name'),
+      shiny::p('Boston University', class = 'school-name'),
+      shiny::p('Carnegie Mellon University', class = 'school-name'),
+      shiny::p('Case Western Reserve University', class = 'school-name'),
+      shiny::p('Claremont Graduate University', class = 'school-name'),
+      shiny::p('Colorado College', class = 'school-name'),
+      shiny::p('Cornell University', class = 'school-name'),
+      shiny::p('Duke University', class = 'school-name'),
+      shiny::p('Georgetown University', class = 'school-name'),
+      shiny::p('Georgia Institute of Technology', class = 'school-name'),
+      shiny::p('Grinnell College', class = 'school-name'),
+      shiny::p('Harvard University', class = 'school-name'),
+      shiny::p('Hunan University', class = 'school-name'),
+      shiny::p('Nanyang Technological University', class = 'school-name'),
+      shiny::p('New York University', class = 'school-name'),
+      shiny::p('North Carolina State University', class = 'school-name'),
+      shiny::p('Northeastern University', class = 'school-name'),
+      shiny::p('Princeton University', class = 'school-name'),
+      shiny::p('Rutgers University', class = 'school-name'),
+      shiny::p('School of Visual Arts', class = 'school-name')
+    ),
+    shiny::column(
+      width = 6,
+      shiny::p('Shanghai Jiao Tong University', class = 'school-name'),
+      shiny::p('Shenzhen University', class = 'school-name'),
+      shiny::p('Southern University of Science and Technology', class = 'school-name'),
+      shiny::p('Texas A&M University', class = 'school-name'),
+      shiny::p('The University of Chicago', class = 'school-name'),
+      shiny::p('University of California, Los Angeles', class = 'school-name'),
+      shiny::p('University of California, San Diego', class = 'school-name'),
+      shiny::p('University of California, Santa Barbara', class = 'school-name'),
+      shiny::p('University of Georgia', class = 'school-name'),
+      shiny::p('University of Hawaii', class = 'school-name'),
+      shiny::p('University of Michigan', class = 'school-name'),
+      shiny::p('University of North Carolina at Chapel Hill', class = 'school-name'),
+      shiny::p('University of North Carolina at Charlotte', class = 'school-name'),
+      shiny::p('University of Rochester', class = 'school-name'),
+      shiny::p('University of South Carolina', class = 'school-name'),
+      shiny::p('University of Southern California', class = 'school-name'),
+      shiny::p('University of Texas at Austin', class = 'school-name'),
+      shiny::p('Vanderbilt University', class = 'school-name'),
+      shiny::p('Washington University in St. Louis', class = 'school-name'),
+      shiny::p('Xi\'an Jiaotong-Liverpool University', class = 'school-name')
+    )
+  )
+)
+
+```
+
+
+```{css, echo = FALSE}
+h1 {
+display: none;
+}
+
+.announcement-title {
+text-align: center;
+font-size: 34px;
+margin-top: 500px;
+color: DarkKhaki;
+}
+
+.basic-text{
+font-size: 16px;
+}
+
+.IBKR-link{
+font-size:16px;
+}
+
+.school-name{
+color: Cornsilk;
+font-size:19px;
+}
+
+```
+

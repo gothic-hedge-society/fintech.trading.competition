@@ -7,9 +7,12 @@ template:
 
 navbar:
   structure:
-    left:  [sign_up, intro, articles, registry] #, refdata]
-    right: [github]
+    left:  [announcement, sign_up, intro, articles, registry] #, refdata]
+    right: [twitter, github]
   components:
+    # announcement:
+    #   text: ANNOUNCEMENT
+    #   href: articles/announcement.html
     sign_up:
       text: Sign Up
       href: articles/sign_up.html
@@ -29,6 +32,10 @@ navbar:
       icon: fa-github
       href: https://github.com/gothic-hedge-society/fintech.trading.competition
       aria-label: GitHub
+    twitter:
+      icon: fa-twitter
+      href: https://twitter.com/DukeFinTech
+      aria-label: Twitter
     # refdata:
     #   text: Reference Data
     #   href: articles/reference_data.html

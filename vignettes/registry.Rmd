@@ -17,9 +17,34 @@ knitr::opts_chunk$set(
 
 ```{css, echo=FALSE}
 .dataTables_filter label {
-  font-size: 18px;
-  color: greenyellow;
+font-size: 18px;
+color: greenyellow;
 }
+```
+
+```{r, echo=FALSE}
+Sys.time() %>%
+  lubridate::with_tz(tzone = 'EST') %>% {
+    
+    two_digit_pad <- function(number){
+      number <- floor(as.numeric(number))
+      if(floor(number) < 10) return(paste0("0", number))
+      as.character(number)
+    }    
+    
+    paste0(
+      two_digit_pad(lubridate::day(.)),    " ", 
+      lubridate::month(., label = TRUE),   " ",
+      lubridate::year(.),                  " ",
+      two_digit_pad(lubridate::hour(.)),   ":",
+      two_digit_pad(lubridate::minute(.)), ":",
+      two_digit_pad(lubridate::second(.)), " EST"
+    )
+  } %>% {
+    shiny::tagList(
+      shiny::h3(paste0("Updated: ", .))
+    )
+  }
 ```
 
 This page tracks the status of competition participants as they set up their
@@ -29,7 +54,7 @@ Check back here often - if the account ID logged for your tradername is not
 correct, respond to the Duke Fintech Trading Competition email address or post
 in the Slack channel ASAP.
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, include=FALSE}
 completion_plot <- tibble::tibble(
   'status' = c('READY', 'INCOMPLETE'),
   'count'  = c(
@@ -118,21 +143,17 @@ shiny::tagList(
 ```
 
 
-last updated: `r lubridate::with_tz(Sys.time(), tzone = 'EST')`
-
 ### Key
 
 #### If your tradername doesn't appear here:
 You've submitted your registration form but this website hasn't yet
 refreshed and picked up your updated information.
 
-#### 'pending account creation'
-You've been sent a welcome email and an IBKR paper trading account invitation.
-Join the Slack channel, submit your IBKR form, and wait (about one business day)
-
-#### An Account ID with "(limbo)"
-You've signed up and sent your account ID to **The Architect** who has added you
-to the system; however, your account isn't fully active yet.
+#### 'account not yet active'
+An IBKR account with your email does not yet appear in the response when the
+Trading Competition App queries IBKR. This is either because you haven't
+completed your Paper Trader Invitation form yet, or because but your account is
+still in the activation process, which can take one business day or longer.
 
 #### An Account ID
 Your account is set up and you're ready. The system has matched your tradername
@@ -157,6 +178,7 @@ DT::datatable(
       }
       "
     ),
+    buttons     = c('copy', 'csv', 'excel', 'pdf'),
     deferRender = TRUE,
     ordering    = FALSE,
     scrollY     = 500,

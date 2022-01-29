@@ -61,6 +61,8 @@ registry.to_csv(
     index = False
 )
 
+print("Finished")
+
 # print('refreshing R package...')
 #
 # # Refresh the R package
