@@ -7,12 +7,14 @@ template:
 
 navbar:
   structure:
-    left:  [announcement, sign_up, intro, articles, registry] #, refdata]
+    left:  [announcements, sign_up, intro, articles, registry,] #, refdata]
     right: [twitter, github]
   components:
-    # announcement:
-    #   text: ANNOUNCEMENT
-    #   href: articles/announcement.html
+    announcements:
+      text: Announcements
+      menu:
+      - text: Spring 2022 Competition
+        href: articles/announcement.html
     sign_up:
       text: Sign Up
       href: articles/sign_up.html

@@ -14,33 +14,37 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{css, echo = FALSE}
-h1 {
-text-align:center;
-}
-```
-
-
 ```{r, echo = FALSE}
 
 shiny::tagList(
   shiny::fluidRow(
-    style = "text-align:center; padding-top:50px;",
-    shiny::span(
+    shiny::fluidRow(
+      shiny::column(width = 6, shiny::p("27 Jan 2022", class = "article-date")),
+      shiny::column(
+        width = 6,
+        shiny::p(
+          shiny::a(
+            "Link to Official Announcement",
+            href="https://fintech.meng.duke.edu/news/duke-fintech-intercollegiate-trading-competition-kicks-spring-2022"
+          ),
+          class = "original-article-link"
+        ),
+      )
+    ),
+    shiny::p(
       "Duke FinTech Annual InterCollegiate\n\nTrading Competition",
       class = "announcement-title"
     )
   ),
   shiny::fluidRow(
-    shiny::span(
+    shiny::p(
       paste0(
         "The annual trading competition sponsored by Duke’s Master of ",
-        "Engineering in FinTech program kicks off this month supported by ",
-        "some extraordinary companies."
+        "Engineering in FinTech program kicked off this month, supported by ",
+        "some extraordinary companies."  
       ),
-      class = "basic-text"
-    ),
-    style = "padding-top:10px;padding-bottom:10px"
+      class = "subtitle"
+    )
   ),
   shiny::fluidRow(
     style = "display: flex; align-items: center; justify-content: center;",
@@ -58,40 +62,73 @@ shiny::tagList(
     )
   ),
   shiny::fluidRow(
-    shiny::span(
+    shiny::p(
       paste0(
-        "This annual event welcomes students from schools across the globe to",
-        " compete against their peers for cash prizes, and maybe more ",
-        "important, bragging rights.  To better reflect the nature of the ",
-        "program the winner is selected by risk adjusted return (Sharpe Ratio)",
-        ", rather than simply total return.  This provides students with the ",
-        "opportunity to test out unique quantitative algorithms and other ",
-        "methodologies."
+        "This month, Duke FinTech kicked off the Annual Duke FinTech Intercollegiate Trading Competition—welcoming over 150 students from 40 different universities across the globe to compete against their peers for cash prizes and, perhaps most importantly, internationally recognized bragging rights."
       ),
       class = "basic-text"
-    ),
-    style = "padding-top:10px"
+    )
   ),
   shiny::fluidRow(
-    shiny::span(
-      paste0(
-        "This year’s competition is led again by Professor Jake Vestal and ",
-        "features all of the listed asset classes that one might expect, but",
-        " also cryptocurrencies, in collaboration with the "
+    shiny::p(
+      shiny::span(
+        paste0(
+          "The trading competition gives graduate and undergraduate students an opportunity to apply what they are learning in the classroom and try out investment strategies using real-time market data and the same user interface and features utilized by professional traders. Over the course of the competioin, students will make trades in an effort to grow their inital portfolio of $1 million USD in simulated currency.  Trades are made in paper trading accounts provided by the "
+        ),
+        class = "basic-text"
+      ),
+      shiny::a(
+        "Student Trading Lab", 
+        href = "https://www.interactivebrokers.com/en/accounts/educator.php",
+        class = "basic-link"
+      ),
+      shiny::span(
+        " at Interactive Brokers, allowing students the ability to trade in all of the listed asset classes that one might expect, as well as cryptocurrencies.",
+        class = "basic-text"
+      )
+    )
+  ),
+  shiny::fluidRow(
+    shiny::p(
+      shiny::span(
+        "This year’s competition is led again by Professor Jake Vestal, Adjunct Assistant Professor in the Pratt School of Engineering, who sees the competition as much as a teaching tool as it is a contest.\""
+      ),
+      shiny::span(
+        "This competition is special because in puts one of the Duke FinTech Program’s core values into practice: the taking on of risk (unavoidable in any endeavor) in a disciplined, well-reasoned manner,",
+        class = "quote"
+      ),
+      shiny::span("\" shared Vestal. \""),
+      shiny::span(
+        "Our competition recognizes that being able to correctly predict 8 coin tosses in a row is a ‘skill’ that one out of 256 student traders possesses. Instead of declaring that one lucky trader the winner, Duke FinTech believes in rewarding acuity over gambling by ranking student traders according to their risk adjusted return (Sharpe Ratio) as opposed to simple realized return.",
+        class = "quote"
+      ),
+      shiny::span(
+        "\" This approach encourages shrewd investing and provides students with the opportunity to test out their own unique strategies, quantitative algorithms, and other methodologies."
+      )
+    ),
+    class = "basic-text"
+  ),
+  shiny::fluidRow(
+    shiny::p(
+      shiny::span(
+        "This year, competition prizes will be awarded in both USD and "
+      ),
+      shiny::a(
+        "ZEN", 
+        href = "https://www.horizen.io/",
+        class = "basic-link"
+      ),
+      shiny::span(
+        " cryptocurrency, thanks to support from some extraordinary companies!",
       ),
       class = "basic-text"
-    ),
-    shiny::a(
-      "Student Trading Lab", 
-      href = "https://www.interactivebrokers.com/en/accounts/educator.php",
-      class = "IBKR-link"
-    ),
-    shiny::span(
-      " at Interactive Brokers.  Here is a list of the schools of the early ",
-      "registrants:",
-      class = "basic-text"
-    ),
-    style = "padding-top:10px;padding-bottom:10px;"
+    )
+  ),
+  shiny::fluidRow(
+    shiny::p(
+      "This year, represented schools include:",
+      class = 'table-header'
+    )
   ),
   shiny::fluidRow(
     shiny::column(
@@ -153,22 +190,51 @@ display: none;
 
 .announcement-title {
 text-align: center;
-font-size: 34px;
-margin-top: 500px;
-color: DarkKhaki;
+font-size: 54px;
+margin-top: 30px;
+color: #FFD960;
 }
 
 .basic-text{
-font-size: 16px;
+padding-top:10px;
+padding-bottom:10px;
 }
 
-.IBKR-link{
-font-size:16px;
+.basic-link, .basic-text, .quote{
+font-size:18px;
 }
 
 .school-name{
 color: Cornsilk;
 font-size:19px;
+}
+
+.subtitle{
+color:#bdd9d9;
+font-size:25px;
+font-style:italic;
+text-align:center;
+}
+
+.article-date{
+padding-top:10px;
+text-align:left;
+font-weight:bold;
+color:#FCF7E5;
+}
+
+.original-article-link{
+padding-top:10px;
+text-align:right;
+}
+
+.quote {
+color:#FCF7E5;
+}
+
+.table-header {
+color:#FFD960;
+font-size:22px;
 }
 
 ```
