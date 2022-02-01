@@ -1,6 +1,6 @@
 Package: fintech.trading.competition
 Title: Duke Fintech Trading Competition!
-Version: 2022.01.29
+Version: 2022.02.01
 Authors@R: 
     person(given = "Jake",
            family = "Vestal",
