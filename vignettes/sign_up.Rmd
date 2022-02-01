@@ -18,13 +18,14 @@ knitr::opts_chunk$set(
 
 ## How it Works
 From a technical standpoint, this competition consists of four main components:
-  - This **website**, which communicates Competition information
-  - The **app**, which performs all the ranking and scoring calculations,
+
+- This **website**, which communicates Competition information
+- The **app**, which performs all the ranking and scoring calculations,
   handles registration and emailing, renders this website, stores data, etc
-  - An 'educator-level' **paper trading account** run by the [Student Trading
+- An 'educator-level' **paper trading account** run by the [Student Trading
   Lab](https://www.interactivebrokers.com/en/accounts/educator.php) at
   Interactive Brokers (IBKR)
-  - A **Slack Channel** for participants to use for communicating with Contest
+- A **Slack Channel** for participants to use for communicating with Contest
   admin, tech support, and general chatting
 
 When you sign up on this website (**Step 1**, below), you're making it known to
@@ -88,13 +89,15 @@ days. You'll need to log in to your account and make a trade to avoid deletion.
 **ANY trade, no matter how small, will satisfy this requirement**.
 
 
-## To Sign Up
+## Instructions
+Follow the instructions below to sign up.
 
 ### Step 0: Eligibility
 You must be a currently enrolled graduate or undergraduate student with a
 '.edu' email address.
 
 ### Step 1: Sign up
+Fill out this form and click SUBMIT:
 <div id="wufoo-div" style="background-color:#fff;border-style:ridge;">
 <div id="wufoo-q7j67ol08e8luq" style => Fill out my <a href="https://dukefinance.wufoo.com/forms/q7j67ol08e8luq">online form</a>. </div> <script type="text/javascript"> var q7j67ol08e8luq; (function(d, t) { var s = d.createElement(t), options = { 'userName':'dukefinance', 'formHash':'q7j67ol08e8luq', 'autoResize':true, 'height':'866', 'async':true, 'host':'wufoo.com', 'header':'show', 'ssl':true }; s.src = ('https:' == d.location.protocol ?'https://':'http://') + 'secure.wufoo.com/scripts/embed/form.js'; s.onload = s.onreadystatechange = function() { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { q7j67ol08e8luq = new WufooForm(); q7j67ol08e8luq.initialize(options); q7j67ol08e8luq.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script'); </script></div>
     
