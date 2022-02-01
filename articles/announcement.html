@@ -46,6 +46,18 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Announcements
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/announcement.html">Spring 2022 Competition</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../articles/sign_up.html">Sign Up</a>
 </li>
@@ -110,18 +122,23 @@
 
     
     
-<style type="text/css">
-h1 {
-text-align:center;
-}
-</style>
-<div class="row" style="text-align:center; padding-top:50px;">
-<span class="announcement-title">Duke FinTech Annual InterCollegiate
-
-Trading Competition</span>
+<div class="row">
+<div class="row">
+<div class="col-sm-6">
+<p class="article-date">27 Jan 2022</p>
 </div>
-<div class="row" style="padding-top:10px;padding-bottom:10px">
-<span class="basic-text">The annual trading competition sponsored by Duke’s Master of Engineering in FinTech program kicks off this month supported by some extraordinary companies.</span>
+<div class="col-sm-6">
+<p class="original-article-link">
+<a href="https://fintech.meng.duke.edu/news/duke-fintech-intercollegiate-trading-competition-kicks-spring-2022" class="external-link">Link to Official Announcement</a>
+</p>
+</div>
+</div>
+<p class="announcement-title">Duke FinTech Annual InterCollegiate
+
+Trading Competition</p>
+</div>
+<div class="row">
+<p class="subtitle">The annual trading competition sponsored by Duke’s Master of Engineering in FinTech program kicked off this month, supported by some extraordinary companies.</p>
 </div>
 <div class="row" style="display: flex; align-items: center; justify-content: center;">
 <div class="col-sm-4">
@@ -137,16 +154,34 @@ Trading Competition</span>
 <img src="mesh_logo.png"></a>
 </div>
 </div>
-<div class="row" style="padding-top:10px">
-<span class="basic-text">This annual event welcomes students from schools across the globe to compete against their peers for cash prizes, and maybe more important, bragging rights.  To better reflect the nature of the program the winner is selected by risk adjusted return (Sharpe Ratio), rather than simply total return.  This provides students with the opportunity to test out unique quantitative algorithms and other methodologies.</span>
+<div class="row">
+<p class="basic-text">This month, Duke FinTech kicked off the Annual Duke FinTech Intercollegiate Trading Competition—welcoming over 150 students from 40 different universities across the globe to compete against their peers for cash prizes and, perhaps most importantly, internationally recognized bragging rights.</p>
 </div>
-<div class="row" style="padding-top:10px;padding-bottom:10px;">
-<span class="basic-text">This year’s competition is led again by Professor Jake Vestal and features all of the listed asset classes that one might expect, but also cryptocurrencies, in collaboration with the </span>
-<a href="https://www.interactivebrokers.com/en/accounts/educator.php" class="external-link IBKR-link">Student Trading Lab</a>
-<span class="basic-text">
- at Interactive Brokers.  Here is a list of the schools of the early 
-registrants:
-</span>
+<div class="row">
+<p>
+<span class="basic-text">The trading competition gives graduate and undergraduate students an opportunity to apply what they are learning in the classroom and try out investment strategies using real-time market data and the same user interface and features utilized by professional traders. Over the course of the competioin, students will make trades in an effort to grow their inital portfolio of $1 million USD in simulated currency.  Trades are made in paper trading accounts provided by the </span>
+<a href="https://www.interactivebrokers.com/en/accounts/educator.php" class="external-link basic-link">Student Trading Lab</a>
+<span class="basic-text"> at Interactive Brokers, allowing students the ability to trade in all of the listed asset classes that one might expect, as well as cryptocurrencies.</span>
+</p>
+</div>
+<div class="row basic-text">
+<p>
+<span>This year’s competition is led again by Professor Jake Vestal, Adjunct Assistant Professor in the Pratt School of Engineering, who sees the competition as much as a teaching tool as it is a contest."</span>
+<span class="quote">This competition is special because in puts one of the Duke FinTech Program’s core values into practice: the taking on of risk (unavoidable in any endeavor) in a disciplined, well-reasoned manner,</span>
+<span>" shared Vestal. "</span>
+<span class="quote">Our competition recognizes that being able to correctly predict 8 coin tosses in a row is a ‘skill’ that one out of 256 student traders possesses. Instead of declaring that one lucky trader the winner, Duke FinTech believes in rewarding acuity over gambling by ranking student traders according to their risk adjusted return (Sharpe Ratio) as opposed to simple realized return.</span>
+<span>" This approach encourages shrewd investing and provides students with the opportunity to test out their own unique strategies, quantitative algorithms, and other methodologies.</span>
+</p>
+</div>
+<div class="row">
+<p class="basic-text">
+<span>This year, competition prizes will be awarded in both USD and </span>
+<a href="https://www.horizen.io/" class="external-link basic-link">ZEN</a>
+<span> cryptocurrency, thanks to support from some extraordinary companies!</span>
+</p>
+</div>
+<div class="row">
+<p class="table-header">This year, represented schools include:</p>
 </div>
 <div class="row">
 <div class="col-sm-6">
@@ -201,22 +236,51 @@ display: none;
 
 .announcement-title {
 text-align: center;
-font-size: 34px;
-margin-top: 500px;
-color: DarkKhaki;
+font-size: 54px;
+margin-top: 30px;
+color: #FFD960;
 }
 
 .basic-text{
-font-size: 16px;
+padding-top:10px;
+padding-bottom:10px;
 }
 
-.IBKR-link{
-font-size:16px;
+.basic-link, .basic-text, .quote{
+font-size:18px;
 }
 
 .school-name{
 color: Cornsilk;
 font-size:19px;
+}
+
+.subtitle{
+color:#bdd9d9;
+font-size:25px;
+font-style:italic;
+text-align:center;
+}
+
+.article-date{
+padding-top:10px;
+text-align:left;
+font-weight:bold;
+color:#FCF7E5;
+}
+
+.original-article-link{
+padding-top:10px;
+text-align:right;
+}
+
+.quote {
+color:#FCF7E5;
+}
+
+.table-header {
+color:#FFD960;
+font-size:22px;
 }
 
 </style>
