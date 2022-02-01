@@ -72,7 +72,7 @@ shiny::tagList(
     shiny::p(
       shiny::span(
         paste0(
-          "The trading competition gives graduate and undergraduate students an opportunity to apply what they are learning in the classroom and try out investment strategies using real-time market data and the same user interface and features utilized by professional traders. Over the course of the competioin, students will make trades in an effort to grow their inital portfolio of $1 million USD in simulated currency.  Trades are made in paper trading accounts provided by the "
+          "The trading competition gives graduate and undergraduate students an opportunity to apply what they are learning in the classroom and try out investment strategies using real-time market data and the same user interface and features utilized by professional traders. Over the course of the competition, students will make trades in an effort to grow their inital portfolio of $1 million USD in simulated currency.  Trades are made in paper trading accounts provided by the "
         ),
         class = "basic-text"
       ),
