@@ -31,36 +31,6 @@ After a week or so of trading data is gathered from the participants,
 this site will be updated with the latest standings and analytics on the
 students’ performance.
 
-# For Participants:
-
-1.  If you haven’t used the link in your IBKR Paper Trader Account
-    invitation email to create your paper trader account, do so ASAP.
-    Check your spam folder if you don’t find your invitation!
-2.  Be sure to join the competition’s Slack channel using the link
-    provided in your welcome email. The channel is monitored and is your
-    resource for any questions you might have. It’s also a good way to
-    talk to other participants.
-3.  You may send email to the official trading competition email address
-    from which you receive your competition correspondence. If you do
-    choose to email…
-4.  …**keep all competition email conversations confined to the official
-    email address**. Many outstanding faculty at Duke and other
-    universities have graciously provided their time and effort to make
-    this competition possible, but do not email them directly about
-    Competition matters! Use the official email, which is monitored by
-    several faculty members.
-5.  Especially if you accidentally created more than one IBKR paper
-    trader account, don’t forget to check the acount number that appears
-    next to your tradername in the
-    [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html).
-    That’s the account that this website & app associates with you, and
-    that’s the account we’ll be using for scoring. After the first week,
-    any extra / inactive accounts will be deleted, so **it’s your
-    responsibility to make sure that the account assigned to your
-    tradername by the
-    [Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html)
-    is correct!**
-
 # ABOUT
 
 The Duke FINTECH Trading Competition is a free competition hosted by the
