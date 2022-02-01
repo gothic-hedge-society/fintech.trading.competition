@@ -7,9 +7,12 @@ template:
 
 navbar:
   structure:
-    left:  [announcements, sign_up, intro, articles, registry,] #, refdata]
+    left:  [announcements, sign_up, intro, articles, registry, scoreboard] #, refdata]
     right: [twitter, github]
   components:
+    scoreboard:
+      text: SCOREBOARD
+      href: articles/scoreboard.html
     announcements:
       text: Announcements
       menu:
