@@ -15,7 +15,6 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo = FALSE}
-
 shiny::tagList(
   shiny::fluidRow(
     shiny::fluidRow(
@@ -182,9 +181,12 @@ shiny::tagList(
 
 ```
 
+```{r, echo = FALSE}
+shiny::img(src = "horizen_logo_round.png", class="dont-show")
+```
 
 ```{css, echo = FALSE}
-h1 {
+h1, .dont-show {
 display: none;
 }
 
