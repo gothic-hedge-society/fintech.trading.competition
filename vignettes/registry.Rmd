@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{css, echo=FALSE}
-.dataTables_filter label {
+.dataTables_filter label, #DataTables_Table_0_info {
 font-size: 18px;
 color: greenyellow;
 }
@@ -142,14 +142,13 @@ shiny::tagList(
 
 ```
 
-
 ### Key
 
 #### If your tradername doesn't appear here:
 You've submitted your registration form but this website hasn't yet
 refreshed and picked up your updated information.
 
-#### 'account not yet active'
+#### 'not yet active'
 An IBKR account with your email does not yet appear in the response when the
 Trading Competition App queries IBKR. This is either because you haven't
 completed your Paper Trader Invitation form yet, or because your account is

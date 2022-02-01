@@ -37,45 +37,36 @@ wufoo_registry <- suppressMessages(
         },
         character(1)
       )
-  )
+  ) %>%
+  dplyr::select(-School)
 
 # Load up the full, unfiltered flex statement
-flex_statement_full <- list.files(
-  path       = file.path(
-    Sys.getenv("APP_BASE_PATH"), "..", "Downloads", fsep = "\\"
-  ),
-  pattern    = "\\).xml",
-  full.names = TRUE
-) %>%
+flex_statement_full <- Sys.getenv("APP_BASE_PATH") %>%
+  file.path("..", "Downloads", fsep = "\\") %>%
+  list.files(pattern = "^Registry(.*).xml$", full.names = TRUE) %>%
   gsub("/", "\\\\", .) %>%
   stats::setNames(.,.) %>%
   vapply(
     function(flex_file_path){
-      gsub("^(.*)\\(", "", flex_file_path) %>%
-        gsub("\\)\\.xml$", "", .) %>%
-        as.numeric()
+      if(grepl("\\(\\d{1,}).xml", flex_file_path)){
+        gsub("^(.*)\\(", "", flex_file_path) %>%
+          gsub("\\)\\.xml$", "", .) %>%
+          as.numeric()
+      } else {
+        0
+      }
     },
     numeric(1)
   ) %>% {
     names(.[which.max(.)])
   } %>%
   xml2::read_xml() %>%
-  xml2::xml_child('FlexStatements') %>%
-  xml2::xml_contents() %>%
-  lapply(
-    function(FlexStatement){
-      FlexStatement %>%
-        xml2::xml_child('AccountInformation') %>% {
-          tibble::tibble(
-            'account_id' = xml2::xml_attr(., 'accountId'),
-            'name'       = xml2::xml_attr(., 'name'),
-            'email'      = xml2::xml_attr(., 'primaryEmail')
-          )
-        }
-    }
-  ) %>%
+  xml2::xml_child("FlexStatements") %>%
+  xml2::xml_children() %>%
+  xml2::xml_children() %>%
+  xml2::xml_attrs() %>%
   purrr::reduce(dplyr::bind_rows) %>%
-  dplyr::nest_by(account_id, name, email)
+  magrittr::set_colnames(c("account_id", "name", "email"))
 
 # Chanel messed up her email. Need to use a 'key' that the students pick
 #   instead of an email in the WuFoo form.
@@ -105,14 +96,14 @@ flex_statement <- flex_statement_full %>%
     .[!duplicated(.$email),]
   }
 
-# Create full registry by left-joining WuFoo data with the flex statement
-full_registry <- dplyr::left_join(
-  wufoo_registry, flex_statement[c("account_id", "name", "email")], by = "email"
-) %>% {
-  .$account_id[is.na(.$account_id)] <- "not yet active"
-  .
-}
+# full join the WuFoo data with the flex statement registry
+full_registry <- dplyr::full_join(wufoo_registry, flex_statement, by = "email")
 
+registry <- full_registry[c("tradername", "school", "account_id")] %>%
+  dplyr::arrange(tradername)
+registry$account_id[which(is.na(registry$account_id))] <- "not yet active"
+
+# Save the registry data
 readr::write_csv(
   full_registry,
   file.path(
@@ -123,24 +114,6 @@ readr::write_csv(
   )
 )
 
-registry <- full_registry[c("tradername", "account_id")] %>%
-  dplyr::arrange(tradername)
-
-
-school_stats <- full_registry %>%
-  dplyr::nest_by(school) %>% {
-    suppressMessages(
-      dplyr::summarise(
-        .,
-        'completion' = length(
-          which(data$account_id != "not yet active")
-        )/length(data$account_id)
-      )
-    )
-  } %>%
-  dplyr::ungroup() %>%
-  dplyr::arrange(school)
-
 Sys.Date() %>%
   as.character() %>%
   gsub("-", "\\.", .) %>% {
@@ -149,4 +122,3 @@ Sys.Date() %>%
   }
 
 usethis::use_data(registry, overwrite = TRUE)
-usethis::use_data(school_stats, overwrite = TRUE)

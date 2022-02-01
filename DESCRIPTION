@@ -34,5 +34,7 @@ Depends:
 URL: https://gothic-hedge-society.github.io/fintech.trading.competition
 Suggests: 
     rmarkdown,
-    knitr
+    knitr,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
+Config/testthat/edition: 3

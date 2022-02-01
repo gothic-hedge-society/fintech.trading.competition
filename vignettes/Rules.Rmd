@@ -68,19 +68,21 @@ following pages for more detailed information:
 2. Be sure that any orders you make on your trading account are what you really
 want -- use the Demo account for practice.
 
-## Rule 7: Trade Once in the First Week
-1. **You must make one trade during the first week**; otherwise, you will be
-removed from the competition.
+## Rule 7: Trade Once per Month
+1. **You must make at least one trade per month**; otherwise, your account will
+be [pruned](sign_up.html#pruning-old-accounts) according to the Competition
+app's defunct account management process.
 2. '**first week**' means: the time period of five consecutive trading days
 starting on the start date (inclusive).
-3. This rule is to confirm that everyone is actively trading and knows how to
-log in to their traders and do basic order entry.
-4. This rule is **NOT** intended to discriminate against buy-and-hold traders,
-or traders who don't trade very often! If that's you, then you can comply with
-this rule simply buy buying a single share of a very inexpensive stock
-(<$5/share) during the first week, which won't measurably impact your score.
 
 ## Rule 8: When in Doubt, Ask **The Architect**
 1. It is your responsibility to contact **The Architect** on Slack with any
 questions, concerns, or techical issues you have in as prompt a fashion as you
 are able.
+
+## Rule 9: Teams are Allowed
+1. You can work by yourself or with others. Be sure to figure out how you're
+going to split up your prize money ahead of time if you win!
+
+## Rule 10: Trade Whatever you Want
+1. Anything that is tradable within your system is valid for the Competition.
