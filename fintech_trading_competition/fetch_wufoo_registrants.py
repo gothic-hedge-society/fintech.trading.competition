@@ -40,8 +40,8 @@ def fetch_wufoo_registrants():
             'Fetching next WuFoo batch (' + str(i) + ' of ' + \
             str(number_of_fetches - 1) + ')'
         )
-        competition_registrants = competition_registrants.append(
-            fetch_entries(competition_registrants.shape[0]),
+        competition_registrants = pd.concat(
+            [competition_registrants, fetch_entries(competition_registrants.shape[0])],
             ignore_index=True
         )
 
