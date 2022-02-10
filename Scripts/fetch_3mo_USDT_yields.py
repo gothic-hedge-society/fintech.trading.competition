@@ -5,25 +5,25 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-def fetch_usdt_rates(YYYY):
-    # Requests the USDT's daily yield data for a given year. Results are
-    #   returned as a DataFrame object with the 'Date' column formatted as a
-    #   pandas datetime type.
+YYYY = 2022
 
-    URL = 'https://www.treasury.gov/resource-center/data-chart-center/' + \
-          'interest-rates/pages/TextView.aspx?data=yieldYear&year=' + str(YYYY)
 
-    cmt_rates_page = requests.get(URL)
+# Requests the USDT's daily yield data for a given year. Results are
+#   returned as a DataFrame object with the 'Date' column formatted as a
+#   pandas datetime type.
 
-    soup = BeautifulSoup(cmt_rates_page.content, 'html.parser')
+URL = 'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=' + \
+      'daily_treasury_yield_curve&field_tdr_date_value=' + str(YYYY)
 
-    table_html = soup.findAll('table', {'class': 't-chart'})
+cmt_rates_page = requests.get(URL)
 
-    df = pd.read_html(str(table_html))[0]
-    df.Date = pd.to_datetime(df.Date)
+soup = BeautifulSoup(cmt_rates_page.content, 'html.parser')
 
-    return df
+table_html = soup.findAll('table', {'class': 'views-table'})
 
-usdt_3mo_cmt = fetch_usdt_rates(2022).rename(columns={'3 mo': '3_mo'})[['Date', "3_mo"]]
+df = pd.read_html(str(table_html))[0]
+df.Date = pd.to_datetime(df.Date)
+
+usdt_3mo_cmt = df.rename(columns={'3 Mo': '3_mo'})[['Date', "3_mo"]]
 
 usdt_3mo_cmt.to_csv('C:\\Users\\vcm\\Desktop\\duke_fintech_trading_competition_2022\\usdt_3mo_cmt.csv', index = False)

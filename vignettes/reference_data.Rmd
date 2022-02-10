@@ -1,32 +1,68 @@
 ---
-title: "reference_data"
+title: "Reference Data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{reference_data}
+  %\VignetteIndexEntry{Reference Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include=FALSE, echo=FALSE}
+devtools::load_all(".")
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
-When the competition starts, the reference data used for scoring and reporting
-will be presented here.
+```{css, echo=FALSE}
+.dt-button {
+color: greenyellow;
+font-style: bold;
+}
+```
+
+Here is the reference data used in the scoring. Feel free to use the buttons to
+download this info for your own analysis!
+
+```{css, echo=FALSE}
+button.dt-button {
+font-size: 14px;
+color: greenyellow;
+border: 1px solid white;
+}
+```
 
 ```{r echo=FALSE}
-# library('magrittr')
-# ref_data <- Sys.getenv("APP_BASE_PATH") %>%
-#   file.path(
-#     ., paste0("duke_fintech_trading_competition_", "2022"), "usdt_3mo_cmt.csv" 
-#   ) %>%
-#   readr::read_csv()
-# 
-# DT::datatable(
-#   ref_data,
-#   class = "cell-border stripe"
-# )
+ref_data %>%
+  dplyr::mutate(
+    '3_mo' = .$`3_mo`/100
+  ) %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '20px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage('3_mo', 2)
 ```
+
+
