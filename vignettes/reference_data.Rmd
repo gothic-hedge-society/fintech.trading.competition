@@ -36,6 +36,8 @@ Treasury](https://home.treasury.gov/resource-center/data-chart-center/interest-r
 (APY) using the [formula specified by the
 USDT](https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics/interest-rates-frequently-asked-questions)
 
+**3_mo_td**: 3-month APY expressed on a per-trading-day basis by dividing by 252
+
 ```{css, echo=FALSE}
 button.dt-button {
 font-size: 14px;
@@ -44,13 +46,16 @@ border: 1px solid white;
 }
 ```
 
-# Data
+# Market Data
+Used for calculating daily risk-free rates for excess returns and for
+calculating beta with respect to the three market SP500, SHY, and BTC.
 
 ```{r echo=FALSE}
 ref_data %>%
   dplyr::mutate(
     '3_mo'     = .$`3_mo`/100,
-    '3_mo_apy' = .$`3_mo_apy`/100
+    '3_mo_apy' = .$`3_mo_apy`/100,
+    '3_mo_td' = .$`3_mo_td`/100,
   ) %>%
   DT::datatable(
     .,
@@ -68,15 +73,217 @@ ref_data %>%
       }
       "
       ),
-      dom         = 'Bt',
+      dom         = 'Bft',
       buttons     = c('csv', 'excel', 'copy'),
       deferRender = TRUE,
       ordering    = FALSE,
       scrollY     = 500,
+      scrollX     = '100%',
       scroller    = TRUE
     )
   ) %>%
-  DT::formatPercentage(c('3_mo', '3_mo_apy'), 3)
+  DT::formatPercentage(c('3_mo', '3_mo_apy'), 3) %>%
+  DT::formatPercentage('3_mo_td', 5)
 ```
 
 
+# Portfolio Values
+End-of-day value of each trader's portfolio.
+```{r echo=FALSE}
+eod_account_value %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '12px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bft',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatCurrency(colnames(eod_account_value)[-1])
+```
+
+# Portfolio Returns
+Daily log returns for each trader
+
+```{r echo=FALSE}
+eod_returns %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '12px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bft',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(colnames(eod_returns)[-1], 5)
+```
+
+# EoD Excess Return
+Daily return the minus risk-free rate (3_mo_td) for that day.
+
+```{r echo=FALSE}
+eod_excess_returns %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '12px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bft',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(colnames(eod_excess_returns)[-1], 5)
+```
+
+# Cumulative Excess Return
+Calculated as gmrr of excess returns observed up to the given date.
+
+One unique complication: when a trader has an odd number of very negative daily
+returns, the arithmetic mean rate of return is used because the geometric mean
+can't be calculated -- you can't take a real-valued root of a negative number.
+
+```{r echo=FALSE}
+cumulative_eod_excess_returns %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '12px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bft',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(colnames(cumulative_eod_excess_returns)[-1], 5)
+```
+
+# Cumulative Volatility
+Standard deviation of portfolio returns (not excess) up to each date.
+
+```{r echo=FALSE}
+cumulative_vol %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '12px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bft',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(colnames(cumulative_vol)[-1], 5)
+```
+
+# Sharpe
+Cumulative excess return / cumulative portfolio volatility
+
+```{r echo=FALSE}
+sharpes %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '12px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bft',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatSignif(colnames(sharpes)[-1], 5)
+```
