@@ -8,13 +8,56 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+devtools::load_all('.')
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
-The competition started a few days ago (in trading day terms) on 25 Jan 2022. We
-need about 7 or 8 trading days' worth of data before traders' Sharpe ratios and
-performance statistics start to mean much, so check back here soon! This page
-will be live by EoD Monday, 07 Feb 2022 if not sooner.
+```{css, echo = FALSE}
+.dataTables_filter label{
+font-size: 18px;
+color: greenyellow;
+}
+```
+
+
+Standings are current as of 10 Feb 2022. 
+
+Check back here often- this section will continue to expand with additional data
+an analysis!
+
+**The current leader is `r standings[1,'tradername']` with a Sharpe Ratio of `r standings[1,'Sharpe']`!!!**
+
+```{r echo=FALSE}
+standings %>% 
+  dplyr::mutate(
+    "Rank" = 1:nrow(.)
+  ) %>%
+  dplyr::select(Rank, tradername, school, country, Sharpe) %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '20px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatRound('Sharpe', 5)
+```
