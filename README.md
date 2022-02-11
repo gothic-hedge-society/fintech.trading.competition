@@ -1,9 +1,8 @@
 
-# Scoring is set to begin on Tuesday, 25 Jan 2022!
-
-We’ll be reporting the
-[SCOREBOARD](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html)
-once enough trading data become available.
+We have an exciting trading competition underway thanks to our amazing
+sponsors! If you’re here, you probably want to head over to the
+[scoreboard](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html)
+to check the latest standings!
 
 # Duke FINTECH Trading Competition 2022
 
