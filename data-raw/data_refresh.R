@@ -292,6 +292,21 @@ sharpes <- (cumulative_eod_excess_returns[-(1:2),-1]/cumulative_vol[,-1]) %>%
     .name_repair = "minimal"
   )
 
+# standings ####################################################################
+standings <- tibble::tibble(
+  "tradername" = colnames(sharpes)[-1],
+  "Sharpe"     = as.numeric(sharpes[nrow(sharpes),-1])
+) %>%
+  dplyr::left_join(valid_wufoo_registrants, by = "tradername") %>%
+  dplyr::select(tradername, school, country, Sharpe) %>%
+  dplyr::arrange(dplyr::desc(Sharpe)) %>%
+  tibble::add_column(
+    "Rank"       = 1:nrow(.),
+    .before      = TRUE,
+    .name_repair = "minimal"
+  )
+
+
 usethis::use_data(ref_data,                      overwrite = TRUE)
 usethis::use_data(eod_account_value,             overwrite = TRUE)
 usethis::use_data(eod_returns,                   overwrite = TRUE)
@@ -299,7 +314,4 @@ usethis::use_data(eod_excess_returns,            overwrite = TRUE)
 usethis::use_data(cumulative_eod_excess_returns, overwrite = TRUE)
 usethis::use_data(cumulative_vol,                overwrite = TRUE)
 usethis::use_data(sharpes,                       overwrite = TRUE)
-
-
-
-
+usethis::use_data(standings,                     overwrite = TRUE)

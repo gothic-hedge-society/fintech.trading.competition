@@ -16,6 +16,11 @@ knitr::opts_chunk$set(
 ```
 
 ```{css, echo = FALSE}
+button.dt-button {
+font-size: 14px;
+color: greenyellow;
+border: 1px solid white;
+}
 .dataTables_filter label{
 font-size: 18px;
 color: greenyellow;
@@ -31,14 +36,11 @@ an analysis!
 **The current leader is `r standings[1,'tradername']` with a Sharpe Ratio of `r standings[1,'Sharpe']`!!!**
 
 ```{r echo=FALSE}
-standings %>% 
-  dplyr::mutate(
-    "Rank" = 1:nrow(.)
-  ) %>%
-  dplyr::select(Rank, tradername, school, country, Sharpe) %>%
+standings %>%
+  dplyr::select(-country) %>%
   DT::datatable(
     .,
-    extensions = c('Scroller', 'Buttons'),
+    extensions = 'Buttons',
     rownames   = FALSE,
     options = list(
       columnDefs   = list(list(className = 'dt-center', targets = '_all')),
@@ -52,12 +54,12 @@ standings %>%
       }
       "
       ),
+      pageLength  = nrow(standings),
+      dom         = 'Bft',
       buttons     = c('csv', 'excel', 'copy'),
       deferRender = TRUE,
-      ordering    = FALSE,
-      scrollY     = 500,
-      scroller    = TRUE
+      ordering    = FALSE
     )
   ) %>%
-  DT::formatRound('Sharpe', 5)
+  DT::formatSignif('Sharpe', 5)
 ```

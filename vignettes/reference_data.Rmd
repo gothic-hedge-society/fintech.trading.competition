@@ -73,7 +73,7 @@ ref_data %>%
       }
       "
       ),
-      dom         = 'Bft',
+      dom         = 'Bt',
       buttons     = c('csv', 'excel', 'copy'),
       deferRender = TRUE,
       ordering    = FALSE,
@@ -107,7 +107,7 @@ eod_account_value %>%
       }
       "
       ),
-      dom         = 'Bft',
+      dom         = 'Bt',
       buttons     = c('csv', 'excel', 'copy'),
       deferRender = TRUE,
       ordering    = FALSE,
@@ -140,7 +140,7 @@ eod_returns %>%
       }
       "
       ),
-      dom         = 'Bft',
+      dom         = 'Bt',
       buttons     = c('csv', 'excel', 'copy'),
       deferRender = TRUE,
       ordering    = FALSE,
@@ -173,7 +173,7 @@ eod_excess_returns %>%
       }
       "
       ),
-      dom         = 'Bft',
+      dom         = 'Bt',
       buttons     = c('csv', 'excel', 'copy'),
       deferRender = TRUE,
       ordering    = FALSE,
@@ -210,7 +210,7 @@ cumulative_eod_excess_returns %>%
       }
       "
       ),
-      dom         = 'Bft',
+      dom         = 'Bt',
       buttons     = c('csv', 'excel', 'copy'),
       deferRender = TRUE,
       ordering    = FALSE,
@@ -243,7 +243,7 @@ cumulative_vol %>%
       }
       "
       ),
-      dom         = 'Bft',
+      dom         = 'Bt',
       buttons     = c('csv', 'excel', 'copy'),
       deferRender = TRUE,
       ordering    = FALSE,
@@ -276,7 +276,7 @@ sharpes %>%
       }
       "
       ),
-      dom         = 'Bft',
+      dom         = 'Bt',
       buttons     = c('csv', 'excel', 'copy'),
       deferRender = TRUE,
       ordering    = FALSE,
