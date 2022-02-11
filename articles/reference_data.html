@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fintech.trading.competition</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2022.02.01</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2022.02.10</span>
       </span>
     </div>
 
@@ -135,6 +135,15 @@
     
     
 <p>Here is the reference data used in the scoring. Feel free to use the buttons to download this info for your own analysis!</p>
+<div class="section level2">
+<h2 id="key">Key<a class="anchor" aria-label="anchor" href="#key"></a>
+</h2>
+<p><strong>Date</strong>: Date on which the value in a column was observed.</p>
+<p><strong>SP500</strong>: Closing value of the S&amp;P 500 index.</p>
+<p><strong>SHY</strong>: Closing value of the iShares 1-3 year treasury bond ETF</p>
+<p><strong>BTC</strong>: Closing value of Bitcoin/USD exchange rate</p>
+<p><strong>3_mo</strong>: Daily 3-month maturity treasury par yield curve rate <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&amp;field_tdr_date_value_month=202202" class="external-link">as reported by the US Department of the Treasury</a></p>
+<p><strong>3_mo_apy</strong>: US Treasury 3-month yields converted to Annual Percentage Yield (APY) using the <a href="https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics/interest-rates-frequently-asked-questions" class="external-link">formula specified by the USDT</a></p>
 <style type="text/css">
 button.dt-button {
 font-size: 14px;
@@ -142,13 +151,20 @@ color: greenyellow;
 border: 1px solid white;
 }
 </style>
-<div id="htmlwidget-e3bdc5bafb5747ab9efd" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e3bdc5bafb5747ab9efd">{"x":{"filter":"none","vertical":false,"extensions":["Scroller","Buttons"],"data":[["2022-01-03","2022-01-04","2022-01-05","2022-01-06","2022-01-07","2022-01-10","2022-01-11","2022-01-12","2022-01-13","2022-01-14","2022-01-18","2022-01-19","2022-01-20","2022-01-21","2022-01-24","2022-01-25","2022-01-26","2022-01-27","2022-01-28","2022-01-31","2022-02-01","2022-02-02","2022-02-03","2022-02-04","2022-02-07","2022-02-08"],[4796.56,4793.54,4700.58,4696.05,4677.03,4670.29,4713.07,4726.35,4659.03,4662.85,4577.11,4532.76,4482.73,4397.94,4410.13,4356.45,4349.93,4326.51,4431.85,4515.55,4546.54,4589.38,4477.44,4500.53,4483.87,4521.54],[4796.56,4793.54,4700.58,4696.05,4677.03,4670.29,4713.07,4726.35,4659.03,4662.85,4577.11,4532.76,4482.73,4397.94,4410.13,4356.45,4349.93,4326.51,4431.85,4515.55,4546.54,4589.38,4477.44,4500.53,4483.87,4521.54],[4796.56,4793.54,4700.58,4696.05,4677.03,4670.29,4713.07,4726.35,4659.03,4662.85,4577.11,4532.76,4482.73,4397.94,4410.13,4356.45,4349.93,4326.51,4431.85,4515.55,4546.54,4589.38,4477.44,4500.53,4483.87,4521.54],[0.0008,0.0008,0.0009,0.001,0.001,0.0013,0.0011,0.0012,0.0012,0.0013,0.0016,0.0017,0.0017,0.0017,0.0019,0.0019,0.0019,0.002,0.0019,0.0022,0.0019,0.0019,0.002,0.0023,0.0027,0.0025]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>SP500<\/th>\n      <th>SHY<\/th>\n      <th>BTC-USD<\/th>\n      <th>3_mo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"}],"initComplete":"\n      function(settings, json) {\n          $(this.api().table().header()).css({\n              'font-size' : '20px', \n              'color' : 'greenyellow'\n          });\n      }\n      ","dom":"Bt","buttons":["csv","excel","copy"],"deferRender":true,"ordering":false,"scrollY":500,"scroller":true,"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.initComplete"],"jsHooks":[]}</script>
 </div>
+<div class="section level2">
+<h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
+</h2>
+<div id="htmlwidget-024e3f9ad2a1ef92c735" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-024e3f9ad2a1ef92c735">{"x":{"filter":"none","vertical":false,"extensions":["Scroller","Buttons"],"data":[["2022-01-25","2022-01-26","2022-01-27","2022-01-28","2022-01-31","2022-02-01","2022-02-02","2022-02-03","2022-02-04","2022-02-07","2022-02-08","2022-02-09"],[4356.45,4349.93,4326.51,4431.85,4515.55,4546.54,4589.38,4477.44,4500.53,4483.87,4521.54,4587.18],[4356.45,4349.93,4326.51,4431.85,4515.55,4546.54,4589.38,4477.44,4500.53,4483.87,4521.54,4587.18],[4356.45,4349.93,4326.51,4431.85,4515.55,4546.54,4589.38,4477.44,4500.53,4483.87,4521.54,4587.18],[0.0019,0.0019,0.002,0.0019,0.0022,0.0019,0.0019,0.002,0.0023,0.0027,0.0025,0.0026],[0.00199025,0.00199025,0.0021,0.00199025,0.002321,0.00199025,0.00199025,0.0021,0.00243225,0.00288225,0.00265625,0.002769]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>SP500<\/th>\n      <th>SHY<\/th>\n      <th>BTC-USD<\/th>\n      <th>3_mo<\/th>\n      <th>3_mo_apy<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 3, 3, \",\", \".\");\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-center","targets":"_all"}],"initComplete":"\n      function(settings, json) {\n          $(this.api().table().header()).css({\n              'font-size' : '20px', \n              'color' : 'greenyellow'\n          });\n      }\n      ","dom":"Bt","buttons":["csv","excel","copy"],"deferRender":true,"ordering":false,"scrollY":500,"scroller":true,"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.initComplete"],"jsHooks":[]}</script>
+</div>
+  </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
