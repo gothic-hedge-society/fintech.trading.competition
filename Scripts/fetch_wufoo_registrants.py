@@ -21,6 +21,9 @@ def fetch_entries(pgstart):
     )['Entries']
     return pd.json_normalize(entries_json)
 
+print("Checking WuFoo")
+print("Querying WuFoo for Number of Entries")
+
 number_of_entries_json = get_wufoo_data(
     os.getenv('WUFOO_COUNT_URL'),
     os.getenv('WUFOO_UN'),
@@ -53,26 +56,24 @@ competition_registrants = competition_registrants.rename(columns={
 
 competition_registrants.email = competition_registrants.email.str.lower()
 
-competition_registrants.to_csv(
-    os.getenv('APP_BASE_PATH') + '\\duke_fintech_trading_competition_' + \
-    '2022' + '\\wufoo_form_data.csv',
-    index = False
-)
-
 valid_email_vector = ['\.edu$', '\.edu\.', 'cam\.ac\.uk', 'nemudrova']
 valid_emails = pd.DataFrame([competition_registrants['email'].str.contains(x) for x in valid_email_vector]).any()
 
 invalid_registrants = competition_registrants[~valid_emails]
 valid_registrants = competition_registrants[valid_emails]
 
-invalid_registrants.to_csv(
+competition_registrants.to_csv(
     os.getenv('APP_BASE_PATH') + '\\duke_fintech_trading_competition_' + \
-    '2022' + '\\invalid_wufoo_registrants.csv',
+    '2022' + '\\wufoo_complete_form_data.csv',
     index = False
 )
-
+invalid_registrants.to_csv(
+    os.getenv('APP_BASE_PATH') + '\\duke_fintech_trading_competition_' + \
+    '2022' + '\\wufoo_invalid_registrants.csv',
+    index = False
+)
 valid_registrants.to_csv(
     os.getenv('APP_BASE_PATH') + '\\duke_fintech_trading_competition_' + \
-    '2022' + '\\valid_wufoo_registrants.csv',
+    '2022' + '\\wufoo_valid_registrants.csv',
     index = False
 )
