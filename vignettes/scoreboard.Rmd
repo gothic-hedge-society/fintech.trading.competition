@@ -28,12 +28,18 @@ color: greenyellow;
 ```
 
 
-Standings are current as of 10 Feb 2022. 
+
 
 Check back here often- this section will continue to expand with additional data
 an analysis!
 
-**The current leader is `r standings[1,'tradername']` with a Sharpe Ratio of `r standings[1,'Sharpe']`!!!**
+### Last updated: **`r lubridate::with_tz(Sys.time(), tzone = "EST")`**
+Standings reflect all data available at that time.
+
+### The current leader is **`r standings[1,'tradername']`** with a Sharpe Ratio of **`r standings[1,'Sharpe']`**
+
+
+## Data
 
 ```{r echo=FALSE}
 standings_dt <- standings %>%
