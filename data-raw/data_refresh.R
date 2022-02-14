@@ -5,13 +5,13 @@ library('magrittr')
 
 competition_start_date <- as.Date("2022-01-25")
 
-save_a_csv <- function(df, csv_name){
+save_a_csv <- function(df, csv_name=deparse(substitute(df))){
 
   if(!grepl("\\.csv$", csv_name)){
     csv_name <- paste0(csv_name, ".csv")
   }
 
-  readr::write_csv(
+  readr::write_excel_csv(
     df,
     file.path(
       Sys.getenv("APP_BASE_PATH"),
@@ -68,81 +68,28 @@ ref_data <- Sys.getenv("APP_BASE_PATH") %>%
     "3_mo_apy" = (1+.$`3_mo`/2)^2 - 1
   ) %>%
   tibble::add_column("3_mo_td"  = .$`3_mo_apy`/252)
-
-# country_recode_key ###########################################################
-country_recode_key <- read_a_csv("country_recode_key")
-
-# school_recode_key ############################################################
-school_recode_key <- read_a_csv("school_recode_key")
+save_a_csv(ref_data)
 
 recode <- function(df_col, key){
   vapply(
     df_col,
     function(x){
-      unique(key$correct_name[key$form_name == x])
+      key$correct_name[key$form_name == x]
     },
     character(1)
   )
 }
 
-# valid_wufoo_registrants ######################################################
-valid_wufoo_registrants <- read_a_csv("valid_wufoo_registrants") %>%
+# cleaned_wufoo_valid_registrants ##############################################
+cleaned_wufoo_valid_registrants <- read_a_csv("wufoo_valid_registrants") %>%
   dplyr::mutate(
-    'school'  = recode(School, school_recode_key),
-    'country' = recode(country, country_recode_key)
-  ) %>%
-  dplyr::select(-School)
-
-# registry_flex_statement ######################################################
-registry_flex_statement <- Sys.getenv("APP_BASE_PATH") %>%
-  file.path("..", "Downloads", fsep = "\\") %>%
-  list.files(pattern = "^Registry(.*).xml$", full.names = TRUE) %>%
-  gsub("/", "\\\\", .) %>%
-  stats::setNames(.,.) %>%
-  vapply(
-    function(flex_file_path){
-      if(grepl("\\(\\d{1,}).xml", flex_file_path)){
-        gsub("^(.*)\\(", "", flex_file_path) %>%
-          gsub("\\)\\.xml$", "", .) %>%
-          as.numeric()
-      } else {
-        0
-      }
-    },
-    numeric(1)
-  ) %>% {
-    names(.[which.max(.)])
-  } %>%
-  xml2::read_xml() %>%
-  xml2::xml_child("FlexStatements") %>%
-  xml2::xml_children() %>%
-  xml2::xml_children() %>%
-  xml2::xml_attrs() %>%
-  purrr::reduce(dplyr::bind_rows) %>%
-  magrittr::set_colnames(c("account_id", "name", "email"))
-
-# Chanel messed up her email. Need to use a 'key' that the students pick
-#   instead of an email in the WuFoo form.
-registry_flex_statement$email[
-  registry_flex_statement$name == "Chanel Zhu Ms"
-] <- "chanelchu@utexas.edu"
-registry_flex_statement$email[
-  registry_flex_statement$name == "Sreebhavana Pasumarthi"
-] <- "pasumars@email.sc.edu"
-
-# Save the Registry flex statement data
-readr::write_csv(
-  registry_flex_statement,
-  file.path(
-    Sys.getenv("APP_BASE_PATH"),
-    "duke_fintech_trading_competition_2022",
-    "registry_flex_statement.csv",
-    fsep = "\\"
+    'school'  = recode(school,  read_a_csv("school_recode_key")),
+    'country' = recode(country, read_a_csv("country_recode_key"))
   )
-)
+save_a_csv(cleaned_wufoo_valid_registrants)
 
-# account_value_df #############################################################
-account_value_df <- Sys.getenv("APP_BASE_PATH") %>%
+# flex_statement_df ############################################################
+flex_statement_df <- Sys.getenv("APP_BASE_PATH") %>%
   file.path("..", "Downloads", fsep = "\\") %>%
   list.files(pattern = "^Mark-to-Market(.*).xml$", full.names = TRUE) %>%
   gsub("/", "\\\\", .) %>%
@@ -162,78 +109,118 @@ account_value_df <- Sys.getenv("APP_BASE_PATH") %>%
     names(.[which.max(.)])
   } %>%
   xml2::read_xml() %>%
-  xml2::xml_child("FlexStatements") %>%
-  xml2::as_list() %>%
+  xml2::xml_children() %>%
+  xml2::xml_children() %>%
   lapply(
     function(FlexStatement){
-
-      eod_history <- FlexStatement$EquitySummaryInBase %>%
-        lapply(
-          function(equity_summary){
-            tibble::tibble(
-              "account_id" = attr(equity_summary, "accountId"),
-              "Date"       = as.Date(attr(equity_summary, "reportDate")),
-              "total"      = as.numeric(attr(equity_summary, "total"))
-            )
-          }
-        ) %>%
-        purrr::reduce(dplyr::bind_rows) %>%
-        dplyr::filter(Date >= competition_start_date)
-
-      if(all(eod_history$total == 1000000) | any(eod_history == 0)) return(NULL)
-
       tibble::tibble(
-        "account_id"       = unique(eod_history$account_id),
-        "email"            = registry_flex_statement$email[
-          registry_flex_statement$account_id == account_id
-        ],
-        "tradername"       = valid_wufoo_registrants$tradername[
-          valid_wufoo_registrants$email == email
-        ],
-        "portfolio_value"  = list(
-          tibble::tibble(
-            'Date'  = eod_history$Date,
-            'value' = eod_history$total
-          )
-        )
+        "account_id" = FlexStatement %>%
+          xml2::xml_child("EquitySummaryInBase") %>%
+          xml2::xml_child("EquitySummaryByReportDateInBase") %>%
+          xml2::xml_attr("accountId"),
+        "name_ibkr" = FlexStatement %>%
+          xml2::xml_child("AccountInformation") %>%
+          xml2::xml_attr("name"),
+        "email_ibkr" = FlexStatement %>%
+          xml2::xml_child("AccountInformation") %>%
+          xml2::xml_attr("primaryEmail") %>%
+          tolower(),
+        "portfolio_value" = list(
+          FlexStatement %>%
+            xml2::xml_child("EquitySummaryInBase") %>%
+            xml2::xml_children() %>%
+            xml2::xml_attrs() %>%
+            purrr::reduce(dplyr::bind_rows) %>%
+            dplyr::transmute(
+              "Date"        = as.Date(reportDate),
+              "total_long"  = as.numeric(totalLong),
+              "total_short" = as.numeric(totalShort),
+              "total"       = as.numeric(total)
+            ) %>%
+            dplyr::filter(Date >= competition_start_date)
+        ),
+        "status" = portfolio_value[[1]]$total %>% {
+          if(all(. == 0)){
+            "limbo"
+          } else if (length(setdiff(., c(0, 1000000))) == 0){
+            "inactive"
+          } else {
+            "active"
+          }
+        }
       )
-
     }
   ) %>%
-  purrr::reduce(dplyr::bind_rows) %>%
+  purrr::reduce(dplyr::bind_rows)
+
+# Chanel messed up her email. Need to use a 'key' that the students pick
+#   instead of an email in the WuFoo form.
+flex_statement_df$email_ibkr[
+  flex_statement_df$name_ibkr == "Chanel Zhu Ms"
+] <- "chanelchu@utexas.edu"
+flex_statement_df$email_ibkr[
+  flex_statement_df$name_ibkr == "Sreebhavana Pasumarthi"
+] <- "pasumars@email.sc.edu"
+# Save the Registry flex statement data
+save_a_csv(flex_statement_df)
+
+# account_value_df #############################################################
+account_value_df <- flex_statement_df %>%
+  dplyr::filter(status == "active") %>%
+  dplyr::left_join(
+    cleaned_wufoo_valid_registrants,
+    by = c("email_ibkr" = "email")
+  ) %>%
+  dplyr::filter(!is.na(tradername)) %>%
   dplyr::filter( # remove extra tradernames
     !(tradername %in% c("lnli", "UC_SteveLiu", "SS333", "SS3333"))
   )
+save_a_csv(account_value_df)
 
 # eod_account_value ############################################################
 eod_account_value <- account_value_df$portfolio_value %>%
-  purrr::reduce(dplyr::inner_join, by = "Date") %>%
-  magrittr::set_colnames(c('Date', account_value_df$tradername))
+  lapply(
+    function(x){x[,c("Date", "total")]}
+  ) %>%
+  purrr::reduce(dplyr::inner_join, by = "Date") %>% {
+    colnames(.) <- c("Date", account_value_df$tradername)
+    . <- tibble::as_tibble(., .name_repair = "minimal")
+    Encoding(colnames(.)) <- "UTF-8"
+    .[. == 0] <- 1000000
+    .
+  }
+save_a_csv(eod_account_value)
 
 # eod_returns ##################################################################
-eod_returns <- suppressMessages(
-  log(
-    dplyr::select(eod_account_value, -Date)[-1,] / dplyr::select(
-      eod_account_value, -Date
-    )[-nrow(eod_account_value),]
-  )
-) %>%
+eod_returns <- log(
+  as.matrix(eod_account_value[-1,-1]) /
+    as.matrix(eod_account_value[-nrow(eod_account_value),-1])
+) %>% {
+  colnames(.) <- account_value_df$tradername
+  . <- tibble::as_tibble(., .name_repair = "minimal")
+  Encoding(colnames(.)) <- "UTF-8"
+  .
+} %>%
   tibble::add_column(
     "Date"       = eod_account_value$Date[-1],
     .before      = TRUE,
     .name_repair = "minimal"
   )
+save_a_csv(eod_returns)
 
 # eod_excess_returns ###########################################################
-eod_excess_returns <- eod_returns
 rf <- ref_data$`3_mo_td`[match(eod_returns$Date, ref_data$Date)]/100
-for(trader in colnames(eod_excess_returns)[-1]){
-  eod_excess_returns[,trader] <- eod_excess_returns[,trader] - rf
-}
+eod_excess_returns <- eod_returns %>%
+  dplyr::mutate(
+    dplyr::across(!Date, function(x){x - rf})
+  )
+save_a_csv(eod_excess_returns)
 
 # portfolio_return #############################################################
-eod_ex_returns_plus_1      <- eod_excess_returns
-eod_ex_returns_plus_1[,-1] <- eod_ex_returns_plus_1[,-1] + 1
+eod_ex_returns_plus_1 <- eod_excess_returns %>%
+  dplyr::mutate(
+    dplyr::across(!Date, function(x){x + 1})
+  )
 
 cumulative_eod_excess_returns <- eod_ex_returns_plus_1$Date %>%
   lapply(
@@ -248,7 +235,7 @@ cumulative_eod_excess_returns <- eod_ex_returns_plus_1$Date %>%
             px^(1/length(x)) - 1
           }
         ) %>%
-        tibble::as_tibble_row() %>%
+        tibble::as_tibble_row(.name_repair = "minimal") %>%
         tibble::add_column(
           "Date"       = eod_date,
           .before      = TRUE,
@@ -256,7 +243,13 @@ cumulative_eod_excess_returns <- eod_ex_returns_plus_1$Date %>%
         )
     }
   ) %>%
-  purrr::reduce(dplyr::bind_rows)
+  purrr::reduce(dplyr::bind_rows) %>% {
+    colnames(.) <- colnames(eod_ex_returns_plus_1)
+    . <- tibble::as_tibble(., .name_repair = "minimal")
+    Encoding(colnames(.)) <- "UTF-8"
+    .
+  }
+save_a_csv(cumulative_eod_excess_returns)
 
 # cumulative_vol ###############################################################
 cumulative_vol <- eod_returns$Date[-1] %>%
@@ -280,24 +273,33 @@ cumulative_vol <- eod_returns$Date[-1] %>%
         )
     }
   ) %>%
-  purrr::reduce(dplyr::bind_rows) %>% {
-    .[-1,]
-  }
+  purrr::reduce(dplyr::bind_rows)
+save_a_csv(cumulative_vol)
 
 # sharpes ######################################################################
-sharpes <- (cumulative_eod_excess_returns[-(1:2),-1]/cumulative_vol[,-1]) %>%
-  tibble::add_column(
-    "Date"       = cumulative_vol$Date,
-    .before      = TRUE,
-    .name_repair = "minimal"
+sharpes <- (
+  as.matrix(cumulative_eod_excess_returns[-1,-1]) / as.matrix(
+    cumulative_vol[,-1]
   )
+) %>% {
+  colnames(.) <- account_value_df$tradername
+  . <- tibble::as_tibble(., .name_repair = "minimal") %>%
+    tibble::add_column(
+      "Date"       = cumulative_vol$Date,
+      .before      = TRUE,
+      .name_repair = "minimal"
+    )
+  Encoding(colnames(.)) <- "UTF-8"
+  .
+}
+save_a_csv(sharpes)
 
 # standings ####################################################################
 standings <- tibble::tibble(
   "tradername" = colnames(sharpes)[-1],
   "Sharpe"     = as.numeric(sharpes[nrow(sharpes),-1])
 ) %>%
-  dplyr::left_join(valid_wufoo_registrants, by = "tradername") %>%
+  dplyr::left_join(cleaned_wufoo_valid_registrants, by = "tradername") %>%
   dplyr::select(tradername, school, country, Sharpe) %>%
   dplyr::arrange(dplyr::desc(Sharpe)) %>%
   tibble::add_column(
@@ -305,8 +307,24 @@ standings <- tibble::tibble(
     .before      = TRUE,
     .name_repair = "minimal"
   )
+save_a_csv(standings)
 
+# last_updated #################################################################
+last_updated <- Sys.getenv("APP_BASE_PATH") %>%
+  file.path("duke_fintech_trading_competition_2022", fsep = "\\") %>%
+  list.files(full.names = TRUE) %>%
+  file.info() %>% {
+    rownames(.) <- basename(rownames(.)) %>%
+      gsub("\\.csv$", "", .)
+    .
+  } %>%
+  tibble::as_tibble(rownames = "file") %>%
+  dplyr::select(file, mtime) %>% {
+    stats::setNames(.$mtime, .$file)
+  } %>%
+  as.list()
 
+# save R data ##################################################################
 usethis::use_data(ref_data,                      overwrite = TRUE)
 usethis::use_data(eod_account_value,             overwrite = TRUE)
 usethis::use_data(eod_returns,                   overwrite = TRUE)
@@ -315,3 +333,4 @@ usethis::use_data(cumulative_eod_excess_returns, overwrite = TRUE)
 usethis::use_data(cumulative_vol,                overwrite = TRUE)
 usethis::use_data(sharpes,                       overwrite = TRUE)
 usethis::use_data(standings,                     overwrite = TRUE)
+usethis::use_data(last_updated,                  overwrite = TRUE)

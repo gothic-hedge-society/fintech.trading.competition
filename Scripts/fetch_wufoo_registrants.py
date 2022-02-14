@@ -48,13 +48,20 @@ for i in range(1, number_of_fetches):
 
 competition_registrants = competition_registrants.rename(columns={
     'EntryId': 'id', 'Field1': 'first_name', 'Field2': 'last_name',
-    'Field3': 'email', 'Field4': 'School', 'Field124': 'graduation_year',
+    'Field3': 'email', 'Field4': 'school', 'Field124': 'graduation_year',
     'Field120': 'undergrad_major', 'Field10': 'graduate_dept',
     'Field118': 'sex', 'Field116': 'country', 'Field5': 'tradername',
     'Field130': 'secret', 'Field126': 'linkedin'
 })
 
-competition_registrants.email = competition_registrants.email.str.lower()
+competition_registrants['email'].str.lower()
+competition_registrants['first_name'].str.strip()
+competition_registrants['last_name'].str.strip()
+competition_registrants['email'].str.strip()
+competition_registrants['school'].str.strip()
+competition_registrants['country'].str.strip()
+competition_registrants['tradername'].str.strip()
+competition_registrants['secret'].str.strip()
 
 valid_email_vector = ['\.edu$', '\.edu\.', 'cam\.ac\.uk', 'nemudrova']
 valid_emails = pd.DataFrame([competition_registrants['email'].str.contains(x) for x in valid_email_vector]).any()
@@ -65,15 +72,18 @@ valid_registrants = competition_registrants[valid_emails]
 competition_registrants.to_csv(
     os.getenv('APP_BASE_PATH') + '\\duke_fintech_trading_competition_' + \
     '2022' + '\\wufoo_complete_form_data.csv',
+    encoding = 'utf_8_sig',
     index = False
 )
 invalid_registrants.to_csv(
     os.getenv('APP_BASE_PATH') + '\\duke_fintech_trading_competition_' + \
     '2022' + '\\wufoo_invalid_registrants.csv',
+    encoding = 'utf_8_sig',
     index = False
 )
 valid_registrants.to_csv(
     os.getenv('APP_BASE_PATH') + '\\duke_fintech_trading_competition_' + \
     '2022' + '\\wufoo_valid_registrants.csv',
+    encoding = 'utf_8_sig',
     index = False
 )

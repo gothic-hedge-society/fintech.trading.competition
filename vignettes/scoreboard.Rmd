@@ -36,14 +36,17 @@ an analysis!
 **The current leader is `r standings[1,'tradername']` with a Sharpe Ratio of `r standings[1,'Sharpe']`!!!**
 
 ```{r echo=FALSE}
-standings %>%
+standings_dt <- standings %>%
   dplyr::select(-country) %>%
   DT::datatable(
     .,
     extensions = 'Buttons',
     rownames   = FALSE,
     options = list(
-      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      columnDefs   = list(
+        list(className = 'dt-center', targets = '_all'),
+        list(width = '20px', targets = 1)
+      ),
       initComplete = DT::JS(
         "
       function(settings, json) {
@@ -62,4 +65,7 @@ standings %>%
     )
   ) %>%
   DT::formatSignif('Sharpe', 5)
+
+shinydashboard::box(standings_dt)
+
 ```

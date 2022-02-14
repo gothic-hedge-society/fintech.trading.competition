@@ -67,7 +67,6 @@ ref_data %>%
         "
       function(settings, json) {
           $(this.api().table().header()).css({
-              'font-size' : '20px', 
               'color' : 'greenyellow'
           });
       }
@@ -101,7 +100,6 @@ eod_account_value %>%
         "
       function(settings, json) {
           $(this.api().table().header()).css({
-              'font-size' : '12px', 
               'color' : 'greenyellow'
           });
       }
@@ -134,7 +132,6 @@ eod_returns %>%
         "
       function(settings, json) {
           $(this.api().table().header()).css({
-              'font-size' : '12px', 
               'color' : 'greenyellow'
           });
       }
@@ -167,7 +164,6 @@ eod_excess_returns %>%
         "
       function(settings, json) {
           $(this.api().table().header()).css({
-              'font-size' : '12px', 
               'color' : 'greenyellow'
           });
       }
@@ -204,7 +200,6 @@ cumulative_eod_excess_returns %>%
         "
       function(settings, json) {
           $(this.api().table().header()).css({
-              'font-size' : '12px', 
               'color' : 'greenyellow'
           });
       }
@@ -237,7 +232,6 @@ cumulative_vol %>%
         "
       function(settings, json) {
           $(this.api().table().header()).css({
-              'font-size' : '12px', 
               'color' : 'greenyellow'
           });
       }
@@ -270,7 +264,6 @@ sharpes %>%
         "
       function(settings, json) {
           $(this.api().table().header()).css({
-              'font-size' : '12px', 
               'color' : 'greenyellow'
           });
       }
