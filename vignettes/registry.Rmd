@@ -22,166 +22,166 @@ color: greenyellow;
 }
 ```
 
-```{r, echo=FALSE}
-Sys.time() %>%
-  lubridate::with_tz(tzone = 'EST') %>% {
-    
-    two_digit_pad <- function(number){
-      number <- floor(as.numeric(number))
-      if(floor(number) < 10) return(paste0("0", number))
-      as.character(number)
-    }    
-    
-    paste0(
-      two_digit_pad(lubridate::day(.)),    " ", 
-      lubridate::month(., label = TRUE),   " ",
-      lubridate::year(.),                  " ",
-      two_digit_pad(lubridate::hour(.)),   ":",
-      two_digit_pad(lubridate::minute(.)), ":",
-      two_digit_pad(lubridate::second(.)), " EST"
-    )
-  } %>% {
-    shiny::tagList(
-      shiny::h3(paste0("Updated: ", .))
-    )
-  }
-```
+<!-- ```{r, echo=FALSE} -->
+<!-- Sys.time() %>% -->
+<!--   lubridate::with_tz(tzone = 'EST') %>% { -->
 
-This page tracks the status of competition participants as they set up their
-paper traders provided by [Interactive Brokers](https://www.interactivebrokers.com/en/home.php).
+<!--     two_digit_pad <- function(number){ -->
+<!--       number <- floor(as.numeric(number)) -->
+<!--       if(floor(number) < 10) return(paste0("0", number)) -->
+<!--       as.character(number) -->
+<!--     }     -->
 
-Check back here often - if the account ID logged for your tradername is not
-correct, respond to the Duke Fintech Trading Competition email address or post
-in the Slack channel ASAP.
+<!--     paste0( -->
+<!--       two_digit_pad(lubridate::day(.)),    " ",  -->
+<!--       lubridate::month(., label = TRUE),   " ", -->
+<!--       lubridate::year(.),                  " ", -->
+<!--       two_digit_pad(lubridate::hour(.)),   ":", -->
+<!--       two_digit_pad(lubridate::minute(.)), ":", -->
+<!--       two_digit_pad(lubridate::second(.)), " EST" -->
+<!--     ) -->
+<!--   } %>% { -->
+<!--     shiny::tagList( -->
+<!--       shiny::h3(paste0("Updated: ", .)) -->
+<!--     ) -->
+<!--   } -->
+<!-- ``` -->
 
-```{r, echo = FALSE, include=FALSE}
-# completion_plot <- tibble::tibble(
-#   'status' = c('READY', 'INCOMPLETE'),
-#   'count'  = c(
-#     length(which(registry$account_id != 'account pending creation')),
-#     length(which(registry$account_id == 'account pending creation'))
-#   )
-# ) %>%
-#   plotly::plot_ly(
-#     labels = ~status, 
-#     textposition = 'inside',
-#     textinfo = 'label+percent',
-#     insidetextfont = list(color = '#FFFFFF'),
-#     values = ~count, 
-#     type   = 'pie',
-#     marker = list(
-#       colors     = c('rgb(132,186,91)', 'rgb(128,133,133)'),
-#       line       = list(color = '#FFFFFF', width = 1)
-#     ),
-#     showlegend = FALSE
-#   ) %>% 
-#   plotly::layout(
-#     xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-#     yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-#     paper_bgcolor='rgba(0,0,0,0)',
-#     plot_bgcolor='rgba(0,0,0,0)'
-#   )
-# 
-# by_school_plot <- school_stats %>%
-#   dplyr::mutate(
-#     'bar_color' = completion %>%
-#       vapply(
-#         function(comp_pct){
-#           if(comp_pct < 0.5){
-#             return('rgb(139, 0, 0)')
-#           } else if(comp_pct < 1){
-#             return('rgba(55, 128, 191)')
-#           } else {
-#             return('rgb(132,186,91)') 
-#           }
-#         },
-#         character(1)
-#       )
-#   ) %>%
-#   plotly::plot_ly(
-#     x           = .$completion * 100,
-#     y           = .$school,
-#     type        = 'bar',
-#     color       = .$bar_color,
-#     height      = 900,
-#     orientation = 'h'
-#   ) %>% 
-#   plotly::layout(
-#     xaxis = list(
-#       color      = 'DarkGoldenRod', 
-#       ticksuffix = '%'
-#     ),
-#     yaxis = list(
-#       color     = 'GhostWhite', 
-#       autorange = 'reversed'
-#     ),
-#     showlegend    = FALSE,
-#     plot_bgcolor  ='rgba(0,0,0,0)',
-#     paper_bgcolor ='rgba(0,0,0,0)'
-#   )
-# 
-# shiny::tagList(
-#   shiny::fluidRow(
-#     shiny::column(
-#       width = 4, 
-#       shiny::fluidRow(
-#         shiny::tags$h3('Overall Completion', style = 'text-align: center')
-#       ),
-#       shiny::fluidRow(completion_plot)
-#     ),
-#     shiny::column(
-#       
-#       width = 8,
-#       shiny::fluidRow(
-#         shiny::tags$h3('Completion by School', style = 'text-align: center')
-#       ),
-#       shiny::div(by_school_plot, style='height: 400px;overflow-y: scroll;')
-#     )
-#   )
-# )
+<!-- This page tracks the status of competition participants as they set up their -->
+<!-- paper traders provided by [Interactive Brokers](https://www.interactivebrokers.com/en/home.php). -->
 
-```
+<!-- Check back here often - if the account ID logged for your tradername is not -->
+<!-- correct, respond to the Duke Fintech Trading Competition email address or post -->
+<!-- in the Slack channel ASAP. -->
 
-### Key
+<!-- ```{r, echo = FALSE, include=FALSE} -->
+<!-- # completion_plot <- tibble::tibble( -->
+<!-- #   'status' = c('READY', 'INCOMPLETE'), -->
+<!-- #   'count'  = c( -->
+<!-- #     length(which(registry$account_id != 'account pending creation')), -->
+<!-- #     length(which(registry$account_id == 'account pending creation')) -->
+<!-- #   ) -->
+<!-- # ) %>% -->
+<!-- #   plotly::plot_ly( -->
+<!-- #     labels = ~status,  -->
+<!-- #     textposition = 'inside', -->
+<!-- #     textinfo = 'label+percent', -->
+<!-- #     insidetextfont = list(color = '#FFFFFF'), -->
+<!-- #     values = ~count,  -->
+<!-- #     type   = 'pie', -->
+<!-- #     marker = list( -->
+<!-- #       colors     = c('rgb(132,186,91)', 'rgb(128,133,133)'), -->
+<!-- #       line       = list(color = '#FFFFFF', width = 1) -->
+<!-- #     ), -->
+<!-- #     showlegend = FALSE -->
+<!-- #   ) %>%  -->
+<!-- #   plotly::layout( -->
+<!-- #     xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), -->
+<!-- #     yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), -->
+<!-- #     paper_bgcolor='rgba(0,0,0,0)', -->
+<!-- #     plot_bgcolor='rgba(0,0,0,0)' -->
+<!-- #   ) -->
+<!-- #  -->
+<!-- # by_school_plot <- school_stats %>% -->
+<!-- #   dplyr::mutate( -->
+<!-- #     'bar_color' = completion %>% -->
+<!-- #       vapply( -->
+<!-- #         function(comp_pct){ -->
+<!-- #           if(comp_pct < 0.5){ -->
+<!-- #             return('rgb(139, 0, 0)') -->
+<!-- #           } else if(comp_pct < 1){ -->
+<!-- #             return('rgba(55, 128, 191)') -->
+<!-- #           } else { -->
+<!-- #             return('rgb(132,186,91)')  -->
+<!-- #           } -->
+<!-- #         }, -->
+<!-- #         character(1) -->
+<!-- #       ) -->
+<!-- #   ) %>% -->
+<!-- #   plotly::plot_ly( -->
+<!-- #     x           = .$completion * 100, -->
+<!-- #     y           = .$school, -->
+<!-- #     type        = 'bar', -->
+<!-- #     color       = .$bar_color, -->
+<!-- #     height      = 900, -->
+<!-- #     orientation = 'h' -->
+<!-- #   ) %>%  -->
+<!-- #   plotly::layout( -->
+<!-- #     xaxis = list( -->
+<!-- #       color      = 'DarkGoldenRod',  -->
+<!-- #       ticksuffix = '%' -->
+<!-- #     ), -->
+<!-- #     yaxis = list( -->
+<!-- #       color     = 'GhostWhite',  -->
+<!-- #       autorange = 'reversed' -->
+<!-- #     ), -->
+<!-- #     showlegend    = FALSE, -->
+<!-- #     plot_bgcolor  ='rgba(0,0,0,0)', -->
+<!-- #     paper_bgcolor ='rgba(0,0,0,0)' -->
+<!-- #   ) -->
+<!-- #  -->
+<!-- # shiny::tagList( -->
+<!-- #   shiny::fluidRow( -->
+<!-- #     shiny::column( -->
+<!-- #       width = 4,  -->
+<!-- #       shiny::fluidRow( -->
+<!-- #         shiny::tags$h3('Overall Completion', style = 'text-align: center') -->
+<!-- #       ), -->
+<!-- #       shiny::fluidRow(completion_plot) -->
+<!-- #     ), -->
+<!-- #     shiny::column( -->
+<!-- #        -->
+<!-- #       width = 8, -->
+<!-- #       shiny::fluidRow( -->
+<!-- #         shiny::tags$h3('Completion by School', style = 'text-align: center') -->
+<!-- #       ), -->
+<!-- #       shiny::div(by_school_plot, style='height: 400px;overflow-y: scroll;') -->
+<!-- #     ) -->
+<!-- #   ) -->
+<!-- # ) -->
 
-#### If your tradername doesn't appear here:
-You've submitted your registration form but this website hasn't yet
-refreshed and picked up your updated information.
+<!-- ``` -->
 
-#### 'not yet active'
-An IBKR account with your email does not yet appear in the response when the
-Trading Competition App queries IBKR. This is either because you haven't
-completed your Paper Trader Invitation form yet, or because your account is
-still in the activation process, which can take one business day or longer.
+<!-- ### Key -->
 
-#### An Account ID
-Your account is set up and you're ready. The system has matched your tradername
-to the given Account ID- you'll want to confirm that that's correct. Use the
-Slack channel if there's an issue.
+<!-- #### If your tradername doesn't appear here: -->
+<!-- You've submitted your registration form but this website hasn't yet -->
+<!-- refreshed and picked up your updated information. -->
+
+<!-- #### 'not yet active' -->
+<!-- An IBKR account with your email does not yet appear in the response when the -->
+<!-- Trading Competition App queries IBKR. This is either because you haven't -->
+<!-- completed your Paper Trader Invitation form yet, or because your account is -->
+<!-- still in the activation process, which can take one business day or longer. -->
+
+<!-- #### An Account ID -->
+<!-- Your account is set up and you're ready. The system has matched your tradername -->
+<!-- to the given Account ID- you'll want to confirm that that's correct. Use the -->
+<!-- Slack channel if there's an issue. -->
 
 
-```{r, echo = FALSE}
-DT::datatable(
-  registry,
-  extensions = 'Scroller', 
-  rownames   = FALSE,
-  options = list(
-    columnDefs = list(list(className = 'dt-center', targets = '_all')),
-    initComplete = DT::JS(
-      "
-      function(settings, json) {
-          $(this.api().table().header()).css({
-              'font-size' : '20px', 
-              'color' : 'greenyellow'
-          });
-      }
-      "
-    ),
-    buttons     = c('copy', 'csv', 'excel', 'pdf'),
-    deferRender = TRUE,
-    ordering    = FALSE,
-    scrollY     = 500,
-    scroller    = TRUE
-  )
-)
-```
+<!-- ```{r, echo = FALSE} -->
+<!-- DT::datatable( -->
+<!--   registry, -->
+<!--   extensions = 'Scroller',  -->
+<!--   rownames   = FALSE, -->
+<!--   options = list( -->
+<!--     columnDefs = list(list(className = 'dt-center', targets = '_all')), -->
+<!--     initComplete = DT::JS( -->
+<!--       " -->
+<!--       function(settings, json) { -->
+<!--           $(this.api().table().header()).css({ -->
+<!--               'font-size' : '20px',  -->
+<!--               'color' : 'greenyellow' -->
+<!--           }); -->
+<!--       } -->
+<!--       " -->
+<!--     ), -->
+<!--     buttons     = c('copy', 'csv', 'excel', 'pdf'), -->
+<!--     deferRender = TRUE, -->
+<!--     ordering    = FALSE, -->
+<!--     scrollY     = 500, -->
+<!--     scroller    = TRUE -->
+<!--   ) -->
+<!-- ) -->
+<!-- ``` -->

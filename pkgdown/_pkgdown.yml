@@ -7,7 +7,7 @@ template:
 
 navbar:
   structure:
-    left:  [announcements, sign_up, intro, articles, scoreboard, refdata] # registry,
+    left:  [sign_up, announcements, intro, rules, scoreboard, refdata] # registry,
     right: [twitter, github]
   components:
     scoreboard:
@@ -21,7 +21,7 @@ navbar:
     sign_up:
       text: Sign Up
       href: articles/sign_up.html
-    articles:
+    rules:
       text: Rules & Scoring
       menu:
       - text: General Idea
@@ -30,9 +30,9 @@ navbar:
         href: articles/Sharpe Ratio Calculation.html
       - text: Rules
         href: articles/Rules.html
-    registry:
-      text: Registry
-      href: articles/registry.html
+    # registry:
+    #   text: Registry
+    #   href: articles/registry.html
     refdata:
       text: Reference Data
       href: articles/reference_data.html

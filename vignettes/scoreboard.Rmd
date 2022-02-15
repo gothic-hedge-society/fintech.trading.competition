@@ -103,6 +103,27 @@ standings_dt <- standings %>%
     )
   ) %>%
   DT::formatSignif('Sharpe', 5)
+
+
+sharpes_over_time <- sharpes %>%
+  dplyr::select(
+    sharpes[nrow(sharpes),] %>% 
+      unlist() %>%
+      sort(decreasing = TRUE) %>% 
+      head(11) %>%
+      names()
+  ) %>%
+  tibble::column_to_rownames("Date") %>%
+  xts::as.xts() %>%
+  dygraphs::dygraph() %>%
+  dygraphs::dyOptions(stackedGraph = TRUE) %>%
+  dygraphs::dyAxis(
+    "y", 
+    label    = "Sharpe Ratio", 
+    logscale = TRUE
+    ) %>%
+  dygraphs::dyRangeSelector(height = 20)
+
 ```
 
 ```{r echo=FALSE}
@@ -175,6 +196,11 @@ shiny::tagList(
 )
 ```
 
+<!-- # Sharpe Ratio Over Time -->
+<!-- Need to use a log axis because Hoppity and Bubbles' Sharpe ratios are so high! -->
+<!-- ```{r echo=FALSE} -->
+<!-- sharpes_over_time -->
+<!-- ``` -->
 
 # Full Ranking
 ```{r echo=FALSE}

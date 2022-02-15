@@ -324,29 +324,31 @@ last_updated <- Sys.getenv("APP_BASE_PATH") %>%
   } %>%
   as.list()
 
-# rankings #####################################################################
-tbl_rank <- function(tbl){
-  for(tbl_dt in tbl$Date){
-    tbl[which(tbl$Date == tbl_dt), -1] <- rank(
-      dplyr::filter(tbl, Date == tbl_dt) %>%
-        dplyr::select(-Date) %>%
-        unlist(),
-      ties.method = "first"
-    ) %>%
-      tibble::as_tibble_row(.name_repair = "minimal") %>% {
-        Encoding(colnames(.)) <- "UTF-8"
-        .
-      }
-  }
-  tbl
-}
-
-eod_account_value_rank             <- tbl_rank(eod_account_value)
-eod_returns_rank                   <- tbl_rank(eod_returns)
-eod_excess_returns_rank            <- tbl_rank(eod_excess_returns)
-cumulative_eod_excess_returns_rank <- tbl_rank(eod_excess_returns)
-cumulative_vol_rank                <- tbl_rank(eod_excess_returns)
-sharpes_rank                       <- tbl_rank(eod_excess_returns)
+# # rankings #####################################################################
+# tbl_rank <- function(tbl){
+#   for(tbl_dt in tbl$Date){
+#     tbl[which(tbl$Date == tbl_dt), -1] <- rank(
+#       dplyr::filter(tbl, Date == tbl_dt) %>%
+#         dplyr::select(-Date) %>%
+#         unlist() %>% {
+#           . * -1
+#         },
+#       ties.method = "first"
+#     ) %>%
+#       tibble::as_tibble_row(.name_repair = "minimal") %>% {
+#         Encoding(colnames(.)) <- "UTF-8"
+#         .
+#       }
+#   }
+#   tbl
+# }
+#
+# eod_account_value_rank             <- tbl_rank(eod_account_value)
+# eod_returns_rank                   <- tbl_rank(eod_returns)
+# eod_excess_returns_rank            <- tbl_rank(eod_excess_returns)
+# cumulative_eod_excess_returns_rank <- tbl_rank(eod_excess_returns)
+# cumulative_vol_rank                <- tbl_rank(eod_excess_returns)
+# sharpes_rank                       <- tbl_rank(eod_excess_returns)
 
 # save R data ##################################################################
 usethis::use_data(ref_data,                           overwrite = TRUE)
@@ -358,11 +360,11 @@ usethis::use_data(cumulative_vol,                     overwrite = TRUE)
 usethis::use_data(sharpes,                            overwrite = TRUE)
 usethis::use_data(standings,                          overwrite = TRUE)
 usethis::use_data(last_updated,                       overwrite = TRUE)
-usethis::use_data(eod_account_value_rank,             overwrite = TRUE)
-usethis::use_data(eod_returns_rank,                   overwrite = TRUE)
-usethis::use_data(eod_excess_returns_rank,            overwrite = TRUE)
-usethis::use_data(cumulative_eod_excess_returns_rank, overwrite = TRUE)
-usethis::use_data(cumulative_vol_rank,                overwrite = TRUE)
-usethis::use_data(sharpes_rank,                       overwrite = TRUE)
+# usethis::use_data(eod_account_value_rank,             overwrite = TRUE)
+# usethis::use_data(eod_returns_rank,                   overwrite = TRUE)
+# usethis::use_data(eod_excess_returns_rank,            overwrite = TRUE)
+# usethis::use_data(cumulative_eod_excess_returns_rank, overwrite = TRUE)
+# usethis::use_data(cumulative_vol_rank,                overwrite = TRUE)
+# usethis::use_data(sharpes_rank,                       overwrite = TRUE)
 
 
