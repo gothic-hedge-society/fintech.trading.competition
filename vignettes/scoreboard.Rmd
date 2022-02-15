@@ -36,11 +36,12 @@ text-align: center;
 }
 .fp-title, .ee-title {
 font-size: x-large;
-color: #FFD960;
+color: white;
 text-align: center;
 font-weight: bold;
 }
 .fp-tradername {
+padding-top: 16px;
 font-size: xx-large;
 color: greenyellow;
 text-align: center;
@@ -58,14 +59,19 @@ text-align: center;
 font-size: x-large;
 text-align: center;
 }
-.last-updated {
+.update-info-row {
 font-size: x-large;
-color: greenyellow;
 text-align: center;
 font-weight: bold;
 }
+.last-updated-time{
+color: greenyellow;
+}
+.leaderboard {
+border-style: solid;
+border-color: #FFD960;
+}
 ```
-<p class = "intro-text">Analysis of the 2022 Duke FINTECH Spring Trading Competition is posted here. This section is frequently updated and expanded, so be sure to check back often!</p>
 
 ```{r echo=FALSE}
 standings_dt <- standings %>%
@@ -103,8 +109,25 @@ standings_dt <- standings %>%
 shiny::tagList(
   shiny::fluidRow(
     shiny::tags$p(
-      paste0("Last Updated: ", lubridate::with_tz(Sys.time(), tzone = "EST")),
-      class = "last-updated"
+      shiny::tags$span(
+        "Last Updated: ", 
+        class = "last-updated"
+      ),
+      shiny::tags$span(
+        lubridate::with_tz(Sys.time(), tzone = "EST"), 
+        class = "last-updated-time"
+      ),
+      class = "update-info-row"
+    )  
+  ),
+  shiny::fluidRow(
+    shiny::tags$p(
+      paste0(
+        "Analysis of the 2022 Duke FINTECH Spring Trading Competition is ",
+        "posted here. This section is frequently updated and expanded, so be",
+        " sure to check back often!"
+      ),
+      class = "intro-text"
     )  
   ),
   shiny::fluidRow(
@@ -146,7 +169,8 @@ shiny::tagList(
             extra_css = "vertical-align:middle;"
           )
       )
-    )
+    ),
+    class = "leaderboard"
   )
 )
 ```
