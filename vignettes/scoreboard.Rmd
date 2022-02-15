@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+options(knitr.table.format = "html") 
 ```
 
 ```{css, echo = FALSE}
@@ -25,33 +26,57 @@ border: 1px solid white;
 font-size: 18px;
 color: greenyellow;
 }
+h1, h2 {
+text-align: center;
+}
+.intro-text {
+font-size: large;
+color: beige;
+text-align: center;
+}
+.fp-title, .ee-title {
+font-size: x-large;
+color: #FFD960;
+text-align: center;
+font-weight: bold;
+}
+.fp-tradername {
+font-size: xx-large;
+color: greenyellow;
+text-align: center;
+font-weight: bold;
+}
+.fp-school {
+font-size: x-large;
+text-align: center;
+}
+.fp-country {
+font-size: x-large;
+text-align: center;
+}
+.fp-sharpe {
+font-size: x-large;
+text-align: center;
+}
+.last-updated {
+font-size: x-large;
+color: greenyellow;
+text-align: center;
+font-weight: bold;
+}
 ```
-
-
-
-
-Check back here often- this section will continue to expand with additional data
-an analysis!
-
-### Last updated: **`r lubridate::with_tz(Sys.time(), tzone = "EST")`**
-Standings reflect all data available at that time.
-
-### The current leader is **`r standings[1,'tradername']`** with a Sharpe Ratio of **`r standings[1,'Sharpe']`**
-
-
-## Data
+<p class = "intro-text">Analysis of the 2022 Duke FINTECH Spring Trading Competition is posted here. This section is frequently updated and expanded, so be sure to check back often!</p>
 
 ```{r echo=FALSE}
 standings_dt <- standings %>%
   dplyr::select(-country) %>%
+  tibble::column_to_rownames("Rank") %>%
   DT::datatable(
     .,
-    extensions = 'Buttons',
-    rownames   = FALSE,
+    extensions = c('Buttons', 'Responsive'),
     options = list(
       columnDefs   = list(
-        list(className = 'dt-center', targets = '_all'),
-        list(width = '20px', targets = 1)
+        list(className = 'dt-center', targets = '_all')
       ),
       initComplete = DT::JS(
         "
@@ -63,15 +88,71 @@ standings_dt <- standings %>%
       }
       "
       ),
-      pageLength  = nrow(standings),
+      paging      = FALSE,
       dom         = 'Bft',
       buttons     = c('csv', 'excel', 'copy'),
+      ordering    = FALSE,
       deferRender = TRUE,
-      ordering    = FALSE
+      scrollY     = 200
     )
   ) %>%
   DT::formatSignif('Sharpe', 5)
+```
 
-shinydashboard::box(standings_dt)
+```{r echo=FALSE}
+shiny::tagList(
+  shiny::fluidRow(
+    shiny::tags$p(
+      paste0("Last Updated: ", lubridate::with_tz(Sys.time(), tzone = "EST")),
+      class = "last-updated"
+    )  
+  ),
+  shiny::fluidRow(
+    shiny::column(
+      width = 6, 
+      shiny::fluidRow(
+        shiny::column(
+          width = 9,
+          shiny::p("First Place", class = "fp-title"),
+          shiny::p(standings[1,'tradername'], class = "fp-tradername"),
+          shiny::p(standings[1,'school'], class = "fp-school"),
+          shiny::p(standings[1,'country'], class = "fp-country"),
+          shiny::p(
+            paste0("Sharpe: ", signif(standings[1,'Sharpe'], 5)), 
+            class = "fp-sharpe"
+          ),
+        )
+      )
+    ),
+    shiny::column(
+      width = 6, 
+      shiny::p("Runner-Ups", class = "ee-title"),
+      shiny::HTML(
+        standings[2:5,] %>%
+          dplyr::mutate(
+            "Sharpe" = signif(Sharpe, 5)
+          ) %>%
+          kableExtra::kbl(align="rcccc") %>%
+          kableExtra::kable_minimal() %>%
+          kableExtra::row_spec(
+            0, color = "greenyellow"
+          ) %>%
+          kableExtra::column_spec(
+            1,
+            extra_css = "font-weight:bold; color:#FFD960;"
+          ) %>%
+          kableExtra::column_spec(
+            1:5,
+            extra_css = "vertical-align:middle;"
+          )
+      )
+    )
+  )
+)
+```
 
+
+# Full Ranking
+```{r echo=FALSE}
+standings_dt
 ```
