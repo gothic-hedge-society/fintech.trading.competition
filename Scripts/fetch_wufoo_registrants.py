@@ -54,7 +54,7 @@ competition_registrants = competition_registrants.rename(columns={
     'Field130': 'secret', 'Field126': 'linkedin'
 })
 
-competition_registrants['email'].str.lower()
+competition_registrants['email'] = competition_registrants['email'].str.lower()
 competition_registrants['first_name'].str.strip()
 competition_registrants['last_name'].str.strip()
 competition_registrants['email'].str.strip()
