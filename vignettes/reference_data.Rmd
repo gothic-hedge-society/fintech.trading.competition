@@ -18,25 +18,6 @@ knitr::opts_chunk$set(
 Here is the reference data used in the scoring. Feel free to use the buttons to
 download this info for your own analysis!
 
-# Key
-
-**Date**: Date on which the value in a column was observed.
-
-**SP500**: Closing value of the S&P 500 index.
-
-**SHY**: Closing value of the iShares 1-3 year treasury bond ETF
-
-**BTC**: Closing value of Bitcoin/USD exchange rate
-
-**3_mo**: Daily 3-month maturity treasury par yield curve rate [as reported by the
-US Department of the
-Treasury](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202202)
-
-**3_mo_apy**: US Treasury 3-month yields converted to Annual Percentage Yield
-(APY) using the [formula specified by the
-USDT](https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics/interest-rates-frequently-asked-questions)
-
-**3_mo_td**: 3-month APY expressed on a per-trading-day basis by dividing by 252
 
 ```{css, echo=FALSE}
 button.dt-button {
@@ -44,18 +25,74 @@ font-size: 14px;
 color: greenyellow;
 border: 1px solid white;
 }
+.key-heading {
+font-size: 20px;
+font-weight: bold;
+}
 ```
 
 # Market Data
 Used for calculating daily risk-free rates for excess returns and for
-calculating beta with respect to the three market SP500, SHY, and BTC.
+calculating beta with respect to three market benchmarks: SP500, SHY, and BTC.
+These benchmarks were chosen because:
+
+* The **SP500** is probably the most most commonly used market benchmark in
+finance and financial reporting
+
+* We wanted to include a benchmark that had virtually NO correlation with the
+**SP500** so we selected **SHY**
+
+* **BTC-USD** is interesting and timely, so it's interesting to include. 
+
+<p class='key-heading'>Key:</p>
+
+```{r, echo=FALSE}
+data.frame(
+  "Column_Name" = c(
+    "Date", "SP500", "SP500_rtn", "SHY", "SHY_rtn", "BTC-USD", "BTC-USD", 
+    "3_mo", "3_mo_apy", "3_mo_td"
+  ),
+  "Description" = c(
+    "Date on which the value in a column was observed",
+    "Closing value of the S&P 500 index", 
+    "Daily return of the S&P 500 index",
+    "Closing value of the iShares 1-3 year treasury bond ETF",
+    "Daily return of the iShares 1-3 year treasury bond ETF",
+    "Closing value of Bitcoin/USD exchange rate",
+    "Daily return of the Bitcoin/USD exchange rate",
+    "Daily 3-month maturity treasury par yield curve rate [as reported by the US Department of the Treasury](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202202)",
+    "US Treasury 3-month yields converted to Annual Percentage Yield (APY) using the [USDT's formula](https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics/interest-rates-frequently-asked-questions)",
+    "3-month APY expressed on a per-trading-day basis by dividing by 252"
+  )
+) %>%
+  kableExtra::kbl(col.names = NULL) %>%
+  kableExtra::column_spec(
+    column       = 1, 
+    bold         = TRUE, 
+    border_right = "2px solid #FFD960", 
+    color        = "greenyellow"
+  ) %>%
+  kableExtra::kable_styling(bootstrap_options = "condensed")
+```
+
+**Why BTC-USD is interesting**: If you wind up with a large beta (positive or
+negative) with respect to **BTC-USD**, then that means that whatever trading
+strategy you're running is "accidentally(?)" [closet
+indexing](https://www.investopedia.com/terms/c/closetindexing.asp#:~:text=Closet%20indexing%20is%20a%20strategy,without%20exactly%20replicating%20the%20index.)
+Bitcoin. Usually closet indexing is a bad thing, but consider: Certainly you
+based your trading strategy on valid assumptions about the market. If your
+strategy turns out to have a strong beta with respect to **BTC-USD**, then that
+means that whatever market principles are at work in your strategy are also at
+work in Bitcoin price discovery. *That* means that just maybe, with some
+insight, you can take a deep look at your strategy and do something that many
+consider almost impossible: model the price behavior of Bitcoin reliably!
 
 ```{r echo=FALSE}
 ref_data %>%
   dplyr::mutate(
     '3_mo'     = .$`3_mo`/100,
     '3_mo_apy' = .$`3_mo_apy`/100,
-    '3_mo_td' = .$`3_mo_td`/100,
+    '3_mo_td'  = .$`3_mo_td`/100,
   ) %>%
   DT::datatable(
     .,
@@ -81,8 +118,12 @@ ref_data %>%
       scroller    = TRUE
     )
   ) %>%
-  DT::formatPercentage(c('3_mo', '3_mo_apy'), 3) %>%
-  DT::formatPercentage('3_mo_td', 5)
+  DT::formatPercentage(
+    columns = c(
+      'SP500_rtn', 'SHY_rtn', 'BTC-USD_rtn',  '3_mo', '3_mo_apy', '3_mo_td'
+    ), 
+    digits = c(3, 3, 3, 3, 3, 5)
+  )
 ```
 
 

@@ -114,15 +114,31 @@ sharpes_over_time <- sharpes %>%
       names()
   ) %>%
   tibble::column_to_rownames("Date") %>%
+  unique() %>%
   xts::as.xts() %>%
-  dygraphs::dygraph() %>%
-  dygraphs::dyOptions(stackedGraph = TRUE) %>%
+  dygraphs::dygraph(width = "100%") %>%
+  dygraphs::dyOptions(
+    strokeWidth = 3,
+    drawPoints  = TRUE, 
+    pointSize   = 7
+  ) %>%
   dygraphs::dyAxis(
     "y", 
-    label    = "Sharpe Ratio", 
-    logscale = TRUE
-    ) %>%
-  dygraphs::dyRangeSelector(height = 20)
+    logscale          = TRUE,
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923",
+  ) %>%
+    dygraphs::dyAxis(
+    "x", 
+    logscale          = TRUE,
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923"
+  ) %>%
+  dygraphs::dyLegend(show = "follow")
 
 ```
 
@@ -196,11 +212,15 @@ shiny::tagList(
 )
 ```
 
-<!-- # Sharpe Ratio Over Time -->
-<!-- Need to use a log axis because Hoppity and Bubbles' Sharpe ratios are so high! -->
-<!-- ```{r echo=FALSE} -->
-<!-- sharpes_over_time -->
-<!-- ``` -->
+# Top Sharpe Ratios Over Time
+
+```{r echo=FALSE}
+shiny::fluidRow(
+  sharpes_over_time,
+  class = "sharpes-over-time"
+)
+```
+Need to use a log axis because Hoppity and Bubbles' Sharpe ratios are so high!
 
 # Full Ranking
 ```{r echo=FALSE}
