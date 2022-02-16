@@ -227,7 +227,7 @@ sharpes_over_time <- sharpes %>%
 
 ```{r echo=FALSE}
 shiny::tagList(
-    shiny::fluidRow(
+  shiny::fluidRow(
     shiny::tags$p(
       shiny::tags$span(
         "Last Updated: ", 
@@ -315,9 +315,15 @@ shiny::tagList(
 # Top Sharpe Ratios Over Time
 
 ```{r echo=FALSE}
-shiny::fluidRow(
-  sharpes_over_time,
-  class = "sharpes-over-time"
+shiny::tagList(
+  shiny::fluidRow(
+    shiny::p("Mouse over the figure below for trader-level data."),
+    style = "text-align:center;"
+  ),
+  shiny::fluidRow(
+    sharpes_over_time,
+    class = "sharpes-over-time"
+  )
 )
 ```
 
