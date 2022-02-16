@@ -3,32 +3,11 @@ output: github_document
 always_allow_html: yes
 ---
 
-We have an exciting trading competition underway thanks to our amazing sponsors!
-If you're here, you probably want to head over to the
+<p style = "font-size:20px;">We have an exciting trading competition underway
+thanks to our amazing sponsors! If you're here, you probably want to head over
+to the
 [scoreboard](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html)
-to check the latest standings!
-
-# Duke FINTECH Trading Competition 2022
-Registration for the 2022 Duke FINTECH Trading Competition has now closed. We
-are excited to welcome over 170 registrants from 40 colleges and universities
-around the world!
-
-At this time, all participants have received welcome materials in their emails.
-They have submitted their forms to create paper trader accounts at [Interactive
-Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE).
-Because each paper account connects to live data feeds from global market
-exchanges, bringing one online is a complex process that can take several days.
-
-Students can track their overall registration status on the
-[Registry](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html)
-page, which is updated frequently.
-
-When the participating accounts are ready (anticipating **Tuesday, 25 Jan
-2022**), the start of the competition will be announced and scoring will begin.
-
-After a week or so of trading data is gathered from the participants, this site
-will be updated with the latest standings and analytics on the students'
-performance.
+to check the latest standings!</p>
 
 # ABOUT
 The Duke FINTECH Trading Competition is a free competition hosted by the [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
