@@ -7,7 +7,7 @@ template:
 
 navbar:
   structure:
-    left:  [sign_up, announcements, intro, rules, scoreboard, refdata] # registry,
+    left:  [scoreboard, announcements, intro, rules, refdata] # registry,
     right: [twitter, github]
   components:
     scoreboard:
@@ -18,9 +18,13 @@ navbar:
       menu:
       - text: Spring 2022 Competition
         href: articles/announcement.html
-    sign_up:
-      text: Sign Up
-      href: articles/sign_up.html
+    intro:
+      text: Get started
+      menu:
+      - text: Sign Up
+        href: articles/sign_up.html
+      - text: Accessing Your Paper Trading Account
+        href: articles/fintech-trading-competition.html
     rules:
       text: Rules & Scoring
       menu:
@@ -30,12 +34,12 @@ navbar:
         href: articles/Sharpe Ratio Calculation.html
       - text: Rules
         href: articles/Rules.html
-    # registry:
-    #   text: Registry
-    #   href: articles/registry.html
     refdata:
       text: Reference Data
       href: articles/reference_data.html
+    # registry:
+    #   text: Registry
+    #   href: articles/registry.html
     github:
       icon: fa-github
       href: https://github.com/gothic-hedge-society/fintech.trading.competition

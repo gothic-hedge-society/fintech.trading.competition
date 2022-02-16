@@ -43,6 +43,9 @@ read_a_csv <- function(csv_name){
 }
 
 # ref_data #####################################################################
+
+
+
 ref_data <- Sys.getenv("APP_BASE_PATH") %>%
   file.path(
     ., "duke_fintech_trading_competition_2022",  "benchmark.csv",
@@ -60,14 +63,19 @@ ref_data <- Sys.getenv("APP_BASE_PATH") %>%
       by = "Date"
     )
   } %>%
-  dplyr::filter(.$Date >= competition_start_date) %>%
-  dplyr::mutate(
-    "SP500"    = round(.$SP500, 2),
-    "SHY"      = round(.$SP500, 2),
-    "BTC-USD"  = round(.$SP500, 2),
-    "3_mo_apy" = (1+.$`3_mo`/2)^2 - 1
+  dplyr::transmute(
+    "Date"        = Date,
+    "SP500"       = round(.$SP500, 2),
+    "SP500_rtn"   = c(NA, log(SP500[-1]/SP500[-length(SP500)])),
+    "SHY"         = round(.$SP500, 2),
+    "SHY_rtn"     = c(NA, log(SHY[-1]/SHY[-length(SHY)])),
+    "BTC-USD"     = round(.$SP500, 2),
+    "BTC-USD_rtn" = c(NA, log(`BTC-USD`[-1]/`BTC-USD`[-length(`BTC-USD`)])),
+    "3_mo"        = `3_mo`,
+    "3_mo_apy"    = (1+.$`3_mo`/2)^2 - 1,
+    "3_mo_td"     = `3_mo_apy`/252,
   ) %>%
-  tibble::add_column("3_mo_td"  = .$`3_mo_apy`/252)
+  dplyr::filter(.$Date >= competition_start_date)
 save_a_csv(ref_data)
 
 recode <- function(df_col, key){
@@ -324,32 +332,6 @@ last_updated <- Sys.getenv("APP_BASE_PATH") %>%
   } %>%
   as.list()
 
-# # rankings #####################################################################
-# tbl_rank <- function(tbl){
-#   for(tbl_dt in tbl$Date){
-#     tbl[which(tbl$Date == tbl_dt), -1] <- rank(
-#       dplyr::filter(tbl, Date == tbl_dt) %>%
-#         dplyr::select(-Date) %>%
-#         unlist() %>% {
-#           . * -1
-#         },
-#       ties.method = "first"
-#     ) %>%
-#       tibble::as_tibble_row(.name_repair = "minimal") %>% {
-#         Encoding(colnames(.)) <- "UTF-8"
-#         .
-#       }
-#   }
-#   tbl
-# }
-#
-# eod_account_value_rank             <- tbl_rank(eod_account_value)
-# eod_returns_rank                   <- tbl_rank(eod_returns)
-# eod_excess_returns_rank            <- tbl_rank(eod_excess_returns)
-# cumulative_eod_excess_returns_rank <- tbl_rank(eod_excess_returns)
-# cumulative_vol_rank                <- tbl_rank(eod_excess_returns)
-# sharpes_rank                       <- tbl_rank(eod_excess_returns)
-
 # save R data ##################################################################
 usethis::use_data(ref_data,                           overwrite = TRUE)
 usethis::use_data(eod_account_value,                  overwrite = TRUE)
@@ -360,11 +342,3 @@ usethis::use_data(cumulative_vol,                     overwrite = TRUE)
 usethis::use_data(sharpes,                            overwrite = TRUE)
 usethis::use_data(standings,                          overwrite = TRUE)
 usethis::use_data(last_updated,                       overwrite = TRUE)
-# usethis::use_data(eod_account_value_rank,             overwrite = TRUE)
-# usethis::use_data(eod_returns_rank,                   overwrite = TRUE)
-# usethis::use_data(eod_excess_returns_rank,            overwrite = TRUE)
-# usethis::use_data(cumulative_eod_excess_returns_rank, overwrite = TRUE)
-# usethis::use_data(cumulative_vol_rank,                overwrite = TRUE)
-# usethis::use_data(sharpes_rank,                       overwrite = TRUE)
-
-
