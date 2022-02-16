@@ -33,6 +33,8 @@ text-align: center;
 font-size: large;
 color: beige;
 text-align: center;
+padding-top:12px;
+padding-bottom:12px;
 }
 .fp-title, .ee-title {
 font-size: x-large;
@@ -225,7 +227,7 @@ sharpes_over_time <- sharpes %>%
 
 ```{r echo=FALSE}
 shiny::tagList(
-  shiny::fluidRow(
+    shiny::fluidRow(
     shiny::tags$p(
       shiny::tags$span(
         "Last Updated: ", 
@@ -239,11 +241,28 @@ shiny::tagList(
     )  
   ),
   shiny::fluidRow(
+    style = "display: flex; align-items: center; justify-content: center;",
+    shiny::column(
+      width = 4, 
+      shiny::a(shiny::img(src = "finvc_logo.png"), href = "https://finvc.co/")
+    ),
+    shiny::column(
+      width = 4, 
+      shiny::a(shiny::img(src = "horizen_logo.png"), href = "https://www.horizen.io/")
+    ),
+    shiny::column(
+      width = 4,
+      shiny::a(shiny::img(src = "mesh_logo.png"), href = "https://mesh.xyz/")
+    )
+  ),
+  shiny::fluidRow(
     shiny::tags$p(
       paste0(
         "Analysis of the 2022 Duke FINTECH Spring Trading Competition is ",
         "posted here. This section is frequently updated and expanded, so be",
-        " sure to check back often!"
+        " sure to check back often. Don't forget to check out our generous ",
+        "sponsors who made it all possible! Visit their websites by clicking ",
+        "on the logos above."
       ),
       class = "intro-text"
     )  
