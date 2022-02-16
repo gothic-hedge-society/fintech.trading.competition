@@ -212,15 +212,15 @@ shiny::tagList(
 )
 ```
 
-# Top Sharpe Ratios Over Time
+<!-- # Top Sharpe Ratios Over Time -->
 
-```{r echo=FALSE}
-shiny::fluidRow(
-  sharpes_over_time,
-  class = "sharpes-over-time"
-)
-```
-Need to use a log axis because Hoppity and Bubbles' Sharpe ratios are so high!
+<!-- ```{r echo=FALSE} -->
+<!-- shiny::fluidRow( -->
+<!--   sharpes_over_time, -->
+<!--   class = "sharpes-over-time" -->
+<!-- ) -->
+<!-- ``` -->
+<!-- Need to use a log axis because Hoppity and Bubbles' Sharpe ratios are so high! -->
 
 # Full Ranking
 ```{r echo=FALSE}
