@@ -74,7 +74,6 @@ border-style: solid;
 border-color: #FFD960;
 }
 
-
 .dygraph-legend {
 width: auto !important;
 min-width: 150px;
@@ -117,10 +116,6 @@ border-left: 2px solid #BABABA;
 padding-left:3px !important;
 }
 
-.sharpes-over-time {
-overflow-x:auto;
-}
-
 .dygraph-ylabel {
 color: greenyellow;
 }
@@ -160,8 +155,6 @@ standings_dt <- standings %>%
 
 n_traders <- 10
 
-
-
 sharpes_over_time <- sharpes %>%
   dplyr::select(
     sharpes[nrow(sharpes),] %>% 
@@ -200,9 +193,10 @@ sharpes_over_time <- sharpes %>%
   xts::as.xts() %>%
   dygraphs::dygraph(width = "100%") %>%
   dygraphs::dyOptions(
-    strokeWidth = 3,
-    drawPoints  = TRUE, 
-    pointSize   = 7
+    strokeWidth            = 3,
+    drawPoints             = TRUE, 
+    pointSize              = 7,
+    connectSeparatedPoints = TRUE
   ) %>%
   dygraphs::dyAxis(
     "y", 
@@ -321,11 +315,65 @@ shiny::tagList(
     style = "text-align:center;"
   ),
   shiny::fluidRow(
-    sharpes_over_time,
+    shiny::column(
+      width = 12,
+      sharpes_over_time
+    ),
     class = "sharpes-over-time"
   )
 )
 ```
+
+<!-- # Trader Correlations -->
+
+<!-- ```{r echo = FALSE} -->
+
+
+
+<!-- shiny::tagList( -->
+<!--   shiny::fluidRow( -->
+<!--     shiny::column( -->
+<!--       width = 4,♣ -->
+<!--       shiny::p( -->
+<!--         "Top Positive Correlation", -->
+<!--         class = "correl-section-heading" -->
+<!--       ), -->
+<!--       shiny::p( -->
+<!--         paste0( -->
+<!--           "These traders' returns are highly correlated -- when one does", -->
+<!--           " well, so does the other." -->
+<!--         ) -->
+<!--       ) -->
+<!--     ), -->
+<!--     shiny::column( -->
+<!--       width = 4, -->
+<!--       shiny::p( -->
+<!--         "Least Correlation", -->
+<!--         class = "correl-section-heading" -->
+<!--       ), -->
+<!--       shiny::p( -->
+<!--         paste0( -->
+<!--           "These traders' returns have little to do with each other, ", -->
+<!--           "probably because their strategies are quite different." -->
+<!--         ) -->
+<!--       ) -->
+<!--     ), -->
+<!--     shiny::column( -->
+<!--       width = 4, -->
+<!--       shiny::p( -->
+<!--         "Top Inverse Correlation", -->
+<!--         class = "correl-section-heading" -->
+<!--       ), -->
+<!--       shiny::p( -->
+<!--         paste0( -->
+<!--           "These traders' returns have a contrary relationship -- when one ", -->
+<!--           "does well, the other one does not." -->
+<!--         ) -->
+<!--       ) -->
+<!--     ) -->
+<!--   ) -->
+<!-- ) -->
+<!-- ``` -->
 
 # Full Ranking
 ```{r echo=FALSE}

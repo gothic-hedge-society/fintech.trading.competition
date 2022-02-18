@@ -43,9 +43,6 @@ read_a_csv <- function(csv_name){
 }
 
 # ref_data #####################################################################
-
-
-
 ref_data <- Sys.getenv("APP_BASE_PATH") %>%
   file.path(
     ., "duke_fintech_trading_competition_2022",  "benchmark.csv",
@@ -155,7 +152,11 @@ flex_statement_df <- Sys.getenv("APP_BASE_PATH") %>%
           } else {
             "active"
           }
-        }
+        },
+        "participating_S2022" = portfolio_value[[1]]$total %>%
+          head(7) %>% {
+            length(setdiff(., c(0, 1000000))) > 0
+          }
       )
     }
   ) %>%
@@ -181,7 +182,11 @@ account_value_df <- flex_statement_df %>%
   ) %>%
   dplyr::filter(!is.na(tradername)) %>%
   dplyr::filter( # remove extra tradernames
-    !(tradername %in% c("lnli", "UC_SteveLiu", "SS333", "SS3333"))
+    !(
+      tradername %in% c(
+        "lnli", "UC_SteveLiu", "SS333", "SS3333", "Maxislife_7"
+      )
+    )
   )
 save_a_csv(account_value_df)
 
@@ -229,7 +234,6 @@ eod_ex_returns_plus_1 <- eod_excess_returns %>%
   dplyr::mutate(
     dplyr::across(!Date, function(x){x + 1})
   )
-
 cumulative_eod_excess_returns <- eod_ex_returns_plus_1$Date %>%
   lapply(
     function(eod_date){
@@ -317,6 +321,19 @@ standings <- tibble::tibble(
   )
 save_a_csv(standings)
 
+# trader_correl ################################################################
+trader_correl <- eod_returns[9:nrow(eod_returns), "Date"] %>%
+  tibble::deframe() %>%
+  stats::setNames(.,.) %>%
+  lapply(
+    function(rtn_dt){
+      eod_returns %>%
+        dplyr::filter(Date <= rtn_dt) %>%
+        dplyr::select(-Date) %>%
+        cor()
+    }
+  )
+
 # last_updated #################################################################
 last_updated <- Sys.getenv("APP_BASE_PATH") %>%
   file.path("duke_fintech_trading_competition_2022", fsep = "\\") %>%
@@ -341,4 +358,5 @@ usethis::use_data(cumulative_eod_excess_returns,      overwrite = TRUE)
 usethis::use_data(cumulative_vol,                     overwrite = TRUE)
 usethis::use_data(sharpes,                            overwrite = TRUE)
 usethis::use_data(standings,                          overwrite = TRUE)
+usethis::use_data(trader_correl,                      overwrite = TRUE)
 usethis::use_data(last_updated,                       overwrite = TRUE)
