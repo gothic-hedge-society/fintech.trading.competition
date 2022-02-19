@@ -321,18 +321,23 @@ standings <- tibble::tibble(
   )
 save_a_csv(standings)
 
-# trader_correl ################################################################
-trader_correl <- eod_returns[9:nrow(eod_returns), "Date"] %>%
-  tibble::deframe() %>%
-  stats::setNames(.,.) %>%
-  lapply(
-    function(rtn_dt){
-      eod_returns %>%
-        dplyr::filter(Date <= rtn_dt) %>%
-        dplyr::select(-Date) %>%
-        cor()
-    }
-  )
+# trader_cov ################################################################
+# trader_cov <- eod_returns[9:nrow(eod_returns), "Date"] %>%
+#   tibble::deframe() %>%
+#   stats::setNames(.,.) %>%
+#   lapply(
+#     function(rtn_dt){
+#       rtn_dt <<- rtn_dt
+#       stop()
+#       eod_returns %>%
+#         dplyr::filter(Date <= rtn_dt) %>%
+#         dplyr::select(-Date) %>%
+#         cov() %>%
+#         as.dist() %>%
+#         cmdscale() %>%
+#
+#     }
+#   )
 
 # last_updated #################################################################
 last_updated <- Sys.getenv("APP_BASE_PATH") %>%
