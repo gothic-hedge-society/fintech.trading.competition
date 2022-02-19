@@ -81,7 +81,7 @@ go into too much detail about my strategy, but it involves a high probability of
 generating a consistent and small positive return every day. It’s possible that
 it fails somewhat catastrophically, though; we will see!*
 
-<p class = "basic-text">Hoppity provided the following:</p
+<p class = "basic-text">Hoppity provided the following:</p>
 *I am Richard, a senior at Harvard University studying Math and Statistics. I had
 some previous experience with quantitative trading, and will be working at a
 proprietary trading firm next year. I'm super excited for the competition since
