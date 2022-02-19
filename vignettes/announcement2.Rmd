@@ -1,0 +1,167 @@
+---
+title: "Update 19 Feb 2022"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Update 19 Feb 2022}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r, echo = FALSE}
+shiny::tagList(
+  shiny::fluidRow(
+    shiny::fluidRow(
+      shiny::column(width = 6, shiny::p("19 Feb 2022", class = "article-date"))
+      # ,
+      # shiny::column(
+      #   width = 6,
+      #   shiny::p(
+      #     shiny::a(
+      #       "Link to Official Announcement",
+      #       href="https://fintech.meng.duke.edu/news/duke-fintech-intercollegiate-trading-competition-kicks-spring-2022"
+      #     ),
+      #     class = "original-article-link"
+      #   ),
+      # )
+    ),
+    shiny::p(
+      "Duke FinTech Annual InterCollegiate\n\nTrading Competition",
+      class = "announcement-title"
+    )
+  ),
+  shiny::fluidRow(
+    shiny::p("Sponsored by:"),
+    class = "sponsored-by"
+  ),
+  shiny::fluidRow(
+    style = "display: flex; align-items: center; justify-content: center;",
+    shiny::column(
+      width = 4, 
+      shiny::a(shiny::img(src = "finvc_logo.png"), href = "https://finvc.co/")
+    ),
+    shiny::column(
+      width = 4, 
+      shiny::a(shiny::img(src = "horizen_logo.png"), href = "https://www.horizen.io/")
+    ),
+    shiny::column(
+      width = 4,
+      shiny::a(shiny::img(src = "mesh_logo.png"), href = "https://mesh.xyz/")
+    )
+  ),
+  shiny::fluidRow(
+    shiny::p(
+      paste0(
+        "There’s been an upset! The two frontrunners – Hoppity and Bubbles – have been battling it out for first place by running strategies that generate small but reliable daily returns with almost zero volatility. On 17 Feb, Bubble’s strategy took a downturn, placing him in 3rd place with a Sharpe ratio of 0.44, just behind Trader Raven, who now occupies 2nd place with a Sharpe of 0.56."  
+      ),
+      class = "subtitle"
+    )
+  )
+)
+```
+
+<p class = "basic-text"> Hoppity remains in the lead with a commanding Sharpe of
+ratio of 16.78. Bubbles, Hoppity and Trader Raven were asked to provide a few
+words about themselves and their strategies. Trader Raven could not be reached
+for comment.</p>
+
+<p class = "basic-text">Bubbles had this to say:</p>
+*My name is Tanner Hoke and I am a Computer Science major at Texas A&M
+University. I noticed that the trading competition is scored based on Sharpe
+ratio, and thought that if I could find a strategy to make the denominator
+(which is EoD volatility) close to zero, I might have a shot at winning. I won’t
+go into too much detail about my strategy, but it involves a high probability of
+generating a consistent and small positive return every day. It’s possible that
+it fails somewhat catastrophically, though; we will see!*
+
+<p class = "basic-text">Hoppity provided the following:</p
+*I am Richard, a senior at Harvard University studying Math and Statistics. I had
+some previous experience with quantitative trading, and will be working at a
+proprietary trading firm next year. I'm super excited for the competition since
+the scoring function is more interesting than traditional trading competitions!
+Since the goal of the competition is to maximize the Sharpe ratio, it is crucial
+to reduce my risk and variance as much as possible. I am running an automated
+trading strategy that aims to make a constant and positive returns every day.
+The automated strategy allows me to avoid most market risks that are unavoidable
+with "buy and hold" strategies, thus maximizing my Sharpe. I hope to keep this
+up for the rest of the competition. Computer code is prone to errors, and it
+seems like another competitor is right on my tail!*
+
+<p class = "basic-text">Will Bubbles recover and overtake the frontrunners for
+first place? Will Hoppity’s strategy continue as expected and keep him in the
+lead? Will Trader Raven continue to rake in cash while maintaining a very
+respectable Sharpe?</p>
+
+<p class = "basic-text">Check back to see how this competition plays out! This
+site is updated daily.</p>
+
+
+```{css, echo = FALSE}
+h1, .dont-show {
+display: none;
+}
+
+.announcement-title {
+text-align: center;
+font-size: 54px;
+margin-top: 30px;
+color: #FFD960;
+}
+
+.basic-text{
+padding-top:10px;
+padding-bottom:10px;
+}
+
+.basic-link, .basic-text, .quote{
+font-size:18px;
+}
+
+.school-name{
+color: Cornsilk;
+font-size:19px;
+}
+
+.subtitle{
+color:#bdd9d9;
+font-size:25px;
+font-style:italic;
+text-align:center;
+}
+
+.sponsored-by{
+font-size:25px;
+font-style:bold;
+text-align:center;
+}
+
+.article-date{
+padding-top:10px;
+text-align:left;
+font-weight:bold;
+color:#FCF7E5;
+}
+
+.original-article-link{
+padding-top:10px;
+text-align:right;
+}
+
+.quote {
+color:#FCF7E5;
+}
+
+.table-header {
+color:#FFD960;
+font-size:22px;
+}
+
+```
+
