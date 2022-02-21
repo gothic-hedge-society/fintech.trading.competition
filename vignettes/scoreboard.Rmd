@@ -123,103 +123,8 @@ color: greenyellow;
 ```
 
 ```{r echo=FALSE}
-standings_dt <- standings %>%
-  dplyr::select(-country) %>%
-  tibble::column_to_rownames("Rank") %>%
-  DT::datatable(
-    .,
-    extensions = c('Buttons', 'Responsive'),
-    options = list(
-      columnDefs   = list(
-        list(className = 'dt-center', targets = '_all')
-      ),
-      initComplete = DT::JS(
-        "
-      function(settings, json) {
-          $(this.api().table().header()).css({
-              'font-size' : '20px', 
-              'color' : 'greenyellow'
-          });
-      }
-      "
-      ),
-      paging      = FALSE,
-      dom         = 'Bft',
-      buttons     = c('csv', 'excel', 'copy'),
-      ordering    = FALSE,
-      deferRender = TRUE,
-      scrollY     = 200
-    )
-  ) %>%
-  DT::formatSignif('Sharpe', 5)
-
 n_traders <- 10
 
-sharpes_over_time <- sharpes %>%
-  dplyr::select(
-    sharpes[nrow(sharpes),] %>% 
-      unlist() %>%
-      sort(decreasing = TRUE) %>% 
-      head(n_traders + 1) %>%
-      names()
-  ) %>% 
-  {
-    
-    shrp <- .
-    
-    padding_row_1 <-  stats::setNames(
-      rep(NA_integer_, n_traders), 
-      colnames(.)[-1]
-    ) %>%
-      tibble::as_tibble_row() %>%
-      tibble::add_column("Date" = shrp$Date[1] - 1) %>%
-      dplyr::select(colnames(shrp))
-    
-    padding_row_2 <-  stats::setNames(
-      rep(NA_integer_, n_traders), 
-      colnames(.)[-1]
-    ) %>%
-      tibble::as_tibble_row() %>%
-      tibble::add_column("Date" = shrp$Date[nrow(shrp)] + 1) %>%
-      dplyr::select(colnames(shrp))
-    
-    padding_row_1 %>%
-      dplyr::bind_rows(shrp) %>%
-      dplyr::bind_rows(padding_row_2)
-    
-  } %>%
-  unique() %>%
-  tibble::column_to_rownames("Date") %>%
-  xts::as.xts() %>%
-  dygraphs::dygraph(width = "100%") %>%
-  dygraphs::dyOptions(
-    strokeWidth            = 3,
-    drawPoints             = TRUE, 
-    pointSize              = 7,
-    connectSeparatedPoints = TRUE
-  ) %>%
-  dygraphs::dyAxis(
-    "y", 
-    label             = "Sharpe Ratio",
-    logscale          = TRUE,
-    axisLabelFontSize = 16,
-    axisLabelColor    = "#FFD960",
-    axisLineWidth     = 3,
-    axisLineColor     = "#E89923",
-  ) %>%
-  dygraphs::dyAxis(
-    "x", 
-    logscale          = TRUE,
-    axisLabelFontSize = 16,
-    axisLabelColor    = "#FFD960",
-    axisLineWidth     = 3,
-    axisLineColor     = "#E89923"
-  ) %>%
-  dygraphs::dyLegend(show = "follow")
-
-```
-
-```{r echo=FALSE}
 shiny::tagList(
   shiny::fluidRow(
     shiny::tags$p(
@@ -309,19 +214,320 @@ shiny::tagList(
 # Top Sharpe Ratios Over Time
 
 ```{r echo=FALSE}
-shiny::tagList(
-  shiny::fluidRow(
-    shiny::p("Mouse over the figure below for trader-level data."),
-    style = "text-align:center;"
-  ),
-  shiny::fluidRow(
-    shiny::column(
-      width = 12,
-      sharpes_over_time
-    ),
-    class = "sharpes-over-time"
-  )
-)
+sharpes %>%
+  dplyr::select(
+    Date,
+    sharpes[nrow(sharpes),-1] %>% 
+      unlist() %>%
+      sort(decreasing = TRUE) %>% 
+      head(n_traders) %>%
+      names()
+  ) %>% {
+    
+    x <- .
+    
+    padding_row_1 <-  stats::setNames(
+      rep(NA_integer_, n_traders), 
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[1] - 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_2 <-  stats::setNames(
+      rep(NA_integer_, n_traders), 
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_1 %>%
+      dplyr::bind_rows(x) %>%
+      dplyr::bind_rows(padding_row_2)
+    
+  } %>%
+  unique() %>%
+  tibble::column_to_rownames("Date") %>%
+  xts::as.xts() %>%
+  dygraphs::dygraph(width = "100%") %>%
+  dygraphs::dyOptions(
+    strokeWidth            = 3,
+    drawPoints             = TRUE, 
+    pointSize              = 7,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dygraphs::dyAxis(
+    "y", 
+    label             = "Sharpe Ratio",
+    logscale          = TRUE,
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923",
+  ) %>%
+  dygraphs::dyAxis(
+    "x", 
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923"
+  ) %>%
+  dygraphs::dyLegend(show = "follow") %>% {
+    shiny::tagList(
+      shiny::fluidRow(
+        shiny::p("Mouse over the figure below for trader-level data."),
+        style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        shiny::column(width = 12, . )  
+      )
+    ) 
+  }
+```
+
+# Top Returning Portfolios Over Time
+
+```{r echo=FALSE}
+cumulative_eod_excess_returns %>%
+  dplyr::select(
+    Date,
+    cumulative_eod_excess_returns[nrow(cumulative_eod_excess_returns),-1] %>%
+      unlist() %>%
+      sort(decreasing = TRUE) %>%
+      head(n_traders) %>%
+      names()
+  ) %>% {
+    
+    x <- .
+    
+    padding_row_1 <-  stats::setNames(
+      rep(NA_integer_, n_traders),
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[1] - 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_2 <-  stats::setNames(
+      rep(NA_integer_, n_traders),
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_1 %>%
+      dplyr::bind_rows(x) %>%
+      dplyr::bind_rows(padding_row_2)
+    
+  } %>%
+  unique() %>%
+  tibble::column_to_rownames("Date") %>%
+  xts::as.xts() %>%
+  dygraphs::dygraph(width = "100%") %>%
+  dygraphs::dyOptions(
+    strokeWidth            = 3,
+    drawPoints             = TRUE,
+    pointSize              = 7,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dygraphs::dyAxis(
+    "y",
+    valueFormatter     = "function(v){return (v*100).toFixed(2) + '%'}",
+    axisLabelFormatter = "function(v){return (v*100).toFixed(2) + '%'}",
+    label              = "Cumulative EoD Excess Return (%/day)",
+    axisLabelFontSize  = 16,
+    axisLabelColor     = "#FFD960",
+    axisLineWidth      = 3,
+    axisLineColor      = "#E89923",
+  ) %>%
+  dygraphs::dyAxis(
+    "x",
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923"
+  ) %>%
+  dygraphs::dyLegend(show = "follow") %>% {
+    shiny::tagList(
+      shiny::fluidRow(
+        shiny::p("Mouse over the figure below for trader-level data."),
+        style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        shiny::column(width = 12, . )
+      )
+    )
+  }
+```
+
+# Lowest Vol Portfolios Over Time
+
+```{r echo=FALSE}
+cumulative_vol %>%
+  dplyr::select(
+    Date,
+    cumulative_vol[nrow(cumulative_vol),] %>%
+      unlist() %>%
+      sort() %>%
+      head(n_traders) %>%
+      names()
+  ) %>% {
+    
+    x <- .
+    
+    padding_row_1 <-  stats::setNames(
+      rep(NA_integer_, n_traders),
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[1] - 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_2 <-  stats::setNames(
+      rep(NA_integer_, n_traders),
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_1 %>%
+      dplyr::bind_rows(x) %>%
+      dplyr::bind_rows(padding_row_2)
+    
+  } %>%
+  unique() %>%
+  tibble::column_to_rownames("Date") %>%
+  xts::as.xts() %>%
+  dygraphs::dygraph(width = "100%") %>%
+  dygraphs::dyOptions(
+    strokeWidth            = 3,
+    drawPoints             = TRUE,
+    pointSize              = 7,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dygraphs::dyAxis(
+    "y",
+    valueFormatter     = "function(v){return (v*10000).toFixed(3) + '&#8241 '}",
+    axisLabelFormatter = "function(v){return (v*10000).toFixed(1) + '&#8241 '}",
+    label              = "Sample Standard Deviation of Daily Returns (vol)",
+    axisLabelFontSize  = 16,
+    axisLabelColor     = "#FFD960",
+    axisLineWidth      = 3,
+    axisLineColor      = "#E89923",
+  ) %>%
+  dygraphs::dyAxis(
+    "x",
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923"
+  ) %>%
+  dygraphs::dyLegend(show = "follow") %>% {
+    shiny::tagList(
+      shiny::fluidRow(
+        shiny::p("Mouse over the figure below for trader-level data."),
+        shiny::p(
+          shiny::span("\""),
+          shiny::span(shiny::HTML("&#8241"), style = "font-weight:bold;"),
+          shiny::span("\""),
+          shiny::span("is the "),
+          shiny::a(
+            "permyriad", 
+            href = "https://en.wikipedia.org/wiki/Basis_point#Permyriad"
+          ),
+          shiny::span(
+            "symbol, used here for convenience. One permyriad = 1 100th of a ", 
+            "percent; i.e., 0.02% == 0.02"
+          ),
+          shiny::HTML("&#8241"),
+          shiny::span(".")
+        ),
+        style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        shiny::column(width = 12, . )
+      )
+    )
+  }
+```
+
+# Top Portfolio Values Over Time
+
+```{r echo=FALSE}
+eod_account_value %>%
+  dplyr::select(
+    Date,
+    eod_account_value[nrow(eod_account_value),-1] %>%
+      unlist() %>%
+      sort(decreasing = TRUE) %>%
+      head(n_traders) %>%
+      names()
+  ) %>% {
+    
+    x <- .
+    
+    padding_row_1 <-  stats::setNames(
+      rep(NA_integer_, n_traders),
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[1] - 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_2 <-  stats::setNames(
+      rep(NA_integer_, n_traders),
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_1 %>%
+      dplyr::bind_rows(x) %>%
+      dplyr::bind_rows(padding_row_2)
+    
+  } %>%
+  unique() %>%
+  tibble::column_to_rownames("Date") %>%
+  xts::as.xts() %>%
+  dygraphs::dygraph(width = "100%") %>%
+  dygraphs::dyOptions(
+    strokeWidth            = 3,
+    drawPoints             = TRUE,
+    pointSize              = 7,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dygraphs::dyAxis(
+    "y",
+    valueFormatter     = "function(v){return '$' + (v/1000000).toFixed(2)}",
+    axisLabelFormatter = "function(v){return '$' + (v/1000000).toFixed(2)}",
+    label              = "Portfolio Value ($MM)",
+    axisLabelFontSize  = 16,
+    axisLabelColor     = "#FFD960",
+    axisLineWidth      = 3,
+    axisLineColor      = "#E89923",
+  ) %>%
+  dygraphs::dyAxis(
+    "x",
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923"
+  ) %>%
+  dygraphs::dyLegend(show = "follow") %>% {
+    shiny::tagList(
+      shiny::fluidRow(
+        shiny::p("Mouse over the figure below for trader-level data."),
+        style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        shiny::column(width = 12, . )
+      )
+    )
+  }
 ```
 
 <!-- # Trader Correlations -->
@@ -377,5 +583,33 @@ shiny::tagList(
 
 # Full Ranking
 ```{r echo=FALSE}
-standings_dt
+standings %>%
+  dplyr::select(-country) %>%
+  tibble::column_to_rownames("Rank") %>%
+  DT::datatable(
+    .,
+    extensions = c('Buttons', 'Responsive'),
+    options = list(
+      columnDefs   = list(
+        list(className = 'dt-center', targets = '_all')
+      ),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'font-size' : '20px', 
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      paging      = FALSE,
+      dom         = 'Bft',
+      buttons     = c('csv', 'excel', 'copy'),
+      ordering    = FALSE,
+      deferRender = TRUE,
+      scrollY     = 200
+    )
+  ) %>%
+  DT::formatSignif('Sharpe', 5)
 ```
