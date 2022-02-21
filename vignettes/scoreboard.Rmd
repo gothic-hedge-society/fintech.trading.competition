@@ -502,7 +502,7 @@ eod_account_value %>%
   ) %>%
   dygraphs::dyAxis(
     "y",
-    valueFormatter     = "function(v){return '$' + (v/1000000).toFixed(2)}",
+    valueFormatter     = "function(v){return '$' + (v/1000000).toFixed(3)}",
     axisLabelFormatter = "function(v){return '$' + (v/1000000).toFixed(2)}",
     label              = "Portfolio Value ($MM)",
     axisLabelFontSize  = 16,
