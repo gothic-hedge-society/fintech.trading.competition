@@ -195,7 +195,8 @@ eod_account_value <- account_value_df$portfolio_value %>%
   lapply(
     function(x){x[,c("Date", "total")]}
   ) %>%
-  purrr::reduce(dplyr::inner_join, by = "Date") %>% {
+  purrr::reduce(dplyr::inner_join, by = "Date")  %>%
+  dplyr::filter(Date %in% ref_data$Date) %>% {
     colnames(.) <- c("Date", account_value_df$tradername)
     . <- tibble::as_tibble(., .name_repair = "minimal")
     Encoding(colnames(.)) <- "UTF-8"
@@ -311,8 +312,26 @@ standings <- tibble::tibble(
   "tradername" = colnames(sharpes)[-1],
   "Sharpe"     = as.numeric(sharpes[nrow(sharpes),-1])
 ) %>%
+  dplyr::inner_join(
+    .,
+    tibble::tibble(
+      "tradername" = colnames(cumulative_eod_excess_returns)[-1],
+      "return"     = as.numeric(
+        cumulative_eod_excess_returns[nrow(cumulative_eod_excess_returns),-1]
+      )
+    ),
+    by = "tradername"
+  ) %>%
+  dplyr::inner_join(
+    .,
+    tibble::tibble(
+      "tradername" = colnames(cumulative_vol)[-1],
+      "volatility" = as.numeric(cumulative_vol[nrow(cumulative_vol),-1])
+    ),
+    by = "tradername"
+  ) %>%
   dplyr::left_join(cleaned_wufoo_valid_registrants, by = "tradername") %>%
-  dplyr::select(tradername, school, country, Sharpe) %>%
+  dplyr::select(tradername, school, country, Sharpe, return, volatility) %>%
   dplyr::arrange(dplyr::desc(Sharpe)) %>%
   tibble::add_column(
     "Rank"       = 1:nrow(.),
@@ -363,5 +382,5 @@ usethis::use_data(cumulative_eod_excess_returns,      overwrite = TRUE)
 usethis::use_data(cumulative_vol,                     overwrite = TRUE)
 usethis::use_data(sharpes,                            overwrite = TRUE)
 usethis::use_data(standings,                          overwrite = TRUE)
-usethis::use_data(trader_correl,                      overwrite = TRUE)
+# usethis::use_data(trader_correl,                      overwrite = TRUE)
 usethis::use_data(last_updated,                       overwrite = TRUE)
