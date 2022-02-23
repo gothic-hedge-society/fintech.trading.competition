@@ -280,74 +280,211 @@ shiny::tagList(
           )
       )
     )
+  ),
+  shiny::fluidRow(
+    shiny::column(
+      width = 6,
+      shiny::p("Highest α, SP500", class = "ee-title"),
+      shiny::p(
+        "Y-intercept of linear model fitted to x=SP500 daily returns; ",
+        "y=trader's daily returns",
+        style = "text-align:center;"
+      ),
+      shiny::HTML(
+        standings %>%
+          dplyr::arrange(dplyr::desc(alpha_SP500)) %>%
+          head(hm_depth) %>%
+          dplyr::mutate(
+            "Rank"  = 1:hm_depth,
+            "alpha" = paste0(signif(alpha_SP500, 3)*100, "%")
+          ) %>%
+          dplyr::select(Rank, tradername, school, country, alpha) %>%
+          kableExtra::kbl(align="rccc") %>%
+          kableExtra::kable_minimal() %>%
+          kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+          kableExtra::row_spec(
+            0, color = "greenyellow"
+          ) %>%
+          kableExtra::column_spec(
+            1,
+            extra_css = "font-weight:bold; color:#FFD960;"
+          ) %>%
+          kableExtra::column_spec(
+            1:5,
+            extra_css = "vertical-align:middle;"
+          )
+      )
+    ),
+    shiny::column(
+      width = 6,
+      shiny::p("Lowest abs(β), SP500", class = "ee-title"),
+      shiny::p(
+        "Slope of linear model fitted to x=SP500 daily returns; ",
+        "y=trader's daily returns",
+        style = "text-align:center;"
+      ),
+      shiny::HTML(
+        standings %>%
+          dplyr::arrange(abs(beta_SP500)) %>%
+          head(hm_depth) %>%
+          dplyr::mutate(
+            "Rank" = 1:hm_depth,
+            "beta" = signif(beta_SP500, 3)
+          ) %>%
+          dplyr::select(Rank, tradername, school, country, beta) %>%
+          kableExtra::kbl(align="rccc") %>%
+          kableExtra::kable_minimal() %>%
+          kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+          kableExtra::row_spec(
+            0, color = "greenyellow"
+          ) %>%
+          kableExtra::column_spec(
+            1,
+            extra_css = "font-weight:bold; color:#FFD960;"
+          ) %>%
+          kableExtra::column_spec(
+            1:5,
+            extra_css = "vertical-align:middle;"
+          )
+      )
+    )
+  ),
+  shiny::fluidRow(
+    shiny::column(
+      width = 6,
+      shiny::p("Highest α, SHY", class = "ee-title"),
+      shiny::p(
+        "Y-intercept of linear model fitted to x=SHY daily returns; ",
+        "y=trader's daily returns",
+        style = "text-align:center;"
+      ),
+      shiny::HTML(
+        standings %>%
+          dplyr::arrange(dplyr::desc(alpha_SHY)) %>%
+          head(hm_depth) %>%
+          dplyr::mutate(
+            "Rank"  = 1:hm_depth,
+            "alpha" = paste0(signif(alpha_SHY, 3)*100, "%")
+          ) %>%
+          dplyr::select(Rank, tradername, school, country, alpha) %>%
+          kableExtra::kbl(align="rccc") %>%
+          kableExtra::kable_minimal() %>%
+          kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+          kableExtra::row_spec(
+            0, color = "greenyellow"
+          ) %>%
+          kableExtra::column_spec(
+            1,
+            extra_css = "font-weight:bold; color:#FFD960;"
+          ) %>%
+          kableExtra::column_spec(
+            1:5,
+            extra_css = "vertical-align:middle;"
+          )
+      )
+    ),
+    shiny::column(
+      width = 6,
+      shiny::p("Lowest abs(β), SHY", class = "ee-title"),
+      shiny::p(
+        "Slope of linear model fitted to x=SHY daily returns; ",
+        "y=trader's daily returns",
+        style = "text-align:center;"
+      ),
+      shiny::HTML(
+        standings %>%
+          dplyr::arrange(abs(beta_SHY)) %>%
+          head(hm_depth) %>%
+          dplyr::mutate(
+            "Rank" = 1:hm_depth,
+            "beta" = signif(beta_SHY, 3)
+          ) %>%
+          dplyr::select(Rank, tradername, school, country, beta) %>%
+          kableExtra::kbl(align="rccc") %>%
+          kableExtra::kable_minimal() %>%
+          kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+          kableExtra::row_spec(
+            0, color = "greenyellow"
+          ) %>%
+          kableExtra::column_spec(
+            1,
+            extra_css = "font-weight:bold; color:#FFD960;"
+          ) %>%
+          kableExtra::column_spec(
+            1:5,
+            extra_css = "vertical-align:middle;"
+          )
+      )
+    )
+  ),
+  shiny::fluidRow(
+    shiny::column(
+      width = 6,
+      shiny::p("Highest α, BTC", class = "ee-title"),
+      shiny::p(
+        "Y-intercept of linear model fitted to x=BTC-USD daily returns; ",
+        "y=trader's daily returns",
+        style = "text-align:center;"
+      ),
+      shiny::HTML(
+        standings %>%
+          dplyr::arrange(dplyr::desc(alpha_BTC)) %>%
+          head(hm_depth) %>%
+          dplyr::mutate(
+            "Rank"  = 1:hm_depth,
+            "alpha" = paste0(signif(alpha_BTC, 3)*100, "%")
+          ) %>%
+          dplyr::select(Rank, tradername, school, country, alpha) %>%
+          kableExtra::kbl(align="rccc") %>%
+          kableExtra::kable_minimal() %>%
+          kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+          kableExtra::row_spec(
+            0, color = "greenyellow"
+          ) %>%
+          kableExtra::column_spec(
+            1,
+            extra_css = "font-weight:bold; color:#FFD960;"
+          ) %>%
+          kableExtra::column_spec(
+            1:5,
+            extra_css = "vertical-align:middle;"
+          )
+      )
+    ),
+    shiny::column(
+      width = 6,
+      shiny::p("Lowest abs(β), BTC", class = "ee-title"),
+      shiny::p(
+        "Slope of linear model fitted to x=BTC-USD daily returns; ",
+        "y=trader's daily returns",
+        style = "text-align:center;"
+      ),
+      shiny::HTML(
+        standings %>%
+          dplyr::arrange(abs(beta_BTC)) %>%
+          head(hm_depth) %>%
+          dplyr::mutate(
+            "Rank" = 1:hm_depth,
+            "beta" = signif(beta_BTC, 3)
+          ) %>%
+          dplyr::select(Rank, tradername, school, country, beta) %>%
+          kableExtra::kbl(align="rccc") %>%
+          kableExtra::kable_minimal() %>%
+          kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+          kableExtra::row_spec(
+            0, color = "greenyellow"
+          ) %>%
+          kableExtra::column_spec(
+            1,
+            extra_css = "font-weight:bold; color:#FFD960;"
+          ) %>%
+          kableExtra::column_spec(
+            1:5,
+            extra_css = "vertical-align:middle;"
+          )
+      )
+    )
   )
-  # ,
-  # shiny::fluidRow(
-  #   shiny::column(
-  #     width = 6,
-  #     shiny::p("Highest α, SP500", class = "ee-title"),
-  #     shiny::p(
-  #       "Y-intercept of linear model fitted to x = SP500 daily returns; ",
-  #       "y = trader's daily returns",
-  #       style = "text-align:center;"
-  #     ),
-  #     shiny::HTML(
-  #       standings %>%
-  #         dplyr::arrange(dplyr::desc(return)) %>%
-  #         head(hm_depth) %>%
-  #         dplyr::mutate(
-  #           "Rank"   = 1:hm_depth,
-  #           "return" = paste0(signif(return, 3)*100, "%")
-  #         ) %>%
-  #         dplyr::select(Rank, tradername, school, country, return) %>%
-  #         kableExtra::kbl(align="rccc") %>%
-  #         kableExtra::kable_minimal() %>%
-  #         kableExtra::row_spec(
-  #           0, color = "greenyellow"
-  #         ) %>%
-  #         kableExtra::column_spec(
-  #           1,
-  #           extra_css = "font-weight:bold; color:#FFD960;"
-  #         ) %>%
-  #         kableExtra::column_spec(
-  #           1:5,
-  #           extra_css = "vertical-align:middle;"
-  #         )
-  #     )
-  #   ),
-  #   shiny::column(
-  #     width = 6,
-  #     shiny::p("Lowest abs(β), SP500", class = "ee-title"),
-  #     shiny::p(
-  #       "Slope of linear model fitted to x = SP500 daily returns; ",
-  #       "y = trader's daily returns",
-  #       style = "text-align:center;"
-  #     ),
-  #     shiny::HTML(
-  #       standings %>%
-  #         dplyr::arrange(volatility) %>%
-  #         head(hm_depth) %>%
-  #         dplyr::mutate(
-  #           "Rank"       = 1:hm_depth,
-  #           "volatility" = paste0(signif(volatility, 3)*100, "%")
-  #         ) %>%
-  #         dplyr::select(Rank, tradername, school, country, volatility) %>%
-  #         kableExtra::kbl(align="rccc") %>%
-  #         kableExtra::kable_minimal() %>%
-  #         kableExtra::row_spec(
-  #           0, color = "greenyellow"
-  #         ) %>%
-  #         kableExtra::column_spec(
-  #           1,
-  #           extra_css = "font-weight:bold; color:#FFD960;"
-  #         ) %>%
-  #         kableExtra::column_spec(
-  #           1:5,
-  #           extra_css = "vertical-align:middle;"
-  #         )
-  #     )
-  #   )
-  # )
 )
 ```
 
