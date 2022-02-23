@@ -321,3 +321,201 @@ sharpes %>%
   ) %>%
   DT::formatSignif(colnames(sharpes)[-1], 5)
 ```
+
+# Alpha: SP500
+Y-intercept of linear model fitted to x = SP500 daily returns; y = trader's
+daily returns
+
+```{r echo=FALSE}
+alphas_SP500 %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(colnames(sharpes)[-1], 5)
+```
+
+# Alpha: SHY
+Y-intercept of linear model fitted to x = SHY daily returns; y = trader's
+daily returns
+
+```{r echo=FALSE}
+alphas_SHY %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(colnames(sharpes)[-1], 5)
+```
+
+# Alpha: BTC
+Y-intercept of linear model fitted to x = BTC daily returns; y = trader's
+daily returns
+
+```{r echo=FALSE}
+alphas_BTC %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(colnames(sharpes)[-1], 5)
+```
+
+# Beta: SP500
+Slope of linear model fitted to x = SP500 daily returns; y = trader's
+daily returns
+
+```{r echo=FALSE}
+betas_SP500 %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatSignif(colnames(betas_SP500)[-1], 5)
+```
+
+# Beta: SHY
+Slope of linear model fitted to x = SHY daily returns; y = trader's
+daily returns
+
+```{r echo=FALSE}
+betas_SHY %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatSignif(colnames(betas_SHY)[-1], 5)
+```
+
+# Beta: BTC
+Slope of linear model fitted to x = BTC daily returns; y = trader's
+daily returns
+
+```{r echo=FALSE}
+betas_BTC %>%
+  DT::datatable(
+    .,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatSignif(colnames(betas_BTC)[-1], 5)
+```

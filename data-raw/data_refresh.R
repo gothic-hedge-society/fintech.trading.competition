@@ -64,9 +64,9 @@ ref_data <- Sys.getenv("APP_BASE_PATH") %>%
     "Date"        = Date,
     "SP500"       = round(.$SP500, 2),
     "SP500_rtn"   = c(NA, log(SP500[-1]/SP500[-length(SP500)])),
-    "SHY"         = round(.$SP500, 2),
+    "SHY"         = round(.$SHY, 2),
     "SHY_rtn"     = c(NA, log(SHY[-1]/SHY[-length(SHY)])),
-    "BTC-USD"     = round(.$SP500, 2),
+    "BTC-USD"     = round(.$`BTC-USD`, 2),
     "BTC-USD_rtn" = c(NA, log(`BTC-USD`[-1]/`BTC-USD`[-length(`BTC-USD`)])),
     "3_mo"        = `3_mo`,
     "3_mo_apy"    = (1+.$`3_mo`/2)^2 - 1,
@@ -307,31 +307,97 @@ sharpes <- (
 }
 save_a_csv(sharpes)
 
+
+# alphas & betas ###############################################################
+ref_df <- ref_data %>%
+  dplyr::select(Date, SP500_rtn, SHY_rtn, `BTC-USD_rtn`) %>%
+  dplyr::inner_join(eod_returns, by = "Date")
+
+alphas_SP500 <- alphas_SHY <- alphas_BTC <- betas_SP500 <- betas_SHY <-
+  betas_BTC <- matrix(
+    NA_integer_,
+    nrow     = nrow(eod_returns) - 1,
+    ncol     = ncol(eod_returns) - 1,
+    dimnames = list(
+      as.character(eod_returns$Date[-1]),
+      colnames(eod_returns)[-1]
+    )
+  )
+
+for(eod_date in rownames(alphas_SP500)){
+  lil_ref_df <- ref_df %>%
+    dplyr::filter(Date <= eod_date)
+  for(trader in colnames(alphas_SP500)){
+    response <- tibble::deframe(lil_ref_df[trader])
+    lm_SP500 <- lm(response ~ lil_ref_df$SP500_rtn)
+    lm_SHY   <- lm(response ~ lil_ref_df$SHY_rtn)
+    lm_BTC   <- lm(response ~ lil_ref_df$`BTC-USD_rtn`)
+    i <- which(rownames(alphas_SP500) == eod_date)
+    j <- which(colnames(alphas_SP500) == trader)
+    alphas_SP500[i,j] <- lm_SP500$coefficients[1]
+    betas_SP500[i,j]  <- lm_SP500$coefficients[2]
+    alphas_SHY[i,j]   <- lm_SHY$coefficients[1]
+    betas_SHY[i,j]    <- lm_SHY$coefficients[2]
+    alphas_BTC[i,j]   <- lm_BTC$coefficients[1]
+    betas_BTC[i,j]    <- lm_BTC$coefficients[2]
+  }
+}
+
+tibblify <- function(df){
+  df %>%
+    tibble::as_tibble(
+      .name_repair = "minimal",
+      rownames = "Date"
+    ) %>% {
+      Encoding(colnames(.)) <- "UTF-8"
+      .
+    } %>%
+    dplyr::mutate(
+      "Date" = as.Date(Date)
+    )
+}
+
+alphas_SP500 <- tibblify(alphas_SP500)
+alphas_SHY   <- tibblify(alphas_SHY)
+alphas_BTC   <- tibblify(alphas_BTC)
+betas_SP500  <- tibblify(betas_SP500)
+betas_SHY    <- tibblify(betas_SHY)
+betas_BTC    <- tibblify(betas_BTC)
+
+save_a_csv(alphas_SP500)
+save_a_csv(alphas_SHY)
+save_a_csv(alphas_BTC)
+save_a_csv(betas_SP500)
+save_a_csv(betas_SHY)
+save_a_csv(betas_BTC)
+
 # standings ####################################################################
+add_standings <- function(df, new_df, col_name){
+  new_tbl <- tibble::tibble("tradername" = colnames(new_df)[-1])
+  new_tbl[,col_name] <- as.numeric(
+    new_df[which(new_df$Date == sharpes$Date[nrow(sharpes)]), -1]
+  )
+  dplyr::left_join(df, new_tbl, by = "tradername")
+}
 standings <- tibble::tibble(
   "tradername" = colnames(sharpes)[-1],
   "Sharpe"     = as.numeric(sharpes[nrow(sharpes),-1])
 ) %>%
-  dplyr::inner_join(
-    .,
-    tibble::tibble(
-      "tradername" = colnames(cumulative_eod_excess_returns)[-1],
-      "return"     = as.numeric(
-        cumulative_eod_excess_returns[nrow(cumulative_eod_excess_returns),-1]
-      )
+  add_standings(cumulative_eod_excess_returns, "return") %>%
+  add_standings(cumulative_vol, "volatility") %>%
+  add_standings(alphas_SP500, "alpha_SP500") %>%
+  add_standings(alphas_SHY, "alpha_SHY") %>%
+  add_standings(alphas_BTC, "alpha_BTC") %>%
+  add_standings(betas_SP500, "beta_SP500") %>%
+  add_standings(betas_SHY, "beta_SHY") %>%
+  add_standings(betas_BTC, "beta_BTC") %>%
+  dplyr::left_join(
+    dplyr::select(
+      cleaned_wufoo_valid_registrants, tradername, school, country
     ),
     by = "tradername"
   ) %>%
-  dplyr::inner_join(
-    .,
-    tibble::tibble(
-      "tradername" = colnames(cumulative_vol)[-1],
-      "volatility" = as.numeric(cumulative_vol[nrow(cumulative_vol),-1])
-    ),
-    by = "tradername"
-  ) %>%
-  dplyr::left_join(cleaned_wufoo_valid_registrants, by = "tradername") %>%
-  dplyr::select(tradername, school, country, Sharpe, return, volatility) %>%
+  dplyr::select(tradername, school, country, dplyr::everything()) %>%
   dplyr::arrange(dplyr::desc(Sharpe)) %>%
   tibble::add_column(
     "Rank"       = 1:nrow(.),
@@ -374,13 +440,19 @@ last_updated <- Sys.getenv("APP_BASE_PATH") %>%
   as.list()
 
 # save R data ##################################################################
-usethis::use_data(ref_data,                           overwrite = TRUE)
-usethis::use_data(eod_account_value,                  overwrite = TRUE)
-usethis::use_data(eod_returns,                        overwrite = TRUE)
-usethis::use_data(eod_excess_returns,                 overwrite = TRUE)
-usethis::use_data(cumulative_eod_excess_returns,      overwrite = TRUE)
-usethis::use_data(cumulative_vol,                     overwrite = TRUE)
-usethis::use_data(sharpes,                            overwrite = TRUE)
-usethis::use_data(standings,                          overwrite = TRUE)
+usethis::use_data(ref_data,                      overwrite = TRUE)
+usethis::use_data(eod_account_value,             overwrite = TRUE)
+usethis::use_data(eod_returns,                   overwrite = TRUE)
+usethis::use_data(eod_excess_returns,            overwrite = TRUE)
+usethis::use_data(cumulative_eod_excess_returns, overwrite = TRUE)
+usethis::use_data(cumulative_vol,                overwrite = TRUE)
+usethis::use_data(alphas_SP500,                  overwrite = TRUE)
+usethis::use_data(alphas_SHY,                    overwrite = TRUE)
+usethis::use_data(alphas_BTC,                    overwrite = TRUE)
+usethis::use_data(betas_SP500,                   overwrite = TRUE)
+usethis::use_data(betas_SHY,                     overwrite = TRUE)
+usethis::use_data(betas_BTC,                     overwrite = TRUE)
+usethis::use_data(sharpes,                       overwrite = TRUE)
+usethis::use_data(standings,                     overwrite = TRUE)
 # usethis::use_data(trader_correl,                      overwrite = TRUE)
-usethis::use_data(last_updated,                       overwrite = TRUE)
+usethis::use_data(last_updated,                  overwrite = TRUE)

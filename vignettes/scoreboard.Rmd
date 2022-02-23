@@ -280,9 +280,74 @@ shiny::tagList(
           )
       )
     )
-    # ,
-    # class = "leaderboard"
   )
+  # ,
+  # shiny::fluidRow(
+  #   shiny::column(
+  #     width = 6,
+  #     shiny::p("Highest α, SP500", class = "ee-title"),
+  #     shiny::p(
+  #       "Y-intercept of linear model fitted to x = SP500 daily returns; ",
+  #       "y = trader's daily returns",
+  #       style = "text-align:center;"
+  #     ),
+  #     shiny::HTML(
+  #       standings %>%
+  #         dplyr::arrange(dplyr::desc(return)) %>%
+  #         head(hm_depth) %>%
+  #         dplyr::mutate(
+  #           "Rank"   = 1:hm_depth,
+  #           "return" = paste0(signif(return, 3)*100, "%")
+  #         ) %>%
+  #         dplyr::select(Rank, tradername, school, country, return) %>%
+  #         kableExtra::kbl(align="rccc") %>%
+  #         kableExtra::kable_minimal() %>%
+  #         kableExtra::row_spec(
+  #           0, color = "greenyellow"
+  #         ) %>%
+  #         kableExtra::column_spec(
+  #           1,
+  #           extra_css = "font-weight:bold; color:#FFD960;"
+  #         ) %>%
+  #         kableExtra::column_spec(
+  #           1:5,
+  #           extra_css = "vertical-align:middle;"
+  #         )
+  #     )
+  #   ),
+  #   shiny::column(
+  #     width = 6,
+  #     shiny::p("Lowest abs(β), SP500", class = "ee-title"),
+  #     shiny::p(
+  #       "Slope of linear model fitted to x = SP500 daily returns; ",
+  #       "y = trader's daily returns",
+  #       style = "text-align:center;"
+  #     ),
+  #     shiny::HTML(
+  #       standings %>%
+  #         dplyr::arrange(volatility) %>%
+  #         head(hm_depth) %>%
+  #         dplyr::mutate(
+  #           "Rank"       = 1:hm_depth,
+  #           "volatility" = paste0(signif(volatility, 3)*100, "%")
+  #         ) %>%
+  #         dplyr::select(Rank, tradername, school, country, volatility) %>%
+  #         kableExtra::kbl(align="rccc") %>%
+  #         kableExtra::kable_minimal() %>%
+  #         kableExtra::row_spec(
+  #           0, color = "greenyellow"
+  #         ) %>%
+  #         kableExtra::column_spec(
+  #           1,
+  #           extra_css = "font-weight:bold; color:#FFD960;"
+  #         ) %>%
+  #         kableExtra::column_spec(
+  #           1:5,
+  #           extra_css = "vertical-align:middle;"
+  #         )
+  #     )
+  #   )
+  # )
 )
 ```
 
@@ -686,5 +751,12 @@ standings %>%
       scrollY     = 200
     )
   ) %>%
-  DT::formatSignif('Sharpe', 5)
+  DT::formatSignif(
+    c('Sharpe', 'beta_SP500', 'beta_SHY', 'beta_BTC'), 
+    digits = 5
+  ) %>%
+  DT::formatPercentage(
+    c('return', 'volatility', 'alpha_SP500', 'alpha_SHY', 'alpha_BTC'),
+    digits = 5
+  ) 
 ```
