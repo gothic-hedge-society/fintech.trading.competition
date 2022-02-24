@@ -212,6 +212,81 @@ shiny::tagList(
 )
 ```
 
+# Top Sharpe Ratios Over Time
+
+```{r echo=FALSE}
+sharpes %>%
+  dplyr::select(
+    Date,
+    sharpes[nrow(sharpes),-1] %>% 
+      unlist() %>%
+      sort(decreasing = TRUE) %>% 
+      head(n_traders) %>%
+      names()
+  ) %>% {
+    
+    x <- .
+    
+    padding_row_1 <-  stats::setNames(
+      rep(NA_integer_, n_traders), 
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[1] - 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_2 <-  stats::setNames(
+      rep(NA_integer_, n_traders), 
+      colnames(x)[-1]
+    ) %>%
+      tibble::as_tibble_row() %>%
+      tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+      dplyr::select(colnames(x))
+    
+    padding_row_1 %>%
+      dplyr::bind_rows(x) %>%
+      dplyr::bind_rows(padding_row_2)
+    
+  } %>%
+  unique() %>%
+  tibble::column_to_rownames("Date") %>%
+  xts::as.xts() %>%
+  dygraphs::dygraph(width = "100%") %>%
+  dygraphs::dyOptions(
+    strokeWidth            = 3,
+    drawPoints             = TRUE, 
+    pointSize              = 7,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dygraphs::dyAxis(
+    "y", 
+    label             = "Sharpe Ratio",
+    logscale          = TRUE,
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923",
+  ) %>%
+  dygraphs::dyAxis(
+    "x", 
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923"
+  ) %>%
+  dygraphs::dyLegend(show = "follow") %>% {
+    shiny::tagList(
+      shiny::fluidRow(
+        shiny::p("Mouse over the figure below for trader-level data."),
+        style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        shiny::column(width = 12, . )  
+      )
+    ) 
+  }
+```
+
 # Honorable Mentions
 
 ```{r echo = FALSE}
@@ -486,81 +561,6 @@ shiny::tagList(
     )
   )
 )
-```
-
-# Top Sharpe Ratios Over Time
-
-```{r echo=FALSE}
-sharpes %>%
-  dplyr::select(
-    Date,
-    sharpes[nrow(sharpes),-1] %>% 
-      unlist() %>%
-      sort(decreasing = TRUE) %>% 
-      head(n_traders) %>%
-      names()
-  ) %>% {
-    
-    x <- .
-    
-    padding_row_1 <-  stats::setNames(
-      rep(NA_integer_, n_traders), 
-      colnames(x)[-1]
-    ) %>%
-      tibble::as_tibble_row() %>%
-      tibble::add_column("Date" = x$Date[1] - 1) %>%
-      dplyr::select(colnames(x))
-    
-    padding_row_2 <-  stats::setNames(
-      rep(NA_integer_, n_traders), 
-      colnames(x)[-1]
-    ) %>%
-      tibble::as_tibble_row() %>%
-      tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
-      dplyr::select(colnames(x))
-    
-    padding_row_1 %>%
-      dplyr::bind_rows(x) %>%
-      dplyr::bind_rows(padding_row_2)
-    
-  } %>%
-  unique() %>%
-  tibble::column_to_rownames("Date") %>%
-  xts::as.xts() %>%
-  dygraphs::dygraph(width = "100%") %>%
-  dygraphs::dyOptions(
-    strokeWidth            = 3,
-    drawPoints             = TRUE, 
-    pointSize              = 7,
-    connectSeparatedPoints = TRUE
-  ) %>%
-  dygraphs::dyAxis(
-    "y", 
-    label             = "Sharpe Ratio",
-    logscale          = TRUE,
-    axisLabelFontSize = 16,
-    axisLabelColor    = "#FFD960",
-    axisLineWidth     = 3,
-    axisLineColor     = "#E89923",
-  ) %>%
-  dygraphs::dyAxis(
-    "x", 
-    axisLabelFontSize = 16,
-    axisLabelColor    = "#FFD960",
-    axisLineWidth     = 3,
-    axisLineColor     = "#E89923"
-  ) %>%
-  dygraphs::dyLegend(show = "follow") %>% {
-    shiny::tagList(
-      shiny::fluidRow(
-        shiny::p("Mouse over the figure below for trader-level data."),
-        style = "text-align:center;"
-      ),
-      shiny::fluidRow(
-        shiny::column(width = 12, . )  
-      )
-    ) 
-  }
 ```
 
 # Top Returning Portfolios Over Time
