@@ -215,20 +215,26 @@ shiny::tagList(
 # Top Sharpe Ratios Over Time
 
 ```{r echo=FALSE}
+
+sharpe_traders <- sharpes[nrow(sharpes),-1] %>% 
+  unlist() %>%
+  sort(decreasing = TRUE) %>% 
+  head(n_traders) %>%
+  names() %>%
+  c(
+    # Always include these traders
+    "hoppity", "Trader Raven", "bubbles", "Kalamazee", "Samantha",
+    "Nonfortissimus", "wenjiez4", "jlau", "Lionelooooo", "z10g" 
+  ) %>%
+  unique()
+
 sharpes %>%
-  dplyr::select(
-    Date,
-    sharpes[nrow(sharpes),-1] %>% 
-      unlist() %>%
-      sort(decreasing = TRUE) %>% 
-      head(n_traders) %>%
-      names()
-  ) %>% {
+  dplyr::select(Date, dplyr::all_of(sharpe_traders)) %>% {
     
     x <- .
     
     padding_row_1 <-  stats::setNames(
-      rep(NA_integer_, n_traders), 
+      rep(NA_integer_, length(sharpe_traders)), 
       colnames(x)[-1]
     ) %>%
       tibble::as_tibble_row() %>%
@@ -236,7 +242,7 @@ sharpes %>%
       dplyr::select(colnames(x))
     
     padding_row_2 <-  stats::setNames(
-      rep(NA_integer_, n_traders), 
+      rep(NA_integer_, length(sharpe_traders)), 
       colnames(x)[-1]
     ) %>%
       tibble::as_tibble_row() %>%
@@ -250,8 +256,14 @@ sharpes %>%
   } %>%
   unique() %>%
   tibble::column_to_rownames("Date") %>%
-  xts::as.xts() %>%
-  dygraphs::dygraph(width = "100%") %>%
+  xts::as.xts(periodicity = "daily") %>%
+  dygraphs::dygraph(width = "100%") %>% 
+  dygraphs::dyEvent(
+    x     = "2022-02-24", 
+    label = paste0("RUS-UKR Conflict", paste0(rep(" ", 30), collapse = "")), 
+    color = "yellow",
+    strokePattern = "solid"
+  ) %>%
   dygraphs::dyOptions(
     strokeWidth            = 3,
     drawPoints             = TRUE, 
