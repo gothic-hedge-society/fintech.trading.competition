@@ -93,6 +93,15 @@ cleaned_wufoo_valid_registrants <- read_a_csv("wufoo_valid_registrants") %>%
   )
 save_a_csv(cleaned_wufoo_valid_registrants)
 
+# deleted_accounts #############################################################
+deleted_accounts <- Sys.getenv("APP_BASE_PATH") %>%
+  file.path(
+    "duke_fintech_trading_competition_2022", "deleted_accounts.txt", fsep = "\\"
+  ) %>%
+  readLines() %>%
+  strsplit(", ") %>%
+  unlist()
+
 # flex_statement_df ############################################################
 flex_statement_df <- Sys.getenv("APP_BASE_PATH") %>%
   file.path("..", "Downloads", fsep = "\\") %>%
@@ -144,15 +153,6 @@ flex_statement_df <- Sys.getenv("APP_BASE_PATH") %>%
             ) %>%
             dplyr::filter(Date >= competition_start_date)
         ),
-        "status" = portfolio_value[[1]]$total %>% {
-          if(all(. == 0)){
-            "limbo"
-          } else if (length(setdiff(., c(0, 1000000))) == 0){
-            "inactive"
-          } else {
-            "active"
-          }
-        },
         "participating_S2022" = portfolio_value[[1]]$total %>%
           head(7) %>% {
             length(setdiff(., c(0, 1000000))) > 0
@@ -160,7 +160,8 @@ flex_statement_df <- Sys.getenv("APP_BASE_PATH") %>%
       )
     }
   ) %>%
-  purrr::reduce(dplyr::bind_rows)
+  purrr::reduce(dplyr::bind_rows) %>%
+  dplyr::filter(!grepl("^DI", account_id))
 
 # Chanel messed up her email. Need to use a 'key' that the students pick
 #   instead of an email in the WuFoo form.
@@ -170,25 +171,58 @@ flex_statement_df$email_ibkr[
 flex_statement_df$email_ibkr[
   flex_statement_df$name_ibkr == "Sreebhavana Pasumarthi"
 ] <- "pasumars@email.sc.edu"
-# Save the Registry flex statement data
-save_a_csv(flex_statement_df)
+flex_statement_df$email_ibkr[
+  flex_statement_df$name_ibkr == "Yundi Zhang"
+] <- "yundi.z@wustl.edu"
+flex_statement_df$email_ibkr[
+  flex_statement_df$name_ibkr == "Cheng Li"
+] <- "cheng.li@wustl.edu"
 
-# account_value_df #############################################################
-account_value_df <- flex_statement_df %>%
-  dplyr::filter(status == "active") %>%
-  dplyr::left_join(
+# trader_key_private ###########################################################
+trader_key_private <- flex_statement_df %>%
+  dplyr::full_join(
     cleaned_wufoo_valid_registrants,
     by = c("email_ibkr" = "email")
   ) %>%
-  dplyr::filter(!is.na(tradername)) %>%
-  dplyr::filter( # remove extra tradernames
-    !(
-      tradername %in% c(
-        "lnli", "UC_SteveLiu", "SS333", "SS3333", "Maxislife_7"
-      )
-    )
+  dplyr::select(account_id, tradername, dplyr::everything()) %>%
+  dplyr::mutate(
+    "undergrad" = graduate_dept %>%
+      vapply(function(x){is.na(x)}, logical(1)),
+    "status" = purrr::pmap_chr(
+      list(portfolio_value, account_id, DateCreated),
+      function(pv, id, dc){
+        if(id %in% deleted_accounts) return("deleted")
+        if(is.na(id)) return("IBKR account not found")
+        if(all(pv$total == 0)) return("limbo")
+        if(
+          any(pv$total == 1000000) &&
+          length(setdiff(pv$total, c(0, 1000000))) == 0
+        ){
+          if(Sys.time() - dc > lubridate::month(1)){
+            return("pending deletion")
+          }
+          return("inactive")
+        }
+        "active"
+      }
+    ),
+  ) %>%
+  dplyr::select(account_id, tradername, status, dplyr::everything()) %>%
+  dplyr::arrange(tradername)
+save_a_csv(trader_key_private)
+
+# trader_key ###################################################################
+trader_key <-  trader_key_private %>%
+  dplyr::select(
+    account_id, tradername, DateCreated, status, participating_S2022, country,
+    school, name_ibkr, first_name, last_name, graduation_year, undergrad,
+    undergrad_major, graduate_dept
   )
-save_a_csv(account_value_df)
+
+# account_value_df #############################################################
+account_value_df <- trader_key_private %>%
+  dplyr::filter(status == "active") %>%
+  dplyr::select(tradername, portfolio_value)
 
 # eod_account_value ############################################################
 eod_account_value <- account_value_df$portfolio_value %>%
@@ -441,6 +475,7 @@ last_updated <- Sys.getenv("APP_BASE_PATH") %>%
 
 # save R data ##################################################################
 usethis::use_data(ref_data,                      overwrite = TRUE)
+usethis::use_data(trader_key,                    overwrite = TRUE)
 usethis::use_data(eod_account_value,             overwrite = TRUE)
 usethis::use_data(eod_returns,                   overwrite = TRUE)
 usethis::use_data(eod_excess_returns,            overwrite = TRUE)
@@ -456,3 +491,7 @@ usethis::use_data(sharpes,                       overwrite = TRUE)
 usethis::use_data(standings,                     overwrite = TRUE)
 # usethis::use_data(trader_correl,                      overwrite = TRUE)
 usethis::use_data(last_updated,                  overwrite = TRUE)
+
+# traderpages ##################################################################
+# file.path(".", "inst", "traderpage.Rmd") %>%
+

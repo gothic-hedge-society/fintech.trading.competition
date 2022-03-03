@@ -3,30 +3,33 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+
 devtools::load_all('.')
+
+trader <- colnames(sharpes)[2]
+
+account_id <- trader_key$account_id[which(trader_key$tradername == trader)]
+country    <- trader_key$country[which(trader_key$tradername == trader)]
+school     <- trader_key$school[which(trader_key$tradername == trader)]
+program    <- if(
+  trader_key$undergrad[which(trader_key$tradername == trader)]
+){
+  paste0("Major: ", trader_key$undergrad[which(trader_key$tradername == trader)])
+  }
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 options(knitr.table.format = "html") 
+
 ```
 
-## R Markdown
+---
+title: `r `
+---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# `r trader`
+## `r trader_key$school[which(trader_key$tradername == trader)]`
+## `r trader_key$country[which(trader_key$tradername == trader)]`
+## `r trader_key$country[which(trader_key$tradername == trader)]`
