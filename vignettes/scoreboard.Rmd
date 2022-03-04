@@ -558,10 +558,10 @@ cumulative_eod_excess_returns %>%
     .[nrow(.),-1] %>%
       unlist() %>% {
         .[
-          setdiff(
+          intersect(
             names(.),
-            trader_key$tradername[which(!trader_key$participating_S2022)]
-          ) 
+            trader_key$tradername[which(trader_key$participating_S2022)]
+          )
         ]
       } %>%
       sort(decreasing = TRUE) %>%
@@ -644,11 +644,19 @@ cumulative_eod_excess_returns %>%
 cumulative_vol %>%
   dplyr::select(
     Date,
-    cumulative_vol[nrow(cumulative_vol),] %>%
-      unlist() %>%
+    .[nrow(.),-1] %>%
+      unlist() %>%  {
+        .[
+          intersect(
+            names(.),
+            trader_key$tradername[which(trader_key$participating_S2022)]
+          )  
+        ]
+      } %>%
       sort() %>%
       head(n_traders) %>%
-      names()
+      names() %>%
+      unique()
   ) %>% {
     
     x <- .
@@ -738,6 +746,22 @@ cumulative_vol %>%
 
 ```{r echo=FALSE}
 eod_account_value %>%
+  dplyr::select(
+    Date,
+    .[nrow(.),-1] %>%
+      unlist() %>%  {
+        .[
+          intersect(
+            names(.),
+            trader_key$tradername[which(trader_key$participating_S2022)]
+          )  
+        ]
+      } %>%
+      sort(decreasing = TRUE) %>%
+      head(n_traders) %>%
+      names() %>%
+      unique()
+  ) %>%
   dplyr::select(
     Date,
     eod_account_value[nrow(eod_account_value),-1] %>%
@@ -869,6 +893,9 @@ eod_account_value %>%
 # Full Ranking
 ```{r echo=FALSE}
 standings %>%
+  dplyr::filter(tradername %in% trader_key$tradername[
+    which(trader_key$participating_S2022)]
+  ) %>%
   dplyr::select(-country) %>%
   tibble::column_to_rownames("Rank") %>%
   DT::datatable(
