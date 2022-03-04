@@ -69,6 +69,8 @@ shiny::tagList(
 )
 ```
 
+<img src="rankings04Mar.png" alt="rankings">
+
 <p class = "basic-text"> Trader Raven suffered major losses initially, yielding 
 2nd place to Bubbles, who continues to work a dependable low vol/low return 
 strategy. Despite the setback, Trader Raven continues to post impressive returns
