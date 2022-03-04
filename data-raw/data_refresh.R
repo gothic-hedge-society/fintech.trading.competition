@@ -437,6 +437,9 @@ standings <- tibble::tibble(
     "Rank"       = 1:nrow(.),
     .before      = TRUE,
     .name_repair = "minimal"
+  ) %>%
+  dplyr::filter(
+    tradername %in% trader_key$tradername[which(trader_key$participating_S2022)]
   )
 save_a_csv(standings)
 
