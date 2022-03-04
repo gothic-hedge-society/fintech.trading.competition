@@ -554,22 +554,20 @@ shiny::tagList(
 ```{r echo=FALSE}
 cumulative_eod_excess_returns %>%
   dplyr::select(
-    setdiff(
-      colnames(.),
-      trader_key$tradername[which(!trader_key$participating_S2022)]
-    )
-  ) %>%
-  dplyr::select(
     Date,
     .[nrow(.),-1] %>%
-      unlist() %>%
-      sort() %>%
+      unlist() %>% {
+        .[
+          setdiff(
+            names(.),
+            trader_key$tradername[which(!trader_key$participating_S2022)]
+          ) 
+        ]
+      } %>%
+      sort(decreasing = TRUE) %>%
       head(n_traders) %>%
       names() %>%
-      unique() %>%
-      setdiff(
-        trader_key$tradername[which(!trader_key$participating_S2022)]
-      )
+      unique()
   ) %>% {
     
     x <- .
