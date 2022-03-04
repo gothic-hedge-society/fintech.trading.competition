@@ -44,7 +44,7 @@ font-weight: bold;
 }
 .fp-tradername {
 padding-top: 16px;
-font-size: xx-large;
+font-size: xx-large;  
 color: greenyellow;
 text-align: center;
 font-weight: bold;
@@ -74,50 +74,14 @@ border-style: solid;
 border-color: #FFD960;
 }
 
-.dygraph-legend {
-width: auto !important;
-min-width: 150px;
-color: white;
-background-color: #BABABA !important;
-padding-left:5px;
-border-color:#BABABA;
-border-style:solid;
-border-width:thin;
-transition:0s 4s;
-z-index: 80 !important;
-box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
-border-radius: 3px;
-}
-
-.dygraph-legend:hover{
-transform: translate(-110%);
-transition: 0s;
-}
-
-.dygraph-legend > span {
-color: black;
-padding-left:5px;
-padding-right:2px;
-margin-left:-5px;
-background-color: white !important;
-display: block;
-}
-
-.dygraph-legend > span:first-child {
-margin-top:2px;
-}
-
-.dygraph-legend > span > span{
-display: inline;
-}
-
-.highlight {
-border-left: 2px solid #BABABA;
-padding-left:3px !important;
-}
-
 .dygraph-ylabel {
 color: greenyellow;
+}
+
+.dylegend-div {
+text-align: center;
+background-color: darkgrey;
+border-radius: 7px;
 }
 
 ```
@@ -147,7 +111,10 @@ shiny::tagList(
     ),
     shiny::column(
       width = 4, 
-      shiny::a(shiny::img(src = "horizen_logo.png"), href = "https://www.horizen.io/")
+      shiny::a(
+        shiny::img(src = "horizen_logo.png"), 
+        href = "https://www.horizen.io/"
+      )
     ),
     shiny::column(
       width = 4,
@@ -226,7 +193,10 @@ sharpe_traders <- sharpes[nrow(sharpes),-1] %>%
     "hoppity", "Trader Raven", "bubbles", "Kalamazee", "Samantha",
     "Nonfortissimus", "wenjiez4", "jlau", "Lionelooooo", "z10g" 
   ) %>%
-  unique()
+  intersect(
+    trader_key$tradername[which(trader_key$participating_S2022)]
+  ) %>%
+  unique() 
 
 sharpes %>%
   dplyr::select(Date, dplyr::all_of(sharpe_traders)) %>% {
@@ -286,11 +256,15 @@ sharpes %>%
     axisLineWidth     = 3,
     axisLineColor     = "#E89923"
   ) %>%
-  dygraphs::dyLegend(show = "follow") %>% {
+  dygraphs::dyLegend(labelsDiv = "top-sharpes-legend") %>% {
     shiny::tagList(
       shiny::fluidRow(
         shiny::p("Mouse over the figure below for trader-level data."),
         style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        id    = "top-sharpes-legend",
+        class = "dylegend-div"
       ),
       shiny::fluidRow(
         shiny::column(width = 12, . )  
@@ -580,12 +554,22 @@ shiny::tagList(
 ```{r echo=FALSE}
 cumulative_eod_excess_returns %>%
   dplyr::select(
+    setdiff(
+      colnames(.),
+      trader_key$tradername[which(!trader_key$participating_S2022)]
+    )
+  ) %>%
+  dplyr::select(
     Date,
-    cumulative_eod_excess_returns[nrow(cumulative_eod_excess_returns),-1] %>%
+    .[nrow(.),-1] %>%
       unlist() %>%
-      sort(decreasing = TRUE) %>%
+      sort() %>%
       head(n_traders) %>%
-      names()
+      names() %>%
+      unique() %>%
+      setdiff(
+        trader_key$tradername[which(!trader_key$participating_S2022)]
+      )
   ) %>% {
     
     x <- .
@@ -638,11 +622,16 @@ cumulative_eod_excess_returns %>%
     axisLineWidth     = 3,
     axisLineColor     = "#E89923"
   ) %>%
-  dygraphs::dyLegend(show = "follow") %>% {
+  dygraphs::dyLegend(labelsDiv = "top-gmrr-legend") %>% {
     shiny::tagList(
       shiny::fluidRow(
+        shiny::p("Cumulative EoD Excess Return (%/day)"),
         shiny::p("Mouse over the figure below for trader-level data."),
         style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        id    = "top-gmrr-legend",
+        class = "dylegend-div"
       ),
       shiny::fluidRow(
         shiny::column(width = 12, . )
@@ -714,7 +703,7 @@ cumulative_vol %>%
     axisLineWidth     = 3,
     axisLineColor     = "#E89923"
   ) %>%
-  dygraphs::dyLegend(show = "follow") %>% {
+  dygraphs::dyLegend(labelsDiv = "lowest-vol-legend") %>% {
     shiny::tagList(
       shiny::fluidRow(
         shiny::p("Mouse over the figure below for trader-level data."),
@@ -735,6 +724,10 @@ cumulative_vol %>%
           shiny::span(".")
         ),
         style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        id    = "lowest-vol-legend",
+        class = "dylegend-div"
       ),
       shiny::fluidRow(
         shiny::column(width = 12, . )
@@ -806,11 +799,16 @@ eod_account_value %>%
     axisLineWidth     = 3,
     axisLineColor     = "#E89923"
   ) %>%
-  dygraphs::dyLegend(show = "follow") %>% {
+  dygraphs::dyLegend(labelsDiv = "top-value-legend") %>% {
     shiny::tagList(
       shiny::fluidRow(
+        shiny::p("Reported in millions ($MM)"),
         shiny::p("Mouse over the figure below for trader-level data."),
         style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        id    = "top-value-legend",
+        class = "dylegend-div"
       ),
       shiny::fluidRow(
         shiny::column(width = 12, . )
