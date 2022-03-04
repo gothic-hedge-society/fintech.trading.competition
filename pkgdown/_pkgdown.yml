@@ -16,6 +16,8 @@ navbar:
     announcements:
       text: Announcements
       menu:
+      - text: Update 04 Mar 2022
+        href: articles/announcement3.html
       - text: Update 19 Feb 2022
         href: articles/announcement2.html
       - text: Spring 2022 Competition
