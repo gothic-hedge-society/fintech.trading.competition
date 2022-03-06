@@ -6,16 +6,20 @@ output: html_document
 
 devtools::load_all('.')
 
-trader <- colnames(sharpes)[2]
+# account_id <- account_id_hook
+account_id   <- "DU5051595"
+trader_key_i <- which(trader_key$account_id == account_id) 
 
-account_id <- trader_key$account_id[which(trader_key$tradername == trader)]
-country    <- trader_key$country[which(trader_key$tradername == trader)]
-school     <- trader_key$school[which(trader_key$tradername == trader)]
-program    <- if(
-  trader_key$undergrad[which(trader_key$tradername == trader)]
-){
-  paste0("Major: ", trader_key$undergrad[which(trader_key$tradername == trader)])
-  }
+trader    <- trader_key$tradername[trader_key_i]
+country   <- trader_key$country[trader_key_i]
+school    <- trader_key$school[trader_key_i]
+undergrad <- trader_key$undergrad[which(trader_key$tradername == trader)]
+program   <- trader_key_i %>%
+  trader_key[., c("undergrad_major", "graduate_dept")] %>% {
+    .[which(!is.na(.))]
+  } %>%
+  unlist(use.names = FALSE)
+
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -26,10 +30,10 @@ options(knitr.table.format = "html")
 ```
 
 ---
-title: `r `
+title: `r account_id`
 ---
 
 # `r trader`
-## `r trader_key$school[which(trader_key$tradername == trader)]`
-## `r trader_key$country[which(trader_key$tradername == trader)]`
-## `r trader_key$country[which(trader_key$tradername == trader)]`
+## `r country`
+## `r school`
+## `r program`
