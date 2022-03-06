@@ -186,9 +186,9 @@ trader_key_private <- flex_statement_df %>%
   ) %>%
   dplyr::select(account_id, tradername, dplyr::everything()) %>%
   dplyr::mutate(
-    "undergrad" = graduate_dept %>%
+    "undergrad"       = graduate_dept %>%
       vapply(function(x){is.na(x)}, logical(1)),
-    "status" = purrr::pmap_chr(
+    "status"          = purrr::pmap_chr(
       list(portfolio_value, account_id, DateCreated),
       function(pv, id, dc){
         if(id %in% deleted_accounts) return("deleted")
@@ -206,17 +206,30 @@ trader_key_private <- flex_statement_df %>%
         "active"
       }
     ),
+    "first_trade_dt" = portfolio_value %>%
+      vapply(
+        function(pv){
+          if(is.null(pv)) return(NA_character_)
+          trade_idx <- which(pv$total != 0 & pv$total != 1000000)
+          if(any(trade_idx)) return(as.character(pv$Date[min(trade_idx)]))
+          NA_character_
+        },
+        character(1)
+      ) %>%
+      as.Date()
   ) %>%
-  dplyr::select(account_id, tradername, status, dplyr::everything()) %>%
+  dplyr::select(
+    account_id, tradername, status, first_trade_dt, dplyr::everything()
+  ) %>%
   dplyr::arrange(tradername)
 save_a_csv(trader_key_private)
 
 # trader_key ###################################################################
 trader_key <-  trader_key_private %>%
   dplyr::select(
-    account_id, tradername, DateCreated, status, participating_S2022, country,
-    school, name_ibkr, first_name, last_name, graduation_year, undergrad,
-    undergrad_major, graduate_dept
+    account_id, tradername, DateCreated, first_trade_dt, status,
+    participating_S2022, country, school, name_ibkr, first_name, last_name,
+    graduation_year, undergrad, undergrad_major, graduate_dept
   )
 
 # account_value_df #############################################################
