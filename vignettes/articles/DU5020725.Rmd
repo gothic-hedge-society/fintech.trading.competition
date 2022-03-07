@@ -27,11 +27,15 @@ if(trader_key$undergrad[trader_key_i]){
 }
 program   <- trader_key_i %>%
   trader_key[., c("undergrad_major", "graduate_dept")] %>% {
-    .[which(!is.na(.))]
+    if(all(is.na(.))){
+      NA_character_
+    } else {
+      .[which(!is.na(.))][1] 
+    }
   } %>%
   unlist(use.names = FALSE)
 grad_yr   <- trader_key$graduation_year[trader_key_i]
-status    <- trader_key$graduation_year[trader_key_i]
+status    <- trader_key$status[trader_key_i]
 
 knitr::opts_chunk$set(
   collapse = TRUE,

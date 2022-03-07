@@ -559,26 +559,3 @@ Sys.getenv("APP_BASE_PATH") %>%
         file.remove()
     }
   )
-
-
-to_delete <-
-
-
-
-
-trader_key %>%
-  dplyr::filter(
-    any(status == c("IBKR account not found", "deleted")) | is.na(tradername)
-  ) %>%
-  dplyr::select(account_id) %>%
-  unlist(use.names = FALSE)
-
-
-
-
-
-
-
-
-file.path()
-))
