@@ -71,10 +71,11 @@ shiny::tagList(
 
 <img src="rankings04Mar.png" alt="rankings">
 
-<p class = "basic-text"> Trader Raven suffered major losses initially, yielding 
-2nd place to Bubbles, who continues to work a dependable low vol/low return 
-strategy. Despite the setback, Trader Raven continues to post impressive returns
-and is steadily climbing back up in the rankings.</p>
+<p class = "basic-text"> Trader Raven suffered major losses initially due to an
+order entry error, yielding 2nd place to Bubbles, who continues to work a
+dependable low vol/low return strategy. Despite the setback, Trader Raven is
+steadily climbing back up in the rankings, posting impressive returns as Russian
+political events stimulate commodities markets.</p>
 
 <p class = "basic-text"> Hoppity remains in first place, successfully executing
 on a very dependable low vol/low return strategy similar to Bubbles'.</p>
@@ -84,14 +85,11 @@ Ratio rankings:</p>
 
 <ol>
   <li><b>Nonfortissimus</b>, of UNC Chapel Hill, and a veteran of the 2021 Duke 
-  FINTECH Trading Competition</li>
+  FINTECH Trading Competition.</li>
   <li><b>Kalamazee</b> of Washington University in St Louis</li>
   <li><b>daddywarbucks</b> of Georgetown University
 </ol>
   
-
-<p class = "basic-text">We have reached out to each trader for commentary and 
-will update this site as responses come in!</p>
 
 
 ```{css, echo = FALSE}
