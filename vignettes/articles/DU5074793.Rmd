@@ -51,86 +51,100 @@ title: `r trader`
 shiny::fluidRow(
   shiny::column(
     width = 5,
-    shiny::HTML(
-      tibble::tibble(
-        "info"  = c(
-          "Account ID:", "Country:", "School:", "Academic Status:", "Program:", 
-          "Graduation Year:"
-        ),
-        "value" = c(account_id, country, school, acad_stat, program, grad_yr)
-      ) %>%
-        kableExtra::kable(col.names = NULL) %>%
-        kableExtra::kable_paper(full_width = F) %>%
-        kableExtra::kable_styling(bootstrap_options = "condensed") %>%
-        kableExtra::column_spec(
-          1, 
-          bold         = TRUE, 
-          color        = "greenyellow",
-          border_right = "1px solid; 
+    shiny::tagList(
+      shiny::p("Basic Info", class = "graph-title"),
+      shiny::HTML(
+        tibble::tibble(
+          "info"  = c(
+            "Account ID:", "Country:", "School:", "Academic Status:", 
+            "Program:", "Graduation Year:"
+          ),
+          "value" = c(account_id, country, school, acad_stat, program, grad_yr)
+        ) %>%
+          kableExtra::kable(col.names = NULL) %>%
+          kableExtra::kable_paper(full_width = F) %>%
+          kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+          kableExtra::column_spec(
+            1, 
+            bold         = TRUE, 
+            color        = "greenyellow",
+            border_right = "1px solid; 
             border-right-width: 1px;
             border-right-color: #FFD960;
             border-right-style: solid;"
-        )      
+          )      
+      )
     )
-  ) #,
-  # shiny::column(
-  #   width = 7,
-  #   if(status == "active"){
-  #     eod_account_value[,c("Date", trader)] %>% {
-  #       
-  #       x <- .
-  #       n_traders <- 1
-  #       
-  #       padding_row_1 <-  stats::setNames(
-  #         rep(NA_integer_, n_traders),
-  #         colnames(x)[-1]
-  #       ) %>%
-  #         tibble::as_tibble_row() %>%
-  #         tibble::add_column("Date" = x$Date[1] - 1) %>%
-  #         dplyr::select(colnames(x))
-  #       
-  #       padding_row_2 <-  stats::setNames(
-  #         rep(NA_integer_, n_traders),
-  #         colnames(x)[-1]
-  #       ) %>%
-  #         tibble::as_tibble_row() %>%
-  #         tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
-  #         dplyr::select(colnames(x))
-  #       
-  #       padding_row_1 %>%
-  #         dplyr::bind_rows(x) %>%
-  #         dplyr::bind_rows(padding_row_2)
-  #       
-  #     } %>%
-  #       unique() %>%
-  #       tibble::column_to_rownames("Date") %>%
-  #       xts::as.xts() %>%
-  #       dygraphs::dygraph(width = "100%") %>%
-  #       dygraphs::dyOptions(
-  #         strokeWidth            = 3,
-  #         drawPoints             = TRUE,
-  #         pointSize              = 7,
-  #         connectSeparatedPoints = TRUE
-  #       ) %>%
-  #       dygraphs::dyAxis(
-  #         "y",
-  #         valueFormatter     = "function(v){return '$' + (v/1000000).toFixed(3)}",
-  #         axisLabelFormatter = "function(v){return '$' + (v/1000000).toFixed(2)}",
-  #         label              = "Portfolio Value ($MM)",
-  #         axisLabelFontSize  = 16,
-  #         axisLabelColor     = "#FFD960",
-  #         axisLineWidth      = 3,
-  #         axisLineColor      = "#E89923",
-  #       ) %>%
-  #       dygraphs::dyAxis(
-  #         "x",
-  #         axisLabelFontSize = 16,
-  #         axisLabelColor    = "#FFD960",
-  #         axisLineWidth     = 3,
-  #         axisLineColor     = "#E89923"
-  #       ) 
-  #   }
-  # )
+  ),
+  shiny::column(
+    width = 7,
+    if(status == "active"){
+      shiny::tagList(
+        shiny::p("Account Value Over Time ($MM)", class = "graph-title"),
+        eod_account_value[,c("Date", trader)] %>% {
+          
+          x <- .
+          n_traders <- 1
+          
+          padding_row_1 <-  stats::setNames(
+            rep(NA_integer_, n_traders),
+            colnames(x)[-1]
+          ) %>%
+            tibble::as_tibble_row() %>%
+            tibble::add_column("Date" = x$Date[1] - 1) %>%
+            dplyr::select(colnames(x))
+          
+          padding_row_2 <-  stats::setNames(
+            rep(NA_integer_, n_traders),
+            colnames(x)[-1]
+          ) %>%
+            tibble::as_tibble_row() %>%
+            tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+            dplyr::select(colnames(x))
+          
+          padding_row_1 %>%
+            dplyr::bind_rows(x) %>%
+            dplyr::bind_rows(padding_row_2)
+          
+        } %>%
+          unique() %>%
+          tibble::column_to_rownames("Date") %>%
+          xts::as.xts() %>%
+          dygraphs::dygraph(width = "100%") %>%
+          dygraphs::dyOptions(
+            strokeWidth            = 3,
+            drawPoints             = TRUE,
+            pointSize              = 7,
+            connectSeparatedPoints = TRUE
+          ) %>%
+          dygraphs::dyAxis(
+            "y",
+            valueFormatter     = "function(v){return '$' + (v/1000000).toFixed(3)}",
+            axisLabelFormatter = "function(v){return '$' + (v/1000000).toFixed(2)}",
+            axisLabelFontSize  = 16,
+            axisLabelColor     = "#FFD960",
+            axisLineWidth      = 3,
+            axisLineColor      = "#E89923",
+          ) %>%
+          dygraphs::dyAxis(
+            "x",
+            axisLabelFontSize = 16,
+            axisLabelColor    = "#FFD960",
+            axisLineWidth     = 3,
+            axisLineColor     = "#E89923"
+          )
+      )
+    } else {
+      shiny::tagList(
+        shiny::p(
+          paste0(trader, " has not yet made a trade.")
+        ),
+        if(status == "pending deletion"){
+          shiny::p("this account is pending deletion")
+        }
+      )
+    }
+  )
 )
 ```
 
