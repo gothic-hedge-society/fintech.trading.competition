@@ -50,11 +50,12 @@ bothered to:
 2. Your end-of-day mark-to-market portfolio value on **Wednesday, 13 Apr 2022**
 will be included in the final scoring.
 
-## Rule 4: Pruning of Non-Participants
-1. Participants who have not submitted their IBKR Paper Trader forms by the
-**Paper Trader Cutoff Date** will be removed from the competition.
-2. The **Paper Trader Cutoff Date** will be announced by **The Architect** by
-email and on the Slack channel.
+## Rule 4: Non-Participants
+1. Participants who have not made a complete, round-trip trade by the 
+**Paper Trader Cutoff Date** are considered "**non-participating traders**".
+2. Non-participating traders are welcome to trade all they want. Their info and 
+traderpages will continue to be tracked and updated, but they won't be included 
+trading competition scoreboards and they are not eligible for prizes.
 
 ## Rule 5: Scoring
 1. Scoring will be based on Sharpe Ratio (highest wins). Please see the
@@ -68,12 +69,10 @@ following pages for more detailed information:
 2. Be sure that any orders you make on your trading account are what you really
 want -- use the Demo account for practice.
 
-## Rule 7: Trade Once per Month
+## Rule 7: Pruning of Old / Unwanted Accounts
 1. **You must make at least one trade per month**; otherwise, your account will
-be [pruned](sign_up.html#pruning-old-accounts) according to the Competition
-app's defunct account management process.
-2. '**first week**' means: the time period of five consecutive trading days
-starting on the start date (inclusive).
+be considered unwanted and will be deleted.
+2. If this happens, you're welcome to make a new account at any time.
 
 ## Rule 8: When in Doubt, Ask **The Architect**
 1. It is your responsibility to contact **The Architect** on Slack with any
