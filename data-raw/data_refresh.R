@@ -277,7 +277,7 @@ eod_excess_returns <- eod_returns %>%
   )
 save_a_csv(eod_excess_returns)
 
-# portfolio_return #############################################################
+# cumulative_eod_excess_returns ################################################
 eod_ex_returns_plus_1 <- eod_excess_returns %>%
   dplyr::mutate(
     dplyr::across(!Date, function(x){x + 1})
@@ -456,23 +456,30 @@ standings <- tibble::tibble(
   )
 save_a_csv(standings)
 
-# trader_cov ################################################################
-# trader_cov <- eod_returns[9:nrow(eod_returns), "Date"] %>%
-#   tibble::deframe() %>%
-#   stats::setNames(.,.) %>%
-#   lapply(
-#     function(rtn_dt){
-#       rtn_dt <<- rtn_dt
-#       stop()
-#       eod_returns %>%
-#         dplyr::filter(Date <= rtn_dt) %>%
-#         dplyr::select(-Date) %>%
-#         cov() %>%
-#         as.dist() %>%
-#         cmdscale() %>%
-#
-#     }
-#   )
+# trader_betas #################################################################
+trader_betas <- trader_key %>%
+  dplyr::filter(participating_S2022) %>%
+  dplyr::select(tradername) %>%
+  tibble::deframe() %>% {
+    matrix(
+      NA_real_,
+      nrow = length(.),
+      ncol = length(.),
+      dimnames = list(., .)
+    )
+  }
+for(j in 1:(ncol(trader_betas)-1)){
+  for(i in (j+1):nrow(trader_betas)){
+    trader_betas[i,j] <- lm(
+      tibble::deframe(
+        eod_returns[,which(colnames(eod_returns) == colnames(trader_betas)[j])]
+      ) ~ tibble::deframe(
+        eod_returns[,which(colnames(eod_returns) == rownames(trader_betas)[i])]
+      )
+    )$coefficients[2] %>%
+      as.numeric()
+  }
+}
 
 # last_updated #################################################################
 last_updated <- Sys.getenv("APP_BASE_PATH") %>%
@@ -505,7 +512,7 @@ usethis::use_data(betas_SHY,                     overwrite = TRUE)
 usethis::use_data(betas_BTC,                     overwrite = TRUE)
 usethis::use_data(sharpes,                       overwrite = TRUE)
 usethis::use_data(standings,                     overwrite = TRUE)
-# usethis::use_data(trader_correl,                      overwrite = TRUE)
+usethis::use_data(trader_betas,                  overwrite = TRUE)
 usethis::use_data(last_updated,                  overwrite = TRUE)
 
 # traderpages ##################################################################

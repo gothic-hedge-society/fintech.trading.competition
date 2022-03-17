@@ -48,7 +48,7 @@ bothered to:
 ## Rule 3: Competition End
 1. The Competition will end on **Wednesday, 13 Apr 2022 at 4pm EST**.
 2. Your end-of-day mark-to-market portfolio value on **Wednesday, 13 Apr 2022**
-will be included in the final scoring.
+**will** be included in the final scoring.
 
 ## Rule 4: Non-Participants
 1. Participants who have not made a complete, round-trip trade by the 
@@ -63,6 +63,11 @@ following pages for more detailed information:
     - [Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html) 
       basic idea
     - [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe%20Ratio%20Calculation.html)
+2. Your Sharpe ratio will be calculated using all data available from the start 
+date onwards; in other words, it might be best for you to start trading as soon 
+as you can so that you don't have a lot of 0% return days at the beginning of 
+the competition dragging down your overall return.
+
     
 ## Rule 6: No Account Resets 
 1. Account resets will not be allowed in this competition.
