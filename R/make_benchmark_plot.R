@@ -2,32 +2,17 @@
 #'
 #' @export
 #'
-make_benchmark_plot <- function(portfolio_returns, benchmark_asset){
+make_benchmark_plot <- function(portfolio_returns, benchmark_asset, x_lab){
 
-  # Get test data:
-  # save(
-  #   list = ls(all.names = TRUE),
-  #   file = file.path(
-  #     rprojroot::find_package_root_file(), "benchmark_plot.RData"
-  #   )
-  # )
-  # stop("mbp yolo")
-  # load(
-  #   file.path(
-  #     rprojroot::find_package_root_file(), "benchmark_plot.RData"
-  #   )
-  # )
-
-  benchmark_data <- zoo::merge.zoo(benchmark_asset, portfolio_returns) %>%
-    zoo::coredata() %>%
-    tibble::as_tibble() %>%
+  benchmark_data <- dplyr::inner_join(portfolio_returns, benchmark_asset) %>%
+    dplyr::select(-Date) %>%
     magrittr::set_colnames(c("x", "y"))
 
   lm_for_trendline <- lm(benchmark_data$y ~ benchmark_data$x)
 
   ggplot2::ggplot(data = benchmark_data) +
     ggplot2::geom_point(mapping = ggplot2::aes(x = x, y = y)) +
-    ggplot2::xlab("S&P 500 Daily Log Returns") +
+    ggplot2::xlab(x_lab) +
     ggplot2::ylab("Portfolio Daily Log Returns") +
     ggplot2::geom_abline(
       slope     = lm_for_trendline$coefficients[2],

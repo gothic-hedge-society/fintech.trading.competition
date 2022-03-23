@@ -3,6 +3,47 @@ output: html_document
 ---
 
 ```{css, echo = FALSE}
+.dygraph-legend {
+width: auto !important;
+min-width: 150px;
+color: white;
+background-color: #BABABA !important;
+padding-left:5px;
+border-color:#BABABA;
+border-style:solid;
+border-width:thin;
+transition:0s 4s;
+z-index: 80 !important;
+box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
+border-radius: 3px;
+}
+
+.dygraph-legend:hover{
+transform: translate(-110%);
+transition: 0s;
+}
+
+.dygraph-legend > span {
+color: black;
+padding-left:5px;
+padding-right:2px;
+margin-left:-5px;
+background-color: white !important;
+display: block;
+}
+
+.dygraph-legend > span:first-child {
+margin-top:2px;
+}
+
+.dygraph-legend > span > span{
+display: inline;
+}
+
+.highlight {
+border-left: 2px solid #BABABA;
+padding-left:3px !important;
+}
 h1 {
 text-align: center;
 display:none;
@@ -40,9 +81,9 @@ font-weight: bold;
 
 devtools::load_all('.')
 
-account_id <- "DU5036557"
+# account_id <- "DU5036557"
 # account_id <- "DU5052874"
-# account_id <- "DU5021420"
+account_id <- "DU5021420"
 # account_id <- "DU5053356"
 
 trader_key_i <- which(trader_key$account_id == account_id) 
@@ -315,7 +356,7 @@ shiny::tagList(
             unique() %>%
             tibble::column_to_rownames("Date") %>%
             xts::as.xts() %>%
-            dygraphs::dygraph() %>% 
+            dygraphs::dygraph(width = "100%") %>% 
             dygraphs::dyOptions(
               strokeWidth            = 3,
               drawPoints             = TRUE,
@@ -341,7 +382,8 @@ shiny::tagList(
               axisLabelColor    = "#FFD960",
               axisLineWidth     = 3,
               axisLineColor     = "#E89923"
-            )
+            ) %>%
+            dygraphs::dyLegend(show = "onmouseover")
         )
       } else {
         shiny::tagList(
@@ -361,7 +403,45 @@ shiny::tagList(
 )
 ```
 
+## Benchmark Performance
+
+```{r echo=FALSE}
+if(status != "IBKR account not found" & status != "pending deletion"){
+  
+  sp500_benchmark <- make_benchmark_plot(
+    eod_returns[,c(1,which(colnames(eod_returns) == trader))],
+    ref_data[,c("Date", "SP500_rtn")],
+    "S&P 500 Daily Log Returns"
+  )
+  
+  sp500_benchmark
+  
+  shiny::tabsetPanel(
+    type = "tabs",
+    shiny::tabPanel(
+      "SP500",
+      plotly::ggplotly(sp500_benchmark)
+    ),
+    shiny::tabPanel(
+      "BTC",
+      shiny::tagList(
+        shiny::p("wadup")
+      )
+    ),
+    shiny::tabPanel(
+      "SHY",
+      shiny::tagList(
+        shiny::p("wadup")
+      )
+    )
+  )
+  
+}
+```
+
 ## Trader Data
+
+Historical data and metrics for this trader.
 
 ```{r echo=FALSE}
 if(status != "IBKR account not found" & status != "pending deletion"){
