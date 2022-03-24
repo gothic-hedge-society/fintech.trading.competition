@@ -515,54 +515,54 @@ usethis::use_data(standings,                     overwrite = TRUE)
 usethis::use_data(trader_betas,                  overwrite = TRUE)
 usethis::use_data(last_updated,                  overwrite = TRUE)
 
-# # traderpages ##################################################################
-# traderpage_template <- file.path(".", "inst", "traderpage.Rmd") %>%
-#   readLines()
-# keepers             <- trader_key %>%
-#   dplyr::filter(
-#     status != "IBKR account not found" &
-#       status != "deleted" &
-#       !is.na(tradername)
-#   ) %>%
-#   dplyr::select(account_id) %>%
-#   unlist(use.names = FALSE) %>%
-#   unique()
-#
-# # Write all the traderpages for account IDs in keepers
-# keepers %>%
-#   purrr::walk(
-#     function(account_id){
-#       traderpage_template %>%
-#         gsub("account_id_hook", account_id, .) %>%
-#         writeLines(
-#           file.path(".", "vignettes", "articles", paste0(account_id, ".Rmd"))
-#         )
-#     }
-#   )
-#
-# # Delete any leftovers
-# Sys.getenv("APP_BASE_PATH") %>%
-#   file.path(
-#     ., "fintech.trading.competition", "vignettes", "articles",
-#     fsep = "\\"
-#   ) %>%
-#   list.files(
-#     path       = .,
-#     pattern    = "^DU([0-9]*)\\.Rmd$"
-#   ) %>%
-#   gsub(".Rmd$", "", .) %>%
-#   setdiff(keepers) %>%
-#   purrr::walk(
-#     function(to_delete){
-#       paste0(to_delete, ".Rmd") %>%
-#         file.path(
-#           Sys.getenv("APP_BASE_PATH"),
-#           "fintech.trading.competition",
-#           "vignettes",
-#           "articles",
-#           .,
-#           fsep = "\\"
-#         ) %>%
-#         file.remove()
-#     }
-#   )
+# traderpages ##################################################################
+traderpage_template <- file.path(".", "inst", "traderpage.Rmd") %>%
+  readLines()
+keepers             <- trader_key %>%
+  dplyr::filter(
+    status != "IBKR account not found" &
+      status != "deleted" &
+      !is.na(tradername)
+  ) %>%
+  dplyr::select(account_id) %>%
+  unlist(use.names = FALSE) %>%
+  unique()
+
+# Write all the traderpages for account IDs in keepers
+keepers %>%
+  purrr::walk(
+    function(account_id){
+      traderpage_template %>%
+        gsub("account_id_hook", account_id, .) %>%
+        writeLines(
+          file.path(".", "vignettes", "articles", paste0(account_id, ".Rmd"))
+        )
+    }
+  )
+
+# Delete any leftovers
+Sys.getenv("APP_BASE_PATH") %>%
+  file.path(
+    ., "fintech.trading.competition", "vignettes", "articles",
+    fsep = "\\"
+  ) %>%
+  list.files(
+    path       = .,
+    pattern    = "^DU([0-9]*)\\.Rmd$"
+  ) %>%
+  gsub(".Rmd$", "", .) %>%
+  setdiff(keepers) %>%
+  purrr::walk(
+    function(to_delete){
+      paste0(to_delete, ".Rmd") %>%
+        file.path(
+          Sys.getenv("APP_BASE_PATH"),
+          "fintech.trading.competition",
+          "vignettes",
+          "articles",
+          .,
+          fsep = "\\"
+        ) %>%
+        file.remove()
+    }
+  )

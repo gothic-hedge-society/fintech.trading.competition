@@ -81,9 +81,9 @@ font-weight: bold;
 
 devtools::load_all('.')
 
-# account_id <- "account_id_hook"
+account_id <- "account_id_hook"
 # account_id <- "DU5052874"
-account_id <- "DU5021420"
+# account_id <- "DU5021420"
 # account_id <- "DU5053356"
 
 trader_key_i <- which(trader_key$account_id == account_id) 
@@ -403,41 +403,39 @@ shiny::tagList(
 )
 ```
 
-## Benchmark Performance
+<!-- ## Benchmark Performance -->
 
-```{r echo=FALSE}
-if(status != "IBKR account not found" & status != "pending deletion"){
-  
-  sp500_benchmark <- make_benchmark_plot(
-    eod_returns[,c(1,which(colnames(eod_returns) == trader))],
-    ref_data[,c("Date", "SP500_rtn")],
-    "S&P 500 Daily Log Returns"
-  )
-  
-  sp500_benchmark
-  
-  shiny::tabsetPanel(
-    type = "tabs",
-    shiny::tabPanel(
-      "SP500",
-      plotly::ggplotly(sp500_benchmark)
-    ),
-    shiny::tabPanel(
-      "BTC",
-      shiny::tagList(
-        shiny::p("wadup")
-      )
-    ),
-    shiny::tabPanel(
-      "SHY",
-      shiny::tagList(
-        shiny::p("wadup")
-      )
-    )
-  )
-  
-}
-```
+<!-- ```{r echo=FALSE} -->
+<!-- if(status != "IBKR account not found" & status != "pending deletion"){ -->
+
+<!--   sp500_benchmark <- make_benchmark_plot( -->
+<!--     eod_returns[,c(1,which(colnames(eod_returns) == trader))], -->
+<!--     ref_data[,c("Date", "SP500_rtn")], -->
+<!--     "S&P 500 Daily Log Returns" -->
+<!--   ) -->
+
+<!--   shiny::tabsetPanel( -->
+<!--     type = "tabs", -->
+<!--     shiny::tabPanel( -->
+<!--       "SP500", -->
+<!--       plotly::ggplotly(sp500_benchmark) -->
+<!--     ), -->
+<!--     shiny::tabPanel( -->
+<!--       "BTC", -->
+<!--       shiny::tagList( -->
+<!--         shiny::p("wadup") -->
+<!--       ) -->
+<!--     ), -->
+<!--     shiny::tabPanel( -->
+<!--       "SHY", -->
+<!--       shiny::tagList( -->
+<!--         shiny::p("wadup") -->
+<!--       ) -->
+<!--     ) -->
+<!--   ) -->
+
+<!-- } -->
+<!-- ``` -->
 
 ## Trader Data
 
