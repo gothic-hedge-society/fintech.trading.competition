@@ -1,0 +1,479 @@
+---
+output: html_document
+---
+
+```{css, echo = FALSE}
+.dygraph-legend {
+width: auto !important;
+min-width: 150px;
+color: white;
+background-color: #BABABA !important;
+padding-left:5px;
+border-color:#BABABA;
+border-style:solid;
+border-width:thin;
+transition:0s 4s;
+z-index: 80 !important;
+box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
+border-radius: 3px;
+}
+
+.dygraph-legend:hover{
+transform: translate(-110%);
+transition: 0s;
+}
+
+.dygraph-legend > span {
+color: black;
+padding-left:5px;
+padding-right:2px;
+margin-left:-5px;
+background-color: white !important;
+display: block;
+}
+
+.dygraph-legend > span:first-child {
+margin-top:2px;
+}
+
+.dygraph-legend > span > span{
+display: inline;
+}
+
+.highlight {
+border-left: 2px solid #BABABA;
+padding-left:3px !important;
+}
+h1 {
+text-align: center;
+display:none;
+}
+.actual-title {
+display:block;
+}
+.info-title {
+font-size: large;
+color: beige;
+text-align: center;
+padding-top:12px;
+padding-bottom:12px;
+}
+.article-date {
+padding-top:10px;
+font-weight:bold;
+}
+.participation-status {
+padding-top:10px;
+font-weight:bold;
+}
+button.dt-button {
+font-size: 14px;
+color: greenyellow;
+border: 1px solid white;
+}
+.key-heading {
+font-size: 20px;
+font-weight: bold;
+}
+```
+
+```{r setup, include=FALSE}
+
+devtools::load_all('.')
+
+account_id <- "DU5053221"
+# account_id <- "DU5052874"
+# account_id <- "DU5021420"
+# account_id <- "DU5053356"
+
+trader_key_i <- which(trader_key$account_id == account_id) 
+
+trader    <- trader_key$tradername[trader_key_i]
+country   <- trader_key$country[trader_key_i]
+school    <- trader_key$school[trader_key_i]
+if(trader_key$undergrad[trader_key_i]){
+  acad_stat <- "undergraduate"
+} else {
+  acad_stat <- "graduate"
+}
+program   <- trader_key_i %>%
+  trader_key[., c("undergrad_major", "graduate_dept")] %>% {
+    if(all(is.na(.))){
+      NA_character_
+    } else {
+      .[which(!is.na(.))][1] 
+    }
+  } %>%
+  unlist(use.names = FALSE)
+grad_yr            <- trader_key$graduation_year[trader_key_i]
+status             <- trader_key$status[trader_key_i]
+first_trade_dt     <- as.character(trader_key$first_trade_dt[trader_key_i])
+participating_2022 <- trader_key$participating_S2022[trader_key_i]
+
+trader_df <- eod_account_value[
+  ,c(1,which(colnames(eod_account_value) == trader))
+] %>% {
+  colnames(.)[2] <- "Value"
+  .
+} %>%
+  dplyr::full_join(
+    eod_returns[,c(1,which(colnames(eod_returns) == trader))] %>% {
+      colnames(.)[2] <- "Daily Rtn"
+      .
+    }
+  ) %>%
+  dplyr::full_join(
+    cumulative_eod_excess_returns[
+      ,c(1,which(colnames(cumulative_eod_excess_returns) == trader))
+    ] %>% {
+      colnames(.)[2] <- "GMRR"
+      .
+    }
+  ) %>%
+  dplyr::full_join(
+    cumulative_vol[,c(1,which(colnames(cumulative_vol) == trader))] %>% {
+      colnames(.)[2] <- "Vol"
+      .
+    }
+  ) %>%
+  dplyr::full_join(
+    alphas_BTC[,c(1,which(colnames(alphas_BTC) == trader))] %>% {
+      colnames(.)[2] <- "Alpha_BTC"
+      .
+    }
+  ) %>%
+  dplyr::full_join(
+    betas_BTC[,c(1,which(colnames(betas_BTC) == trader))] %>% {
+      colnames(.)[2] <- "Beta_BTC"
+      .
+    }
+  ) %>%
+  dplyr::full_join(
+    alphas_SHY[,c(1,which(colnames(alphas_SHY) == trader))] %>% {
+      colnames(.)[2] <- "Alpha_SHY"
+      .
+    }
+  ) %>%
+  dplyr::full_join(
+    betas_SHY[,c(1,which(colnames(betas_SHY) == trader))] %>% {
+      colnames(.)[2] <- "Beta_SHY"
+      .
+    }
+  ) %>%
+  dplyr::full_join(
+    alphas_SP500[,c(1,which(colnames(alphas_SP500) == trader))] %>% {
+      colnames(.)[2] <- "Alpha_SP500"
+      .
+    }
+  ) %>%
+  dplyr::full_join(
+    betas_SP500[,c(1,which(colnames(betas_SP500) == trader))] %>% {
+      colnames(.)[2] <- "Beta_SP500"
+      .
+    }
+  )
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+options(knitr.table.format = "html") 
+```
+
+```{r echo = FALSE}
+shiny::fluidRow(
+  shiny::column(
+    width = 6, 
+    shiny::p(
+      paste0("Last updated: ", format(Sys.Date(), "%d %b %Y")), 
+      class = "article-date"
+    )
+  ),
+  shiny::column(
+    width = 6,
+    shiny::p(
+      paste0(
+        trader,
+        if(participating_2022){
+          paste0(
+            " is currently participating in the Spring 2022 Duke",
+            " InterCollegiate FINTECH Trading Competition." 
+          )
+        } else {
+          paste0(
+            " is not currently participating in an official competition." 
+          )
+        }
+      ),
+      class = "participation-status",
+      style = "text-align:right;"
+    )
+  )
+)
+```
+
+---
+title: `r account_id`
+---
+
+```{r echo=FALSE}
+shiny::tagList(
+  shiny::h1(trader, class = "actual-title"),
+  shiny::fluidRow(
+    shiny::column(
+      width = 5,
+      shiny::tagList(
+        shiny::p("Basic Info", class = "info-title"),
+        shiny::HTML(
+          tibble::tibble(
+            "info"  = c(
+              "Account ID:", "Country:", "School:", "Academic Status:", 
+              "Program:", "Graduation Year:"
+            ),
+            "value" = c(account_id, country, school, acad_stat, program, grad_yr)
+          ) %>%
+            kableExtra::kable(col.names = NULL) %>%
+            kableExtra::kable_paper(full_width = F) %>%
+            kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+            kableExtra::column_spec(
+              1, 
+              bold         = TRUE, 
+              color        = "greenyellow",
+              border_right = "1px solid; 
+            border-right-width: 1px;
+            border-right-color: #FFD960;
+            border-right-style: solid;"
+            )      
+        ),
+        if(status != "IBKR account not found" & status != "pending deletion"){
+          shiny::tagList(
+            shiny::p("Quick Stats", class = "info-title"),
+            shiny::HTML(
+              tibble::tibble(
+                "info"  = c(
+                  "First Trade", "Best Day:", "Worst Day:", "Highest AUM:",
+                  "Lowest AUM:"
+                ),
+                "value" = c(
+                  first_trade_dt,
+                  eod_returns[,trader] %>%
+                    tibble::deframe() %>%
+                    which.max() %>% {
+                      paste0(
+                        signif(tibble::deframe(eod_returns[.,trader])*100, 3), 
+                        "% on ", 
+                        as.character(eod_returns$Date[.])
+                      )
+                    },
+                  eod_returns[,trader] %>%
+                    tibble::deframe() %>%
+                    which.min() %>% {
+                      paste0(
+                        signif(tibble::deframe(eod_returns[.,trader])*100, 3), 
+                        "% on ", 
+                        as.character(eod_returns$Date[.])
+                      )
+                    },
+                  eod_account_value[,trader] %>%
+                    tibble::deframe() %>%
+                    which.max() %>% {
+                      paste0(
+                        "$", 
+                        formatC(
+                          as.numeric(eod_account_value[.,trader]), 
+                          format   = "f", 
+                          digits   = 2, 
+                          big.mark = ","
+                        ),
+                        " on ", 
+                        as.character(eod_account_value$Date[.])
+                      )
+                    },
+                  eod_account_value[,trader] %>%
+                    tibble::deframe() %>%
+                    which.min() %>% {
+                      paste0(
+                        "$", 
+                        formatC(
+                          as.numeric(eod_account_value[.,trader]), 
+                          format   = "f", 
+                          digits   = 2, 
+                          big.mark = ","
+                        ),
+                        " on ", 
+                        as.character(eod_account_value$Date[.])
+                      )
+                    }
+                )
+              ) %>%
+                kableExtra::kable(col.names = NULL) %>%
+                kableExtra::kable_paper(full_width = F) %>%
+                kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+                kableExtra::column_spec(
+                  1, 
+                  bold         = TRUE, 
+                  color        = "greenyellow",
+                  border_right = "1px solid; 
+                    border-right-width: 1px;
+                    border-right-color: #FFD960;
+                    border-right-style: solid;"
+                )      
+            )
+          )
+        }
+      )
+    ),
+    shiny::column(
+      width = 7,
+      if(status == "active"){
+        shiny::tagList(
+          shiny::p("Account Value Over Time ($MM)", class = "info-title"),
+          eod_account_value[,c("Date", trader)] %>% {
+            
+            x <- .
+            
+            padding_row_1 <- stats::setNames(NA_integer_, colnames(x)[-1]) %>%
+              tibble::as_tibble_row() %>%
+              tibble::add_column(
+                "Date" = x$Date[1] - 1, 
+                .name_repair = 'minimal'
+              ) %>%
+              dplyr::select(colnames(x))
+            
+            padding_row_2 <-  stats::setNames(NA_integer_, colnames(x)[-1]) %>%
+              tibble::as_tibble_row() %>%
+              tibble::add_column(
+                "Date" = x$Date[nrow(x)] + 1, 
+                .name_repair = 'minimal'
+              ) %>%
+              dplyr::select(colnames(x))
+            
+            padding_row_1 %>%
+              dplyr::bind_rows(x) %>%
+              dplyr::bind_rows(padding_row_2)
+            
+          } %>%
+            unique() %>%
+            tibble::column_to_rownames("Date") %>%
+            xts::as.xts() %>%
+            dygraphs::dygraph(width = "100%") %>% 
+            dygraphs::dyOptions(
+              strokeWidth            = 3,
+              drawPoints             = TRUE,
+              pointSize              = 7,
+              connectSeparatedPoints = TRUE
+            ) %>%
+            dygraphs::dyAxis(
+              "y",
+              valueFormatter     = "function(v){
+                return '$' + (v/1000000).toFixed(3)
+              }",
+              axisLabelFormatter = "function(v){
+                return '$' + (v/1000000).toFixed(2)
+              }",
+              axisLabelFontSize  = 16,
+              axisLabelColor     = "#FFD960",
+              axisLineWidth      = 3,
+              axisLineColor      = "#E89923",
+            ) %>%
+            dygraphs::dyAxis(
+              "x",
+              axisLabelFontSize = 14,
+              axisLabelColor    = "#FFD960",
+              axisLineWidth     = 3,
+              axisLineColor     = "#E89923"
+            ) %>%
+            dygraphs::dyLegend(show = "onmouseover")
+        )
+      } else {
+        shiny::tagList(
+          shiny::p(" ", class = "info-title"),
+          shiny::p(
+            paste0(trader, " has not yet made a trade.")
+          ),
+          if(status == "pending deletion"){
+            shiny::p(
+              "This account is considered unwanted and is marked for deletion."
+            )
+          }
+        )
+      }
+    )
+  )
+)
+```
+
+<!-- ## Benchmark Performance -->
+
+<!-- ```{r echo=FALSE} -->
+<!-- if(status != "IBKR account not found" & status != "pending deletion"){ -->
+
+<!--   sp500_benchmark <- make_benchmark_plot( -->
+<!--     eod_returns[,c(1,which(colnames(eod_returns) == trader))], -->
+<!--     ref_data[,c("Date", "SP500_rtn")], -->
+<!--     "S&P 500 Daily Log Returns" -->
+<!--   ) -->
+
+<!--   shiny::tabsetPanel( -->
+<!--     type = "tabs", -->
+<!--     shiny::tabPanel( -->
+<!--       "SP500", -->
+<!--       plotly::ggplotly(sp500_benchmark) -->
+<!--     ), -->
+<!--     shiny::tabPanel( -->
+<!--       "BTC", -->
+<!--       shiny::tagList( -->
+<!--         shiny::p("wadup") -->
+<!--       ) -->
+<!--     ), -->
+<!--     shiny::tabPanel( -->
+<!--       "SHY", -->
+<!--       shiny::tagList( -->
+<!--         shiny::p("wadup") -->
+<!--       ) -->
+<!--     ) -->
+<!--   ) -->
+
+<!-- } -->
+<!-- ``` -->
+
+## Trader Data
+
+Historical data and metrics for this trader.
+
+```{r echo=FALSE}
+if(status != "IBKR account not found" & status != "pending deletion"){
+  trader_df %>%
+    DT::datatable(
+      .,
+      extensions = c('Scroller', 'Buttons'),
+      rownames   = FALSE,
+      options = list(
+        columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+        initComplete = DT::JS(
+          "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+        ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+      )
+    ) %>%
+    DT::formatCurrency("Value") %>%
+    DT::formatPercentage(
+      c("Daily Rtn", "GMRR", "Vol", "Alpha_BTC", "Alpha_SHY", "Alpha_SP500"),
+      3
+    ) %>%
+    DT::formatSignif(c("Beta_BTC", "Beta_SHY", "Beta_SP500"), 3)
+}
+```
+

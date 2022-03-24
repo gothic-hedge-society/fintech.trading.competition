@@ -256,7 +256,8 @@ sharpes %>%
     axisLineWidth     = 3,
     axisLineColor     = "#E89923"
   ) %>%
-  dygraphs::dyLegend(labelsDiv = "top-sharpes-legend") %>% {
+  dygraphs::dyLegend(labelsDiv = "top-sharpes-legend") %>% 
+  dygraphs::dyRangeSelector(height = 50, strokeColor = "") %>% {
     shiny::tagList(
       shiny::fluidRow(
         shiny::p("Mouse over the figure below for trader-level data."),
