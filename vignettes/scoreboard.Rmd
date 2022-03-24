@@ -261,6 +261,7 @@ sharpes %>%
     shiny::tagList(
       shiny::fluidRow(
         shiny::p("Mouse over the figure below for trader-level data."),
+        shiny::p("Use the range selector to zoom in on a particular area."),
         style = "text-align:center;"
       ),
       shiny::fluidRow(
