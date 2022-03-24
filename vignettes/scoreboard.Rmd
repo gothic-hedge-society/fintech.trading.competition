@@ -237,7 +237,7 @@ sharpes %>%
   dygraphs::dyOptions(
     strokeWidth            = 3,
     drawPoints             = TRUE, 
-    pointSize              = 7,
+    pointSize              = 4,
     connectSeparatedPoints = TRUE
   ) %>%
   dygraphs::dyAxis(
@@ -761,14 +761,6 @@ eod_account_value %>%
       head(n_traders) %>%
       names() %>%
       unique()
-  ) %>%
-  dplyr::select(
-    Date,
-    eod_account_value[nrow(eod_account_value),-1] %>%
-      unlist() %>%
-      sort(decreasing = TRUE) %>%
-      head(n_traders) %>%
-      names()
   ) %>% {
     
     x <- .
