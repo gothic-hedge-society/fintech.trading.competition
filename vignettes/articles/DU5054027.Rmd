@@ -439,7 +439,7 @@ shiny::tagList(
 
 ## Trader Data
 
-Historical data and metrics for this trader.
+Historical data and metrics for `r trader`.
 
 ```{r echo=FALSE}
 if(status != "IBKR account not found" & status != "pending deletion"){
@@ -474,6 +474,8 @@ if(status != "IBKR account not found" & status != "pending deletion"){
       3
     ) %>%
     DT::formatSignif(c("Beta_BTC", "Beta_SHY", "Beta_SP500"), 3)
+} else {
+  shiny::p('No data available for this trader')
 }
 ```
 
