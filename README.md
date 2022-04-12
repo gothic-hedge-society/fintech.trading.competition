@@ -1,7 +1,8 @@
 
 <p style="font-size:20px;">
-We have an exciting trading competition underway thanks to our amazing
-sponsors! If you’re here, you probably want to head over to the
+All data is complete for the 2022 FINTECH Trading Competition! We are
+currently compiling data for all participants and will formally announce
+a winner by Friday, 15 Apr 2022. Check the
 [scoreboard](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html)
 to check the latest standings!
 </p>
