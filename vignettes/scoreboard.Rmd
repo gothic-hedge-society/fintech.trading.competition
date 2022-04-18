@@ -1,5 +1,5 @@
 ---
-title: "Scoreboard"
+title: "FINAL Scoreboard 2022"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Scoreboard}
