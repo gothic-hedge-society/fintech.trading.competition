@@ -6,11 +6,12 @@ congratulate the following winners:
 
 # 2022 Winners
 
-1st Place $3,000 Prize: **Hoppity** of Harvard University 2nd Place
-@2,000 Prize: **bubbles** of Texas A&M University 3rd Place $1,250
-Prize: **Dennishhh** of Vanderbilt University 4th Place $750 Prize:
-**James Liao** of Washington University in St. Louis 5th Place $500
-Prize: **Nonfortissimus** of UNC Chapel Hill
+-   1st Place $3,000 Prize: **Hoppity** of Harvard University
+-   2nd Place $2,000 Prize: **bubbles** of Texas A&M University
+-   3rd Place $1,250 Prize: **Dennishhh** of Vanderbilt University
+-   4th Place $750 Prize: **James Liao** of Washington University in
+    St. Louis
+-   5th Place $500 Prize: **Nonfortissimus** of UNC Chapel Hill
 
 Prizes will be awarded in weightings of 1/3 ZEN cryptocurrency and 2/3
 USD.
