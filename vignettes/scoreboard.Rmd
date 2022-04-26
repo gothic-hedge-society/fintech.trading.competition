@@ -2,7 +2,7 @@
 title: "FINAL Scoreboard 2022"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Scoreboard}
+  %\VignetteIndexEntry{FINAL Scoreboard 2022}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
