@@ -7,56 +7,30 @@ template:
 
 navbar:
   structure:
-    left:  [scoreboard, announcements, intro, rules, refdata] # registry,
-    right: [twitter, github]
+    left:  [intro, articles, registry] #, refdata]
+    right: [youtube, github]
   components:
-    scoreboard:
-      text: SCOREBOARD
-      href: articles/scoreboard.html
-    announcements:
-      text: Announcements
-      menu:
-      - text: Update 04 Mar 2022
-        href: articles/announcement3.html
-      - text: Update 19 Feb 2022
-        href: articles/announcement2.html
-      - text: Spring 2022 Competition
-        href: articles/announcement.html
-    intro:
-      text: Get started
-      menu:
-      - text: Sign Up
-        href: articles/sign_up.html
-      - text: Accessing Your Paper Trading Account
-        href: articles/fintech-trading-competition.html
-    rules:
-      text: Rules & Scoring
+    articles:
+      text: Scoring Info
       menu:
       - text: General Idea
         href: articles/Scoring.html
       - text: Scoring Example
         href: articles/Sharpe Ratio Calculation.html
-      - text: Rules
-        href: articles/Rules.html
-    refdata:
-      text: Reference Data
-      href: articles/reference_data.html
-    # registry:
-    #   text: Registry
-    #   href: articles/registry.html
+    registry:
+      text: Registry
+      href: articles/registry.html
     github:
       icon: fa-github
       href: https://github.com/gothic-hedge-society/fintech.trading.competition
       aria-label: GitHub
-    twitter:
-      icon: fa-twitter
-      href: https://twitter.com/DukeFinTech
-      aria-label: Twitter
-
-
-home:
-  sidebar:
-    html: inst/sidebar.html
+    youtube:
+      icon: fa-youtube
+      href: https://www.youtube.com/@DukeFintechCompetition
+      aria-label: YouTube
+    # refdata:
+    #   text: Reference Data
+    #   href: articles/reference_data.html
 
 authors:
   Jake Vestal:
