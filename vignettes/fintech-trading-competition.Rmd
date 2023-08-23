@@ -1,44 +1,95 @@
 ---
 title: "Getting Started"
 author: "Jake Vestal"
-date: "1/11/2022"
+date: "08/23/2022"
 output: html_document
 ---
 
-There are three (3) main apps available for Mac, Windows, and Unix that allow
-you to access your trading account once it's been set up. If you've just filled
-out your IBKR paper trading form and are waiting for it to activate, you might
-be interested to experiment with the "demo" option available in each app. You
-can even make trades while you're logged in as 'demo', but your positions and
-earnings won't be saved and won't count towards competition scoring in any way.
+This page walks through what you as a participating trader need to do to fully 
+**sign up** for the Competition, including all the downloads that you'll need to 
+be able to trade.
 
-You'll need to install one or more of these apps to be able to manage your
-account. Each is described below.
+For starters, this competition consists of three components that you'll use:
 
-It is highly recommended that you download and use Trader Workstation (TWS), at
-least at first, so that you can familiarize yourself with important operations
-such as trade order entry, charting, the various financial assets, and so on in
-a graphical environment.
+- The **website** that you're on right now (+ its backend, which does all the 
+  heavy lifting and calculating)
+- An 'educator-level' **paper trading account** run by the [Student Trading
+  Lab](https://www.interactivebrokers.com/en/accounts/educator.php) at
+  Interactive Brokers (IBKR). This is what participants will use to make their 
+  trades and monitor market data.
+- A **Discord Server**. This is where participants can interact with each other,
+  the competition admins, and Partner-level sponsors & above (when they choose 
+  to sign in and make themselves available)
+  
+**If you're a currently enrolled university student (grad or undergrad) then 
+you're eligible to join!**
 
-### 0) Client Portal
+### Step 1: Make a Discord account (if you don't have one already)
+Discord accounts are required for the competition this year for several reasons:
 
-The [Client Portal](https://ndcdyn.interactivebrokers.com/sso/Login?forwardTo=22&locale=en_US)
-is your account management website where you can view basic info about your
-account, including statements, balances, and trading activity.
+ - Jake Vestal (The Architect) and Zoe Kim (The Pastry Chef) -- the Competition 
+ admins -- are going to be doing Discord livestreams at various times and 
+ various reasons (or no reason at all) throughout this Competition, some of 
+ which won't be posted to YouTube. They're sure to be helpful at best, 
+ entertaining at a minimum :)
+ - You'll use Discord to communicate with each other...
+ - ...receive announcements as they take place...
+ - ...and communicate with Competition admins in case you encounter an issue.
+ 
+But perhaps most importantly:
+ - **We're allowing some sponsors to join certain channels on the Competition 
+ discord for recruiting**, so you definitely want to participate.
 
-### 1) Trader Workstation (TWS)
+You can make an account and download Discord [here](https://discord.com/). You 
+are probably going to want to download the app on your desktop and your phone.
 
-TWS is IBKR's graphical client app that connects to the brokerage and allows you
-to make trades and view real-time market data, including news & bulletins. TWS
-is intended to be installed on your computer and can be customized to your
-liking following the documentation on IBKR's home page.
+### Step 2: Fill out & submit this form:
+<div id="wufoo-div" style="background-color:#fff;border-style:ridge;">
+<div id="wufoo-q7j67ol08e8luq" style => Fill out my <a href="https://dukefinance.wufoo.com/forms/q7j67ol08e8luq">online form</a>. </div> <script type="text/javascript"> var q7j67ol08e8luq; (function(d, t) { var s = d.createElement(t), options = { 'userName':'dukefinance', 'formHash':'q7j67ol08e8luq', 'autoResize':true, 'height':'866', 'async':true, 'host':'wufoo.com', 'header':'show', 'ssl':true }; s.src = ('https:' == d.location.protocol ?'https://':'http://') + 'secure.wufoo.com/scripts/embed/form.js'; s.onload = s.onreadystatechange = function() { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { q7j67ol08e8luq = new WufooForm(); q7j67ol08e8luq.initialize(options); q7j67ol08e8luq.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script'); </script></div>
 
-To install TWS, you'll want to visit the 
-[TWS download page](https://www.interactivebrokers.com/en/index.php?f=16040) and
-install the correct version for your system. Log in using your IBKR credentials
-and start trading!
+After you complete Step 2, the Competition admins will receive it and send you two things:
 
-### 2) IBKR Mobile
+  - an invite to join the Trading Competition's Discord server 
+  - an invite to create your trading account at Interactive Brokers. 
+  
+You need to do both of these steps in order to be fully registered. We're 
+working on automating the invites but for now, allow a max of 24 hours from the 
+time you submit in Step 2 to the time you receive your invites.
+
+When you get them, you can proceed:
+
+### Step 3: Join the Gothic Hedge Hub (the Competition's Discord server)
+Look for your Discord invite within the Discord app and join the server! Leave
+us an intro note in the General channel or something.
+
+### Step 4: Create your paper trading account
+Monitor **the university email address that you provided in Step 2** for an 
+invite link to create a paper trading account for this year's competition!
+
+  - Yes, you absolutely must create a new account even if you already have one
+  
+### Step 5: Confirm access to your paper trading account
+After a day or two (it varies, and usually your client portal activates first) 
+you should be able to log in to the IBKR account you created in two ways:
+
+  1. The [Client Portal](https://ndcdyn.interactivebrokers.com/sso/Login?forwardTo=22&locale=en_US)
+    is your account management website where you can view basic info about your
+    account, including statements, balances, and trading activity.
+
+  2. Trader Workstation (TWS)
+  TWS is IBKR's graphical client app that connects to the brokerage and allows 
+  you to make trades and view real-time market data, including news & bulletins. 
+  TWS is intended to be installed on your computer and can be customized to your
+  liking following the documentation on IBKR's home page.
+
+  To install TWS, you'll want to visit the [TWS download page](https://www.interactivebrokers.com/en/index.php?f=16040) 
+  and install the correct version for your system. Log in using your IBKR 
+  credentials and start trading!
+
+
+There are two other ways to access your account:
+
+### IBKR Mobile
 
 Interactive Brokers offers a mobile app from which you can access your account
 to make trade and view market data. The app is available on 
@@ -46,7 +97,7 @@ to make trade and view market data. The app is available on
 and [iOS](https://apps.apple.com/us/app/ibkr-mobile-invest-worldwide/id454558592).
 
 
-### 3) IB Gateway (IBG)
+### IB Gateway (IBG)
 
 IB Gateway is identical to TWS in every way except that there is no graphical
 user interface (GUI) -- you're expected to connect to a running instance of IBG
@@ -55,8 +106,13 @@ using one of the various APIs made available by IBKR. To download, visit the
 Use this if you plan on making trades with an external system such as an app
 you've written in a language like R or Python.
 
+Finally, for learning, tutorials, & so on:
+
 ### Traders' University
 
 IBKR maintains a set of videos on their [Traders' University](https://www.interactivebrokers.com/en/index.php?f=1350) 
 site where you can learn about the different financial instruments and how to
 trade them using your system of choice.
+
+Also be aware that Jake & Zoe will be giving educational sessions on how to use 
+IBKR's system on Discord from time to time.

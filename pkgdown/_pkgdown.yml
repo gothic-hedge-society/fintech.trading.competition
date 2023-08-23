@@ -7,9 +7,12 @@ template:
 
 navbar:
   structure:
-    left:  [intro, articles, registry] #, refdata]
+    left:  [intro, articles]
     right: [youtube, github]
   components:
+    signup:
+      text: Sign Up
+      href: articles/sign_up.html
     articles:
       text: Scoring Info
       menu:
@@ -17,9 +20,6 @@ navbar:
         href: articles/Scoring.html
       - text: Scoring Example
         href: articles/Sharpe Ratio Calculation.html
-    registry:
-      text: Registry
-      href: articles/registry.html
     github:
       icon: fa-github
       href: https://github.com/gothic-hedge-society/fintech.trading.competition
@@ -28,9 +28,6 @@ navbar:
       icon: fa-youtube
       href: https://www.youtube.com/@DukeFintechCompetition
       aria-label: YouTube
-    # refdata:
-    #   text: Reference Data
-    #   href: articles/reference_data.html
 
 authors:
   Jake Vestal:

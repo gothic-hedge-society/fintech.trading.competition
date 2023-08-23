@@ -15,18 +15,21 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+This competition consists of four main components:
 
-## How it Works
-From a technical standpoint, this competition consists of four main components:
-
-- This **website**, which communicates Competition information
+- This **website**, which communicates Competition information to participants,
+  sponsors, and spectators.
 - The **app**, which performs all the ranking and scoring calculations,
-  handles registration and emailing, renders this website, stores data, etc
+  handles registration and emailing, renders this website, stores data, etc. If 
+  you aren't at Duke working on the code, then you probably won't need to 
+  consider this component at all.
 - An 'educator-level' **paper trading account** run by the [Student Trading
   Lab](https://www.interactivebrokers.com/en/accounts/educator.php) at
-  Interactive Brokers (IBKR)
-- A **Slack Channel** for participants to use for communicating with Contest
-  admin, tech support, and general chatting
+  Interactive Brokers (IBKR). This is what participants will use to make their 
+  trades and monitor market data.
+- A **Discord Server**. This is where participants can interact with each other,
+  the competition admins, and Partner-level sponsors & above (when they choose 
+  to sign in and make themselves available)
 
 When you sign up on this website (**Step 1**, below), you're making it known to
 us here at the Competition that you're interested in participating by providing
@@ -51,43 +54,6 @@ If you do have other accounts with IBKR -- either live or paper -- it's
 important that you keep track of which account is which by **carefully recording
 your account IDs, usernames, and passwords**.
 
-**Always be sure to find your tradername on the [Registry](Registry.html) and
-check to make sure the account you *think* we're using is the one we've
-associated with your tradername.**
-
-## Rolling Signup, Sponsored Competitions, and Eligibility
-You can sign up in the Competition's system and create a paper trader at any
-time. However, from time to time a **sponsored competition** is announced when
-one or more generous sponsors choose to contribute towards prizes!
-
-At the time of this writing, for example, [FinVC](finvc.co), (a venture capital
-firm), [Horizen](horizen.io) (a crypto tech firm), and [Mesh](mesh.xyz) (an
-incubator/R&D + investment firm) have graciously agreed to fund prizes for the
-second annual **Spring Trading Competition**-- which will continue to grow and
-blossom in the coming years.
-
-To be eligible for the **2022 Spring Trading Competition** you must have signed
-up and set up your paper trader by the deadline, which was **25 Jan 2022**.
-HOWEVER, if you missed that deadline you can still sign up, practice trading,
-and be ready for the next competition -- which we hope will be soon!
-
-## Pruning Old Accounts
-#### Bottom line: Trade once per month to keep your account active.
-As time goes on, students will gravitate away from this Competition. They'll
-graduate, drop out of school to create a massive tech empire, or maybe just lose
-interest in paper trading because of all the returns they're raking in from
-their Live accounts. 
-
-This is fine and natural, but in order to avoid carrying an ever-increasing
-number of defunct accounts, **we'll delete any account in which no trading
-activity has taken place over the last 30 trading days**. This rule is enforced
-as follows:
-
-If your account falls into inactivity for a 25 consecutive trading day period,
-you'll receive an email notice that you're slated for deletion in 5 trading
-days. You'll need to log in to your account and make a trade to avoid deletion.
-**ANY trade, no matter how small, will satisfy this requirement**.
-
 
 ## Instructions
 Follow the instructions below to sign up.
@@ -101,10 +67,15 @@ Fill out this form and click SUBMIT:
 <div id="wufoo-div" style="background-color:#fff;border-style:ridge;">
 <div id="wufoo-q7j67ol08e8luq" style => Fill out my <a href="https://dukefinance.wufoo.com/forms/q7j67ol08e8luq">online form</a>. </div> <script type="text/javascript"> var q7j67ol08e8luq; (function(d, t) { var s = d.createElement(t), options = { 'userName':'dukefinance', 'formHash':'q7j67ol08e8luq', 'autoResize':true, 'height':'866', 'async':true, 'host':'wufoo.com', 'header':'show', 'ssl':true }; s.src = ('https:' == d.location.protocol ?'https://':'http://') + 'secure.wufoo.com/scripts/embed/form.js'; s.onload = s.onreadystatechange = function() { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { q7j67ol08e8luq = new WufooForm(); q7j67ol08e8luq.initialize(options); q7j67ol08e8luq.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script'); </script></div>
     
-### Step 2: Join the official Competition Slack Channel 
+### Step 2: Join the official Competition Discord Channel 
 Within one business day of completing **Step 1**, you will receive an automatic
 email welcoming you to the Competition and providing you a link to join the
-official Competition Slack channel. **Follow the link and join the channel --
+official Competition Discord Server. The Discord server is new to the 
+competition this year and we plan to leverage it to its fullest. Traders *must*
+join the Discord -- even if you don't plan on using it (but you'll use it.
+Trust us.).
+
+**Follow the link and join the channel --
 you should use your tradername as your Slack username here**. The Slack channel
 is the means by which you can communicate with the Competition admin and the
 other contestants. There, you can share strategies, meet new people, and ask any
