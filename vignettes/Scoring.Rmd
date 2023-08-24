@@ -8,21 +8,18 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Bottom Line
-The winner is the participant who posts the highest Sharpe Ratio, with respect 
-to the S&P 500 index, at the end of the competition.
+**You win by making as much money as you possibly can -- using all means 
+available to you -- but you're penalized for risk (volatility)**.
 
-To put it even more succinctly: **You win by beating the S&P 500, taking as 
-little risk as possible in so doing**.
-
-## Example: Wild Bill & Clever Susan
+## Example: Reckless Trader & Shrewd Trader (Bill & Susan)
 Let's say that at the end of the competition we have two students: a reckless
 gambler named Wild Bill and a shrewd trader named Clever Susan.
 
 #### Wild Bill
 Bill puts all of his money into a tiny, risky startup that has just been listed
-on the NASDAQ. He then forgets about it and lets it ride until the end of the
-competition, at which time he's earned an amazing 250% return!!!! He clearly
-should win the competition, right?
+on the NASDAQ. He then forgets about it and lets it ride all semester until the 
+end of the competition, at which time he's earned an amazing 250% return!!!! He 
+clearly should win the competition, right?
 
 Well... when you look at the value of Wild Bill's performance, it was all over
 the map during the competition. As news was released about the startup, Bill was
@@ -39,37 +36,39 @@ was down a full -50% from where he started, meaning that in reality, Bill just
 got lucky that the competition ended when it did. Clearly, there's more to the
 story here.
 
+## The Risk-Free Rate $r_{f}$
 
-#### Clever Susan 
-Susan takes a different approach. She creates a well-balanced
-portfolio of different assets in different maket sectors, and at the end of the
-competition she posts a very healthy 12% return -- much less than Wild Bill.
+At any time, just about anybody can simply buy a
+[T-Bill](https://www.investopedia.com/terms/t/treasurybill.asp#:~:text=Frequently%20Asked%20Questions-,What%20Is%20a%20Treasury%20Bill%3F,sold%20in%20denominations%20of%20%241%2C000)
+from the US Government or another large sovereign nation. The thinking is that
+if a big country like the US defaults (doesn't pay) a T-Bill debt at maturity,
+then something is so terribly wrong with the economy, the world political
+situation, etc., that nobody is worried about finance anymore... they're worried
+about surviving the space alien invasion, global war, or other major disaster
+that must have taken place to cause the country to default. Obviously this turn
+of events would be very bad, but fortunately, the prevailing financial thinking
+is that the likelihood of such an occurrence is so low that its probability can
+be assumed to be 0.
 
-However, the value of Susan's portfolio grew steadily and predictably through
-the competition. On her worst day, she had still earned a return of 8%, but upon
-the whole it never varied too much from 12%.
+In other words, these investments are thought of as **risk free**, to which we
+assign the symbol $r_{f}$.
 
-## So who should win-- Wild Bill or Clever Susan?
-In other words, how do we quantify the difference between these two students?
+So just buy government bonds, earn a zero-risk return, and forget about it,
+right? Well... you could, but becuase the investment is risk-free and easily
+available, it doesn't pay very much.
 
-Investment performance is scored by calculating the **Sharpe Ratio** of your
-end-of-day account balance over time. The Sharpe Ratio is a measure of your
-*risk-adjusted return*; in other words, how much money you made vs. the risk
-that you took on.
-
-In finance, **risk = volatility and is defined as the standard deviation of the
-returns that a portfolio earns over time**. You want as large a return and as
-small a volatility of returns as possible.
-
-This is the entire game and the goal of every investor: high returns, low
-volatility. The Sharpe Ratio is a way to quantify this concept. Read on to learn
-more about the components of this very important metric and how it's calculated.
+The US Department of the Treasury compiles daily risk-free rates and publishes
+them on their
+[website](https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/textview.aspx?data=yield),
+where you can go to view & download the rates and learn about the methodology
+the USDT uses to calculate them.
 
 ## Daily Log Returns
 Your return is calculated each day by observing the end-of-day value of all your
-assets (in other words, your portfolio's Net Asset Value (NAV)) and comparing it 
-to the end-of-day value on the day before. That means that over a period of $N$ 
-days, we'll have $N - 1$ total observations of a portfolio's return because you can't measure a return for the very first day -- you have nothing to compare it to.
+assets and comparing it to the end-of-day value on the day before. That means
+that over a period of $N$ days, we'll have $N - 1$ total observations of a
+portfolio's return because you can't measure a return for the very first day --
+you have nothing to compare it to.
 
 The formula used to calculate the return you earned on your portfolio is the log
 ratio of $V_{N}$ -- the value of your portfolio on Day $N$ -- divided by
@@ -77,7 +76,7 @@ $V_{N-1}$ -- the portfolio's value on the previous day; i.e., $R_{N} =
 \log(\frac{V_{N}}{V_{N-1}})$.
 
 In the competition, daily log returns are calculated for every student's
-portfolio *and* for the S&P 500 index.
+portfolio and for the risk-free rate.
 
 ## Average ("Expected") Return
 **TLDR**: We use the geometric mean of period-over-period log returns.
@@ -120,39 +119,22 @@ investment is 0, just as it should be.
 ## Excess Return
 You're going to be managing a portfolio -- some set of bonds, stocks, currency
 trades, etc, on which you earn a **portfolio return** $R_{p}$. As an investor,
-you only care about earning a return that is *better* than some benchmark 
-investment that you consider to be a "default case".
+you only care about earning a return that is *better* than the risk-free rate
+$r_{f}$ because otherwise, why are you even bothering to invest? Better to just
+buy government debt.
 
 In other words, what you really care about is your portfolio's **Excess Return**
-over some benchmark.
+over the risk free rate.
 
-## Choosing the Benchmark
-Excess Return is often defined as the difference between the return your 
-portfolio earned and the **risk-free rate of return** that was available by buying 
-sovereign debt during a comparable time period; in other words, $R_{p} - r_{f}$,
-wherein $r_{f}$ denotes the risk-free rate.
-
-In most cases, that definition of excess return makes sense. 
-
-However, **for the trading competition we'll be using the returns of the S&P 500 
-index as our benchmark**. The reason for this choice is twofold: 
-
-  1. The Competition admin considers the "base case" trading strategy to be: 
-    "buy an S&P 500 index fund (such as IVV) on Day 1 of the contest and hold it
-    until the last day". We wish to compare everyone's performance against that.
-  2. If the risk-free rate is chosen as the benchmark then it's possible to run
-    strategies that yield VERY small, but positive, excess return with EVEN 
-    SMALLER volatility, which yield huge Sharpe Ratios when the final results 
-    are calculated but result in very little actual money made.
-    
-In symbols, the Competition's definition of risk-free rate is $R_{p} - r_{SP500}$
-wherein $r_{SP500}$ denotes the daily log return of the S&P 500 index.
+**Excess Return is defined as the difference between the return your portfolio
+earned and the return that was available by buying sovereign debt during a
+certain time period**; in other words, $R_{p} - r_{f}$.
 
 ## Volatility (Risk)
 For a series of returns, the **volatility** (or "vol", for short) is defined as
 the standard deviation of the observed returns. In finance, **risk** is thought
-to be defined as **volatility of an asset's return**. A portfolio's vol is 
-assigned the symbol $\sigma^{2}_{p}$.
+to be defined as **volatility**. A portfolio's vol is assigned the symbol
+$\sigma^{2}_{p}$.
 
 ## The Sharpe Ratio
 Now we can put it all together and, [as William Sharpe did in
@@ -161,13 +143,13 @@ goes *down* when expected return goes down & vol goes up, and *up* when expected
 return goes up and vol goes down:
 
 \begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{SP500}}{\sigma^{2}_{p}} 
+{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}_{p}} 
 \end{align*}
 
 #### Wherein:
 
 \begin{align*}
 R_{p} & {\sf: Portfolio\ Return} \\
-r_{SP500} & {\sf: SP500\ rate\ of\ return} \\
+r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
 \sigma^{2}_{p} & {\sf: Volatility\ of\ portfolio\ return}
 \end{align*}
