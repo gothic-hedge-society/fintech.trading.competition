@@ -8,12 +8,13 @@ articles:
   announcement: announcement.html
   announcement2: announcement2.html
   announcement3: announcement3.html
+  ranking: ranking.html
   fintech-trading-competition: fintech-trading-competition.html
   reference_data: reference_data.html
   registry: registry.html
   scoreboard: scoreboard.html
   sign_up: sign_up.html
-last_built: 2023-08-24T19:25Z
+last_built: 2023-08-24T21:26Z
 urls:
   reference: https://gothic-hedge-society.github.io/fintech.trading.competition/reference
   article: https://gothic-hedge-society.github.io/fintech.trading.competition/articles

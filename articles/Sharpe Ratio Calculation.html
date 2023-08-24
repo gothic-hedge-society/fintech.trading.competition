@@ -60,7 +60,10 @@
       <a href="../articles/Scoring.html">General Idea</a>
     </li>
     <li>
-      <a href="../articles/Sharpe%20Ratio%20Calculation.html">Scoring Example</a>
+      <a href="../articles/Sharpe%20Ratio%20Calculation.html">Sharpe Ratio Calculation</a>
+    </li>
+    <li>
+      <a href="../articles/ranking.html">Determining Trader Ranks</a>
     </li>
   </ul>
 </li>
@@ -114,11 +117,13 @@
 <h2 id="scoring-for-an-example-student">Scoring for an example student<a class="anchor" aria-label="anchor" href="#scoring-for-an-example-student"></a>
 </h2>
 <p>As discussed in the <a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html">Scoring</a>
-section, student performance is graded by Sharpe Ratio. Here, we walk
-through an example that explains how the Sharpe Ratio would be
-calculated for an example contest participant.</p>
+section, the Sharpe Ratio is an essential part of how traders are ranked
+in this competition. Here, we walk through an example that explains how
+the Sharpe Ratio would be calculated for an example contest
+participant.</p>
 <div class="section level4">
-<h4 id="matching-up-calculations-w-excel-and-other-programs">Matching up Calculations w/ Excel and Other Programs<a class="anchor" aria-label="anchor" href="#matching-up-calculations-w-excel-and-other-programs"></a>
+<h4 id="matching-up-calculations-w-excel-and-other-programs-a-quick-note">Matching up Calculations w/ Excel and Other Programs (a quick
+note)<a class="anchor" aria-label="anchor" href="#matching-up-calculations-w-excel-and-other-programs-a-quick-note"></a>
 </h4>
 <p>As simple as it may seem, calculating logarithms can differ slightly
 (or sometimes, significantly) depending on the precision of the program
@@ -138,8 +143,8 @@ function in R.</p>
 participating in the competition for seven days. Her end-of-day (EoD)
 portfolio balance, daily portfolio return, risk free rates, and daily
 excess return are as given in the table below:</p>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-42cd2aeddb571628b9ae" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-42cd2aeddb571628b9ae">{"x":{"filter":"none","vertical":false,"data":[["2021-03-15","2021-03-16","2021-03-17","2021-03-18","2021-03-19","2021-03-22","2021-03-23"],[999950,999890,1000100,1000050,1000250,1000075,1000301],[null,-6.000480040199383e-05,0.000210001050776989,-4.999625029165153e-05,0.0001999700051658001,-0.0001749715675667512,0.0002259575209476716],[0.0004,0.0002,0.0002,0.0001,0.0001,0.0003,0.0001],[1.587301587301587e-06,7.936507936507937e-07,7.936507936507937e-07,3.968253968253968e-07,3.968253968253968e-07,1.19047619047619e-06,3.968253968253968e-07],[null,-6.079845119564462e-05,0.0002092073999833382,-5.039307568847693e-05,0.0001995731797689746,-0.0001761620437572274,0.0002255606955508462]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>EoD Portfolio Balance<\/th>\n      <th>Port. Return (%/trd day)<\/th>\n      <th>USDT 3 Mo CMT (%/yr)<\/th>\n      <th>USDT 3 Mo CMT (%/trd day)<\/th>\n      <th>Excess Return (%/trd day)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 6, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"$\", 2, 3, \",\", \".\", true, null);\n  }"},{"className":"dt-center","targets":[0,1,2,3,4,5]},{"className":"dt-colnames","targets":[0,1,2,3,4,5]},{"orderable":false,"targets":0}],"dom":"t","ordering":false,"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script><p>The student’s <strong>daily portfolio returns</strong> are the log
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2f62611e9185e6b180bb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2f62611e9185e6b180bb">{"x":{"filter":"none","vertical":false,"data":[["2021-03-15","2021-03-16","2021-03-17","2021-03-18","2021-03-19","2021-03-22","2021-03-23"],[999950,999890,1000100,1000050,1000250,1000075,1000301],[null,-6.000480040199383e-05,0.000210001050776989,-4.999625029165153e-05,0.0001999700051658001,-0.0001749715675667512,0.0002259575209476716],[0.0004,0.0002,0.0002,0.0001,0.0001,0.0003,0.0001],[1.587301587301587e-06,7.936507936507937e-07,7.936507936507937e-07,3.968253968253968e-07,3.968253968253968e-07,1.19047619047619e-06,3.968253968253968e-07],[null,-6.079845119564462e-05,0.0002092073999833382,-5.039307568847693e-05,0.0001995731797689746,-0.0001761620437572274,0.0002255606955508462]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>EoD Portfolio Balance<\/th>\n      <th>Port. Return (%/trd day)<\/th>\n      <th>USDT 3 Mo CMT (%/yr)<\/th>\n      <th>USDT 3 Mo CMT (%/trd day)<\/th>\n      <th>Excess Return (%/trd day)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 6, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 4, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"$\", 2, 3, \",\", \".\", true, null);\n  }"},{"className":"dt-center","targets":[0,1,2,3,4,5]},{"className":"dt-colnames","targets":[0,1,2,3,4,5]},{"orderable":false,"targets":0}],"dom":"t","ordering":false,"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script><p>The student’s <strong>daily portfolio returns</strong> are the log
 returns of her daily portfolio value. For example, on 18 March 2021, she
 started the day with $1,000,100.00 and ended with $1,000,050.00 in total
 portfolio value. Therefore her return for that day was:</p>
@@ -174,7 +179,7 @@ difference between her portfolio’s return and the risk free rate.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">student_excess_gmrr</span><span class="op">*</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "0.5674%"</span></span></code></pre>
-<p>The students <strong>volatility of returns</strong> <span class="math inline">\(\sigma^{2}_{r}\)</span> is the standard deviation
+<p>The students <strong>volatility of returns</strong> <span class="math inline">\(\sigma^{2}_{p}\)</span> is the standard deviation
 of her excess gmrr:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">student_vol</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.0061</span>, <span class="fl">0.0209</span>, <span class="op">-</span><span class="fl">0.0050</span>, <span class="fl">0.0200</span>, <span class="op">-</span><span class="fl">0.0176</span>, <span class="fl">0.0226</span><span class="op">)</span><span class="op">)</span></span>
@@ -182,14 +187,15 @@ of her excess gmrr:</p>
 <pre><code><span><span class="co">## [1] "1.742%"</span></span></code></pre>
 <p>Finally, we can calculate the Sharpe Ratio for this student.</p>
 <p><span class="math display">\[\begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p,e}}{\sigma^{2}}
+{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}_{p}}
 \end{align*}\]</span></p>
 <div class="section level5">
 <h5 id="wherein">Wherein:<a class="anchor" aria-label="anchor" href="#wherein"></a>
 </h5>
 <p><span class="math display">\[\begin{align*}
-R_{p,e} &amp; {\sf: Excess\ Portfolio\ Return} \\
-\sigma^{2}_{r} &amp; {\sf: Volatility\ of\ return}
+R_{p} &amp; {\sf: Portfolio\ Return} \\
+r_{f} &amp; {\sf: Risk\ free\ rate\ of\ return} \\
+\sigma^{2}_{p} &amp; {\sf: Volatility\ of\ portfolio\ return}
 \end{align*}\]</span></p>
 <p>Note that we’ve already taken the “<span class="math inline">\(-r_{f}\)</span>” into account when we used the
 excess gmrr instead of the gmrr of the daily returns; in other words,

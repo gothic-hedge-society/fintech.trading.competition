@@ -60,7 +60,10 @@
       <a href="../articles/Scoring.html">General Idea</a>
     </li>
     <li>
-      <a href="../articles/Sharpe%20Ratio%20Calculation.html">Scoring Example</a>
+      <a href="../articles/Sharpe%20Ratio%20Calculation.html">Sharpe Ratio Calculation</a>
+    </li>
+    <li>
+      <a href="../articles/ranking.html">Determining Trader Ranks</a>
     </li>
   </ul>
 </li>
@@ -104,14 +107,12 @@
 <div class="section level2">
 <h2 id="bottom-line">Bottom Line<a class="anchor" aria-label="anchor" href="#bottom-line"></a>
 </h2>
-<p>The winner is the participant who posts the highest Sharpe Ratio,
-with respect to the S&amp;P 500 index, at the end of the
-competition.</p>
-<p>To put it even more succinctly: <strong>You win by beating the
-S&amp;P 500, taking as little risk as possible in so doing</strong>.</p>
+<p><strong>You win by making as much money as you possibly can – using
+all means available to you – but you’re penalized for risk
+(volatility)</strong>.</p>
 </div>
 <div class="section level2">
-<h2 id="example-wild-bill-clever-susan">Example: Wild Bill &amp; Clever Susan<a class="anchor" aria-label="anchor" href="#example-wild-bill-clever-susan"></a>
+<h2 id="example-reckless-trader-shrewd-trader-bill-susan">Example: Reckless Trader &amp; Shrewd Trader (Bill &amp; Susan)<a class="anchor" aria-label="anchor" href="#example-reckless-trader-shrewd-trader-bill-susan"></a>
 </h2>
 <p>Let’s say that at the end of the competition we have two students: a
 reckless gambler named Wild Bill and a shrewd trader named Clever
@@ -120,9 +121,10 @@ Susan.</p>
 <h4 id="wild-bill">Wild Bill<a class="anchor" aria-label="anchor" href="#wild-bill"></a>
 </h4>
 <p>Bill puts all of his money into a tiny, risky startup that has just
-been listed on the NASDAQ. He then forgets about it and lets it ride
-until the end of the competition, at which time he’s earned an amazing
-250% return!!!! He clearly should win the competition, right?</p>
+been listed on the NASDAQ. He then forgets about it and lets it ride all
+semester until the end of the competition, at which time he’s earned an
+amazing 250% return!!!! He clearly should win the competition,
+right?</p>
 <p>Well… when you look at the value of Wild Bill’s performance, it was
 all over the map during the competition. As news was released about the
 startup, Bill was down as much as -300% on some days, and up as high as
@@ -136,53 +138,46 @@ out and he was down a full -50% from where he started, meaning that in
 reality, Bill just got lucky that the competition ended when it did.
 Clearly, there’s more to the story here.</p>
 </div>
-<div class="section level4">
-<h4 id="clever-susan">Clever Susan<a class="anchor" aria-label="anchor" href="#clever-susan"></a>
-</h4>
-<p>Susan takes a different approach. She creates a well-balanced
-portfolio of different assets in different maket sectors, and at the end
-of the competition she posts a very healthy 12% return – much less than
-Wild Bill.</p>
-<p>However, the value of Susan’s portfolio grew steadily and predictably
-through the competition. On her worst day, she had still earned a return
-of 8%, but upon the whole it never varied too much from 12%.</p>
-</div>
 </div>
 <div class="section level2">
-<h2 id="so-who-should-win-wild-bill-or-clever-susan">So who should win– Wild Bill or Clever Susan?<a class="anchor" aria-label="anchor" href="#so-who-should-win-wild-bill-or-clever-susan"></a>
+<h2 id="the-risk-free-rate-r_f">The Risk-Free Rate <span class="math inline">\(r_{f}\)</span><a class="anchor" aria-label="anchor" href="#the-risk-free-rate-r_f"></a>
 </h2>
-<p>In other words, how do we quantify the difference between these two
-students?</p>
-<p>Investment performance is scored by calculating the <strong>Sharpe
-Ratio</strong> of your end-of-day account balance over time. The Sharpe
-Ratio is a measure of your <em>risk-adjusted return</em>; in other
-words, how much money you made vs. the risk that you took on.</p>
-<p>In finance, <strong>risk = volatility and is defined as the standard
-deviation of the returns that a portfolio earns over time</strong>. You
-want as large a return and as small a volatility of returns as
-possible.</p>
-<p>This is the entire game and the goal of every investor: high returns,
-low volatility. The Sharpe Ratio is a way to quantify this concept. Read
-on to learn more about the components of this very important metric and
-how it’s calculated.</p>
+<p>At any time, just about anybody can simply buy a <a href="https://www.investopedia.com/terms/t/treasurybill.asp#:~:text=Frequently%20Asked%20Questions-,What%20Is%20a%20Treasury%20Bill%3F,sold%20in%20denominations%20of%20%241%2C000" class="external-link">T-Bill</a>
+from the US Government or another large sovereign nation. The thinking
+is that if a big country like the US defaults (doesn’t pay) a T-Bill
+debt at maturity, then something is so terribly wrong with the economy,
+the world political situation, etc., that nobody is worried about
+finance anymore… they’re worried about surviving the space alien
+invasion, global war, or other major disaster that must have taken place
+to cause the country to default. Obviously this turn of events would be
+very bad, but fortunately, the prevailing financial thinking is that the
+likelihood of such an occurrence is so low that its probability can be
+assumed to be 0.</p>
+<p>In other words, these investments are thought of as <strong>risk
+free</strong>, to which we assign the symbol <span class="math inline">\(r_{f}\)</span>.</p>
+<p>So just buy government bonds, earn a zero-risk return, and forget
+about it, right? Well… you could, but becuase the investment is
+risk-free and easily available, it doesn’t pay very much.</p>
+<p>The US Department of the Treasury compiles daily risk-free rates and
+publishes them on their <a href="https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/textview.aspx?data=yield" class="external-link">website</a>,
+where you can go to view &amp; download the rates and learn about the
+methodology the USDT uses to calculate them.</p>
 </div>
 <div class="section level2">
 <h2 id="daily-log-returns">Daily Log Returns<a class="anchor" aria-label="anchor" href="#daily-log-returns"></a>
 </h2>
 <p>Your return is calculated each day by observing the end-of-day value
-of all your assets (in other words, your portfolio’s Net Asset Value
-(NAV)) and comparing it to the end-of-day value on the day before. That
-means that over a period of <span class="math inline">\(N\)</span> days,
-we’ll have <span class="math inline">\(N - 1\)</span> total observations
-of a portfolio’s return because you can’t measure a return for the very
-first day – you have nothing to compare it to.</p>
+of all your assets and comparing it to the end-of-day value on the day
+before. That means that over a period of <span class="math inline">\(N\)</span> days, we’ll have <span class="math inline">\(N - 1\)</span> total observations of a portfolio’s
+return because you can’t measure a return for the very first day – you
+have nothing to compare it to.</p>
 <p>The formula used to calculate the return you earned on your portfolio
 is the log ratio of <span class="math inline">\(V_{N}\)</span> – the
 value of your portfolio on Day <span class="math inline">\(N\)</span> –
 divided by <span class="math inline">\(V_{N-1}\)</span> – the
 portfolio’s value on the previous day; i.e., <span class="math inline">\(R_{N} = \log(\frac{V_{N}}{V_{N-1}})\)</span>.</p>
 <p>In the competition, daily log returns are calculated for every
-student’s portfolio <em>and</em> for the S&amp;P 500 index.</p>
+student’s portfolio and for the risk-free rate.</p>
 </div>
 <div class="section level2">
 <h2 id="average-expected-return">Average (“Expected”) Return<a class="anchor" aria-label="anchor" href="#average-expected-return"></a>
@@ -235,37 +230,15 @@ for the investment is 0, just as it should be.</p>
 currency trades, etc, on which you earn a <strong>portfolio
 return</strong> <span class="math inline">\(R_{p}\)</span>. As an
 investor, you only care about earning a return that is <em>better</em>
-than some benchmark investment that you consider to be a “default
-case”.</p>
+than the risk-free rate <span class="math inline">\(r_{f}\)</span>
+because otherwise, why are you even bothering to invest? Better to just
+buy government debt.</p>
 <p>In other words, what you really care about is your portfolio’s
-<strong>Excess Return</strong> over some benchmark.</p>
-</div>
-<div class="section level2">
-<h2 id="choosing-the-benchmark">Choosing the Benchmark<a class="anchor" aria-label="anchor" href="#choosing-the-benchmark"></a>
-</h2>
-<p>Excess Return is often defined as the difference between the return
-your portfolio earned and the <strong>risk-free rate of return</strong>
-that was available by buying sovereign debt during a comparable time
-period; in other words, <span class="math inline">\(R_{p} -
-r_{f}\)</span>, wherein <span class="math inline">\(r_{f}\)</span>
-denotes the risk-free rate.</p>
-<p>In most cases, that definition of excess return makes sense.</p>
-<p>However, <strong>for the trading competition we’ll be using the
-returns of the S&amp;P 500 index as our benchmark</strong>. The reason
-for this choice is twofold:</p>
-<ol style="list-style-type: decimal">
-<li>The Competition admin considers the “base case” trading strategy to
-be: “buy an S&amp;P 500 index fund (such as IVV) on Day 1 of the contest
-and hold it until the last day”. We wish to compare everyone’s
-performance against that.</li>
-<li>If the risk-free rate is chosen as the benchmark then it’s possible
-to run strategies that yield VERY small, but positive, excess return
-with EVEN SMALLER volatility, which yield huge Sharpe Ratios when the
-final results are calculated but result in very little actual money
-made.</li>
-</ol>
-<p>In symbols, the Competition’s definition of risk-free rate is <span class="math inline">\(R_{p} - r_{SP500}\)</span> wherein <span class="math inline">\(r_{SP500}\)</span> denotes the daily log return of
-the S&amp;P 500 index.</p>
+<strong>Excess Return</strong> over the risk free rate.</p>
+<p><strong>Excess Return is defined as the difference between the return
+your portfolio earned and the return that was available by buying
+sovereign debt during a certain time period</strong>; in other words,
+<span class="math inline">\(R_{p} - r_{f}\)</span>.</p>
 </div>
 <div class="section level2">
 <h2 id="volatility-risk">Volatility (Risk)<a class="anchor" aria-label="anchor" href="#volatility-risk"></a>
@@ -273,8 +246,8 @@ the S&amp;P 500 index.</p>
 <p>For a series of returns, the <strong>volatility</strong> (or “vol”,
 for short) is defined as the standard deviation of the observed returns.
 In finance, <strong>risk</strong> is thought to be defined as
-<strong>volatility of an asset’s return</strong>. A portfolio’s vol is
-assigned the symbol <span class="math inline">\(\sigma^{2}_{p}\)</span>.</p>
+<strong>volatility</strong>. A portfolio’s vol is assigned the symbol
+<span class="math inline">\(\sigma^{2}_{p}\)</span>.</p>
 </div>
 <div class="section level2">
 <h2 id="the-sharpe-ratio">The Sharpe Ratio<a class="anchor" aria-label="anchor" href="#the-sharpe-ratio"></a>
@@ -284,14 +257,14 @@ did in 1966</a>, write down a metric that goes <em>down</em> when
 expected return goes down &amp; vol goes up, and <em>up</em> when
 expected return goes up and vol goes down:</p>
 <p><span class="math display">\[\begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{SP500}}{\sigma^{2}_{p}}
+{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}_{p}}
 \end{align*}\]</span></p>
 <div class="section level4">
 <h4 id="wherein">Wherein:<a class="anchor" aria-label="anchor" href="#wherein"></a>
 </h4>
 <p><span class="math display">\[\begin{align*}
 R_{p} &amp; {\sf: Portfolio\ Return} \\
-r_{SP500} &amp; {\sf: SP500\ rate\ of\ return} \\
+r_{f} &amp; {\sf: Risk\ free\ rate\ of\ return} \\
 \sigma^{2}_{p} &amp; {\sf: Volatility\ of\ portfolio\ return}
 \end{align*}\]</span></p>
 </div>
