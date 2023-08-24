@@ -45,11 +45,11 @@ sharpe_ratio <- gmrr_excess_return / portfolio_vol
 # Scoring for an example student
 As discussed in the
 [Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html)
-section, student performance is graded by Sharpe Ratio. Here, we walk through an
-example that explains how the Sharpe Ratio would be calculated for an example
-contest participant.
+section, the Sharpe Ratio is an essential part of how traders are ranked in this
+competition. Here, we walk through an example that explains how the Sharpe Ratio
+would be calculated for an example contest participant.
 
-### Matching up Calculations w/ Excel and Other Programs
+### Matching up Calculations w/ Excel and Other Programs (a quick note)
 As simple as it may seem, calculating logarithms can differ slightly (or
 sometimes, significantly) depending on the precision of the program you use.
 It's possible to get different answers for the same log calcs in Excel, R, and
@@ -137,7 +137,7 @@ print(paste0(round(student_excess_gmrr*100, digits = 4), "%"))
 
 ```
 
-The students **volatility of returns** $\sigma^{2}_{r}$ is the standard deviation of her excess gmrr:
+The students **volatility of returns** $\sigma^{2}_{p}$ is the standard deviation of her excess gmrr:
 ```{r}
 student_vol <- sd(c(-0.0061, 0.0209, -0.0050, 0.0200, -0.0176, 0.0226))
 print(paste0(round(student_vol*100, digits = 3), "%"))
@@ -146,14 +146,15 @@ print(paste0(round(student_vol*100, digits = 3), "%"))
 Finally, we can calculate the Sharpe Ratio for this student.
 
 \begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p,e}}{\sigma^{2}} 
+{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}_{p}} 
 \end{align*}
 
 #### Wherein:
 
 \begin{align*}
-R_{p,e} & {\sf: Excess\ Portfolio\ Return} \\
-\sigma^{2}_{r} & {\sf: Volatility\ of\ return}
+R_{p} & {\sf: Portfolio\ Return} \\
+r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
+\sigma^{2}_{p} & {\sf: Volatility\ of\ portfolio\ return}
 \end{align*}
 
 Note that we've already taken the "$-r_{f}$" into account when we used the

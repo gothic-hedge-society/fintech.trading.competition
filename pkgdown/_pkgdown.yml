@@ -18,8 +18,10 @@ navbar:
       menu:
       - text: General Idea
         href: articles/Scoring.html
-      - text: Scoring Example
+      - text: Sharpe Ratio Calculation
         href: articles/Sharpe Ratio Calculation.html
+      - text: Determining Trader Ranks
+        href: articles/ranking.html
     github:
       icon: fa-github
       href: https://github.com/gothic-hedge-society/fintech.trading.competition
