@@ -1,5 +1,5 @@
 ---
-title: "Getting Started"
+title: "Getting Started (Registration)"
 author: "Jake Vestal"
 date: "08/23/2022"
 output: html_document
@@ -36,9 +36,8 @@ Discord accounts are required for the competition this year for several reasons:
  - ...receive announcements as they take place...
  - ...and communicate with Competition admins in case you encounter an issue.
  
-But perhaps most importantly:
- - **We're allowing some sponsors to join certain channels on the Competition 
- discord for recruiting**, so you definitely want to participate.
+But perhaps most importantly: **We're allowing some sponsors to join certain 
+channels on the Competition Discord for recruiting**, so you definitely want to participate.
 
 You can make an account and download Discord [here](https://discord.com/). You 
 are probably going to want to download the app on your desktop and your phone.
@@ -47,14 +46,15 @@ are probably going to want to download the app on your desktop and your phone.
 <div id="wufoo-div" style="background-color:#fff;border-style:ridge;">
 <div id="wufoo-q7j67ol08e8luq" style => Fill out my <a href="https://dukefinance.wufoo.com/forms/q7j67ol08e8luq">online form</a>. </div> <script type="text/javascript"> var q7j67ol08e8luq; (function(d, t) { var s = d.createElement(t), options = { 'userName':'dukefinance', 'formHash':'q7j67ol08e8luq', 'autoResize':true, 'height':'866', 'async':true, 'host':'wufoo.com', 'header':'show', 'ssl':true }; s.src = ('https:' == d.location.protocol ?'https://':'http://') + 'secure.wufoo.com/scripts/embed/form.js'; s.onload = s.onreadystatechange = function() { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { q7j67ol08e8luq = new WufooForm(); q7j67ol08e8luq.initialize(options); q7j67ol08e8luq.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script'); </script></div>
 
-After you complete Step 2, the Competition admins will receive it and send you two things:
+After you complete Step 2, the Competition admins will receive it and send you 
+two things:
 
   - an invite to join the Trading Competition's Discord server 
   - an invite to create your trading account at Interactive Brokers. 
   
 You need to do both of these steps in order to be fully registered. We're 
-working on automating the invites but for now, allow a max of 24 hours from the 
-time you submit in Step 2 to the time you receive your invites.
+working on automating the invites but for now, **allow a max of 24 hours from 
+the time you submit in Step 2 to the time you receive your two (2) invites**.
 
 When you get them, you can proceed:
 
@@ -66,15 +66,16 @@ us an intro note in the General channel or something.
 Monitor **the university email address that you provided in Step 2** for an 
 invite link to create a paper trading account for this year's competition!
 
-  - Yes, you absolutely must create a new account even if you already have one
+  - Yes, you absolutely must create a new IBKR paper trading account even if you
+  already have one.
   
 ### Step 5: Confirm access to your paper trading account
 After a day or two (it varies, and usually your client portal activates first) 
-you should be able to log in to the IBKR account you created in two ways:
+you should be able to log in to your new IBKR paper trading account you created 
+in two ways:
 
-  1. The [Client Portal](https://ndcdyn.interactivebrokers.com/sso/Login?forwardTo=22&locale=en_US)
-    is your account management website where you can view basic info about your
-    account, including statements, balances, and trading activity.
+  1. The [Client Portal](https://ndcdyn.interactivebrokers.com/sso/Login?forwardTo=22&locale=en_US), which  your account management website where you can view basic 
+  info about your account, including statements, balances, and trading activity.
 
   2. Trader Workstation (TWS)
   TWS is IBKR's graphical client app that connects to the brokerage and allows 
@@ -83,8 +84,8 @@ you should be able to log in to the IBKR account you created in two ways:
   liking following the documentation on IBKR's home page.
 
   To install TWS, you'll want to visit the [TWS download page](https://www.interactivebrokers.com/en/index.php?f=16040) 
-  and install the correct version for your system. Log in using your IBKR 
-  credentials and start trading!
+  and install the correct version for your system. You'll want to verify that 
+  you can log in and start setting up your preferred views, watchlists, etc.
 
 
 There are two other ways to access your account:
