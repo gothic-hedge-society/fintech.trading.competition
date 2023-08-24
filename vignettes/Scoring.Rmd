@@ -1,5 +1,5 @@
 ---
-title: "Scoring"
+title: "Scoring - General Idea"
 output: html_document
 ---
 
