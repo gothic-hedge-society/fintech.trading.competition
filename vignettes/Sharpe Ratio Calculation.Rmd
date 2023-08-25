@@ -42,7 +42,7 @@ day basis by dividing by 252 (and by 100 because it's a percent):
 Let's store that as a variable:
 ``` {r echo = FALSE, message = FALSE}
 rf = 0.04/100/252
-print(paste0("The risk-free rate is ", signif(rf*100, 4), "%/year."))
+print(paste0("The risk-free rate is ", signif(rf*100, 4), "%/trading day."))
 ```
 
 The Gothic Hedge Society (who runs the trading competition) reasons that on Day
