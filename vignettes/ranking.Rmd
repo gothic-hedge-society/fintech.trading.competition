@@ -1,0 +1,18 @@
+---
+title: "Determining Trader Ranks"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+If you've made it to this page, you're looking to understand how we assign 
+rankings to each trader to determine a winner. In order to proceed, you should
+have already read and understood the [General Idea behind our scoring philosophy]([Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html))
+to get an idea of what we're seeking to do; to wit: reward those traders who 
+make a lot of money, but do so intelligently rather than just getting lucky.
+
+
+
+, as well as ow we calculate traders’ Sharpe Ratio, you’re ready for the final step: how the Competition ranks the performance of each trader.

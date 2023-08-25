@@ -11,35 +11,6 @@ output: html_document
 
 ```{r setup, include = FALSE}
 library(magrittr)
-student_data <- tibble::tibble(
-  "EoD Portfolio Balance"  = c(
-    999950, 999890, 1000100, 1000050, 1000250, 1000075, 1000301
-  ),
-  "Port. Return (%/trd day)" = c(
-    NA, 
-    log(
-      `EoD Portfolio Balance`[-1] / 
-        `EoD Portfolio Balance`[-length(`EoD Portfolio Balance`)]
-    )
-  ),
-  "USDT 3 Mo CMT (%/yr)"      = rev(
-    c(
-      0.01, 0.03, 0.01, 0.01, 0.02, 0.02, 0.04
-    )
-  ) / 100,
-  "USDT 3 Mo CMT (%/trd day)" = `USDT 3 Mo CMT (%/yr)`/252,
-  "Excess Return (%/trd day)" = 
-    `Port. Return (%/trd day)` - `USDT 3 Mo CMT (%/trd day)`
-)
-
-gmrr_excess_return <- student_data$`Excess Return (%/trd day)`[-1] %>%
-  as.numeric() %>% {
-    prod(1 + .)^(1/length(.)) - 1
-  }
-
-portfolio_vol      <- sd(student_data$`Excess Return (%/trd day)`[-1])
-
-sharpe_ratio <- gmrr_excess_return / portfolio_vol
 ```
 
 # Scoring for an example student
@@ -60,40 +31,58 @@ up with numbers that differ slightly. For the purposes of fairness in the
 competition, it only matters that we use the same program for everyone -- which,
 in this case, is the *log*() function in R.
 
-### Example Student's Data
+### What risk-free rate do we use?
+The Competition lasts about 3 months, starting on Day 1. On that day, let's 
+further suppose that we visited the USDT's website and found that the 3-month 
+CMT rate was 0.04% (annualized).
+
+Since there are 252 trading days in a year, we convert that rate to a trading
+day basis by dividing by 252 (and by 100 because it's a percent):
+
+Let's store that as a variable:
+``` {r echo = FALSE, message = FALSE}
+rf = 0.04/100/252
+print(paste0("The risk-free rate is ", signif(rf*100, 4), "%/year."))
+```
+
+The Gothic Hedge Society (who runs the trading competition) reasons that on Day
+1, all participants must decide if they're going to actively trade or if they're
+just going to put all of their money into 3-month risk-free debt and cash out 
+when the Competition ends. 
+
+Since about half of the participants will *lose* money, that idea isn't as bad
+as it might sound.
+
+Regardless, for the duration of the Competition, the 'risk-free' rate would be 
+taken to be the 0.04%/yr observed on Day 1. It will change during the 
+competition, for sure, but if you had truly run the "base strategy" of buying
+bonds and waiting it out, then your capital would be tied up all semester.
+
+Therefore, the **0.04%/yr** CMT rate provided for 3 Month debt is the standard 
+against which we'll be judging everyone's performance.
+
+--> Now let's suppose some trading data for a hypothetical Contest participant.
+
+### Example Trader's Data
 Let's say that today's date is 23 March 2021, and a student has been
-participating in the competition for seven days. Her end-of-day (EoD) portfolio
-balance, daily portfolio return, risk free rates, and daily excess return are as
-given in the table below:
+participating in the competition for seven days. 
+
+Her end-of-day (EoD) portfolio balance and daily log returns are given below:
 
 ``` {r echo = FALSE, message = FALSE}
-student_data %>%
-  DT::datatable(
-    filter = "none",
-    options = list(
-      columnDefs = list(
-        list(className = 'dt-center', targets = 0:5),
-        list(className = 'dt-colnames', targets = 0:5)
-      ),
-      dom        = "t",
-      ordering   = FALSE
-    ),
-    rownames = rev(
-      c(
-        "2021-03-23", "2021-03-22", "2021-03-19", "2021-03-18", "2021-03-17", 
-        "2021-03-16", "2021-03-15"
-      )
+student_data <- tibble::tibble(
+  "EoD Portfolio Balance"  = c(
+    999950, 999890, 1000100, 1000050, 1000250, 1000075, 1000301
+  ),
+  "Port. Return (%/trd day)" = c(
+    NA, 
+    log(
+      `EoD Portfolio Balance`[-1] / 
+        `EoD Portfolio Balance`[-length(`EoD Portfolio Balance`)]
     )
-  ) %>%
-  DT::formatCurrency("EoD Portfolio Balance") %>%
-  DT::formatPercentage("USDT 3 Mo CMT (%/yr)",  2) %>% 
-  DT::formatPercentage(
-    c(
-      "Port. Return (%/trd day)", "Excess Return (%/trd day)"
-    ),
-    4
-  ) %>%
-  DT::formatPercentage("USDT 3 Mo CMT (%/trd day)", 6)
+  )*100
+)
+print(student_data)
 
 ```
 
@@ -109,39 +98,43 @@ paste0(round(log(1000050.00 / 1000100.00) * 100, 5), "%")
 Note that there's no way to calculate a return on the very first day because
 there's nothing to compare it to.
 
-The **risk free rate**, $r_{f}$ is assumed to be the 3 month CMT rate as
-published by the US Department of the Treasury (USDT). A quick visit to the
-[USDT's website
-](https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/TextView.aspx?data=yieldYear&year=2021)
-confirms the rates presented in the table. The USDT presents CMT rates in an
-annualized format. Because the student's daily returns are on a *per trading day
-basis*, we convert the annualized CMTs to a trading day basis by dividing by 252
--- the number of trading days in one year.
-
-The student's **excess return** on any given day is determined by how much her
-portfolio return exceeded the risk free rate on that day; in other words, her
-*excess return* is the difference between her portfolio's return and the risk
-free rate.
-
-The student's overall **geometric mean excess return** $R_{p}$ is calculated as:
+The student's overall **geometric mean return** $R_{p}$ is calculated as:
 ```{r}
 # Note that here, I'm rounding the returns to 4 digits, so the final answer will
 # differ slightly than the one reported in the table (and used for official
 # scoring) due to this rounding error.
-student_excess_gmrr <- (
-  (1 + -0.0061) * (1 + 0.0209) * (1 + -0.0050) * 
-    (1 + 0.0200) * (1 + -0.0176) * (1 + 0.0226)
-)^(1/6) - 1
+student_gmrr <- student_data %>%
+  dplyr::select("Port. Return (%/trd day)") %>%
+  dplyr::filter(!is.na(`Port. Return (%/trd day)`)) %>% 
+  tibble::deframe() %>% {
+    prod(1 + .)^(1/length(.)) - 1
+  }
 
-print(paste0(round(student_excess_gmrr*100, digits = 4), "%"))
+print(paste0(round(student_gmrr*100, digits = 4), "% per trading day"))
 
 ```
 
-The students **volatility of returns** $\sigma^{2}_{p}$ is the standard deviation of her excess gmrr:
+The student's **excess return** is
 ```{r}
-student_vol <- sd(c(-0.0061, 0.0209, -0.0050, 0.0200, -0.0176, 0.0226))
-print(paste0(round(student_vol*100, digits = 3), "%"))
+student_excess_return <- student_gmrr - rf
+  
+print(paste0(round(student_excess_return*100, digits = 3), " %/trading day"))
 ```
+
+
+The students **volatility of returns** $\sigma^{2}_{p}$ is the standard 
+deviation of her portfolio returns:
+```{r}
+student_vol <- student_data %>%
+  dplyr::select("Port. Return (%/trd day)") %>%
+  dplyr::filter(!is.na(`Port. Return (%/trd day)`)) %>% 
+  tibble::deframe() %>%
+  sd()
+  
+print(paste0(round(student_vol*100, digits = 3), " %/trading day"))
+```
+
+
 
 Finally, we can calculate the Sharpe Ratio for this student.
 
@@ -157,14 +150,10 @@ r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
 \sigma^{2}_{p} & {\sf: Volatility\ of\ portfolio\ return}
 \end{align*}
 
-Note that we've already taken the "$-r_{f}$" into account when we used the
-excess gmrr instead of the gmrr of the daily returns; in other words, with this
-notation the term "$R_{p} - r_{f}$" (as written in the
-[Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/)
-section) equals $R_{p,e}$.
-
-## Her Sharpe is:
+## Her Sharpe is therefore:
 ```{r}
-student_Sharpe <- student_excess_gmrr / student_vol
+student_Sharpe <- (student_gmrr - rf) / student_vol
 print(student_Sharpe)
 ```
+
+We repeat this calculation every day for every trader in the Competition.

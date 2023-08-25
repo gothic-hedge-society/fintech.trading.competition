@@ -7,13 +7,18 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Bottom Line
 **You win by making as much money as you possibly can -- using all means 
-available to you -- but you're penalized for risk (volatility)**.
+available to you -- but you're penalized for risk**.
 
-## Example: Reckless Trader & Shrewd Trader (Bill & Susan)
-Let's say that at the end of the competition we have two students: a reckless
-gambler named Wild Bill and a shrewd trader named Clever Susan.
+## Reward skill, not luck.
+Earning returns by managing risk with aplomb is part of the bedrock of the core
+values of the Duke FINTECH Program and the Gothic Hedge Society. We don't mind
+taking on risk -- so long as we're appropriately paid for it. The scoring system
+used by this Competition was written to put that principle into practice.
+
+To see the big picture, let's start with an example. Suppose that at the end of 
+the Competition we have two students: a reckless gambler named Wild Bill and a 
+shrewd trader named Clever Susan. 
 
 #### Wild Bill
 Bill puts all of his money into a tiny, risky startup that has just been listed
@@ -36,7 +41,39 @@ was down a full -50% from where he started, meaning that in reality, Bill just
 got lucky that the competition ended when it did. Clearly, there's more to the
 story here.
 
-## The Risk-Free Rate $r_{f}$
+#### Clever Susan 
+Susan takes a different approach. She creates a well-balanced
+portfolio of different assets in different market sectors, and at the end of the
+competition she posts a very healthy 12% return -- much less than Wild Bill.
+
+However, the value of Susan's portfolio grew steadily and predictably through
+the competition. On her worst day, she had still earned a return of 8%, but upon
+the whole it never varied too much from 12%.
+
+## So who should win-- Wild Bill or Clever Susan?
+In other words, how do we quantify the difference between these two students?
+
+Investment performance is scored by calculating the **Sharpe Ratio** of your
+end-of-day account balance over time. The Sharpe Ratio is a measure of your
+*risk-adjusted return*; in other words, how much money you made vs. the risk
+that you took on.
+
+In finance, **risk = volatility and is defined as the standard deviation of the
+returns that a portfolio earns over time**. You want as large a return and as
+small a volatility of returns as possible.
+
+This is the entire game and the goal of every investor: high returns, low
+volatility. The Sharpe Ratio is a way to quantify this concept. Read on to learn
+more about the components of this very important metric (starting with the 
+risk-free rate) -- then visit the [Sharpe Ratio Calculation]([Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html)) page to see a real-world example with numbers.
+
+## CONCEPT: The Risk-Free Rate $r_{f}$
+
+Think about all the investments out there -- is there one that will earn you a 
+GAURANTEED return -- a sure thing, with zero volatility?
+
+The answer, of course, is "no", but US Treasury bills (T-Bills) come pretty 
+close for practical purposes.
 
 At any time, just about anybody can simply buy a
 [T-Bill](https://www.investopedia.com/terms/t/treasurybill.asp#:~:text=Frequently%20Asked%20Questions-,What%20Is%20a%20Treasury%20Bill%3F,sold%20in%20denominations%20of%20%241%2C000)
@@ -50,12 +87,15 @@ of events would be very bad, but fortunately, the prevailing financial thinking
 is that the likelihood of such an occurrence is so low that its probability can
 be assumed to be 0.
 
-In other words, these investments are thought of as **risk free**, to which we
-assign the symbol $r_{f}$.
+In other words, these investments are thought of as **risk free**. 
 
-So just buy government bonds, earn a zero-risk return, and forget about it,
-right? Well... you could, but becuase the investment is risk-free and easily
-available, it doesn't pay very much.
+Holders of these assets receive a return, of course. The exact percentage varies
+but whatever its value, we refer to it using the symbol $r_{f}$.
+
+Since they're 'risk-free', traders should just buy government bonds, earn a 
+zero-risk return, and forget about complex strategies, right? Well... you could
+do that, but because the investment is risk-free and easily available, it 
+doesn't (historically) pay very much.
 
 The US Department of the Treasury compiles daily risk-free rates and publishes
 them on their
@@ -63,12 +103,17 @@ them on their
 where you can go to view & download the rates and learn about the methodology
 the USDT uses to calculate them.
 
-## Daily Log Returns
-Your return is calculated each day by observing the end-of-day value of all your
-assets and comparing it to the end-of-day value on the day before. That means
-that over a period of $N$ days, we'll have $N - 1$ total observations of a
-portfolio's return because you can't measure a return for the very first day --
-you have nothing to compare it to.
+## CONCEPT: Daily Log Returns
+In the Competition, your return is calculated each day by observing the Net 
+Asset Value (NAV) of your account -- the total end-of-day value of everything 
+you own. 
+
+"Today's" NAV is compared to "yesterday's" to calculate the percent return you 
+realized "today".
+
+That means that over a period of $N$ days, we'll have $N - 1$ total observations
+of a portfolio's return because you can't measure a return for the very first 
+day -- you have nothing to compare it to.
 
 The formula used to calculate the return you earned on your portfolio is the log
 ratio of $V_{N}$ -- the value of your portfolio on Day $N$ -- divided by
@@ -76,7 +121,8 @@ $V_{N-1}$ -- the portfolio's value on the previous day; i.e., $R_{N} =
 \log(\frac{V_{N}}{V_{N-1}})$.
 
 In the competition, daily log returns are calculated for every student's
-portfolio and for the risk-free rate.
+portfolio as soon as the data becomes available for that day (usually after 
+about 6pm EST on a trading day).
 
 ## Average ("Expected") Return
 **TLDR**: We use the geometric mean of period-over-period log returns.
@@ -88,8 +134,15 @@ observe the returns +25%, -25%, +25%, -25% for each quarter. In other words, an
 initial investment of $100k would be worth $125k, $100k, $125k, and $100k at the
 ends of quarters 1, 2, 3, and 4, respectively.
 
-The question is, **what's the overall return that characterizes this
-investment's performance over the year**?
+In this context, when you discuss means of a sample of returns, what you're
+really asking is something like , **what's the overall return that characterizes
+this investment's performance at any given time over the period**?
+
+There are infinite ways of answering this question (the doubters may start by 
+Googling "Harmonic Mean", or maybe "Lehmer Mean" to start convincing themselves 
+of the truth of this statement).
+
+This vignette focuses on only two means, discussed below.
 
 #### Arithmetic Mean
 You might think: "just take the average" of the returns, which works out to
@@ -104,7 +157,7 @@ have a client banging your door down wondering where their $2,500 went. The
 therefore misleading in this way!
 
 #### Geometric Mean
-A better way to assign an overall charactaristic ("expected") return for a time
+A better way to assign an overall characteristic ("expected") return for a time
 series of returns is to use the [geometric
 mean](https://www.investopedia.com/ask/answers/06/geometricmean.asp#:~:text=The%20geometric%20mean%20differs%20from,returns%20than%20the%20arithmetic%20mean),
 calculated by multiplying all of the returns together and taking the $n$th root,
@@ -153,3 +206,23 @@ R_{p} & {\sf: Portfolio\ Return} \\
 r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
 \sigma^{2}_{p} & {\sf: Volatility\ of\ portfolio\ return}
 \end{align*}
+
+## Conceptually, the Sharpe ratio is a 'price'
+Let's say you go to a market that is selling "return", which it quantifies in 
+units of percent "%". You can buy returns of 5%, 500%, -0.2%, and so on, but 
+you have to pay. But what payment will the market accept?
+
+The idea behind Sharpe's ratio is: *you can buy (or sell) 'return', but you have
+to pay by taking on (or divesting) 'risk', of which volatility is a measure*.
+
+Look back at the definition of the Sharpe ratio and see that it has units of 
+"% return" in the numerator, and "% risk" in the denominator. That's not an 
+accident- the Sharpe ratio is, at it's core, the "price" of an asset or 
+portfolio in terms of its "risk".
+
+In general, better traders have higher Sharpe ratios because they're able get 
+the best "price" (in terms of risk) that the market will give in exchange for
+the returns they earn.
+
+Now you're ready to move on to [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html) to see a worked example showing how Sharpe ratios are 
+calculated in the Trading Competition.
