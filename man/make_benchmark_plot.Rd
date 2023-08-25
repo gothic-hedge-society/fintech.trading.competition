@@ -4,7 +4,7 @@
 \alias{make_benchmark_plot}
 \title{Create a Benchmark Plot}
 \usage{
-make_benchmark_plot(portfolio_returns, benchmark_asset)
+make_benchmark_plot(portfolio_returns, benchmark_asset, x_lab)
 }
 \description{
 Create a Benchmark Plot

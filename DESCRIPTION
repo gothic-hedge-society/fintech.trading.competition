@@ -1,18 +1,17 @@
 Package: fintech.trading.competition
 Title: Duke Fintech Trading Competition!
 Version: 2022.02.10
-Authors@R: 
-    person(given = "Jake",
-           family = "Vestal",
-           role = c("aut", "cre"),
-           email = "jmv13@duke.edu",
-           comment = c(ORCID = "0000-0002-2970-4795"))
+Authors@R: c(
+    person("Jake", "Vestal", , "jmv13@duke.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-2970-4795")),
+    person("Zoe", "Kim", , "zic3@duke.edu", role = "aut")
+  )
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Imports: 
     magrittr,
     dplyr,
