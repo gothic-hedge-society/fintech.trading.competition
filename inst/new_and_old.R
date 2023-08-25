@@ -3,9 +3,12 @@ new_standings <- standings %>%
     n <- 10
     n_brackets  <- nrow(.) %/% n
     remainder <- nrow(.) %% n
-    bracket <- rep(n_brackets, n + remainder)
+    bracket <- paste0(n_brackets, "-", 1:(n + remainder))
     for (i in (n_brackets-1):1){
-      bracket <- c(rep(i, n), bracket)
+      bracket <- c(
+        paste0(i, "-", 1:n),
+        bracket
+      )
     }
     .$bracket <- bracket
     .

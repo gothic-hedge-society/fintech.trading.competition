@@ -4,6 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+devtools::load_all(".")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -13,8 +14,231 @@ have already read and understood the [General Idea behind our scoring philosophy
 to get an idea of what we're seeking to do; to wit: reward those traders who 
 make a lot of money, but do so intelligently rather than just getting lucky.
 
-You should also have read the page on [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html) to understand how everyone's Sharpe Ratios are calculated.
 
-Read on to see how we tie it all together to rank traders!
+The process described below is performed daily when standings are updated.
 
---> coming soon <--
+## Step 1: START
+For every trader in the Contest, we calculate geometric mean excess return and 
+Sharpe ratio as described in [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html).
+
+Let's suppose that we have 50 traders in the competition and on this particular
+day they come out with the following stats:
+``` {r echo = FALSE, message = FALSE}
+DT::datatable(
+    example_standings,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(2, digits = 5) %>%
+  DT::formatSignif(3, 5)
+```
+
+## Step 1: Sort by excess return
+We arrange everyone by excess return. Highest return goes at the top and the 
+lowest goes to the bottom, leaving us with:
+``` {r echo = FALSE, message = FALSE}
+DT::datatable(
+    dplyr::arrange(example_standings, dplyr::desc(`excess return`)),
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(2, digits = 5) %>%
+  DT::formatSignif(3, 5)
+```
+
+## Step 2: Break the traders down into brackets of 10
+Prizes are awarded to the top 5 traders, so we form brackets of 10 traders each
+(=5*2) based on excess return. That leaves us with the below, where each page
+of the datatable is a single bracket:
+``` {r echo = FALSE, message = FALSE}
+example_standings_step2 <- example_standings %>%
+  dplyr::arrange(dplyr::desc(`excess return`)) %>% {
+    n <- 10
+    n_brackets  <- nrow(.) %/% n
+    remainder <- nrow(.) %% n
+    bracket <- rep(n_brackets, n + remainder)
+    for (i in (n_brackets-1):1){
+      bracket <- c(rep(i, n), bracket)
+    }
+    .$bracket <- bracket
+    .
+  } %>%
+  dplyr::select(bracket, dplyr::everything()) 
+
+DT::datatable(
+    example_standings_step2,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      pageLength = 10,
+      dom         = 'Btp',
+      buttons     = c('csv', 'excel', 'copy')
+    )
+  ) %>%
+  DT::formatPercentage(3, digits = 5) %>%
+  DT::formatSignif(4, 5)
+```
+
+### Step 3: Sort by Sharpe within brackets
+Each individual group of 10 traders is sorted with highest Sharpe at the top,
+lowest at the bottom.
+``` {r echo = FALSE, message = FALSE}
+example_standings_step3 <- example_standings %>%
+  dplyr::arrange(dplyr::desc(`excess return`)) %>% {
+    n <- 10
+    n_brackets  <- nrow(.) %/% n
+    remainder <- nrow(.) %% n
+    bracket <- rep(n_brackets, n + remainder)
+    for (i in (n_brackets-1):1){
+      bracket <- c(rep(i, n), bracket)
+    }
+    .$bracket <- bracket
+    .
+  } %>%
+  dplyr::select(bracket, dplyr::everything()) %>%
+  dplyr::group_by(bracket) %>%
+  dplyr::arrange(dplyr::desc(Sharpe), .by_group = TRUE) 
+
+DT::datatable(
+    example_standings_step3,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      pageLength = 10,
+      dom         = 'Btp',
+      buttons     = c('csv', 'excel', 'copy')
+    )
+  ) %>%
+  DT::formatPercentage(3, digits = 5) %>%
+  DT::formatSignif(4, 5)
+```
+
+## Step 4: Assign bracket ranks
+Everyone is given a rank within their bracket:
+``` {r echo = FALSE, message = FALSE}
+example_standings_step4 <- example_standings_step3 %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(
+    "bracket rank" = paste0(bracket, "-", rep(1:10, 5))
+  ) %>%
+  dplyr::select(`bracket rank`, dplyr::everything()) %>%
+  dplyr::select(-bracket)
+
+DT::datatable(
+    example_standings_step4,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      pageLength = 10,
+      dom         = 'Btp',
+      buttons     = c('csv', 'excel', 'copy')
+    )
+  ) %>%
+  DT::formatPercentage(3, digits = 5) %>%
+  DT::formatSignif(4, 5)
+```
+
+## Step 5: Recombine into one table and assign overall trader rank
+This determines overall rank for the competition:
+``` {r echo = FALSE, message = FALSE}
+example_standings_final <- example_standings_step4 %>%
+  dplyr::mutate(
+    "rank" = 1:nrow(.)
+  ) %>%
+  dplyr::select(rank, dplyr::everything())
+
+DT::datatable(
+    example_standings_final,
+    extensions = c('Scroller', 'Buttons'),
+    rownames   = FALSE,
+    options = list(
+      columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+      initComplete = DT::JS(
+        "
+      function(settings, json) {
+          $(this.api().table().header()).css({
+              'color' : 'greenyellow'
+          });
+      }
+      "
+      ),
+      dom         = 'Bt',
+      buttons     = c('csv', 'excel', 'copy'),
+      deferRender = TRUE,
+      ordering    = FALSE,
+      scrollY     = 500,
+      scrollX     = '100%',
+      scroller    = TRUE
+    )
+  ) %>%
+  DT::formatPercentage(4, digits = 5) %>%
+  DT::formatSignif(5, 5)
+```
