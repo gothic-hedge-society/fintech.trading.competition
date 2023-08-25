@@ -13,6 +13,8 @@ have already read and understood the [General Idea behind our scoring philosophy
 to get an idea of what we're seeking to do; to wit: reward those traders who 
 make a lot of money, but do so intelligently rather than just getting lucky.
 
+You should also have read the page on [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html) to understand how everyone's Sharpe Ratios are calculated.
 
+Read on to see how we tie it all together to rank traders!
 
-, as well as ow we calculate traders’ Sharpe Ratio, you’re ready for the final step: how the Competition ranks the performance of each trader.
+--> coming soon <--
