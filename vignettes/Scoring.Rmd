@@ -187,7 +187,7 @@ certain time period**; in other words, $R_{p} - r_{f}$.
 For a series of returns, the **volatility** (or "vol", for short) is defined as
 the standard deviation of the observed returns. In finance, **risk** is thought
 to be defined as **volatility**. A portfolio's vol is assigned the symbol
-$\sigma^{2}_{p}$.
+$\sigma_{p}$.
 
 ## The Sharpe Ratio
 Now we can put it all together and, [as William Sharpe did in
@@ -196,7 +196,7 @@ goes *down* when expected return goes down & vol goes up, and *up* when expected
 return goes up and vol goes down:
 
 \begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}_{p}} 
+{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma_{p}} 
 \end{align*}
 
 #### Wherein:
@@ -204,7 +204,7 @@ return goes up and vol goes down:
 \begin{align*}
 R_{p} & {\sf: Portfolio\ Return} \\
 r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
-\sigma^{2}_{p} & {\sf: Volatility\ of\ portfolio\ return}
+\sigma_{p} & {\sf: Volatility\ of\ portfolio\ return}
 \end{align*}
 
 ## Conceptually, the Sharpe ratio is a 'price'

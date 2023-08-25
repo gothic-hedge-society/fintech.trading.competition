@@ -122,7 +122,7 @@ print(paste0(round(student_excess_return*100, digits = 3), " %/trading day"))
 ```
 
 
-The students **volatility of returns** $\sigma^{2}_{p}$ is the standard 
+The students **volatility of returns** $\sigma_{p}$ is the standard 
 deviation of her portfolio returns:
 ```{r}
 student_vol <- student_data %>%
@@ -139,7 +139,7 @@ print(paste0(round(student_vol*100, digits = 3), " %/trading day"))
 Finally, we can calculate the Sharpe Ratio for this student.
 
 \begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}_{p}} 
+{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma_{p}} 
 \end{align*}
 
 #### Wherein:
@@ -147,7 +147,7 @@ Finally, we can calculate the Sharpe Ratio for this student.
 \begin{align*}
 R_{p} & {\sf: Portfolio\ Return} \\
 r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
-\sigma^{2}_{p} & {\sf: Volatility\ of\ portfolio\ return}
+\sigma_{p} & {\sf: Volatility\ of\ portfolio\ return}
 \end{align*}
 
 ## Her Sharpe is therefore:
