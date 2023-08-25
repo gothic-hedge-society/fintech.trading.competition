@@ -207,8 +207,8 @@ because there’s nothing to compare it to.</p>
 <span>  </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">student_excess_return</span><span class="op">*</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, <span class="st">" %/trading day"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "0.572 %/trading day"</span></span></code></pre>
-<p>The students <strong>volatility of returns</strong> <span class="math inline">\(\sigma^{2}_{p}\)</span> is the standard deviation
-of her portfolio returns:</p>
+<p>The students <strong>volatility of returns</strong> <span class="math inline">\(\sigma_{p}\)</span> is the standard deviation of
+her portfolio returns:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">student_vol</span> <span class="op">&lt;-</span> <span class="va">student_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="st">"Port. Return (%/trd day)"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
@@ -220,7 +220,7 @@ of her portfolio returns:</p>
 <pre><code><span><span class="co">## [1] "1.74 %/trading day"</span></span></code></pre>
 <p>Finally, we can calculate the Sharpe Ratio for this student.</p>
 <p><span class="math display">\[\begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma^{2}_{p}}
+{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma_{p}}
 \end{align*}\]</span></p>
 <div class="section level5">
 <h5 id="wherein">Wherein:<a class="anchor" aria-label="anchor" href="#wherein"></a>
@@ -228,7 +228,7 @@ of her portfolio returns:</p>
 <p><span class="math display">\[\begin{align*}
 R_{p} &amp; {\sf: Portfolio\ Return} \\
 r_{f} &amp; {\sf: Risk\ free\ rate\ of\ return} \\
-\sigma^{2}_{p} &amp; {\sf: Volatility\ of\ portfolio\ return}
+\sigma_{p} &amp; {\sf: Volatility\ of\ portfolio\ return}
 \end{align*}\]</span></p>
 </div>
 </div>
