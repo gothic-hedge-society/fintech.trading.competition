@@ -1,23 +1,11 @@
 
 <p style="font-size:20px;">
-The 2022 Duke FINTECH Trading Competition is complete! We are proud to
-congratulate the following winners:
+The 2023 Duke FINTECH Trading Competition is coming very soon!
 </p>
 
-# 2022 Winners
-
--   1st Place $3,000 Prize: **Hoppity** of Harvard University
--   2nd Place $2,000 Prize: **bubbles** of Texas A&M University
--   3rd Place $1,250 Prize: **Dennishhh** of Vanderbilt University
--   4th Place $750 Prize: **James Liao** of Washington University in
-    St. Louis
--   5th Place $500 Prize: **Nonfortissimus** of UNC Chapel Hill
-
-Prizes will be awarded in weightings of 1/3 ZEN cryptocurrency and 2/3
-USD.
-
-Congratulations to all who participated and thanks again to our generous
-sponsors! Be sure to check them out using the links in the sidebar.
+Check out our [scoring
+philosophy](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html)
+to see what makes us special.
 
 # ABOUT
 
@@ -28,7 +16,7 @@ The Competition is open to any currently enrolled graduate or
 undergraduate student so long as they have an email address with a .edu
 extension.
 
-Participating students are issued $1 million in simulated currency
+Participating students are issued \$1 million in simulated currency
 within a paper trading account provided by [Interactive
 Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE).
 Students will have the opportunity to trade equities, fixed income,
