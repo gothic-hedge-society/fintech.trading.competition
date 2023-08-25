@@ -7,7 +7,7 @@ template:
 
 navbar:
   structure:
-    left:  [intro, articles]
+    left:  [signup, articles]
     right: [youtube, github]
   components:
     signup:

@@ -1,5 +1,5 @@
 ---
-title: "Getting Started (Registration)"
+title: "Sign Up for the Competition"
 author: "Jake Vestal"
 date: "08/23/2022"
 output: html_document
@@ -7,25 +7,27 @@ output: html_document
 
 This page walks through what you as a participating trader need to do to fully 
 **sign up** for the Competition, including all the downloads that you'll need to 
-be able to trade.
+be able to trade. To get fully registered, you'll need to interact with the 
+three (3) components that make up this competition:
 
-For starters, this competition consists of three components that you'll use:
-
-- The **website** that you're on right now (+ its backend, which does all the 
-  heavy lifting and calculating)
+- The **website** that you're on right now 
 - An 'educator-level' **paper trading account** run by the [Student Trading
   Lab](https://www.interactivebrokers.com/en/accounts/educator.php) at
   Interactive Brokers (IBKR). This is what participants will use to make their 
   trades and monitor market data.
-- A **Discord Server**. This is where participants can interact with each other,
-  the competition admins, and Partner-level sponsors & above (when they choose 
-  to sign in and make themselves available)
+- The **Gothic Hedge Hub**: our official Discord server for this event, where 
+  participants can interact with each other, the competition admins, and 
+  sponsors (when they choose to sign in and make themselves available)
   
 **If you're a currently enrolled university student (grad or undergrad) then 
-you're eligible to join!**
+you're eligible to participate in the competition!**
 
-### Step 1: Make a Discord account (if you don't have one already)
-Discord accounts are required for the competition this year for several reasons:
+### Step 1: Make a Discord account
+If you already have a Discord account that you don't mind using for the 
+Competition, then you may use it.
+
+If not, then you must create one. Discord accounts are required for the
+competition this year for several reasons:
 
  - Jake Vestal (The Architect) and Zoe Kim (The Artist) -- the Competition 
  admins -- are going to be doing Discord livestreams at various times and 
@@ -33,14 +35,17 @@ Discord accounts are required for the competition this year for several reasons:
  which won't be posted to YouTube. They're sure to be helpful at best, 
  entertaining at a minimum :)
  - You'll use Discord to communicate with each other...
- - ...receive announcements as they take place...
+ - ...receive Competition announcements as they take place...
  - ...and communicate with Competition admins in case you encounter an issue.
  
 But perhaps most importantly: **We're allowing some sponsors to join certain 
-channels on the Competition Discord for recruiting**, so you definitely want to participate.
+channels on the Hedge Hub for recruiting purposes**, so you definitely want to 
+participate if you're job hunting.
 
 You can make an account and download Discord [here](https://discord.com/). You 
 are probably going to want to download the app on your desktop and your phone.
+
+Once you've got your Discord username, proceed to Step 2.
 
 ### Step 2: Fill out & submit this form:
 <div id="wufoo-div" style="background-color:#fff;border-style:ridge;">
