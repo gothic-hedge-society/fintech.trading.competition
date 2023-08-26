@@ -6,3 +6,5 @@ output: html_document
 ```{r setup, include = FALSE}
 library(magrittr)
 ```
+
+Other rules and special cases will be posted here!

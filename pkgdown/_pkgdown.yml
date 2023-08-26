@@ -22,10 +22,10 @@ navbar:
         href: articles/Sharpe Ratio Calculation.html
       - text: 3. Determining Trader Ranks
         href: articles/ranking.html
-      # - text: 4. Other Rules and Special Cases
-      #   href: articles/other_rules.html
-      # - text: 5. Incentive Structure - Discussion
-      #   href: articles/incentives.html
+      - text: 4. Other Rules and Special Cases
+        href: articles/other_rules.html
+      - text: 5. Incentive Structure - Discussion
+        href: articles/incentives.html
     github:
       icon: fa-github
       href: https://github.com/gothic-hedge-society/fintech.trading.competition

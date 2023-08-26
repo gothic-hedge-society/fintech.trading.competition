@@ -6,3 +6,55 @@ output: html_document
 ```{r setup, include = FALSE}
 library(magrittr)
 ```
+
+In the [Ranking](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/ranking.html) section we described our scoring system which bins traders 
+into **brackets** according to their average returns, then sorts them within
+brackets according to their Sharpe ratios.
+
+The Gothic Hedge Society prefers this structure because it's consistent with our
+values of rewarding intelligent risk-taking, but it also comes with several 
+other desirable qualities:
+
+#1. It makes the Competition interesting to watch
+You can't win cash prizes unless you're in the top half of the top bracket -- 
+which you can only accomplish if you post a big return. **BUT**, within that 
+bracket you're placed towards the bottom if you have a high volatility, meaning
+that you won't win any real money.
+
+This is the reason why we chose $n$ = 10 for the bracket sizes -- that's 2x the
+number of paid cash slots available. 
+
+Those traders who are **not** in the top bracket are incentivized to get there
+by making more money. 
+
+Those who **are** in the top bracket are incentivized to watch their volatility 
+so that they can stay there, or increase their rank. **But**... decreasing 
+volatility means that those top traders will probably have to sacrifice in terms
+of returns... which risks them being bumped into a lower bracket!
+
+#2. It keeps traders interested throughout the entire event
+If you're in a lower bracket and don't have much hope of reaching a top slot 
+before the Competition ends, you are **still** interested in trading because 
+you want to reach the top of your bracket -- and maybe reach the next one up. It
+gives everyone a shot at winning some bragging rights ("I was #3 in my bracket")
+and telling a good story to potential interviewers about how you handled a rough
+situation and improved it as much as possible. 
+
+Jake & Zoe are open to the idea of awarding cash prizes to lower brackets; also
+in awarding "side prizes" for impressive feats such as high returns, low beta, 
+and so on. This, of course, depends upon interest and capital availability.
+
+#3. It prevents 'Sharpe Ratio Hacking'
+Last year the competition was scored using Sharpe ratio alone, but two very 
+disciplined traders -- Hoppity and Bubbles -- dominated the competition by 
+running a strategy that earned a tiny return with a volatility that was even
+smaller, resulting in **massive** Sharpe ratios. The Gothic Hedge Society found
+this behavior to be:
+
+  - innovative
+  - fair
+  - extremely annoying :)
+  
+We salute Hoppity and Bubbles -- who are great people -- for their success but 
+we want to be sure that others don't follow suit because at the end of the day 
+this competition is about making money.
