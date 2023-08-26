@@ -29,15 +29,15 @@ have already read and understood the [General Idea behind our scoring philosophy
 to get an idea of what we're seeking to do; to wit: reward those traders who 
 make a lot of money, but do so intelligently rather than just getting lucky.
 
-
 The process described below is performed daily when standings are updated.
 
 ## Step 1: START
-For every trader in the Contest, we calculate geometric mean excess return and 
-Sharpe ratio as described in [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html).
+For every participaiting trader, every day as soon as new end-of-day NAV values
+become available, we calculate excess return and Sharpe ratio as described in 
+[Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html).
 
 Let's suppose that we have 50 traders in the competition and on this particular
-day they come out with the following stats:
+day we run the query, do the calculations, and end up with the following stats:
 ``` {r echo = FALSE, message = FALSE}
 DT::datatable(
   example_standings,
@@ -67,8 +67,9 @@ DT::datatable(
 ```
 
 ## Step 1: Sort by excess return
-We arrange everyone by excess return. Highest return goes at the top and the 
-lowest goes to the bottom, leaving us with:
+The first thing we do is arrange everyone in the table by decreasing excess 
+return. Highest return goes at the top and the lowest goes to the bottom, 
+leaving us with:
 ``` {r echo = FALSE, message = FALSE}
 DT::datatable(
   dplyr::arrange(example_standings, dplyr::desc(`excess return`)),

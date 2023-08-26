@@ -1,5 +1,5 @@
 ---
-title: "Scoring - General Idea"
+title: "Scoring - General Idea & Concepts"
 output: html_document
 ---
 
@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**You win by making as much money as you possibly can -- using all means 
+TLDR: **You win by making as much money as you possibly can -- using all means 
 available to you -- but you're penalized for risk**.
 
 ## Reward skill, not luck.
@@ -51,21 +51,38 @@ the competition. On her worst day, she had still earned a return of 8%, but upon
 the whole it never varied too much from 12%.
 
 ## So who should win-- Wild Bill or Clever Susan?
-In other words, how do we quantify the difference between these two students?
+The Gothic Hedge Society believes it should be Susan because otherwise the 
+Competition turns into a simple gamble on who's NAV will be the highest on the
+day the Competition ends. 
 
-Investment performance is scored by calculating the **Sharpe Ratio** of your
-end-of-day account balance over time. The Sharpe Ratio is a measure of your
-*risk-adjusted return*; in other words, how much money you made vs. the risk
-that you took on.
+That poses the following problem when it comes to designing a scoring system: 
+how do we rank trader performance in a way that is:
 
-In finance, **risk = volatility and is defined as the standard deviation of the
-returns that a portfolio earns over time**. You want as large a return and as
-small a volatility of returns as possible.
+  - consistent & fair for all traders
+  - quantifiable
+  - relatively straightforward to calculate, communicate, and understand?
 
-This is the entire game and the goal of every investor: high returns, low
-volatility. The Sharpe Ratio is a way to quantify this concept. Read on to learn
-more about the components of this very important metric (starting with the 
-risk-free rate) -- then visit the [Sharpe Ratio Calculation]([Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html)) page to see a real-world example with numbers.
+We'll need a metric somewhat more sophisticated than simple return to satisfy 
+those requirements, one that takes into account both **average return** of a 
+trader's porfolio over time as well as the **volatility** of those returns. 
+
+Fortunately, the **Sharpe Ratio** is just such a metric. For you, the trader,
+your Sharpe Ratio is a measure of your *risk-adjusted return*; in other words, 
+how much money you made vs. the risk that you took on.
+
+There are two main postulates behind the Sharpe ratio that you should think 
+about deeply if you're new to this. They are:
+
+  - volatility is defined as the standard deviation of the returns that a 
+    portfolio earns over time
+  - volatility is a good measure of risk
+  
+Posting a high Sharpe ratio during a time period means that your portfolio 
+earned a big return comparable to the volatility of your account's value during
+that time -- and that's good. 
+
+Before we move on to **calculating** the Sharpe ratio with concrete numbers,
+there are a few more concepts you should become familiar with. Read on!
 
 ## CONCEPT: The Risk-Free Rate $r_{f}$
 
@@ -124,7 +141,7 @@ In the competition, daily log returns are calculated for every student's
 portfolio as soon as the data becomes available for that day (usually after 
 about 6pm EST on a trading day).
 
-## Average ("Expected") Return
+## CONCEPT: Average ("Expected") Return
 **TLDR**: We use the geometric mean of period-over-period log returns.
 
 **Details**: Let's say you invest $100k into an investment portfolio. Each
@@ -156,20 +173,23 @@ have a client banging your door down wondering where their $2,500 went. The
 "normal average", more properly called the **arithmetic mean** of the returns is
 therefore misleading in this way!
 
-#### Geometric Mean
+#### Geometric Mean Rate of Return (GMRR)
 A better way to assign an overall characteristic ("expected") return for a time
 series of returns is to use the [geometric
 mean](https://www.investopedia.com/ask/answers/06/geometricmean.asp#:~:text=The%20geometric%20mean%20differs%20from,returns%20than%20the%20arithmetic%20mean),
-calculated by multiplying all of the returns together and taking the $n$th root,
-where $n$ is the number of returns observed in the period. The **geometric
-mean** of a series of returns over $n$ periods can be expressed as two
-equivalent formulae $\left(\prod_{i=1}^{n}R_{i}\right)^\frac{1}{n}$ and
-$\sqrt[n]{R_{1}R_{1}R_{1}...R_{n}}$.
+calculated by converting all of the returns into *factors* by adding 1, 
+multiplying them all together, and taking the $n$th root, where $n$ is the 
+number of returns observed in the period. Finally, convert resulting factor back
+into a percent by subtracting 1.
 
-Note that, in the example above, the geometric mean rate of return for the
+In symbols, the **geometric mean** of a series of returns over $n$ periods can 
+be expressed as $\left(\prod_{i=1}^{n}R_{i}\right)^\frac{1}{n}$, or, 
+equivelantly: $\sqrt[n]{R_{1}R_{1}R_{1}...R_{n}}$.
+
+You can check the numbers from the example above to see that the GMRR for the
 investment is 0, just as it should be.
 
-## Excess Return
+## CONCEPT: Excess Return
 You're going to be managing a portfolio -- some set of bonds, stocks, currency
 trades, etc, on which you earn a **portfolio return** $R_{p}$. As an investor,
 you only care about earning a return that is *better* than the risk-free rate
@@ -183,17 +203,16 @@ over the risk free rate.
 earned and the return that was available by buying sovereign debt during a
 certain time period**; in other words, $R_{p} - r_{f}$.
 
-## Volatility (Risk)
-For a series of returns, the **volatility** (or "vol", for short) is defined as
-the standard deviation of the observed returns. In finance, **risk** is thought
-to be defined as **volatility**. A portfolio's vol is assigned the symbol
-$\sigma_{p}$.
+## Finally... The Sharpe Ratio Defined
+Earlier in this vignette we presented the two postulates that amount to the 
+idea that, for a trader's account, if we measure the return earned each day with respect to the day before, then **volatility = standard_deviation(returns) = 
+risk**. Standard deviation of a portfolio's returns is a concrete value that we
+can understand and calculate, and we assign to it the symbol $\sigma_{p}$.
 
-## The Sharpe Ratio
 Now we can put it all together and, [as William Sharpe did in
 1966](http://web.stanford.edu/~wfsharpe/art/sr/SR.htm), write down a metric that
-goes *down* when expected return goes down & vol goes up, and *up* when expected
-return goes up and vol goes down:
+goes *down* when expected return goes down & volatility goes up, and *up* when 
+expected return goes up and volatility goes down:
 
 \begin{align*}
 {\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma_{p}} 
@@ -224,5 +243,5 @@ In general, better traders have higher Sharpe ratios because they're able get
 the best "price" (in terms of risk) that the market will give in exchange for
 the returns they earn.
 
-Now you're ready to move on to [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html) to see a worked example showing how Sharpe ratios are 
-calculated in the Trading Competition.
+Now you're ready to move on to [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html) to see a worked example showing how Sharpe 
+ratios are calculated in the Trading Competition.

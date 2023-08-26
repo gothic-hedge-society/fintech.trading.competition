@@ -1,0 +1,8 @@
+---
+title: "Incentive Structure - Discussion"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(magrittr)
+```

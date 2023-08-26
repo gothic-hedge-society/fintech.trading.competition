@@ -16,12 +16,16 @@ navbar:
     articles:
       text: Scoring Info
       menu:
-      - text: General Idea
+      - text: 1. General Idea
         href: articles/Scoring.html
-      - text: Sharpe Ratio Calculation
+      - text: 2. Sharpe Ratio Calculation
         href: articles/Sharpe Ratio Calculation.html
-      - text: Determining Trader Ranks
+      - text: 3. Determining Trader Ranks
         href: articles/ranking.html
+      # - text: 4. Other Rules and Special Cases
+      #   href: articles/other_rules.html
+      # - text: 5. Incentive Structure - Discussion
+      #   href: articles/incentives.html
     github:
       icon: fa-github
       href: https://github.com/gothic-hedge-society/fintech.trading.competition

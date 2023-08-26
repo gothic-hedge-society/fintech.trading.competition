@@ -1,0 +1,8 @@
+---
+title: "Other Rules and Special Cases"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(magrittr)
+```
