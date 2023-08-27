@@ -7,12 +7,15 @@ template:
 
 navbar:
   structure:
-    left:  [signup, articles]
+    left:  [signup, become-a-sponsor, articles, past-winners]
     right: [youtube, github]
   components:
     signup:
       text: Sign Up
       href: articles/sign_up.html
+    become-a-sponsor:
+      text: Become a Sponsor
+      href: articles/Become a Sponsor.html
     articles:
       text: Scoring Info
       menu:
@@ -26,6 +29,9 @@ navbar:
         href: articles/other_rules.html
       - text: 5. Incentive Structure - Discussion
         href: articles/incentives.html
+    past-winners:
+      text: Past Winners
+      href: articles/past_winners.html
     github:
       icon: fa-github
       href: https://github.com/gothic-hedge-society/fintech.trading.competition

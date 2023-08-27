@@ -1,0 +1,11 @@
+---
+title: "Past Winners"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(magrittr)
+```
+
+<div id="wufoo-div" style="background-color:#fff;border-style:ridge;">
+<div id="wufoo-w6isqlb0w1r62u"> Fill out my <a href="https://dukefinance.wufoo.com/forms/w6isqlb0w1r62u">online form</a>. </div> <script type="text/javascript"> var w6isqlb0w1r62u; (function(d, t) { var s = d.createElement(t), options = { 'userName':'dukefinance', 'formHash':'w6isqlb0w1r62u', 'autoResize':true, 'height':'1025', 'async':true, 'host':'wufoo.com', 'header':'show', 'ssl':true }; s.src = ('https:' == d.location.protocol ?'https://':'http://') + 'secure.wufoo.com/scripts/embed/form.js'; s.onload = s.onreadystatechange = function() { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { w6isqlb0w1r62u = new WufooForm(); w6isqlb0w1r62u.initialize(options); w6isqlb0w1r62u.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script'); </script></div>
