@@ -42,7 +42,7 @@ extension.
 
 Participating students are issued \$1 million in simulated currency
 within a paper trading account provided by [Interactive
-Brokers](https://www.interactivebrokers.com/en/index.php?f=1338&gclid=CjwKCAjw6fCCBhBNEiwAem5SO84OkMDwq8mlx6lCjOmAmCNDUaLbhxtQuFSUlozy6iLEZtmsve2w-hoCQ9sQAvD_BwE).
+Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
 Students will have the opportunity to trade equities, fixed income,
 derivatives, ETFs, cryptocurrencies, and more, all based on real-time
 streaming market data using the same user interface and features
