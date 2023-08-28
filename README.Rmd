@@ -15,9 +15,8 @@ Brokers and trade anything they want, including stocks, bonds, options, futures,
 currencies, crypto, and [any of the other products offered by Interactive 
 Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
 
-If you do well in this competition, it's because you're a good trader, not 
-because you got lucky with some high-risk trades that happened to pay off. Check 
-out our [scoring philosophy](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html) to see what makes us special. 
+Due to the way in which we score & rank our participants, if you do well in this competition, it's because you're a good trader. To see how we accompilsh this, 
+and what makes us special, check out our [scoring philosophy](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html). Then you can begin the [sign up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html) process!
 
 As a participating trader in this competition you will:
 
@@ -28,6 +27,8 @@ As a participating trader in this competition you will:
     to communicate with other traders, the Competition admins, and industry 
     sponsors
   - Gain a chance to show recruiters and the world your trading skills
+  
+Go ahead and join now! We'll look forward to seeing you in the Discord server :)
 
 # ABOUT
 The Duke FINTECH Trading Competition is a free competition hosted by the [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
