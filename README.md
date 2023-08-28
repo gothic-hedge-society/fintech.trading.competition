@@ -3,9 +3,24 @@
 The 2023 Duke FINTECH Trading Competition is coming very soon!
 </p>
 
-Check out our [scoring
+The Duke FinTech Trading Competition is a 3-month long event in which
+student traders from around the world create paper trading accounts at
+Interactive Brokers and trade anything they want, including stocks,
+bonds, options, futures, currencies, crypto, and [any of the other
+products offered by Interactive
+Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
+
+If you do well in this competition, it’s because you’re a good trader,
+not because you got lucky with some high-risk trades that happened to
+pay off. Check out our [scoring
 philosophy](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html)
 to see what makes us special.
+
+As a participating trader in this competition you will:
+
+- Download Trader Workstation (Interactive Brokers’ professional-grade
+  trading platform) and use it to trade.
+- Participate in the Gothic Hedge Hub, the
 
 # ABOUT
 
@@ -26,6 +41,6 @@ utilized by professional traders.
 
 The FINTECH program at Duke is inclusive and welcoming. Participation is
 welcome and encouraged, so please help spread the word! Standings for
-the top 10 traders will be posted here and updated daily as data become
-available. This site will continue to grow as new features are brought
-onboard so be sure to check back often for updates!!!
+traders will be posted here and updated daily as data become available.
+This site will continue to grow as new features are brought onboard so
+be sure to check back often for updates!!!
