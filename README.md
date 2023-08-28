@@ -1,7 +1,12 @@
 
 <p style="font-size:20px;">
-The 2023 Duke FINTECH Trading Competition is coming very soon!
+[Sign
+up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
+for the 2023 Fall Competition is now live!
 </p>
+
+**Check back for more important info like sponsorship, start & end
+dates, and more which will be coming this week!**
 
 The Duke FinTech Trading Competition is a 3-month long event in which
 student traders from around the world create paper trading accounts at
