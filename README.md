@@ -19,8 +19,12 @@ to see what makes us special.
 As a participating trader in this competition you will:
 
 - Download Trader Workstation (Interactive Brokers’ professional-grade
-  trading platform) and use it to trade.
-- Participate in the Gothic Hedge Hub, the
+  trading platform) and use it to trade real assets with real market
+  prices using simulated money
+- Join the Gothic Hedge Hub (our companion Discord Server) which you can
+  use to communicate with other traders, the Competition admins, and
+  industry sponsors
+- Gain a chance to show recruiters and the world your trading skills
 
 # ABOUT
 
