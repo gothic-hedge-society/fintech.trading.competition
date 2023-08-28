@@ -10,23 +10,26 @@ library(magrittr)
 We're thrilled that you're visiting our Sponsors page! Sponsors like you can 
 benefit from our Competition's success in many ways:
 
-  - **Donating funds**: We add donations to our overall cash prize awards which,
-    of course, is a major motivator for attracting top performing traders to 
-    the Competition. Therefore when you donate to us, you realize direct, 
-    tangible returns by choosing to interview our traders for positions 
-    at your firm.
-  - **Interviewing our traders**: We'd love for you to agree to offer job 
-    interviews to top performers for finance positions. Doing so will certainly 
-    drive interest in the Competition, and you might very well find a diamond 
-    that you otherwise would miss!
+  - **Donating funds**: When you agree to donate funds to our Competition, 
+    you're agreeing to contribute a certain dollar amount to the cash prizes
+    that we award to the winners. To simplify things you won't send any money 
+    until the competition is over and the winners have been identified. At that 
+    time the Competition admins will instruct each sponsor to send funds to the
+    winners totaling to the agreed-upon amount.
+  - **Comitting to interview our traders**: By giving us permission to publish 
+    that your company commits to offering first-round interviews to winning 
+    traders, you can gain access to top talent.
   - **Participating in our YouTube shows**: We'll be recording 15-20 minute 
-    video chats with our sponsors this year on Comp & Coin, the [Competition's 
-    companion YouTube channel](https://www.youtube.com/@DukeFintechCompetition).
+    video chats with our sponsors this year (MD level and up) on Comp & Coin, 
+    the [Competition's companion YouTube channel](https://www.youtube.com/@DukeFintechCompetition).
     You can shoot one of these segments with us and use it to advertise job 
     openings, new products / initiatives, or simply show up and discuss markets.
   - **Participating in our Discord server**: Partner & Magnate level sponsors
     will have the option to access our Discord server and interact with the
     student traders directly -- something we certainly encourage!
+  - **Analyze top strategies**: Magnate-level sponsors can see individual trades
+    made by traders of their choice, and we'll work to put you in touch with 
+    those traders if there is interest.
     
 Please fill out the form below and Zoe or Jake will reach out to you at the 
 email you provided to discuss our collaboration! 

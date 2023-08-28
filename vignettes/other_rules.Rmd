@@ -20,7 +20,7 @@ website in the appropriate section.
 Here are a few more rules & considerations that we anticipate might cover 
 situations that arise:
 
-#1 Trading in Groups
+# 1 Trading in Groups
 The bottom line is: you get one Competition entry per University email, and you
 get to choose what you do with it. 
 
@@ -33,14 +33,14 @@ However: it's very important to decide ahead of time how you'll split up the
 winnings. We recommend writing up a team charter similar to what you've used in 
 your college courses. 
 
-#2 A tie
+# 2. A tie
 It's VERY unlikely that a tie will take place because in order for that to 
 happen, two traders would have to post the exact same return AND Sharpe ratio 
 after about 3 months of trading. If such a fluke does take place, however, 
 we'll let those two traders trade for another week to break the tie, and repeat 
 until the tie is broken.
 
-#3 General Shenanigans
+# 3. General Shenanigans
 We can't define shenanigans or hacking in general, but we'll know them if we see
 them. If shenanigans take place, the admins will write up the situation and 
 post a decision somewhere public. We might even put the issue to a vote by 
