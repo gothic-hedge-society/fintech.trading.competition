@@ -16,11 +16,11 @@ benefit from our Competition's success in many ways:
     tangible returns by choosing to interview our traders for positions 
     at your firm.
   - **Interviewing our traders**: We'd love for you to agree to offer job 
-    interview top performers for finance positions. Doing so will certainly 
+    interviews to top performers for finance positions. Doing so will certainly 
     drive interest in the Competition, and you might very well find a diamond 
     that you otherwise would miss!
-  - **Participating in our YouTube shows**: We'll recording 15-20 minute video
-    chats with our sponsors this year on Comp & Coin, the [Competition's 
+  - **Participating in our YouTube shows**: We'll be recording 15-20 minute 
+    video chats with our sponsors this year on Comp & Coin, the [Competition's 
     companion YouTube channel](https://www.youtube.com/@DukeFintechCompetition).
     You can shoot one of these segments with us and use it to advertise job 
     openings, new products / initiatives, or simply show up and discuss markets.
@@ -36,13 +36,13 @@ Thank you!!!!
 # Benefits
 We offer four levels of sponsorship, which receive benefits as described below:
 
-## "Analyst" Tier ($2K -$5k):
+## "Analyst" Tier ($2K -$5K):
 - Logo featured on the Trading Competition's website as a link to your company's
   main website
 - Company shoutout at the end of weekly Competition update videos (Listed in our
   “thank you to our sponsors”)
   
-## "Managing Director" Tier ($5k -$10k):
+## "Managing Director" Tier ($5K -$10K):
 - Logo featured on the Trading Competition's website as a link to your company's
   main website
 - Company shoutout at the end of weekly Competition update videos (Listed in our
@@ -50,7 +50,7 @@ We offer four levels of sponsorship, which receive benefits as described below:
 - Your company’s spokesperson (or several) appear as guests on “Comp & Coin”, 
   the Competition’s companion YouTube series
   
-## "Partner" Tier ($10K -$25k):
+## "Partner" Tier ($10K -$25K):
 - Logo featured on the Trading Competition's website as a link to your company's
   main website
 - Company shoutout at the end of weekly Competition update videos (Listed in our
@@ -76,7 +76,7 @@ We offer four levels of sponsorship, which receive benefits as described below:
   use to interact with our traders (including voice chat)
 - Meeting with Prof. Jimmie Lenz (Director of the FinTech Program) and Duke 
   FinTech Program faculty and staff 
-- Access to trade-level data & financials of our student traders. 
+- Access to trade-level data & financials of our student traders
   
 
 <div id="wufoo-div" style="background-color:#fff;border-style:ridge;">
