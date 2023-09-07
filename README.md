@@ -30,7 +30,7 @@ troubleshoot, etc.
 
 ### 15 Dec 2023: COMPETITION ENDS
 
-All of your end-of-day Net Account Values between 22 Sep and 15 Dec will
+All of your end-of-day Net Account Values between 01 Oct and 15 Dec will
 be used in the calculation of your scores, with 15 Dec being the final
 date. After that day the competition will be over and winners will be
 declared.
