@@ -1,4 +1,14 @@
 
+<div style="display:block; text-align:center">
+
+<div class="vembedr">
+<div>
+<iframe src="https://www.youtube.com/embed/n2MROQhO1JY" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
+</div>
+</div>
+
+</div>
+
 <p style="font-size:20px;">
 [Sign
 up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)

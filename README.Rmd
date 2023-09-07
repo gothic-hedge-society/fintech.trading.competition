@@ -2,11 +2,15 @@
 output: github_document
 always_allow_html: yes
 ---
-```{r}
-
+<div style="display:block; text-align:center">
+```{r echo=FALSE}
+vembedr::embed_url("https://youtu.be/n2MROQhO1JY")
 ```
+</div>
 
 <p style = "font-size:20px;">[Sign up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html) for the 2023 Fall Competition is now live!</p>
+
+
 
 **Check back for more important info like sponsorship, start & end dates, and
 more which will be coming this week!**
