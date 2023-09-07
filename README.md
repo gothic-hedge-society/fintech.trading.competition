@@ -9,14 +9,33 @@
 
 </div>
 
-<p style="font-size:20px;">
+<p style="text-align:center; font-size:20px; border: 1px solid gold">
 [Sign
 up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
-for the 2023 Fall Competition is now live!
+today for the 2023 Fall Competition!
 </p>
 
-**Check back for more important info like sponsorship, start & end
-dates, and more which will be coming this week!**
+# IMPORTANT DATES:
+
+### 22 Sep 2023: Registration closes
+
+No new registrants will be accepted. [Sign Up
+Here!](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
+
+### 01 Oct 2023: COMPETITION STARTS
+
+This is when we’ll begin keeping score. Use the week betwen 22 Sep and
+01 Oct to get used to the Trader Workstation, interact on Discord,
+troubleshoot, etc.
+
+### 15 Dec 2023: COMPETITION ENDS
+
+All of your end-of-day Net Account Values between 22 Sep and 15 Dec will
+be used in the calculation of your scores, with 15 Dec being the final
+date. After that day the competition will be over and winners will be
+declared.
+
+# ABOUT:
 
 The Duke FinTech Trading Competition is a 3-month long event in which
 student traders from around the world create paper trading accounts at
@@ -26,8 +45,15 @@ products offered by Interactive
 Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
 
 Due to the way in which we score & rank our participants, if you do well
-in this competition, it’s because you’re a good trader. To see how we
-accompilsh this, and what makes us special, check out our [scoring
+in this competition, it’s because you’re a good trader. Furthermore,
+we’ve introduced a *bracket* system this year to keep ALL of our traders
+interested and engaged. In the new system, even if you don’t stand much
+chance of taking the \#1 spot overall, you can still compete for a top
+rank *within your bracket*, giving you a hard-earned accomplishment that
+you can report on your resume or CV.
+
+To see how we accompilsh all this – and what makes us special – check
+out our [scoring
 philosophy](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html).
 Then you can begin the [sign
 up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
