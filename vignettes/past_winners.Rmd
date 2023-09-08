@@ -7,5 +7,22 @@ output: html_document
 library(magrittr)
 ```
 
+# 2022 Winners
+
+* 1st Place $3,000 Prize: **Hoppity** of Harvard University 
+* 2nd Place $2,000 Prize: **bubbles** of Texas A&M University
+* 3rd Place $1,250 Prize: **Dennishhh** of Vanderbilt University
+* 4th Place $750 Prize: **James Liao** of Washington University in St. Louis
+* 5th Place $500 Prize: **Nonfortissimus** of UNC Chapel Hill
+
+Congratulations to all who participated and thanks again to our generous
+sponsors! Be sure to check them out using the links in the sidebar.
+
+# Keep in Touch!
+
+**To our past winners**: Maybe you changed your address, your name, or some 
+other error occurred. Use this form to get in contact with us in the event that 
+you don't receive your prize money, and we'll do all we can to close the loop.
+
 <div id="wufoo-div" style="background-color:#fff;border-style:ridge;">
 <div id="wufoo-w6isqlb0w1r62u"> Fill out my <a href="https://dukefinance.wufoo.com/forms/w6isqlb0w1r62u">online form</a>. </div> <script type="text/javascript"> var w6isqlb0w1r62u; (function(d, t) { var s = d.createElement(t), options = { 'userName':'dukefinance', 'formHash':'w6isqlb0w1r62u', 'autoResize':true, 'height':'1025', 'async':true, 'host':'wufoo.com', 'header':'show', 'ssl':true }; s.src = ('https:' == d.location.protocol ?'https://':'http://') + 'secure.wufoo.com/scripts/embed/form.js'; s.onload = s.onreadystatechange = function() { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { w6isqlb0w1r62u = new WufooForm(); w6isqlb0w1r62u.initialize(options); w6isqlb0w1r62u.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script'); </script></div>
