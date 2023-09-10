@@ -8,8 +8,10 @@ vembedr::embed_url("https://youtu.be/n2MROQhO1JY")
 ```
 </div>
 
-<p style = "text-align:center; font-size:20px; border: 1px solid gold">[Sign up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html) today for the 2023 Fall Competition!</p>
+<p style = "text-align:center; font-size:20px; border: 1px solid gold">[Sign up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html) today for the 2023 Fall Competition!
+</p>
 
+**Read the official press release [here](https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition).**
 
 # IMPORTANT DATES:
 

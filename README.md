@@ -15,6 +15,9 @@ up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/
 today for the 2023 Fall Competition!
 </p>
 
+**Read the official press release
+[here](https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition).**
+
 # IMPORTANT DATES:
 
 ### 22 Sep 2023: Registration closes
