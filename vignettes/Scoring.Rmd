@@ -203,12 +203,13 @@ over the risk free rate.
 earned and the return that was available by buying sovereign debt during a
 certain time period**; in other words, $R_{p} - r_{f}$.
 
-## Finally... The Sharpe Ratio Defined
+## Volatility defined
 Earlier in this vignette we presented the two postulates that amount to the 
 idea that, for a trader's account, if we measure the return earned each day with respect to the day before, then **volatility = standard_deviation(returns) = 
 risk**. Standard deviation of a portfolio's returns is a concrete value that we
 can understand and calculate, and we assign to it the symbol $\sigma_{p}$.
 
+## Finally... The Sharpe Ratio Defined
 Now we can put it all together and, [as William Sharpe did in
 1966](http://web.stanford.edu/~wfsharpe/art/sr/SR.htm), write down a metric that
 goes *down* when expected return goes down & volatility goes up, and *up* when 
@@ -243,5 +244,5 @@ In general, better traders have higher Sharpe ratios because they're able get
 the best "price" (in terms of risk) that the market will give in exchange for
 the returns they earn.
 
-Now you're ready to move on to [Sharpe Ratio Calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Sharpe Ratio Calculation.html) to see a worked example showing how Sharpe 
-ratios are calculated in the Trading Competition.
+Now you're ready to move on to [calculation](articles/excess_rtn_vol_and_sharpe.html) to see worked examples showing how 
+these parameters are calculated in the Competition.

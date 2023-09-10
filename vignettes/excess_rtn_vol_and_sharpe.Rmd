@@ -1,5 +1,5 @@
 ---
-title: "Sharpe Ratio Calculation"
+title: "Calculating Excess Return & Volatility"
 output: html_document
 ---
 
@@ -19,66 +19,15 @@ format_percent <- function(number, suffix){
 }
 ```
 
-# Scoring for an example student
-As introduced in the
-[Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html)
-section, the Sharpe Ratio is an essential part of how traders are ranked in this
-competition. Here, we walk through an example that explains how the Sharpe Ratio
-would be calculated for an example contest participant.
+At the end of every trading day -- as soon as a new end-of-day Net Account Value (NAV) for all the traders in the competition becomes available (usually around 7pm EST) -- the following process is run to calculate the **Excess Return** and **Volatility** for every participant.
 
-As a reminder, here's the Sharpe Ratio definition that we came up with at the
-end of that section:
+  - **Excess Return** ($R_{p} - r_{f}$) is the difference between the return your portfolio earned ($R_{p}$) and the risk free rate ($r_{f}$)
+  - **volatility** of returns ($\sigma_{p}$) is defined as the standard deviation of your portfolio's daily log returns.
 
-\begin{align*}
-{\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma_{p}} 
-\end{align*}
+In this section we'll demonstrate how we calculate these numbers using some
+made-up example data for a hypothetical trader.
 
-#### Wherein:
-
-\begin{align*}
-R_{p} & {\sf: Portfolio\ Return} \\
-r_{f} & {\sf: Risk\ free\ rate\ of\ return} \\
-\sigma_{p} & {\sf: Volatility\ of\ portfolio\ return}
-\end{align*}
-
-
-### What risk-free rate do we use?
-The Gothic Hedge Society (who runs the trading competition) reasons that on Day
-1, all participants implicitly decide if they're going to actively trade at all,
-as opposed to simply putting all of their money into risk-free debt with a 
-maturity near the Competition's end date.
-
-Sounds like not a lot of fun and not a good way to make a fortune... but since 
-about half of the participants will *lose* money in this contest, the idea isn't
-actually as bad as it might sound.
-
-Regardless, for the duration of the Competition, the value of $r_{f}$ used to 
-calculate Sharpes does not change, even though new risk-free rates will be 
-published every day by the USDT. The reason why we keep $r_{f}$ fixed is because
-we're comparing your performance as a trader to the "base strategy": simply
-buying debt earning $r_{f}$ on Day 1, which would tie up all your capital for 
-trading until maturity on the last day.
-
-Since the Competition lasts about **3 months**, the value we'll use for $r_{f}$ 
-will be whatever the USDT publishes as the 3-month CMT rate on the day the 
-Competition starts. This value will be will be posted clearly and conspicuously
-for everyone.
-
-**For this example**, let's suppose that on Day 1 we visited the USDT's website 
-and found that the 3-month CMT rate was 0.04% (annualized). 
-
-We want that on a trading day basis, so we'll convert: since there are 252 
-trading days in a year, we divide by 252 (and by 100 because it's a percent):
-
-Let's do that now, and store $r_{f}$ as a variable:
-``` {r echo = FALSE, message = FALSE}
-rf = 0.04/100/252
-print(paste0("The risk-free rate is ", format_percent(rf, "% / trading day.")))
-```
-
---> Now let's suppose some trading data for a hypothetical Contest participant.
-
-### Example Trader's Data
+## Example Trader's Data
 Let's say that today's date is 23 March 2021, and a student has been
 participating in the competition for seven days. 
 
@@ -154,12 +103,49 @@ student_gmrr <- student_data %>%
 format_percent(student_gmrr, "% / trading day.")
 ```
 
-The student's **excess return** is
+
+## What risk-free rate do we use?
+The Gothic Hedge Society (who runs the trading competition) reasons that on Day
+1, all participants implicitly decide if they're going to actively trade at all,
+as opposed to simply putting all of their money into risk-free debt with a 
+maturity near the Competition's end date.
+
+Sounds like not a lot of fun and not a good way to make a fortune... but since 
+about half of the participants will *lose* money in this contest, the idea isn't
+actually as bad as it might sound.
+
+Regardless, for the duration of the Competition, the value of $r_{f}$ used to 
+calculate Sharpes does not change, even though new risk-free rates will be 
+published every day by the USDT. The reason why we keep $r_{f}$ fixed is because
+we're comparing your performance as a trader to the "base strategy": simply
+buying debt earning $r_{f}$ on Day 1, which would tie up all your capital for 
+trading until maturity on the last day.
+
+Since the Competition lasts about **3 months**, the value we'll use for $r_{f}$ 
+will be whatever the USDT publishes as the 3-month CMT rate on the day the 
+Competition starts. This value will be will be posted clearly and conspicuously
+for everyone.
+
+**For this example**, let's suppose that on Day 1 we visited the USDT's website 
+and found that the 3-month CMT rate was 0.04% (annualized). 
+
+We want that on a trading day basis, so we'll convert: since there are 252 
+trading days in a year, we divide by 252 (and by 100 because it's a percent):
+
+Let's do that now, and store $r_{f}$ as a variable:
+``` {r echo = FALSE, message = FALSE}
+rf = 0.04/100/252
+print(paste0("The risk-free rate is ", format_percent(rf, "% / trading day.")))
+```
+
+## Excess Return
+Now that we have values for $R_{p}$ and $r_{f}$ student's **excess return** is
 ```{r}
 student_excess_return <- student_gmrr - rf
 format_percent(student_excess_return, "% / trading day.")
 ```
 
+## Volatility
 The students **volatility of returns** $\sigma_{p}$ is the standard 
 deviation of her portfolio returns:
 ```{r}
@@ -171,7 +157,8 @@ student_vol <- student_data %>%
 format_percent(student_vol, "% / trading day.")
 ```
 
-Now we have what we need to calculate the Sharpe Ratio for this student:
+## Sharpe ratio
+We now have everything we need to calculate this trader's Sharpe ratio:
 
 \begin{align*}
 {\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma_{p}} 
@@ -191,7 +178,6 @@ student_Sharpe <- (student_gmrr - rf) / student_vol
 print(student_Sharpe)
 ```
 
-We repeat this calculation every day for every trader in the Competition.
 
 #### Matching up Calculations w/ Excel and Other Programs (a quick note)
 As simple as it may seem, calculating logarithms can differ slightly (or

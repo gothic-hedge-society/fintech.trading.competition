@@ -17,17 +17,17 @@ navbar:
       text: Become a Sponsor
       href: articles/Become a Sponsor.html
     articles:
-      text: Scoring Info
+      text: How We Score & Rank Traders
       menu:
-      - text: 1. General Idea
+      - text: General Idea (start here)
         href: articles/Scoring.html
-      - text: 2. Sharpe Ratio Calculation
-        href: articles/Sharpe Ratio Calculation.html
-      - text: 3. Determining Trader Ranks
+      - text: Calculating Excess Return & Volatility
+        href: articles/excess_rtn_vol_and_sharpe.html
+      - text: Fully Worked Scoring & Ranking Example
         href: articles/ranking.html
-      - text: 4. Other Rules and Special Cases
+      - text: Other Rules and Special Cases
         href: articles/other_rules.html
-      - text: 5. Incentive Structure - Discussion
+      - text: Incentive Structure - Discussion
         href: articles/incentives.html
     past-winners:
       text: Past Winners
