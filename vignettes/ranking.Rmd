@@ -1,5 +1,5 @@
 ---
-title: "Determining Trader Ranks"
+title: "Fully Worked Scoring & Trading Example"
 output: html_document
 ---
 
