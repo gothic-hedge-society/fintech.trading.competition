@@ -244,5 +244,5 @@ In general, better traders have higher Sharpe ratios because they're able get
 the best "price" (in terms of risk) that the market will give in exchange for
 the returns they earn.
 
-Now you're ready to move on to [calculation](articles/excess_rtn_vol_and_sharpe.html) to see worked examples showing how 
+Now you're ready to move on to [calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/excess_rtn_vol_and_sharpe.html) to see worked examples showing how 
 these parameters are calculated in the Competition.
