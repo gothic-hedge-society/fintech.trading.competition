@@ -17,7 +17,7 @@ navbar:
       text: Become a Sponsor
       href: articles/Become a Sponsor.html
     articles:
-      text: How We Score & Rank Traders
+      text: Scoring
       menu:
       - text: General Idea (start here)
         href: articles/Scoring.html
