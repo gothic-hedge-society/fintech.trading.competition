@@ -1,12 +1,6 @@
 
 <div style="display:block; text-align:center">
 
-<div class="vembedr">
-<div>
-<iframe src="https://www.youtube.com/embed/n2MROQhO1JY" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
-</div>
-</div>
-
 </div>
 
 <p style="text-align:center; font-size:20px; border: 1px solid gold">
