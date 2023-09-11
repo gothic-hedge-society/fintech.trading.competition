@@ -1,5 +1,5 @@
 ---
-title: "Calculating Excess Return & Volatility"
+title: "Calculating Excess Return, Volatility & Sharpe"
 output: html_document
 ---
 
