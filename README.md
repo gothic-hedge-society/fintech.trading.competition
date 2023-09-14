@@ -6,18 +6,18 @@ position: absolute;
 top: 0px;
 }
 </style>
-
-<div style="display:block; text-align:center">
-
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
 <div class="vembedr">
 <div>
 <iframe src="https://www.youtube.com/embed/n2MROQhO1JY" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
 </div>
-
 </div>
-
-<p style="text-align:center; font-size:20px; border: 1px solid gold">
+<div class="col-sm-2"></div>
+</div>
+<p style="text-align:center; font-size:20px; border: 1px solid gold; background:#686877">
 [Sign
 up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
 today for the 2023 Fall Competition!
@@ -83,7 +83,7 @@ As a participating trader in this competition you will:
 Go ahead and join now! We’ll look forward to seeing you in the Discord
 server :)
 
-# ABOUT
+# Eligibility
 
 The Duke FINTECH Trading Competition is a free competition hosted by the
 [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
