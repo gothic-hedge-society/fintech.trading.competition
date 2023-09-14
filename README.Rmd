@@ -12,53 +12,66 @@ top: 0px;
 ```
 
 ```{r echo=FALSE}
-shiny::fluidRow(
-  shiny::column(2),
-  shiny::column(
-    8,
-    vembedr::embed_url("https://youtu.be/n2MROQhO1JY")
+shiny::fluidPage(
+  shiny::fluidRow(
+    shiny::column(2),
+    shiny::column(
+      8,
+      vembedr::embed_url("https://youtu.be/n2MROQhO1JY")
+    ),
+    shiny::column(2)
   ),
-  shiny::column(2)
-)
-```
-
-<p style = "text-align:center; font-size:20px; border: 1px solid gold; background:#686877">[Sign up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html) today for the 2023 Fall Competition!
-</p>
-
-<!-- **Read the official press release [here](https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition).** -->
-
-```{r echo=FALSE}
-shiny::fluidRow(
-  shiny::column(
-    4,
-    shiny::tagList(
-      shiny::tags$h2('2023 Cash Prizes'),
-      shiny::tags$h3('1st Place: $2,000.00'),
-      shiny::tags$h3('2nd Place: $1,333.33'),
-      shiny::tags$h3('3rd Place: $833.33'),
-      shiny::tags$h3('4th Place: $500.00'),
-      shiny::tags$h3('5th Place: $333.33')
+  shiny::fluidRow(
+    shiny::tags$p(
+      shiny::tags$a(
+        "Sign up",
+        href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html"
+      ),
+      "today for the 2023 Fall Competition!",
+      style="text-align:center; font-size:20px; border: 1px solid gold; background:#686877"
     )
   ),
-  shiny::column(
-    8,
-    shiny::tagList(
-      shiny::tags$h2('Important Dates'),
-      shiny::tags$h3('22 Sep 2023: Registration closes'),
-      shiny::tags$p(
-        "No new registrants will be accepted. ",
-        shiny::tags$a(
-          "Sign up here!!!",
-          href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html"
+  shiny::fluidRow(
+    shiny::tags$p(
+      "Read the official press release ",
+      shiny::tags$a(
+        "here",
+        href="https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition"
+      )
+    )
+  ),
+  shiny::fluidRow(
+    shiny::column(
+      4,
+      shiny::tagList(
+        shiny::tags$h2('2023 Cash Prizes', style="color:#beff00; font-weight:bold"),
+        shiny::tags$h3('1st Place: $2,000.00'),
+        shiny::tags$h3('2nd Place: $1,333.33'),
+        shiny::tags$h3('3rd Place: $833.33'),
+        shiny::tags$h3('4th Place: $500.00'),
+        shiny::tags$h3('5th Place: $333.33')
+      )
+    ),
+    shiny::column(
+      8,
+      shiny::tagList(
+        shiny::tags$h2('Important Dates', style="color:#ff32c8; font-weight:bold"),
+        shiny::tags$h3('22 Sep 2023: Registration closes'),
+        shiny::tags$p(
+          "No new registrants will be accepted. ",
+          shiny::tags$a(
+            "Sign up here!!!",
+            href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html"
+          )
+        ),
+        shiny::tags$h3('01 Oct 2023: COMPETITION STARTS'),
+        shiny::tags$p(
+          "This is when we’ll begin keeping score. Use the week betwen 22 Sep and 01 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc."
+        ),
+        shiny::tags$h3('15 Dec 2023: COMPETITION ENDS'),
+        shiny::tags$p(
+          "All of your end-of-day Net Account Values between 01 Oct and 15 Dec will be used in the calculation of your scores, with 15 Dec being the final date. After that day the competition will be over and winners will be declared."
         )
-      ),
-      shiny::tags$h3('01 Oct 2023: COMPETITION STARTS'),
-      shiny::tags$p(
-        "This is when we’ll begin keeping score. Use the week betwen 22 Sep and 01 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc."
-      ),
-      shiny::tags$h3('15 Dec 2023: COMPETITION ENDS'),
-      shiny::tags$p(
-        "All of your end-of-day Net Account Values between 01 Oct and 15 Dec will be used in the calculation of your scores, with 15 Dec being the final date. After that day the competition will be over and winners will be declared."
       )
     )
   )
@@ -74,8 +87,8 @@ currencies, crypto, and [any of the other products offered by Interactive
 Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
 
 Due to the way in which we score & rank our participants, if you do well in this competition, it's because you're a good trader. Furthermore, we've introduced a
-*bracket* system this year to keep ALL of our traders interested and engaged. In
-the new system, even if you don't stand much chance of taking the #1 spot
+  *bracket* system this year to keep ALL of our traders interested and engaged. In
+  the new system, even if you don't stand much chance of taking the #1 spot
 overall, you can still compete for a top rank *within your bracket*, giving you
 a hard-earned accomplishment that you can report on your resume or CV.
 
@@ -84,14 +97,14 @@ To see how we accompilsh all this -- and what makes us special -- check out our 
 As a participating trader in this competition you will:
 
 - Download Trader Workstation (Interactive Brokers' professional-grade trading
-platform) and use it to trade real assets with real market prices using 
-simulated money
-- Join the Gothic Hedge Hub (our companion Discord Server) which you can use 
-to communicate with other traders, the Competition admins, and industry 
-sponsors
-- Gain a chance to show recruiters and the world your trading skills
-
-Go ahead and join now! We'll look forward to seeing you in the Discord server :)
+  platform) and use it to trade real assets with real market prices using 
+  simulated money
+  - Join the Gothic Hedge Hub (our companion Discord Server) which you can use 
+  to communicate with other traders, the Competition admins, and industry 
+  sponsors
+  - Gain a chance to show recruiters and the world your trading skills
+  
+  Go ahead and join now! We'll look forward to seeing you in the Discord server :)
 
 # Eligibility
 The Duke FINTECH Trading Competition is a free competition hosted by the [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).

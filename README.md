@@ -6,6 +6,7 @@ position: absolute;
 top: 0px;
 }
 </style>
+<div class="container-fluid">
 <div class="row">
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
@@ -17,15 +18,21 @@ top: 0px;
 </div>
 <div class="col-sm-2"></div>
 </div>
+<div class="row">
 <p style="text-align:center; font-size:20px; border: 1px solid gold; background:#686877">
-[Sign
-up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up</a>
 today for the 2023 Fall Competition!
 </p>
-<!-- **Read the official press release [here](https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition).** -->
+</div>
+<div class="row">
+<p>
+Read the official press release 
+<a href="https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition">here</a>
+</p>
+</div>
 <div class="row">
 <div class="col-sm-4">
-<h2>2023 Cash Prizes</h2>
+<h2 style="color:#beff00; font-weight:bold">2023 Cash Prizes</h2>
 <h3>1st Place: $2,000.00</h3>
 <h3>2nd Place: $1,333.33</h3>
 <h3>3rd Place: $833.33</h3>
@@ -33,7 +40,7 @@ today for the 2023 Fall Competition!
 <h3>5th Place: $333.33</h3>
 </div>
 <div class="col-sm-8">
-<h2>Important Dates</h2>
+<h2 style="color:#ff32c8; font-weight:bold">Important Dates</h2>
 <h3>22 Sep 2023: Registration closes</h3>
 <p>
 No new registrants will be accepted. 
@@ -43,6 +50,7 @@ No new registrants will be accepted.
 <p>This is when we’ll begin keeping score. Use the week betwen 22 Sep and 01 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc.</p>
 <h3>15 Dec 2023: COMPETITION ENDS</h3>
 <p>All of your end-of-day Net Account Values between 01 Oct and 15 Dec will be used in the calculation of your scores, with 15 Dec being the final date. After that day the competition will be over and winners will be declared.</p>
+</div>
 </div>
 </div>
 
@@ -75,13 +83,13 @@ As a participating trader in this competition you will:
 - Download Trader Workstation (Interactive Brokers’ professional-grade
   trading platform) and use it to trade real assets with real market
   prices using simulated money
-- Join the Gothic Hedge Hub (our companion Discord Server) which you can
-  use to communicate with other traders, the Competition admins, and
-  industry sponsors
-- Gain a chance to show recruiters and the world your trading skills
+  - Join the Gothic Hedge Hub (our companion Discord Server) which you
+    can use to communicate with other traders, the Competition admins,
+    and industry sponsors
+  - Gain a chance to show recruiters and the world your trading skills
 
-Go ahead and join now! We’ll look forward to seeing you in the Discord
-server :)
+  Go ahead and join now! We’ll look forward to seeing you in the Discord
+  server :)
 
 # Eligibility
 
