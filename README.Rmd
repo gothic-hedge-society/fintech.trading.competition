@@ -84,26 +84,26 @@ shiny::fluidPage(
         ),
         style = "margin-right:5px; margin-left:5px"
       ),
-      # shiny::column(
-      #   1,
-      #   shiny::fluidRow(
-      #     shiny::a(
-      #       "Depository Trust & Clearing Corporation",
-      #       href = "https://www.dtcc.com/"
-      #     )
-      #   ),
-      #   shiny::fluidRow(
-      #     shiny::a(
-      #       shiny::img(
-      #         src = "https://i.ibb.co/mT1PDVP/dtcc.jpg",
-      #         alt = "DTCC Logo",
-      #         style = "width:100%"
-      #       ),
-      #       href = "https://www.dtcc.com/"
-      #     )
-      #   ),
-      #   style = "margin-right:5px; margin-left:5px"
-      # ),
+      shiny::column(
+        2,
+        shiny::fluidRow(
+          shiny::a(
+            "Depository Trust & Clearing Corporation",
+            href = "https://www.dtcc.com/"
+          )
+        ),
+        shiny::fluidRow(
+          shiny::a(
+            shiny::img(
+              src = "man/figures/dtcc.png",
+              alt = "DTCC Logo",
+              style = "width:100%"
+            ),
+            href = "https://www.dtcc.com/"
+          )
+        ),
+        style = "margin-right:5px; margin-left:5px"
+      ),
       shiny::column(10)
     )
   ),

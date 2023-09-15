@@ -44,6 +44,16 @@ today for the 2023 Fall Competition!
 </a>
 </div>
 </div>
+<div class="col-sm-2" style="margin-right:5px; margin-left:5px">
+<div class="row">
+<a href="https://www.dtcc.com/">Depository Trust &amp; Clearing Corporation</a>
+</div>
+<div class="row">
+<a href="https://www.dtcc.com/">
+<img src="man/figures/dtcc.png" alt="DTCC Logo" style="width:100%"/>
+</a>
+</div>
+</div>
 <div class="col-sm-10"></div>
 </div>
 </div>
