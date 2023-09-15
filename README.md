@@ -8,6 +8,19 @@ top: 0px;
 </style>
 <div class="container-fluid">
 <div class="row">
+<p>
+Read the official press release 
+<a href="https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition">here</a>
+ on Duke University's FinTech Departmental website.
+</p>
+</div>
+<div class="row">
+<p style="text-align:center; font-size:20px;border: 1px solid gold; background:#686877">
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up</a>
+today for the 2023 Fall Competition!
+</p>
+</div>
+<div class="row">
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
 <div class="vembedr">
@@ -19,16 +32,20 @@ top: 0px;
 <div class="col-sm-2"></div>
 </div>
 <div class="row">
-<p style="text-align:center; font-size:20px; border: 1px solid gold; background:#686877">
-<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up</a>
-today for the 2023 Fall Competition!
-</p>
+<h2>2023 Sponsors:</h2>
+<div class="row" style="text-align:center;">
+<div class="col-sm-2" style="margin-right:5px; margin-left:5px">
+<div class="row">
+<a href="https://www.schonfeld.com/">Schonfeld Strategic Advisors</a>
 </div>
 <div class="row">
-<p>
-Read the official press release 
-<a href="https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition">here</a>
-</p>
+<a href="https://www.schonfeld.com/">
+<img src="man/figures/schonfeld.png" alt="Schonfeld Logo" style="width:100%"/>
+</a>
+</div>
+</div>
+<div class="col-sm-10"></div>
+</div>
 </div>
 <div class="row">
 <div class="col-sm-4">
@@ -83,13 +100,13 @@ As a participating trader in this competition you will:
 - Download Trader Workstation (Interactive Brokers’ professional-grade
   trading platform) and use it to trade real assets with real market
   prices using simulated money
-  - Join the Gothic Hedge Hub (our companion Discord Server) which you
-    can use to communicate with other traders, the Competition admins,
-    and industry sponsors
-  - Gain a chance to show recruiters and the world your trading skills
+- Join the Gothic Hedge Hub (our companion Discord Server) which you can
+  use to communicate with other traders, the Competition admins, and
+  industry sponsors
+- Gain a chance to show recruiters and the world your trading skills
 
-  Go ahead and join now! We’ll look forward to seeing you in the Discord
-  server :)
+Go ahead and join now! We’ll look forward to seeing you in the Discord
+server :)
 
 # Eligibility
 

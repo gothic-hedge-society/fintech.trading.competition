@@ -41,10 +41,6 @@ navbar:
       href: https://www.youtube.com/@DukeFintechCompetition
       aria-label: YouTube
 
-home:
-  sidebar:
-    html: inst/sidebar.html
-
 authors:
   Jake Vestal:
     href: "https://github.com/JakeVestal"
