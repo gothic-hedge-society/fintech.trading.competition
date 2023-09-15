@@ -19,6 +19,17 @@ format_percent <- function(number, suffix){
 }
 ```
 
+```{r echo=FALSE}
+shiny::fluidRow(
+  shiny::column(2),
+  shiny::column(
+    8,
+    vembedr::embed_url("https://youtu.be/3Vyco-nhsk0")
+  ),
+  shiny::column(2)
+)
+```
+
 # Scoring for an example student
 As introduced in the
 [Scoring](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.html)

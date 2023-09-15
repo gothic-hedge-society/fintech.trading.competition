@@ -7,6 +7,17 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r echo=FALSE}
+shiny::fluidRow(
+  shiny::column(2),
+  shiny::column(
+    8,
+    vembedr::embed_url("https://youtu.be/3Vyco-nhsk0")
+  ),
+  shiny::column(2)
+)
+```
+
 TLDR: **You win by making as much money as you possibly can -- using all means 
 available to you -- but you're penalized for risk**.
 

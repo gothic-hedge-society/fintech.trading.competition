@@ -1,5 +1,5 @@
 ---
-title: "Fully Worked Scoring & Trading Example"
+title: "Fully Worked Scoring & Ranking Example"
 output: html_document
 ---
 
@@ -21,6 +21,17 @@ background-color: white;
 ```{r setup, include=FALSE}
 devtools::load_all(".")
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE}
+shiny::fluidRow(
+  shiny::column(2),
+  shiny::column(
+    8,
+    vembedr::embed_url("https://youtu.be/3Vyco-nhsk0")
+  ),
+  shiny::column(2)
+)
 ```
 
 If you've made it to this page, you're looking to understand how we assign 
