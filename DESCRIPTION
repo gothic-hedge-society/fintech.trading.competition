@@ -29,7 +29,8 @@ Imports:
     lubridate,
     clipr,
     shinydashboard,
-    vembedr
+    vembedr,
+    reticulate
 Depends: 
     R (>= 2.10)
 URL: https://gothic-hedge-society.github.io/fintech.trading.competition
