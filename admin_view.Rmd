@@ -155,3 +155,71 @@ print(table(registrants_df$country))
 
 ```
 
+# IBKR Info
+To make this part work, you need to clone the *fintech.trading.competition.private* 
+repo to your computer. Do this in RStudio, same way we did for the public repo:
+file > new project > version control > git, and then paste in the URL for the 
+private repo, which you can get from your account in the GitHub website.
+
+That repo contains a private file with everyone's name, email, and IBKR account
+number. We can use this to match up account numbers with actual traders. 
+
+We can also use it to track who has registered on WooFoo but hasn't set up an 
+account yet!
+
+## Registered & accounts set up:
+```{r, echo=FALSE}
+if(file.exists("../fintech.trading.competition.private/whois.xml")){
+  ibkr_account_info <- "../fintech.trading.competition.private/whois.xml" %>%
+    readLines() %>% 
+    paste0(collapse="") %>%
+    xml2::read_xml() %>%
+    xml2::xml_child("FlexStatements") %>% 
+    xml2::as_list() %>%
+    lapply(
+      FUN = function(x){
+        tibble::tibble(
+          "name" = attr(x$AccountInformation, "name"),
+          "account_id" = attr(x$AccountInformation, "accountId"),
+          "email" = attr(x$AccountInformation, "primaryEmail")
+        )
+      }
+    ) %>%
+    purrr::reduce(dplyr::bind_rows)
+  
+  registrants_df %>%
+    dplyr::inner_join(
+      ibkr_account_info, 
+      by = "email"
+    ) %>% 
+    dplyr::select(
+      name, first_name, last_name, account_id, email, discord_name, trader_name
+    ) %>%
+    DT::datatable(
+      registrants_df,
+      extensions = c('Scroller', 'Buttons'),
+      rownames   = FALSE,
+      options = list(
+        columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+        dom         = 'Bt',
+        buttons     = c('csv', 'excel', 'copy'),
+        ordering    = FALSE,
+        scrollY     = 500,
+        scrollX     = '100%',
+        scroller    = TRUE
+      )
+    )
+} else {
+  print("fintech.trading.competition.private is not found")
+}
+```
+
+## Emails that still need an IBKR invite:
+```{r echo=FALSE}
+if(file.exists("../fintech.trading.competition.private/whois.xml")){
+  setdiff(registrants_df$email, ibkr_account_info$email) %>%
+    paste0(collapse = ",")
+} else {
+  print("fintech.trading.competition.private is not found")
+}
+```
