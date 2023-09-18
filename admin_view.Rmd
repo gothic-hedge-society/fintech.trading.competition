@@ -1,0 +1,225 @@
+---
+title: "Admin View"
+output: html_document
+---
+
+```{r echo = FALSE}
+library(magrittr)
+
+base_url <- "https://dukefinance.wufoo.com/api/v3/"
+username <- Sys.getenv("WUFOO_REGISTRATION_KEY")
+password <- "footastic"
+
+form_name <- "duke-fintech-trading-competition"
+
+count_url       <- paste0(base_url, "forms/", form_name, "/entries/count.json")
+registrants_url <- paste0(
+  base_url, "forms/", form_name,
+  "/entries.json?sort=EntryId&sortDirection=DESC&pageSize=100"
+)
+
+entries_count <- httr::GET(
+  count_url, httr::authenticate(username, password)
+) %>%
+  httr::content() %>% {
+    .$EntryCount
+  } %>%
+  as.numeric()
+
+number_of_wufoo_queries <- ceiling(entries_count / 100)
+
+registrants <- list()
+
+for(i in 1:number_of_wufoo_queries){
+  registrants <- c(
+    registrants,
+    httr::GET(
+      paste0(registrants_url, "&pageStart=", i-1),
+      httr::authenticate(username, password)
+    ) %>%
+      httr::content() %>% {
+        .$Entries
+      }
+  )
+}
+
+registrants_df <- registrants %>%
+  purrr::map(
+    function(x){
+      x %>%
+        lapply(
+          FUN = function(xx){
+            if(is.null(xx)) return(NA)
+            xx
+          }
+        ) %>%
+        tibble::as_tibble()
+    }
+  ) %>%
+  purrr::reduce(dplyr::bind_rows) %>%
+  tidyr::unite(
+    "work_situation",
+    c("Field432", "Field433", "Field434"),
+    sep = ""
+  ) %>%
+  dplyr::rename(
+    "first_name"               = "Field1",
+    "last_name"                = "Field2",
+    "email"                    = "Field3",
+    "expected_graduation_year" = "Field124",
+    "university_wufoo"         = "Field4",
+    "gradute_degree_program"   = "Field10",
+    "undergrad_major"          = "Field120",
+    "discord_name"             = "Field532",
+    "trader_name"              = "Field5",
+    "secret"                   = "Field130",
+    "country"                  = "Field116",
+    "gender"                   = "Field118",
+    "website"                  = "Field126",
+    "data_agreement"           = "Field534"
+  ) %>%
+  dplyr::mutate(
+    "university" = university_wufoo %>% {
+      dplyr::case_match(
+        tolower(trimws(.)),
+        c("duke", "duke university") ~ "Duke University",
+        c(
+          "johns hopkins", "johns hopkins university"
+        ) ~ "Johns Hopkins University",
+        .default = trimws(.)
+      )
+    }
+  )
+
+```
+
+
+# Everyone who has registered on WuFoo
+As of date: "`r Sys.time()`"
+``` {r echo = FALSE, message = FALSE}
+DT::datatable(
+  registrants_df,
+  extensions = c('Scroller', 'Buttons'),
+  rownames   = FALSE,
+  options = list(
+    columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+    dom         = 'Bt',
+    buttons     = c('csv', 'excel', 'copy'),
+    ordering    = FALSE,
+    scrollY     = 500,
+    scrollX     = '100%',
+    scroller    = TRUE
+  )
+)
+```
+
+## Registration Stats:
+```{r echo=FALSE}
+print(paste0("Total registrants: ", entries_count))
+
+print(
+  paste0(
+    "Universities: ", 
+    paste0(unique(registrants_df$university), collapse = ", ")
+  )
+)
+print("^^Check these for recoding")
+
+print(table(registrants_df$university))
+
+num_grad_students <- registrants_df$gradute_degree_program %>% {
+  length(.[which(. != "")])
+}
+
+print(
+  paste0(
+    "Graduate Students: ", 
+    num_grad_students, "; ", 
+    signif(num_grad_students * 100 / entries_count, 3), "%"
+  )
+)
+
+num_undergrad_students <- registrants_df$undergrad_major %>% {
+  length(.[which(. != "")])
+}
+
+print(
+  paste0(
+    "Undergrad Students: ", 
+    num_undergrad_students, "; ", 
+    signif(num_undergrad_students * 100 / entries_count, 3), "%"
+  )
+)
+
+print(table(registrants_df$country))
+
+```
+
+# IBKR Info
+To make this part work, you need to clone the *fintech.trading.competition.private* 
+repo to your computer. Do this in RStudio, same way we did for the public repo:
+file > new project > version control > git, and then paste in the URL for the 
+private repo, which you can get from your account in the GitHub website.
+
+That repo contains a private file with everyone's name, email, and IBKR account
+number. We can use this to match up account numbers with actual traders. 
+
+We can also use it to track who has registered on WooFoo but hasn't set up an 
+account yet!
+
+## Registered & accounts set up:
+```{r, echo=FALSE}
+if(file.exists("../fintech.trading.competition.private/whois.xml")){
+  ibkr_account_info <- "../fintech.trading.competition.private/whois.xml" %>%
+    readLines() %>% 
+    paste0(collapse="") %>%
+    xml2::read_xml() %>%
+    xml2::xml_child("FlexStatements") %>% 
+    xml2::as_list() %>%
+    lapply(
+      FUN = function(x){
+        tibble::tibble(
+          "name" = attr(x$AccountInformation, "name"),
+          "account_id" = attr(x$AccountInformation, "accountId"),
+          "email" = attr(x$AccountInformation, "primaryEmail")
+        )
+      }
+    ) %>%
+    purrr::reduce(dplyr::bind_rows)
+  
+  registrants_df %>%
+    dplyr::inner_join(
+      ibkr_account_info, 
+      by = "email"
+    ) %>% 
+    dplyr::select(
+      name, first_name, last_name, account_id, email, discord_name, trader_name
+    ) %>%
+    DT::datatable(
+      registrants_df,
+      extensions = c('Scroller', 'Buttons'),
+      rownames   = FALSE,
+      options = list(
+        columnDefs   = list(list(className = 'dt-center', targets = '_all')),
+        dom         = 'Bt',
+        buttons     = c('csv', 'excel', 'copy'),
+        ordering    = FALSE,
+        scrollY     = 500,
+        scrollX     = '100%',
+        scroller    = TRUE
+      )
+    )
+} else {
+  print("fintech.trading.competition.private is not found")
+}
+```
+
+## Emails that still need an IBKR invite:
+```{r echo=FALSE}
+if(file.exists("../fintech.trading.competition.private/whois.xml")){
+  setdiff(registrants_df$email, ibkr_account_info$email) %>%
+    paste0(collapse = ",")
+} else {
+  print("fintech.trading.competition.private is not found")
+}
+```

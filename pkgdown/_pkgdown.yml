@@ -21,7 +21,7 @@ navbar:
       menu:
       - text: General Idea (start here)
         href: articles/Scoring.html
-      - text: Calculating Excess Return & Volatility
+      - text: Calculating Excess Return, Volatility & Sharpe
         href: articles/excess_rtn_vol_and_sharpe.html
       - text: Fully Worked Scoring & Ranking Example
         href: articles/ranking.html
@@ -40,10 +40,6 @@ navbar:
       icon: fa-youtube
       href: https://www.youtube.com/@DukeFintechCompetition
       aria-label: YouTube
-
-home:
-  sidebar:
-    html: inst/sidebar.html
 
 authors:
   Jake Vestal:

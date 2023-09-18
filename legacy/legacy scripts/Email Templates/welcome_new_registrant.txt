@@ -1,0 +1,21 @@
+Dear firstname,
+
+Congratulations on registering for the 2022 Duke FINTECH Trading Competition! You have been registered under the username:  yourusername.
+
+This tradername has been logged in the official competition Registry at https://gothic-hedge-society.github.io/fintech.trading.competition/articles/registry.html
+
+Please find an invitation email from Interactive Brokers inviting you to set up a paper trading account for the competition. Fill out and submit the form as soon as possible -- it takes about one business day to process after you've submitted your form. The Registry will be kept updated throughout your onboarding process -- check back for updates around 6pm EST daily.
+
+REMEMBER: It is important that you use the same email for registering with IBKR that you used when registering for the competition!
+
+If you received your IBKR paper trader invite email more than once, don't worry about it -- YOU ONLY HAVE TO SUBMIT THE FORM ONE TIME. Just be sure to record your username, password, and account ID in a safe place.
+
+WE WILL ONLY OFFICIALLY START THE COMPETITION ONCE EVERYONE'S PAPER TRADER HAS BECOME ACTIVATED AND AVAILABLE. We'll probably need to wait a few days after the official 'start date' for this to take place, but rest assured, the contest will not place anyone at an unfair advantage.
+
+In the meantime, please join the competition Slack channel using this link: https://join.slack.com/t/2022dukefinte-gho7286/shared_invite/zt-122pv570g-ysNQlBUAyCvxxfGmZx~F4A. You are welcome to configure your account to display your real name or your trader name.
+
+You may respond to this email address -- which is monitored -- with any questions, but the Slack channel will probably get you the fastest answers.
+
+Best Regards,
+Prof Jake Vestal
+Contest Creator

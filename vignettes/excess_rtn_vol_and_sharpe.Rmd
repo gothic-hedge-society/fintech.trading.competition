@@ -19,6 +19,17 @@ format_percent <- function(number, suffix){
 }
 ```
 
+```{r echo=FALSE}
+shiny::fluidRow(
+  shiny::column(2),
+  shiny::column(
+    8,
+    vembedr::embed_url("https://youtu.be/3Vyco-nhsk0")
+  ),
+  shiny::column(2)
+)
+```
+
 At the end of every trading day -- as soon as a new end-of-day Net Account Value (NAV) for all the traders in the competition becomes available (usually around 7pm EST) -- the following process is run to calculate the **Excess Return** and **Volatility** for every participant.
 
   - **Excess Return** ($R_{p} - r_{f}$) is the difference between the return your portfolio earned ($R_{p}$) and the risk free rate ($r_{f}$)

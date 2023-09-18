@@ -7,6 +7,17 @@ output: html_document
 library(magrittr)
 ```
 
+```{r echo=FALSE}
+shiny::fluidRow(
+  shiny::column(2),
+  shiny::column(
+    8,
+    vembedr::embed_url("https://youtu.be/3Vyco-nhsk0")
+  ),
+  shiny::column(2)
+)
+```
+
 The Gothic Hedge Society at Duke wants to run an interesting and fair 
 competition. We've tried our best to structure the rules & scoring system to 
 bring about that effect. 
