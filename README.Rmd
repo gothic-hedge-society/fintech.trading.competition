@@ -15,7 +15,7 @@ vembedr::embed_url("https://youtu.be/n2MROQhO1JY")
 
 # IMPORTANT DATES:
 
-### 22 Sep 2023: Registration closes
+### 25 Sep 2023: Registration closes
 No new registrants will be accepted. [Sign Up Here!](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
 
 ### 01 Oct 2023: COMPETITION STARTS

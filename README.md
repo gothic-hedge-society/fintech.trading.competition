@@ -20,7 +20,7 @@ today for the 2023 Fall Competition!
 
 # IMPORTANT DATES:
 
-### 22 Sep 2023: Registration closes
+### 25 Sep 2023: Registration closes
 
 No new registrants will be accepted. [Sign Up
 Here!](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
