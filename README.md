@@ -27,13 +27,13 @@ Here!](https://gothic-hedge-society.github.io/fintech.trading.competition/articl
 
 ### 11 Oct 2023: COMPETITION STARTS
 
-This is when we’ll begin keeping score. Use the week betwen 22 Sep and
-01 Oct to get used to the Trader Workstation, interact on Discord,
+This is when we’ll begin keeping score. Use the week between 04 Oct and
+11 Oct to get used to the Trader Workstation, interact on Discord,
 troubleshoot, etc.
 
 ### 15 Dec 2023: COMPETITION ENDS
 
-All of your end-of-day Net Account Values between 01 Oct and 15 Dec will
+All of your end-of-day Net Account Values between 11 Oct and 15 Dec will
 be used in the calculation of your scores, with 15 Dec being the final
 date. After that day the competition will be over and winners will be
 declared.
