@@ -20,12 +20,12 @@ today for the 2023 Fall Competition!
 
 # IMPORTANT DATES:
 
-### 25 Sep 2023: Registration closes
+### 04 Oct 2023: Registration closes
 
 No new registrants will be accepted. [Sign Up
 Here!](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
 
-### 01 Oct 2023: COMPETITION STARTS
+### 11 Oct 2023: COMPETITION STARTS
 
 This is when we’ll begin keeping score. Use the week betwen 22 Sep and
 01 Oct to get used to the Trader Workstation, interact on Discord,

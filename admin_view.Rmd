@@ -86,6 +86,7 @@ registrants_df <- registrants %>%
         c(
           "johns hopkins", "johns hopkins university"
         ) ~ "Johns Hopkins University",
+        c("ecu", "east carolina") ~ "East Carolina University",
         .default = trimws(.)
       )
     },
@@ -94,7 +95,7 @@ registrants_df <- registrants %>%
         tolower(trimws(.)),
         c(
           "united state", "united states", "united stated", "usa", "us",
-          "the unites states"
+          "the unites states", "united states of america"
         ) ~ "USA",
         .default = trimws(.)
       )
