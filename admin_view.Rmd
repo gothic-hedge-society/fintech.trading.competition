@@ -228,8 +228,16 @@ if(file.exists("../fintech.trading.competition.private/whois.xml")){
 ## Emails that still need an IBKR invite:
 ```{r echo=FALSE}
 if(file.exists("../fintech.trading.competition.private/whois.xml")){
-  setdiff(registrants_df$email, ibkr_account_info$email) %>%
-    paste0(collapse = ",")
+  email_addresses <- setdiff(registrants_df$email, ibkr_account_info$email)
+  
+  for (i in 0:floor(length(email_addresses)/10)) {
+    print_this <- email_addresses[(i*10):(i*10 + 10)] %>% {
+      .[!is.na(.)]
+    } %>%
+      paste0(collapse=",") %>%
+      print()
+  }
+  
 } else {
   print("fintech.trading.competition.private is not found")
 }
