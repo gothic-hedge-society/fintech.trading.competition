@@ -73,7 +73,7 @@ registrants_df <- registrants %>%
     "discord_name"             = "Field532",
     "trader_name"              = "Field5",
     "secret"                   = "Field130",
-    "country"                  = "Field116",
+    "country_wufoo"            = "Field116",
     "gender"                   = "Field118",
     "website"                  = "Field126",
     "data_agreement"           = "Field534"
@@ -86,6 +86,16 @@ registrants_df <- registrants %>%
         c(
           "johns hopkins", "johns hopkins university"
         ) ~ "Johns Hopkins University",
+        .default = trimws(.)
+      )
+    },
+    "country" = country_wufoo %>% {
+      dplyr::case_match(
+        tolower(trimws(.)),
+        c(
+          "united state", "united states", "united stated", "usa", "us",
+          "the unites states"
+        ) ~ "USA",
         .default = trimws(.)
       )
     }

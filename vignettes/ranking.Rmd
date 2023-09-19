@@ -28,7 +28,7 @@ shiny::fluidRow(
   shiny::column(2),
   shiny::column(
     8,
-    vembedr::embed_url("https://youtu.be/3Vyco-nhsk0")
+    vembedr::embed_url("https://youtu.be/2sPWmHHgZNA")
   ),
   shiny::column(2)
 )
