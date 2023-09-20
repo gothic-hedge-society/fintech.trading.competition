@@ -11,7 +11,7 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      TEST_VAR: ${{ secrets.A_TEST_VAR }}
+      TEST_VAR: ${{ secrets.NOT_A_SECRET }}
     steps:
       - uses: actions/checkout@v2
 
@@ -25,8 +25,8 @@ jobs:
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
           print('hello')
-          a_var <- Sys.getenv("TEST_VAR")
-          print(a_var)
+          not_a_secret <- Sys.getenv("TEST_VAR")
+          print(not_a_secret)
         shell: Rscript {0}
 
       - name: Restore R package cache
