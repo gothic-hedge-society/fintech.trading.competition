@@ -25,7 +25,10 @@ today for the 2023 Fall Competition!
 </p>
 </div>
 <div class="row">
-<p style="text-align:center; font-size:20px;">&lt;b&gt;89&lt;/b&gt; student traders have signed up so far!</p>
+<p style="text-align:center; font-size:20px;">
+<b>89</b>
+ student traders have signed up so far!
+</p>
 </div>
 <div class="row">
 <h2 style="color:gold;">2023 Sponsors:</h2>

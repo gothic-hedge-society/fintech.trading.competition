@@ -67,10 +67,8 @@ shiny::fluidPage(
   ),
   shiny::fluidRow(
     shiny::tags$p(
-      paste0(
-        shiny::tags$b(entries_count),
-        " student traders have signed up so far!"
-      ),
+      shiny::tags$b(entries_count),
+      " student traders have signed up so far!",
       style = "text-align:center; font-size:20px;"
     )
   ),
