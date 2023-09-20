@@ -26,7 +26,7 @@ today for the 2023 Fall Competition!
 </div>
 <div class="row">
 <p style="text-align:center; font-size:20px;">
-<b>89</b>
+<b>93</b>
  student traders have signed up so far!
 </p>
 </div>
@@ -83,15 +83,15 @@ today for the 2023 Fall Competition!
 <h2 style="color:#ff32c8; font-weight:bold">Important Dates</h2>
 </div>
 <div class="row">
-<h3>22 Sep 2023: Registration closes</h3>
+<h3>04 Oct 2023: Registration closes</h3>
 <p>
 No new registrants will be accepted. 
 <a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up here!!!</a>
 </p>
-<h3>01 Oct 2023: COMPETITION STARTS</h3>
-<p>This is when we’ll begin keeping score. Use the week betwen 22 Sep and 01 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc.</p>
+<h3>11 Oct 2023: COMPETITION STARTS</h3>
+<p>This is when we’ll begin keeping score. Use the week betwen 04 Oct and 11 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc.</p>
 <h3>15 Dec 2023: COMPETITION ENDS</h3>
-<p>All of your end-of-day Net Account Values between 01 Oct and 15 Dec will be used in the calculation of your scores, with 15 Dec being the final date. After that day the competition will be over and winners will be declared.</p>
+<p>All of your end-of-day Net Account Values between 11 Oct and 15 Dec will be used in the calculation of your scores, with 15 Dec being the final date. After that day the competition will be over and winners will be declared.</p>
 </div>
 </div>
 
