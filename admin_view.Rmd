@@ -82,11 +82,18 @@ registrants_df <- registrants %>%
     "university" = university_wufoo %>% {
       dplyr::case_match(
         tolower(trimws(.)),
+        c("cornell") ~ "Cornell University",
         c("duke", "duke university") ~ "Duke University",
         c(
           "johns hopkins", "johns hopkins university"
         ) ~ "Johns Hopkins University",
         c("ecu", "east carolina") ~ "East Carolina University",
+        c("u penn") ~ "University of Pennsylvania",
+        c(
+          "university of california of santa barbara", "ucsb", "santa barbara",
+          "university of california, santa barbara",
+          "university of calif., santa barbara"
+          ) ~ "UC Santa Barbara",
         .default = trimws(.)
       )
     },
@@ -95,7 +102,7 @@ registrants_df <- registrants %>%
         tolower(trimws(.)),
         c(
           "united state", "united states", "united stated", "usa", "us",
-          "the unites states", "united states of america"
+          "the unites states", "united states of america", "美国"
         ) ~ "USA",
         .default = trimws(.)
       )
@@ -131,7 +138,7 @@ print(paste0("Total registrants: ", entries_count))
 print(
   paste0(
     "Universities: ", 
-    paste0(unique(registrants_df$university), collapse = ", ")
+    paste0(sort(unique(registrants_df$university)), collapse = ", ")
   )
 )
 print("^^Check these for recoding")
@@ -237,6 +244,9 @@ if(file.exists("../fintech.trading.competition.private/whois.xml")){
       paste0(collapse=",") %>%
       print()
   }
+  
+  print("full email string")
+  print(paste0(email_addresses, collapse = "; "))
   
 } else {
   print("fintech.trading.competition.private is not found")
