@@ -5,6 +5,27 @@ always_allow_html: yes
 
 ```{r echo=FALSE}
 library(magrittr)
+
+base_url <- "https://dukefinance.wufoo.com/api/v3/"
+username <- Sys.getenv("WUFOO_REGISTRATION_KEY")
+password <- "footastic"
+
+form_name <- "duke-fintech-trading-competition"
+
+count_url       <- paste0(base_url, "forms/", form_name, "/entries/count.json")
+registrants_url <- paste0(
+  base_url, "forms/", form_name,
+  "/entries.json?sort=EntryId&sortDirection=DESC&pageSize=100"
+)
+
+entries_count <- httr::GET(
+  count_url, httr::authenticate(username, password)
+) %>%
+  httr::content() %>% {
+    .$EntryCount
+  } %>%
+  as.numeric()
+
 shiny::fluidPage(
   shiny::fluidRow(
     shiny::tags$p(
@@ -46,7 +67,10 @@ shiny::fluidPage(
   ),
   shiny::fluidRow(
     shiny::tags$p(
-      "today for the 2023 Fall Competition!",
+      paste0(
+        shiny::tags$b(entries_count),
+        " student traders have signed up so far!"
+      ),
       style = "text-align:center; font-size:20px;"
     )
   ),
@@ -199,26 +223,3 @@ The FINTECH program at Duke is inclusive and welcoming. Participation is welcome
 and encouraged, so please help spread the word! Standings for traders will be posted here and updated daily as data become available. This site will continue to grow as 
 new features are brought onboard so be sure to check back often for updates!!!
 
-```{r echo=FALSE}
-base_url <- "https://dukefinance.wufoo.com/api/v3/"
-username <- Sys.getenv("WUFOO_REGISTRATION_KEY")
-password <- "footastic"
-
-form_name <- "duke-fintech-trading-competition"
-
-count_url       <- paste0(base_url, "forms/", form_name, "/entries/count.json")
-registrants_url <- paste0(
-  base_url, "forms/", form_name,
-  "/entries.json?sort=EntryId&sortDirection=DESC&pageSize=100"
-)
-
-entries_count <- httr::GET(
-  count_url, httr::authenticate(username, password)
-) %>%
-  httr::content() %>% {
-    .$EntryCount
-  } %>%
-  as.numeric()
-
-print(entries_count)
-```

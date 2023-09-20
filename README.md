@@ -25,7 +25,7 @@ today for the 2023 Fall Competition!
 </p>
 </div>
 <div class="row">
-<p style="text-align:center; font-size:20px;">today for the 2023 Fall Competition!</p>
+<p style="text-align:center; font-size:20px;">&lt;b&gt;89&lt;/b&gt; student traders have signed up so far!</p>
 </div>
 <div class="row">
 <h2 style="color:gold;">2023 Sponsors:</h2>
@@ -151,5 +151,3 @@ welcome and encouraged, so please help spread the word! Standings for
 traders will be posted here and updated daily as data become available.
 This site will continue to grow as new features are brought onboard so
 be sure to check back often for updates!!!
-
-    ## [1] 88
