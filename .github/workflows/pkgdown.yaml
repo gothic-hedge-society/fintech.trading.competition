@@ -11,7 +11,7 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      TEST_VAR: ${{ secrets.NOT_A_SECRET }}
+      WUFOO_REGISTRATION_KEY: ${{ secrets.WUFOO_TC_KEY }}
     steps:
       - uses: actions/checkout@v2
 
@@ -24,13 +24,7 @@ jobs:
           install.packages('remotes')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-          print('hello')
-          not_a_secret <- Sys.getenv("TEST_VAR")
-          print(not_a_secret)
         shell: Rscript {0}
-
-      - name: Print value of NOT_A_SECRET
-        run: echo ${{secrets.NOT_A_SECRET}} | sed 's/./& /g'
 
       - name: Restore R package cache
         uses: actions/cache@v2

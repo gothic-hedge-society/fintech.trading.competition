@@ -25,6 +25,9 @@ today for the 2023 Fall Competition!
 </p>
 </div>
 <div class="row">
+<p style="text-align:center; font-size:20px;">today for the 2023 Fall Competition!</p>
+</div>
+<div class="row">
 <h2 style="color:gold;">2023 Sponsors:</h2>
 <div class="row" style="text-align:center;">
 <div class="col-sm-2" style="margin-right:5px; margin-left:5px">
@@ -148,3 +151,5 @@ welcome and encouraged, so please help spread the word! Standings for
 traders will be posted here and updated daily as data become available.
 This site will continue to grow as new features are brought onboard so
 be sure to check back often for updates!!!
+
+    ## [1] 88
