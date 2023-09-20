@@ -119,10 +119,7 @@ shiny::fluidPage(
       4,
       shiny::tags$h3('5th Place: $333.33')
     ),
-    shiny::column(
-      4,
-      shiny::tags$h3('3rd Place: $833.33')
-    )
+    shiny::column(4)
   ),
   shiny::fluidRow( 
     shiny::tags$h2('Important Dates', style="color:#ff32c8; font-weight:bold")

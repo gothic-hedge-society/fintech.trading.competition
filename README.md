@@ -71,9 +71,7 @@ today for the 2023 Fall Competition!
 <div class="col-sm-4">
 <h3>5th Place: $333.33</h3>
 </div>
-<div class="col-sm-4">
-<h3>3rd Place: $833.33</h3>
-</div>
+<div class="col-sm-4"></div>
 </div>
 <div class="row">
 <h2 style="color:#ff32c8; font-weight:bold">Important Dates</h2>
