@@ -1,42 +1,95 @@
 
-<div style="display:block; text-align:center">
-
+<div class="container-fluid">
+<div class="row">
+<p>
+Read the official press release 
+<a href="https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition">here</a>
+ on Duke University's FinTech Departmental website.
+</p>
+</div>
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
 <div class="vembedr">
 <div>
 <iframe src="https://www.youtube.com/embed/n2MROQhO1JY" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
 </div>
-
 </div>
-
-<p style="text-align:center; font-size:20px; border: 1px solid gold">
-[Sign
-up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
+<div class="col-sm-2"></div>
+</div>
+<div class="row">
+<p style="text-align:center; font-size:20px;border: 1px solid gold; background:#686877">
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up</a>
 today for the 2023 Fall Competition!
 </p>
-
-**Read the official press release
-[here](https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition).**
-
-# IMPORTANT DATES:
-
-### 04 Oct 2023: Registration closes
-
-No new registrants will be accepted. [Sign Up
-Here!](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
-
-### 11 Oct 2023: COMPETITION STARTS
-
-This is when we’ll begin keeping score. Use the week between 04 Oct and
-11 Oct to get used to the Trader Workstation, interact on Discord,
-troubleshoot, etc.
-
-### 15 Dec 2023: COMPETITION ENDS
-
-All of your end-of-day Net Account Values between 11 Oct and 15 Dec will
-be used in the calculation of your scores, with 15 Dec being the final
-date. After that day the competition will be over and winners will be
-declared.
+</div>
+<div class="row">
+<h2 style="color:gold;">2023 Sponsors:</h2>
+<div class="row" style="text-align:center;">
+<div class="col-sm-2" style="margin-right:5px; margin-left:5px">
+<div class="row">
+<a href="https://www.schonfeld.com/">Schonfeld Strategic Advisors</a>
+</div>
+<div class="row">
+<a href="https://www.schonfeld.com/">
+<img src="man/figures/schonfeld.png" alt="Schonfeld Logo" style="width:100%"/>
+</a>
+</div>
+</div>
+<div class="col-sm-2" style="margin-right:5px; margin-left:5px">
+<div class="row">
+<a href="https://www.dtcc.com/">Depository Trust &amp; Clearing Corporation</a>
+</div>
+<div class="row">
+<a href="https://www.dtcc.com/">
+<img src="man/figures/dtcc.png" alt="DTCC Logo" style="width:100%"/>
+</a>
+</div>
+</div>
+<div class="col-sm-10"></div>
+</div>
+</div>
+<div class="row">
+<h2 style="color:#beff00; font-weight:bold">2023 Cash Prizes</h2>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<h3>1st Place: $2,000.00</h3>
+</div>
+<div class="col-sm-4">
+<h3>2nd Place: $1,333.33</h3>
+</div>
+<div class="col-sm-4">
+<h3>3rd Place: $833.33</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<h3>4th Place: $500.00</h3>
+</div>
+<div class="col-sm-4">
+<h3>5th Place: $333.33</h3>
+</div>
+<div class="col-sm-4">
+<h3>3rd Place: $833.33</h3>
+</div>
+</div>
+<div class="row">
+<h2 style="color:#ff32c8; font-weight:bold">Important Dates</h2>
+</div>
+<div class="row">
+<h3>22 Sep 2023: Registration closes</h3>
+<p>
+No new registrants will be accepted. 
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up here!!!</a>
+</p>
+<h3>01 Oct 2023: COMPETITION STARTS</h3>
+<p>This is when we’ll begin keeping score. Use the week betwen 22 Sep and 01 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc.</p>
+<h3>15 Dec 2023: COMPETITION ENDS</h3>
+<p>All of your end-of-day Net Account Values between 01 Oct and 15 Dec will be used in the calculation of your scores, with 15 Dec being the final date. After that day the competition will be over and winners will be declared.</p>
+</div>
+</div>
 
 # ABOUT:
 
@@ -75,7 +128,7 @@ As a participating trader in this competition you will:
 Go ahead and join now! We’ll look forward to seeing you in the Discord
 server :)
 
-# ABOUT
+# ELIGIBILITY
 
 The Duke FINTECH Trading Competition is a free competition hosted by the
 [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
