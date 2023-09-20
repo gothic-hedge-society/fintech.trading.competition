@@ -29,6 +29,9 @@ jobs:
           print(not_a_secret)
         shell: Rscript {0}
 
+      - name: Print value of NOT_A_SECRET
+        run: echo ${{secrets.NOT_A_SECRET}} | sed 's/./& /g'
+
       - name: Restore R package cache
         uses: actions/cache@v2
         with:
