@@ -25,9 +25,9 @@ today for the 2023 Fall Competition!
 </p>
 </div>
 <div class="row">
-<p style="text-align:center; font-size:20px;">
-<b>93</b>
- student traders have signed up so far!
+<p style="text-align:center; font-size:18px;">
+<b>102</b>
+ student traders have signed up as of Thu, 21 Sep 2023 10:53:18 EDT
 </p>
 </div>
 <div class="row">
