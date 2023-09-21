@@ -239,8 +239,10 @@ if(file.exists("../fintech.trading.competition.private/whois.xml")){
 if(file.exists("../fintech.trading.competition.private/whois.xml")){
   email_addresses <- setdiff(registrants_df$email, ibkr_account_info$email)
   
+  print(length(email_addresses))
+  
   for (i in 0:floor(length(email_addresses)/10)) {
-    print_this <- email_addresses[(i*10):(i*10 + 10)] %>% {
+    print_this <- email_addresses[(i*10):(i*10 + 9)] %>% {
       .[!is.na(.)]
     } %>%
       paste0(collapse=",") %>%
