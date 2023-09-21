@@ -6,25 +6,25 @@ always_allow_html: yes
 ```{r echo=FALSE}
 library(magrittr)
 
-base_url <- "https://dukefinance.wufoo.com/api/v3/"
-username <- Sys.getenv("WUFOO_REGISTRATION_KEY")
-password <- "footastic"
-
-form_name <- "duke-fintech-trading-competition"
-
-count_url       <- paste0(base_url, "forms/", form_name, "/entries/count.json")
-registrants_url <- paste0(
-  base_url, "forms/", form_name,
-  "/entries.json?sort=EntryId&sortDirection=DESC&pageSize=100"
-)
-
-entries_count <- httr::GET(
-  count_url, httr::authenticate(username, password)
-) %>%
-  httr::content() %>% {
-    .$EntryCount
-  } %>%
-  as.numeric()
+# base_url <- "https://dukefinance.wufoo.com/api/v3/"
+# username <- Sys.getenv("WUFOO_REGISTRATION_KEY")
+# password <- "footastic"
+# 
+# form_name <- "duke-fintech-trading-competition"
+# 
+# count_url       <- paste0(base_url, "forms/", form_name, "/entries/count.json")
+# registrants_url <- paste0(
+#   base_url, "forms/", form_name,
+#   "/entries.json?sort=EntryId&sortDirection=DESC&pageSize=100"
+# )
+# 
+# entries_count <- httr::GET(
+#   count_url, httr::authenticate(username, password)
+# ) %>%
+#   httr::content() %>% {
+#     .$EntryCount
+#   } %>%
+#   as.numeric()
 
 shiny::fluidPage(
   shiny::fluidRow(
@@ -65,19 +65,19 @@ shiny::fluidPage(
       )
     )
   ),
-  shiny::fluidRow(
-    shiny::tags$p(
-      shiny::tags$b(entries_count),
-      paste0(
-        " student traders have signed up as of ", 
-        format(
-          Sys.time(),
-          format = "%a, %d %b %Y %H:%M:%S %Z"
-        )
-      ),
-      style = "text-align:center; font-size:18px;"
-    )
-  ),
+  # shiny::fluidRow(
+  #   shiny::tags$p(
+  #     shiny::tags$b(entries_count),
+  #     paste0(
+  #       " student traders have signed up as of ", 
+  #       format(
+  #         Sys.time(),
+  #         format = "%a, %d %b %Y %H:%M:%S %Z"
+  #       )
+  #     ),
+  #     style = "text-align:center; font-size:18px;"
+  #   )
+  # ),
   shiny::fluidRow(
     shiny::tags$h2("2023 Sponsors:", style="color:gold;"),
     shiny::fluidRow(
