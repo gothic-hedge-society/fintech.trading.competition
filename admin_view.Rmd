@@ -86,6 +86,7 @@ registrants_df <- registrants %>%
         c("cornell") ~ "Cornell University",
         c("duke", "duke university") ~ "Duke University",
         c("ecu", "east carolina") ~ "East Carolina University",
+        c("georgia institute of technology") ~ "Georgia Tech",
         c("princeton") ~ "Princeton University",
         c(
           "johns hopkins", "johns hopkins university"
@@ -96,6 +97,14 @@ registrants_df <- registrants %>%
           "university of california, santa barbara",
           "university of calif., santa barbara"
         ) ~ "UC Santa Barbara",
+        c(
+          "university of michigan"
+        ) ~ "University of Michigan - Ann Arbor",
+        c(
+          "ut austin",
+          "university of texas at austin",
+          "the university of texas at austin"
+        ) ~ "UT Austin",
         .default = trimws(.)
       )
     },
