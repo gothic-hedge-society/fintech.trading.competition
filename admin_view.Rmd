@@ -114,7 +114,7 @@ registrants_df <- registrants %>%
         c(
           "united state", "united states", "united stated", "usa", "us",
           "the unites states", "united states of america", "美国", "boston",
-          "atlanta, ga", "durham", "united state of america"
+          "atlanta, ga", "durham", "united state of america", "durham, nc"
         ) ~ "USA",
         .default = trimws(.)
       )
