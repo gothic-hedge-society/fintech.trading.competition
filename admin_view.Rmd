@@ -34,7 +34,7 @@ for(i in 1:number_of_wufoo_queries){
   registrants <- c(
     registrants,
     httr::GET(
-      paste0(registrants_url, "&pageStart=", i-1),
+      paste0(registrants_url, "&pageStart=", 100*(i-1)),
       httr::authenticate(username, password)
     ) %>%
       httr::content() %>% {
@@ -97,9 +97,11 @@ registrants_df <- registrants %>%
           "university of california, santa barbara",
           "university of calif., santa barbara"
         ) ~ "UC Santa Barbara",
+        c("university of california, los angeles") ~ "UCLA",
         c(
           "university of michigan"
         ) ~ "University of Michigan - Ann Arbor",
+        c("university of north carolina at chapel hill") ~ "UNC Chapel Hill",
         c(
           "ut austin",
           "university of texas at austin",
