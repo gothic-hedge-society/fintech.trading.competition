@@ -3,6 +3,17 @@ title: "Sign Up for the Competition"
 output: html_document
 ---
 
+```{r echo=FALSE}
+shiny::fluidRow(
+  shiny::column(2),
+  shiny::column(
+    8,
+    vembedr::embed_url(" ")
+  ),
+  shiny::column(2)
+)
+```
+
 This page walks through what you as a participating trader need to do to fully 
 **sign up** for the Competition, including all the downloads that you'll need to 
 be able to trade. To get fully registered, you'll need to interact with the 
@@ -65,16 +76,6 @@ Look for your Discord invite within the Discord app and join the server! Say
 hello in the Introductions channel, or maybe the General.
 
 ### Step 4: Create your paper trading account
-```{r}
-shiny::fluidRow(
-  shiny::column(2),
-  shiny::column(
-    8,
-    vembedr::embed_url("https://youtu.be/nBQPcMIqqOs")
-  ),
-  shiny::column(2)
-)
-```
 Monitor **the university email address that you provided in Step 2** for an 
 invite link to create a paper trading account for this year's competition!
 
