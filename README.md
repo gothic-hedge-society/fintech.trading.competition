@@ -27,27 +27,41 @@ today for the 2023 Fall Competition!
 <div class="row">
 <h2 style="color:gold;">2023 Sponsors:</h2>
 <div class="row" style="text-align:center;">
-<div class="col-sm-2" style="margin-right:5px; margin-left:5px">
+<div class="col-sm-4" style="margin-right:5px; margin-left:5px">
 <div class="row">
-<a href="https://www.schonfeld.com/">Schonfeld Strategic Advisors</a>
+<a href="https://www.schonfeld.com/" style="font-size:20px;">Schonfeld Strategic Advisors</a>
 </div>
 <div class="row">
 <a href="https://www.schonfeld.com/">
-<img src="man/figures/schonfeld.png" alt="Schonfeld Logo" style="width:100%"/>
+<img src="man/figures/schonfeld.png" alt="Schonfeld Logo" style="width:100%;background-color:white;padding:5px;"/>
 </a>
 </div>
 </div>
-<div class="col-sm-2" style="margin-right:5px; margin-left:5px">
+<div class="col-sm-1"></div>
+<div class="col-sm-4">
+<div class="row">Thank you, Schonfeld, for your generous cash contribution!!!</div>
+</div>
+</div>
+<hr/>
+<div class="row" style="text-align:center;">
+<div class="col-sm-4" style="margin-right:5px; margin-left:5px">
 <div class="row">
-<a href="https://www.dtcc.com/">Depository Trust &amp; Clearing Corporation</a>
+<a href="https://www.dtcc.com/" style="font-size:20px;">Depository Trust &amp; Clearing Corporation (DTCC)</a>
 </div>
 <div class="row">
 <a href="https://www.dtcc.com/">
-<img src="man/figures/dtcc.png" alt="DTCC Logo" style="width:100%"/>
+<img src="man/figures/dtcc.png" alt="DTCC Logo" style="width:100%;background-color:white;padding:5px;"/>
 </a>
 </div>
 </div>
-<div class="col-sm-10"></div>
+<div class="col-sm-1"></div>
+<div class="col-sm-4">
+<div class="row">
+DTCC has committed to interviewing top traders for early career paths in quantitative risk! For more info, 
+<a href="https://www.youtube.com/watch?v=BM5LVqf_sBg">see our interview with DTCC's Sara Mados</a>
+</div>
+</div>
+<div class="col-sm-8"></div>
 </div>
 </div>
 <div class="row">

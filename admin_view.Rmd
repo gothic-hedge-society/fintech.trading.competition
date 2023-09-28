@@ -91,6 +91,8 @@ registrants_df <- registrants %>%
         c(
           "johns hopkins", "johns hopkins university"
         ) ~ "Johns Hopkins University",
+        c("nyu", "new york university (nyu)") ~ "New York University",
+        c("nc state", "north carolina state university") ~ "NC State University",
         c("u penn") ~ "University of Pennsylvania",
         c(
           "university of california of santa barbara", "ucsb", "santa barbara",
@@ -104,6 +106,7 @@ registrants_df <- registrants %>%
         c("university of north carolina at chapel hill") ~ "UNC Chapel Hill",
         c(
           "ut austin",
+          "university of texas - austin",
           "university of texas at austin",
           "the university of texas at austin"
         ) ~ "UT Austin",
@@ -116,8 +119,10 @@ registrants_df <- registrants %>%
         c(
           "united state", "united states", "united stated", "usa", "us",
           "the unites states", "united states of america", "美国", "boston",
-          "atlanta, ga", "durham", "united state of america", "durham, nc"
+          "atlanta, ga", "durham", "united state of america", "durham, nc", 
+          "new york/united states", "U.S."
         ) ~ "USA",
+        c("china") ~ "China",
         .default = trimws(.)
       )
     }
@@ -219,7 +224,7 @@ if(file.exists("../fintech.trading.competition.private/whois.xml")){
     purrr::reduce(dplyr::bind_rows)
   
   registrants_df %>%
-    dplyr::inner_join(
+    dplyr::left_join(
       ibkr_account_info, 
       by = "email"
     ) %>% 
@@ -234,7 +239,6 @@ if(file.exists("../fintech.trading.competition.private/whois.xml")){
         columnDefs   = list(list(className = 'dt-center', targets = '_all')),
         dom         = 'Bt',
         buttons     = c('csv', 'excel', 'copy'),
-        ordering    = FALSE,
         scrollY     = 500,
         scrollX     = '100%',
         scroller    = TRUE
@@ -243,6 +247,14 @@ if(file.exists("../fintech.trading.competition.private/whois.xml")){
 } else {
   print("fintech.trading.competition.private is not found")
 }
+```
+
+## Discord names of traders who signed up but whose emails don't appear in IBKR
+```{r}
+registrants_df %>%
+  dplyr::filter(email %in% ibkr_account_info$email) %>%
+  dplyr::select(discord_name) %>%
+  print()
 ```
 
 ## Emails that still need an IBKR invite:

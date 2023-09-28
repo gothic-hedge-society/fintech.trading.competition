@@ -83,11 +83,12 @@ shiny::fluidPage(
     shiny::fluidRow(
       style = "text-align:center;",
       shiny::column(
-        2,
+        4,
         shiny::fluidRow(
           shiny::a(
             "Schonfeld Strategic Advisors",
-            href = "https://www.schonfeld.com/"
+            href = "https://www.schonfeld.com/",
+            style = "font-size:20px;"
           )
         ),
         shiny::fluidRow(
@@ -95,19 +96,31 @@ shiny::fluidPage(
             shiny::img(
               src="man/figures/schonfeld.png",
               alt="Schonfeld Logo",
-              style="width:100%"
+              style="width:100%;background-color:white;padding:5px;"
             ),
             href = "https://www.schonfeld.com/"
           )
         ),
         style = "margin-right:5px; margin-left:5px"
       ),
+      shiny::column(1),
       shiny::column(
-        2,
+        4,
+        shiny::fluidRow(
+          "Thank you, Schonfeld, for your generous cash contribution!!!"
+        )
+      )
+    ),
+    shiny::hr(),
+    shiny::fluidRow(
+      style = "text-align:center;",
+      shiny::column(
+        4,
         shiny::fluidRow(
           shiny::a(
-            "Depository Trust & Clearing Corporation",
-            href = "https://www.dtcc.com/"
+            "Depository Trust & Clearing Corporation (DTCC)",
+            href = "https://www.dtcc.com/",
+            style = "font-size:20px;"
           )
         ),
         shiny::fluidRow(
@@ -115,14 +128,22 @@ shiny::fluidPage(
             shiny::img(
               src = "man/figures/dtcc.png",
               alt = "DTCC Logo",
-              style = "width:100%"
+              style="width:100%;background-color:white;padding:5px;"
             ),
             href = "https://www.dtcc.com/"
           )
         ),
         style = "margin-right:5px; margin-left:5px"
       ),
-      shiny::column(10)
+      shiny::column(1),
+      shiny::column(
+        4,
+        shiny::fluidRow(
+          "DTCC has committed to interviewing top traders for early career paths in quantitative risk! For more info, ",
+          shiny::a("see our interview with DTCC's Sara Mados", href="https://www.youtube.com/watch?v=BM5LVqf_sBg")
+        )
+      ),
+      shiny::column(8)
     )
   ),
   shiny::fluidRow(
