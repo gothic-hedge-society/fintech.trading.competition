@@ -94,7 +94,7 @@ shiny::fluidPage(
         shiny::fluidRow(
           shiny::a(
             shiny::img(
-              src="man/figures/schonfeld.png",
+              src="man/figures/schonfeld_logo.png",
               alt="Schonfeld Logo",
               style="width:100%;background-color:white;padding:5px;"
             ),

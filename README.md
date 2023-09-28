@@ -33,7 +33,7 @@ today for the 2023 Fall Competition!
 </div>
 <div class="row">
 <a href="https://www.schonfeld.com/">
-<img src="man/figures/schonfeld.png" alt="Schonfeld Logo" style="width:100%;background-color:white;padding:5px;"/>
+<img src="man/figures/schonfeld_logo.png" alt="Schonfeld Logo" style="width:100%;background-color:white;padding:5px;"/>
 </a>
 </div>
 </div>
