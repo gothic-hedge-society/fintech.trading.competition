@@ -8,15 +8,13 @@ Read the official press release
 </p>
 </div>
 <div class="row">
-<div class="col-sm-2"></div>
-<div class="col-sm-8">
+<div class="col-sm-12" style="text-align:center;">
 <div class="vembedr">
 <div>
 <iframe src="https://www.youtube.com/embed/n2MROQhO1JY" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
 </div>
 </div>
-<div class="col-sm-2"></div>
 </div>
 <div class="row">
 <p style="text-align:center; font-size:20px;border: 1px solid gold; background:#686877">
@@ -132,13 +130,13 @@ As a participating trader in this competition you will:
 - Download Trader Workstation (Interactive Brokers’ professional-grade
   trading platform) and use it to trade real assets with real market
   prices using simulated money
-- Join the Gothic Hedge Hub (our companion Discord Server) which you can
-  use to communicate with other traders, the Competition admins, and
-  industry sponsors
-- Gain a chance to show recruiters and the world your trading skills
+  - Join the Gothic Hedge Hub (our companion Discord Server) which you
+    can use to communicate with other traders, the Competition admins,
+    and industry sponsors
+  - Gain a chance to show recruiters and the world your trading skills
 
-Go ahead and join now! We’ll look forward to seeing you in the Discord
-server :)
+  Go ahead and join now! We’ll look forward to seeing you in the Discord
+  server :)
 
 # ELIGIBILITY
 

@@ -42,12 +42,11 @@ shiny::fluidPage(
     )
   ),
   shiny::fluidRow(
-    shiny::column(2),
     shiny::column(
-      8,
-      vembedr::embed_url("https://youtu.be/n2MROQhO1JY")
-    ),
-    shiny::column(2)
+      12,
+      vembedr::embed_url("https://youtu.be/n2MROQhO1JY"),
+      style="text-align:center;"
+    )
   ),
   shiny::fluidRow(
     shiny::tags$p(
@@ -213,8 +212,8 @@ currencies, crypto, and [any of the other products offered by Interactive
 Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
 
 Due to the way in which we score & rank our participants, if you do well in this competition, it's because you're a good trader. Furthermore, we've introduced a
-*bracket* system this year to keep ALL of our traders interested and engaged. In
-the new system, even if you don't stand much chance of taking the #1 spot
+  *bracket* system this year to keep ALL of our traders interested and engaged. In
+  the new system, even if you don't stand much chance of taking the #1 spot
 overall, you can still compete for a top rank *within your bracket*, giving you
 a hard-earned accomplishment that you can report on your resume or CV.
 
@@ -223,14 +222,14 @@ To see how we accompilsh all this -- and what makes us special -- check out our 
 As a participating trader in this competition you will:
 
 - Download Trader Workstation (Interactive Brokers' professional-grade trading
-platform) and use it to trade real assets with real market prices using 
-simulated money
-- Join the Gothic Hedge Hub (our companion Discord Server) which you can use 
-to communicate with other traders, the Competition admins, and industry 
-sponsors
-- Gain a chance to show recruiters and the world your trading skills
-
-Go ahead and join now! We'll look forward to seeing you in the Discord server :)
+  platform) and use it to trade real assets with real market prices using 
+  simulated money
+  - Join the Gothic Hedge Hub (our companion Discord Server) which you can use 
+  to communicate with other traders, the Competition admins, and industry 
+  sponsors
+  - Gain a chance to show recruiters and the world your trading skills
+  
+  Go ahead and join now! We'll look forward to seeing you in the Discord server :)
 
 # ELIGIBILITY
 The Duke FINTECH Trading Competition is a free competition hosted by the [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
