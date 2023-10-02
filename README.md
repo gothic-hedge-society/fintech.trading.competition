@@ -2,8 +2,10 @@
 <div class="container-fluid">
 <div class="row">
 <p>
-Read the official press release 
+Read the official press releases 
 <a href="https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition">here</a>
+ and 
+<a href="https://fintech.meng.duke.edu/news/students-top-universities-signed-duke-fintech-trading-competition">here</a>
  on Duke University's FinTech Departmental website.
 </p>
 </div>

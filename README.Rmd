@@ -29,13 +29,20 @@ library(magrittr)
 shiny::fluidPage(
   shiny::fluidRow(
     shiny::tags$p(
-      "Read the official press release ",
+      "Read the official press releases ",
       shiny::tags$a(
         "here",
         href = paste0(
-          "https://fintech.meng.duke.edu/news/",
-          "students-around-world-are-invited-sign-",
-          "duke-fintech-trading-competition"
+          "https://fintech.meng.duke.edu/news/students-around-world-are-",
+          "invited-sign-duke-fintech-trading-competition"
+        )
+      ),
+      " and ",
+      shiny::tags$a(
+        "here",
+        href = paste0(
+          "https://fintech.meng.duke.edu/news/students-top-universities-",
+          "signed-duke-fintech-trading-competition"
         )
       ),
       " on Duke University's FinTech Departmental website."
