@@ -110,6 +110,7 @@ registrants_df <- registrants %>%
           "university of texas at austin",
           "the university of texas at austin"
         ) ~ "UT Austin",
+        c("washington university in st.louis") ~ "Washington University in St. Louis",
         .default = trimws(.)
       )
     },

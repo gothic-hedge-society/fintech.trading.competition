@@ -1,0 +1,171 @@
+﻿SCHOOL,PERSON,EMAIL,POSITION,How to Address,CALLED?,EMAILED,RESPONDED
+Brown,Kim Departie,kim_departie@brown.edu,Economics Dept Manager,,FALSE,TRUE,FALSE
+Brown,Kelsey Thorpe,kelsey_thorpe@brown.edu,Undergraduate Program Coordinator,,FALSE,TRUE,FALSE
+Brown,Angelica Spertini,angelica_spertini@brown.edu,"Graduate Program Manager, Academic Student Programs Advisor",,FALSE,TRUE,FALSE
+Cambridge,Leonardo Felli,lf454@cam.ac.uk,"Chair of the Faculty
+Professor of Economics",,FALSE,FALSE,FALSE
+Cambridge,,faculty@econ.cam.ac.uk,General Inquiries,,FALSE,FALSE,FALSE
+Cambridge,Robert Evans,rae1@cam.ac.uk,Professor of Economic Theory and Chair of Graduate Studies Committee,,FALSE,FALSE,FALSE
+Carnegie Mellon,Sharon Carver,sc0e@andrew.cmu.edu,Associate Dean for Educational Affairs,,FALSE,TRUE,FALSE
+Carnegie Mellon,Joseph Devine,jd0x@andrew.cmu.edu,Associate Dean for Undergraduate Studies,,FALSE,TRUE,FALSE
+Carnegie Mellon,Dean's Office,tepperadmins@andrew.cmu.edu,,,FALSE,TRUE,FALSE
+Case Western,,weatherhead@case.edu,School of Management,,FALSE,FALSE,FALSE
+Case Western,Mark Votruba,mark.votruba@case.edu,Department Chair for Econ Dept,,FALSE,FALSE,FALSE
+Columbia,Susan Elmes,se5@columbia.edu,,,FALSE,TRUE,FALSE
+Cornell,,econ-web@cornell.edu,Economics Dept,,FALSE,TRUE,FALSE
+Dartmouth,Alexis Abramson,alexis.r.abramson@dartmouth.edu,"Dean, Thayer School of Engineering",,FALSE,TRUE,FALSE
+Dartmouth,Ian Baker,ian.baker@dartmouth.edu,"Senior Associate Dean, Research and Graduate Programs",,FALSE,TRUE,FALSE
+Dartmouth,F. Jon Kull,f.jon.kull@dartmouth.edu,Dean of School of Graduate and Advanced Studies,,FALSE,TRUE,FALSE
+ECU,,menichellia22@ecu.edu,,,TRUE,TRUE,FALSE
+Emory,Ben Pearce,bfpearc@emory.edu,admin(?),,TRUE,TRUE,FALSE
+Florida State,,webmaster@business.fsu.edu,Webmaster? Not sure who to foward to,,FALSE,FALSE,FALSE
+George Washington University,,econgrad@gwu.edu,Economics Dept,,FALSE,FALSE,FALSE
+George Washington University,,gwsbdean@gwu.edu,Dean of Business School,,FALSE,FALSE,FALSE
+George Washington University,Amy Kasmir,akasmir@gwu.edu,Assistant to the Dean,,FALSE,FALSE,FALSE
+Georgetown,Thomas Lewis,lewistd@georgetown.edu,"Undergrad & Grad Programs, Economics",,FALSE,TRUE,FALSE
+Georgia Tech,Whitney Buser,whitney.buser@econ.gatech.edu,Associate Director of Academic Programs,,FALSE,TRUE,FALSE
+Georgia Tech,Matthew Oliver,matthew.oliver@econ.gatech.edu,"Director of Undergraduate Studies, Economics",,FALSE,TRUE,FALSE
+Harvard,Justine Johnson,econundergrad@fas.harvard.edu,,,FALSE,TRUE,FALSE
+Harvard,Justine Johnson,justinejohnson@fas.harvard.edu,,,FALSE,TRUE,FALSE
+Harvard,,admissions@hbs.edu,,,,,
+Johns Hopkins,,econ@jhu.edu,Economics Dept,,FALSE,TRUE,FALSE
+Johns Hopkins,,MSEM@JHU.EDU,MEM program,,FALSE,TRUE,FALSE
+Michigan State University,Richard Spreng,sprengri@broad.msu.edu,Associate Dean for Undergraduate Programs; Broad College of Business,,FALSE,FALSE,FALSE
+Michigan State University,Heidi Wardin,wardinhe@broad.msu.edu,Administrative Assistant,,FALSE,FALSE,FALSE
+Michigan State University,Richard Saouma,mbadean@broad.msu.edu,Associate Dean for Graduate Programs,,FALSE,FALSE,FALSE
+Michigan State University,Michelle Hyde,hydemic1@broad.msu.edu,Administrative Assistant,,FALSE,FALSE,FALSE
+MIT,Jonathan Gruber,gruberj@mit.edu,Department Chair,,FALSE,TRUE,FALSE
+MIT,,econhq@mit.edu,Dept HQ,,FALSE,TRUE,FALSE
+MIT,Arnaud Costinot,costinot@mit.edu,Associate Dept Head,,FALSE,TRUE,FALSE
+MIT,Lisa Desforge,ldesforg@mit.edu,Director of Administration and Finance,,FALSE,TRUE,FALSE
+Northeastern,Todd Alessandri,t.alessandri@northeastern.edu,Associate Dean of D'Amore-McKim School of Business,,FALSE,FALSE,FALSE
+Northeastern,Olubunmi Faleye,o.faleye@northeastern.edu,Senior Associate Dean; Finance Professor,,FALSE,FALSE,FALSE
+Northwestern,Mark Witte,mwitte@northwestern.edu,,,FALSE,TRUE,FALSE
+NYU,,econ.ug@nyu.edu,Economics Undergraduate Advising,,FALSE,TRUE,FALSE
+Ohio State,Jason Blevins,blevins.141@osu.edu,Director of Graduate Studies,,FALSE,FALSE,FALSE
+Ohio State,Huanxing Yang,yang.1041@osu.edu,"Econ Chairperson, Professor",,FALSE,FALSE,FALSE
+Ohio State,Lixin Ye,ye.45@osu.edu,Director of Undergraduate Studies,,FALSE,FALSE,FALSE
+Oxford,Hamish Low,hamish.low@economics.ox.ac.uk,Head of Econ Dept,,FALSE,FALSE,FALSE
+Oxford,Barbara Petrongolo,barbara.petrongolo@economics.ox.ac.uk,Professor of Economics,,FALSE,FALSE,FALSE
+Oxford,Lesley Darcy,econgrad@economics.ox.ac.uk,Graduate Operations Manager,,FALSE,FALSE,FALSE
+Oxford,Katherine Cumming,econundergrad@economics.ox.ac.uk,Undergraduate Operations Manager,,FALSE,FALSE,FALSE
+Penn State,,prd138@psu.edu,,,FALSE,FALSE,FALSE
+Princeton,Smita B. Brunnermeier,smita@princeton.edu,Senior Lecturer of Economics and Public and International Affairs,,FALSE,TRUE,FALSE
+Rensselaer Polytechnic Institute,Billur Aksoy,billuraksoy@gmail.com,Assistant Prof & Grad Program Director,,FALSE,FALSE,FALSE
+Rensselaer Polytechnic Institute,Vivek Ghosal,ghosav@rpi.edu,Econ Dept Head,,FALSE,FALSE,FALSE
+Rensselaer Polytechnic Institute,Michael Klein,kleinm5@rpi.edu,Assistant Prof & Undergrad Program Director,,FALSE,FALSE,FALSE
+Rice,,econ@rice.edu,Economics Dept,,FALSE,TRUE,FALSE
+Rice,Xun Tang,xun.tang@rice.edu,Prof of Economics; Director of Graduate Studies,,FALSE,TRUE,FALSE
+Rutgers University,John Landon-Lane,john.landon-lane@rutgers.edu,Professor of Economics; Dept Chair,,FALSE,FALSE,FALSE
+Rutgers University,Norman Swanson,nswanson@economics.rutgers.edu,Graduate Program Director,,FALSE,FALSE,FALSE
+Rutgers University,Barry Sopher ,sopher@economics.rutgers.edu,Undergraduate Program Director,,FALSE,FALSE,FALSE
+Santa Clara University,,economics@scu.edu,Economics Dept,,FALSE,FALSE,FALSE
+South Texas College,,,,,FALSE,FALSE,FALSE
+Stanford,,bernheim@stanford.edu,,,FALSE,TRUE,FALSE
+Stanford,investment club,jankelow@stanford.edu,,,FALSE,TRUE,FALSE
+Stony Brook,,cobgraduate@stonybrook.edu,College of Business,,FALSE,FALSE,FALSE
+Stony Brook,Haresh Gurnani,haresh.gurnani@stonybrook.edu,Dean of College of Business,,FALSE,FALSE,FALSE
+Stony Brook,Danling Jiang,danling.jiang@stonybrook.edu,Associate Dean; Finance Prof,,FALSE,FALSE,FALSE
+Stony Brook,Kathleen McGarry,kathleen.mcgarry@stonybrook.edu,Econ Dept Chair,,FALSE,FALSE,FALSE
+Stony Brook,Alyssa Tuthill,alyssa.tuthill@stonybrook.edu,Assistant to the Chair,,FALSE,FALSE,FALSE
+Syracuse University,David M. Van Slyke,vanslyke@syr.edu,Dean of Maxwell School (Business),,FALSE,FALSE,FALSE
+Syracuse University,Devashish Mitra,dmitra@syr.edu,Econ Dept Chair; Professor,,FALSE,FALSE,FALSE
+Texas A&M,Haleigh Lipko,hlipko@tamu.edu,,,TRUE,TRUE,TRUE
+Tufts University,Marcelo Bianconi ,marcelo.bianconi@tufts.edu,Econ Dept Chair,,FALSE,FALSE,FALSE
+Tufts University,,debra.knox@tufts.edu,Department Email,,FALSE,FALSE,FALSE
+UChicago,,juliew@uchicago.edu,,,TRUE,TRUE,FALSE
+UCI,,,,,FALSE,FALSE,FALSE
+UCLA,,jenail@econ.ucla.edu,,,TRUE,TRUE,FALSE
+UCSB,,ugrad@econ.ucsb.edu,,,TRUE,TRUE,FALSE
+UCSD,,grondina@ucsd.edu,vice-chair undergrad studies in Econ,,FALSE,TRUE,FALSE
+UCSD,,prbharadwaj@ucsd.edu,,,FALSE,TRUE,FALSE
+UCSD,,daarnold@ucsd.edu,,,FALSE,TRUE,FALSE
+UCSD,,mmuendler@ucsd.edu,,,FALSE,TRUE,FALSE
+UNC,,ECON_UndergradProgram@unc.edu,,,FALSE,TRUE,FALSE
+UNC,Geetha Vaidyanathan,geethav@email.unc.edu,,,FALSE,TRUE,FALSE
+University of Florida,,thomas.knight@ufl.edu,Department Chair,,FALSE,TRUE,FALSE
+University of Florida,,floridamba@warrington.ufl.edu,business school,,FALSE,TRUE,FALSE
+University of Illinois-Urbana-Champaign,,econ@illinois.edu,Economics Dept,,FALSE,TRUE,FALSE
+University of Miami,,undergraduatebusiness@miami.edu,Undergraduate Business Dept,,FALSE,FALSE,FALSE
+University of Miami,,jbatridge@miami.edu,Assistant Dean; Academic Advising,,FALSE,FALSE,FALSE
+University of Miami,,mba@miami.edu,Graduate Business Program,,FALSE,FALSE,FALSE
+University of Miami,,vxo93@miami.edu,Executive Assistant,,FALSE,FALSE,FALSE
+University of Miami,David Andolfatto,dxa1048@miami.edu,Econ Dept Chair,,FALSE,FALSE,FALSE
+University of Michigan,,econ-ug@umich.edu,,,FALSE,TRUE,FALSE
+University of Missouri - Columbia,,economics@missouri.edu,economics undergraduate Advising,,FALSE,TRUE,FALSE
+University of North Dakota,Jeannie Lewis,jeannie.lewis@und.edu,Econ PoC,,FALSE,TRUE,FALSE
+University of Notre Dame,Ginger Chrapliwy,gchrapli@nd.edu,Officer Assistant to the Vice President for Student Affairs,,FALSE,TRUE,FALSE
+University of Notre Dame,,econ@nd.edu,Economics Dept,,FALSE,TRUE,FALSE
+University of Notre Dame,Eric Sims,esims1@nd.edu,Department Chair,,FALSE,TRUE,FALSE
+University of Notre Dame,Forrest Spence,fspence@nd.edu,Director of Undergraduate Studies,,FALSE,TRUE,FALSE
+University of Notre Dame,Drew Creal,dcreal@nd.edu,Director of Graduate Studies,,FALSE,TRUE,FALSE
+University of Pittsburgh,,EconAdvisor@pitt.edu,Econ Dept,,FALSE,FALSE,FALSE
+University of Pittsburgh,Larry Mercurio,lfm25@pitt.edu,Undergraduate Administrator ,,FALSE,FALSE,FALSE
+University of Pittsburgh,Gwen Viles,gev26@pitt.edu,Graduate Administrator,,FALSE,FALSE,FALSE
+University of Washington,,econdept@uw.edu,Economics Dept,,FALSE,FALSE,FALSE
+University of Washington,Eric Zivot,ezivot@uw.edu,Econ Dept Chair,,FALSE,FALSE,FALSE
+University of Washington,Ahna Kotila,akotila@uw.edu,"Academic Services Director, Undergrad program",,FALSE,FALSE,FALSE
+UPENN,,econ-ugrad@sas.upenn.edu,,,TRUE,TRUE,FALSE
+UPENN Wharton,Caroline Pennartz,pennartz@wharton.upenn.edu,"Senior Associate Director, Wharton Media Relations & Dean’s Communication",,FALSE,TRUE,FALSE
+UPENN Wharton,Emily Hemming,ehemming@wharton.upenn.edu,"Senior Associate Director, Wharton Media Relations & Academic Marketing",,FALSE,TRUE,FALSE
+UPENN Wharton,,mbaprogram@wharton.upenn.edu,,,FALSE,TRUE,FALSE
+USC,,kehuffma@usc.edu,,,TRUE,TRUE,FALSE
+UT Austin,,ecoadvisors@austin.utexas.edu,,,TRUE,TRUE,FALSE
+UVA,James Harrigan,jh4xd@virginia.edu,prof,,FALSE,TRUE,FALSE
+UVA,Federico Ciliberto,ciliberto@virginia.edu,dept head,,FALSE,TRUE,FALSE
+Vanderbilt,,economics@vanderbilt.edu,Economics Dept,,FALSE,TRUE,FALSE
+Vanderbilt,Brooke Talley,brooke.talley@vanderbilt.edu,Graduate Programs,,FALSE,TRUE,FALSE
+Vanderbilt,Kamal Saggi,k.saggi@vanderbilt.edu,Department Chair; Professor of Economics,,FALSE,TRUE,FALSE
+Vanderbilt,Brian Beach,brian.beach@vanderbilt.edu,Director of Graduate Studies,,FALSE,TRUE,FALSE
+Vanderbilt,Rupinder Saggi,r.saggi@vanderbilt.edu,Director of Undergraduate Studies,,FALSE,TRUE,FALSE
+Virginia Tech,Sudipta Sarangi,ssarangi@vt.edu,Economics Dept Head,,FALSE,FALSE,FALSE
+Virginia Tech,Erika Perdue,eperdue@vt.edu,Undergraduate Advisor,,FALSE,FALSE,FALSE
+Virginia Tech,Will Bebout,wibebout@vt.edu,Graduate Coordinator,,FALSE,FALSE,FALSE
+Virginia Tech,,busadvising@vt.edu,College of Business,,FALSE,FALSE,FALSE
+Virginia Tech,Kimberly Ridpath,ridpathk@vt.edu,Executive Assistant for College of Business,,FALSE,FALSE,FALSE
+Virginia Tech,Julie Ross,deaneng@vt.edu,Dean of Engineering,,FALSE,FALSE,FALSE
+Virginia Tech,Tasia Persson,liberalartsdean@vt.edu,Executive Assistsant for Dean's Office (College of LIberal Arts & Human Sciences),,FALSE,FALSE,FALSE
+Wake Forest University,,deanofthecollege@wfu.edu,Dean's Office,,FALSE,FALSE,FALSE
+Wake Forest University,Dixie Ross,rossdd@wfu.edu,Assistant Dean of Finance and Administration,,FALSE,FALSE,FALSE
+Wake Forest University,Kenny Herbst,herbstk@wfu.edu,Associate Dean of Undergraduate Business Program,,FALSE,FALSE,FALSE
+Washington University in St. Louis,,OlinGradAdmissions@wustl.edu,Graduate Programs,,FALSE,TRUE,FALSE
+Washington University in St. Louis,Chris Kroeger,ckroeger@wustl.edu,Associate Dean for Undergraduate Student Services,,FALSE,TRUE,FALSE
+Washington University in St. Louis,Andrew Swafford,s.andrew@wustl.edu,Academic Advisor,,FALSE,TRUE,FALSE
+University of Washington,,atcuw@uw.edu,algo trading club,,FALSE,TRUE,FALSE
+William & Mary,,info@mason.wm.edu,Raymond A. Mason School of Business,,FALSE,FALSE,FALSE
+William & Mary,Ken White,ken.white@mason.wm.edu,"Associate Dean, MBA & Executive Programs",,FALSE,FALSE,FALSE
+William & Mary,Sarah Stafford,slstaf@wm.edu,Econ Dept Chair,,FALSE,FALSE,FALSE
+William & Mary,Kathy O'Brien,klobri@wm.edu,Academic Department Administrator,,FALSE,FALSE,FALSE
+Yale,,economics@yale.edu,Economics Dept,,FALSE,TRUE,FALSE
+Yale,Tony Smith,tony.smith@yale.edu,Department Chair; Professor of Economics and of Management,,FALSE,TRUE,FALSE
+Yale,Yuichi Kitamura,yuichi.kitamura@yale.edu,Professor of Economics and Director of Graduate Studies,,FALSE,TRUE,FALSE
+Yale,Giovanni Maggi,giovanni.maggi@yale.edu,"Professor of Economics and International Affairs, Director of Undergraduate Studies",,FALSE,TRUE,FALSE
+Purdue,,buscasecomps@perdue.edu,,,,,
+UC Irvine,,wbranch@uci.edu,,,,,
+UC Irvine,,fmilani@uci.edu,,,,,
+UC Irvine,,duffy@uci.edu,,,,,
+UC Irvine,,bcjenkin@uci.edu,,,,,
+UC Irvine,,garyr@uci.edu,,,,,
+UC Irvine,,jennifer.gerson@uci.edu,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
