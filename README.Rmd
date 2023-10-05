@@ -188,7 +188,7 @@ shiny::fluidPage(
   ),
   shiny::fluidRow(
     shiny::tagList(
-      shiny::tags$h3('04 Oct 2023: Registration closes'),
+      shiny::tags$h3('06 Oct 2023: Registration closes'),
       shiny::tags$p(
         "No new registrants will be accepted. ",
         shiny::tags$a(
@@ -198,7 +198,7 @@ shiny::fluidPage(
       ),
       shiny::tags$h3('11 Oct 2023: COMPETITION STARTS'),
       shiny::tags$p(
-        "This is when we’ll begin keeping score. Use the week betwen 04 Oct and 11 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc."
+        "This is when we’ll begin keeping score. Use the week betwen 06 Oct and 11 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc."
       ),
       shiny::tags$h3('15 Dec 2023: COMPETITION ENDS'),
       shiny::tags$p(
