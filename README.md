@@ -2,21 +2,21 @@
 <div class="container-fluid">
 <div class="row">
 <p>
-Read the official press release 
+Read the official press releases 
 <a href="https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition">here</a>
+ and 
+<a href="https://fintech.meng.duke.edu/news/students-top-universities-signed-duke-fintech-trading-competition">here</a>
  on Duke University's FinTech Departmental website.
 </p>
 </div>
 <div class="row">
-<div class="col-sm-2"></div>
-<div class="col-sm-8">
+<div class="col-sm-12" style="text-align:center;">
 <div class="vembedr">
 <div>
 <iframe src="https://www.youtube.com/embed/n2MROQhO1JY" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
 </div>
 </div>
-<div class="col-sm-2"></div>
 </div>
 <div class="row">
 <p style="text-align:center; font-size:20px;border: 1px solid gold; background:#686877">
@@ -27,27 +27,41 @@ today for the 2023 Fall Competition!
 <div class="row">
 <h2 style="color:gold;">2023 Sponsors:</h2>
 <div class="row" style="text-align:center;">
-<div class="col-sm-2" style="margin-right:5px; margin-left:5px">
+<div class="col-sm-4" style="margin-right:5px; margin-left:5px">
 <div class="row">
-<a href="https://www.schonfeld.com/">Schonfeld Strategic Advisors</a>
+<a href="https://www.schonfeld.com/" style="font-size:20px;">Schonfeld Strategic Advisors</a>
 </div>
 <div class="row">
 <a href="https://www.schonfeld.com/">
-<img src="man/figures/schonfeld.png" alt="Schonfeld Logo" style="width:100%"/>
+<img src="man/figures/schonfeld_logo.png" alt="Schonfeld Logo" style="width:100%;background-color:white;padding:5px;"/>
 </a>
 </div>
 </div>
-<div class="col-sm-2" style="margin-right:5px; margin-left:5px">
+<div class="col-sm-1"></div>
+<div class="col-sm-4">
+<div class="row">Thank you, Schonfeld, for your generous cash contribution!!!</div>
+</div>
+</div>
+<hr/>
+<div class="row" style="text-align:center;">
+<div class="col-sm-4" style="margin-right:5px; margin-left:5px">
 <div class="row">
-<a href="https://www.dtcc.com/">Depository Trust &amp; Clearing Corporation</a>
+<a href="https://www.dtcc.com/" style="font-size:20px;">Depository Trust &amp; Clearing Corporation (DTCC)</a>
 </div>
 <div class="row">
 <a href="https://www.dtcc.com/">
-<img src="man/figures/dtcc.png" alt="DTCC Logo" style="width:100%"/>
+<img src="man/figures/dtcc.png" alt="DTCC Logo" style="width:100%;background-color:white;padding:5px;"/>
 </a>
 </div>
 </div>
-<div class="col-sm-10"></div>
+<div class="col-sm-1"></div>
+<div class="col-sm-4">
+<div class="row">
+DTCC has committed to interviewing top traders for early career paths in quantitative risk! For more info, 
+<a href="https://www.youtube.com/watch?v=BM5LVqf_sBg">see our interview with DTCC's Sara Mados</a>
+</div>
+</div>
+<div class="col-sm-8"></div>
 </div>
 </div>
 <div class="row">
@@ -77,13 +91,13 @@ today for the 2023 Fall Competition!
 <h2 style="color:#ff32c8; font-weight:bold">Important Dates</h2>
 </div>
 <div class="row">
-<h3>04 Oct 2023: Registration closes</h3>
+<h3>06 Oct 2023: Registration closes</h3>
 <p>
 No new registrants will be accepted. 
 <a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up here!!!</a>
 </p>
 <h3>11 Oct 2023: COMPETITION STARTS</h3>
-<p>This is when we’ll begin keeping score. Use the week betwen 04 Oct and 11 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc.</p>
+<p>This is when we’ll begin keeping score. Use the week betwen 06 Oct and 11 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc.</p>
 <h3>15 Dec 2023: COMPETITION ENDS</h3>
 <p>All of your end-of-day Net Account Values between 11 Oct and 15 Dec will be used in the calculation of your scores, with 15 Dec being the final date. After that day the competition will be over and winners will be declared.</p>
 </div>
@@ -118,13 +132,13 @@ As a participating trader in this competition you will:
 - Download Trader Workstation (Interactive Brokers’ professional-grade
   trading platform) and use it to trade real assets with real market
   prices using simulated money
-- Join the Gothic Hedge Hub (our companion Discord Server) which you can
-  use to communicate with other traders, the Competition admins, and
-  industry sponsors
-- Gain a chance to show recruiters and the world your trading skills
+  - Join the Gothic Hedge Hub (our companion Discord Server) which you
+    can use to communicate with other traders, the Competition admins,
+    and industry sponsors
+  - Gain a chance to show recruiters and the world your trading skills
 
-Go ahead and join now! We’ll look forward to seeing you in the Discord
-server :)
+  Go ahead and join now! We’ll look forward to seeing you in the Discord
+  server :)
 
 # ELIGIBILITY
 

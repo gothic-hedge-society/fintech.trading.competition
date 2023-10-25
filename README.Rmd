@@ -29,25 +29,31 @@ library(magrittr)
 shiny::fluidPage(
   shiny::fluidRow(
     shiny::tags$p(
-      "Read the official press release ",
+      "Read the official press releases ",
       shiny::tags$a(
         "here",
         href = paste0(
-          "https://fintech.meng.duke.edu/news/",
-          "students-around-world-are-invited-sign-",
-          "duke-fintech-trading-competition"
+          "https://fintech.meng.duke.edu/news/students-around-world-are-",
+          "invited-sign-duke-fintech-trading-competition"
+        )
+      ),
+      " and ",
+      shiny::tags$a(
+        "here",
+        href = paste0(
+          "https://fintech.meng.duke.edu/news/students-top-universities-",
+          "signed-duke-fintech-trading-competition"
         )
       ),
       " on Duke University's FinTech Departmental website."
     )
   ),
   shiny::fluidRow(
-    shiny::column(2),
     shiny::column(
-      8,
-      vembedr::embed_url("https://youtu.be/n2MROQhO1JY")
-    ),
-    shiny::column(2)
+      12,
+      vembedr::embed_url("https://youtu.be/n2MROQhO1JY"),
+      style="text-align:center;"
+    )
   ),
   shiny::fluidRow(
     shiny::tags$p(
@@ -83,31 +89,44 @@ shiny::fluidPage(
     shiny::fluidRow(
       style = "text-align:center;",
       shiny::column(
-        2,
+        4,
         shiny::fluidRow(
           shiny::a(
             "Schonfeld Strategic Advisors",
-            href = "https://www.schonfeld.com/"
+            href = "https://www.schonfeld.com/",
+            style = "font-size:20px;"
           )
         ),
         shiny::fluidRow(
           shiny::a(
             shiny::img(
-              src="man/figures/schonfeld.png",
+              src="man/figures/schonfeld_logo.png",
               alt="Schonfeld Logo",
-              style="width:100%"
+              style="width:100%;background-color:white;padding:5px;"
             ),
             href = "https://www.schonfeld.com/"
           )
         ),
         style = "margin-right:5px; margin-left:5px"
       ),
+      shiny::column(1),
       shiny::column(
-        2,
+        4,
+        shiny::fluidRow(
+          "Thank you, Schonfeld, for your generous cash contribution!!!"
+        )
+      )
+    ),
+    shiny::hr(),
+    shiny::fluidRow(
+      style = "text-align:center;",
+      shiny::column(
+        4,
         shiny::fluidRow(
           shiny::a(
-            "Depository Trust & Clearing Corporation",
-            href = "https://www.dtcc.com/"
+            "Depository Trust & Clearing Corporation (DTCC)",
+            href = "https://www.dtcc.com/",
+            style = "font-size:20px;"
           )
         ),
         shiny::fluidRow(
@@ -115,14 +134,22 @@ shiny::fluidPage(
             shiny::img(
               src = "man/figures/dtcc.png",
               alt = "DTCC Logo",
-              style = "width:100%"
+              style="width:100%;background-color:white;padding:5px;"
             ),
             href = "https://www.dtcc.com/"
           )
         ),
         style = "margin-right:5px; margin-left:5px"
       ),
-      shiny::column(10)
+      shiny::column(1),
+      shiny::column(
+        4,
+        shiny::fluidRow(
+          "DTCC has committed to interviewing top traders for early career paths in quantitative risk! For more info, ",
+          shiny::a("see our interview with DTCC's Sara Mados", href="https://www.youtube.com/watch?v=BM5LVqf_sBg")
+        )
+      ),
+      shiny::column(8)
     )
   ),
   shiny::fluidRow(
@@ -161,7 +188,7 @@ shiny::fluidPage(
   ),
   shiny::fluidRow(
     shiny::tagList(
-      shiny::tags$h3('04 Oct 2023: Registration closes'),
+      shiny::tags$h3('06 Oct 2023: Registration closes'),
       shiny::tags$p(
         "No new registrants will be accepted. ",
         shiny::tags$a(
@@ -171,7 +198,7 @@ shiny::fluidPage(
       ),
       shiny::tags$h3('11 Oct 2023: COMPETITION STARTS'),
       shiny::tags$p(
-        "This is when we’ll begin keeping score. Use the week betwen 04 Oct and 11 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc."
+        "This is when we’ll begin keeping score. Use the week betwen 06 Oct and 11 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc."
       ),
       shiny::tags$h3('15 Dec 2023: COMPETITION ENDS'),
       shiny::tags$p(
@@ -192,8 +219,8 @@ currencies, crypto, and [any of the other products offered by Interactive
 Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
 
 Due to the way in which we score & rank our participants, if you do well in this competition, it's because you're a good trader. Furthermore, we've introduced a
-*bracket* system this year to keep ALL of our traders interested and engaged. In
-the new system, even if you don't stand much chance of taking the #1 spot
+  *bracket* system this year to keep ALL of our traders interested and engaged. In
+  the new system, even if you don't stand much chance of taking the #1 spot
 overall, you can still compete for a top rank *within your bracket*, giving you
 a hard-earned accomplishment that you can report on your resume or CV.
 
@@ -202,14 +229,14 @@ To see how we accompilsh all this -- and what makes us special -- check out our 
 As a participating trader in this competition you will:
 
 - Download Trader Workstation (Interactive Brokers' professional-grade trading
-platform) and use it to trade real assets with real market prices using 
-simulated money
-- Join the Gothic Hedge Hub (our companion Discord Server) which you can use 
-to communicate with other traders, the Competition admins, and industry 
-sponsors
-- Gain a chance to show recruiters and the world your trading skills
-
-Go ahead and join now! We'll look forward to seeing you in the Discord server :)
+  platform) and use it to trade real assets with real market prices using 
+  simulated money
+  - Join the Gothic Hedge Hub (our companion Discord Server) which you can use 
+  to communicate with other traders, the Competition admins, and industry 
+  sponsors
+  - Gain a chance to show recruiters and the world your trading skills
+  
+  Go ahead and join now! We'll look forward to seeing you in the Discord server :)
 
 # ELIGIBILITY
 The Duke FINTECH Trading Competition is a free competition hosted by the [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
