@@ -210,17 +210,35 @@ shiny::tagList(
 
 # Current Top 10 Rankings
 
-### 1st Place: `r colnames(sharpes)[1]`
-### 2nd Place: `r colnames(sharpes)[2]`
-### 3rd Place: `r colnames(sharpes)[3]`
-### 4th Place: `r colnames(sharpes)[4]`
-### 5th Place: `r colnames(sharpes)[5]`
-### 6th Place: `r colnames(sharpes)[6]`
-### 7th Place: `r colnames(sharpes)[7]`
-### 8th Place: `r colnames(sharpes)[8]`
-### 9th Place: `r colnames(sharpes)[9]`
-### 10th Place: `r colnames(sharpes)[10]`
+### 1st Place: `r sharpe_ordered_info$discord[1]`
+`r sharpe_ordered_info$university[1]`
 
+### 2nd Place: [`r sharpe_ordered_info$discord[2]`](`r sharpe_ordered_info$website[2]`)
+`r sharpe_ordered_info$university[2]`
+
+### 3rd Place: [`r sharpe_ordered_info$discord[3]`](`r sharpe_ordered_info$website[3]`)
+`r sharpe_ordered_info$university[3]`
+
+### 4th Place: [`r sharpe_ordered_info$discord[4]`](`r sharpe_ordered_info$website[4]`)
+`r sharpe_ordered_info$university[4]`
+
+### 5th Place: [`r sharpe_ordered_info$discord[5]`](`r sharpe_ordered_info$website[5]`)
+`r sharpe_ordered_info$university[5]`
+
+### 6th Place: [`r sharpe_ordered_info$discord[6]`](`r sharpe_ordered_info$website[6]`)
+`r sharpe_ordered_info$university[6]`
+
+### 7th Place: `r sharpe_ordered_info$discord[7]`
+`r sharpe_ordered_info$university[7]`
+
+### 8th Place: [`r sharpe_ordered_info$discord[8]`](`r sharpe_ordered_info$website[8]`)
+`r sharpe_ordered_info$university[8]`
+
+### 9th Place: `r sharpe_ordered_info$discord[9]`
+`r sharpe_ordered_info$university[9]`
+
+### 10th Place: [`r sharpe_ordered_info$discord[10]`](`r sharpe_ordered_info$website[10]`)
+`r sharpe_ordered_info$university[10]`
 
 # Sharpe Ratios of the Top Tier over Time
 ```{r echo=FALSE}
