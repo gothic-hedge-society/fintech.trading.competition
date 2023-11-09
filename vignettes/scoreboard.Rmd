@@ -208,13 +208,18 @@ shiny::tagList(
 )
 ```
 
-# Current Top 5 Rankings
+# Current Top 10 Rankings
 
 ### 1st Place: `r colnames(sharpes)[1]`
 ### 2nd Place: `r colnames(sharpes)[2]`
 ### 3rd Place: `r colnames(sharpes)[3]`
 ### 4th Place: `r colnames(sharpes)[4]`
 ### 5th Place: `r colnames(sharpes)[5]`
+### 6th Place: `r colnames(sharpes)[6]`
+### 7th Place: `r colnames(sharpes)[7]`
+### 8th Place: `r colnames(sharpes)[8]`
+### 9th Place: `r colnames(sharpes)[9]`
+### 10th Place: `r colnames(sharpes)[10]`
 
 
 # Sharpe Ratios of the Top Tier over Time
