@@ -273,12 +273,6 @@ shiny::tagList(
 #   xts::as.xts(periodicity = "daily") %>%
 sharpes %>%
   dygraphs::dygraph(width = "100%") %>% 
-  dygraphs::dyEvent(
-    x     = "2022-02-24", 
-    label = paste0("RUS-UKR Conflict", paste0(rep(" ", 30), collapse = "")), 
-    color = "yellow",
-    strokePattern = "solid"
-  ) %>%
   dygraphs::dyOptions(
     strokeWidth            = 3,
     drawPoints             = TRUE, 
@@ -311,6 +305,52 @@ sharpes %>%
       ),
       shiny::fluidRow(
         id    = "top-sharpes-legend",
+        class = "dylegend-div"
+      ),
+      shiny::fluidRow(
+        shiny::column(width = 12, . )  
+      )
+    ) 
+  }
+```
+
+
+# Daily Geometric Mean Returns of the Top Tier Over Time
+
+```{r echo=FALSE}
+returns %>%
+  dygraphs::dygraph(width = "100%") %>% 
+  dygraphs::dyOptions(
+    strokeWidth            = 3,
+    drawPoints             = TRUE, 
+    pointSize              = 4,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dygraphs::dyAxis(
+    "y", 
+    label             = "returns",
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923",
+  ) %>%
+  dygraphs::dyAxis(
+    "x", 
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923"
+  ) %>%
+  dygraphs::dyLegend(labelsDiv = "top-returns-legend") %>% 
+  dygraphs::dyRangeSelector(height = 50, strokeColor = "") %>% {
+    shiny::tagList(
+      shiny::fluidRow(
+        shiny::p("Mouse over the figure below for trader-level data."),
+        shiny::p("Use the range selector to zoom in on a particular area."),
+        style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        id    = "top-returns-legend",
         class = "dylegend-div"
       ),
       shiny::fluidRow(
