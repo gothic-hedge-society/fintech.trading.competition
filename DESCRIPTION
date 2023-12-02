@@ -3,8 +3,7 @@ Title: Duke FinTech Trading Competition!
 Version: 2023.08.28
 Authors@R: c(
     person("Jake", "Vestal", , "jmv13@duke.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-2970-4795")),
-    person("Zoe", "Kim", , "zic3@duke.edu", role = "aut")
+           comment = c(ORCID = "0000-0002-2970-4795"))
   )
 Description: Registration, news, and standings for the Duke FinTech Trading Competition.
 License: MIT + file LICENSE
