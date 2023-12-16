@@ -213,7 +213,7 @@ shiny::tagList(
 ### 1st Place: `r sharpe_ordered_info$trader_name[1]`
 `r sharpe_ordered_info$university[1]`
 
-### 2nd Place: [`r sharpe_ordered_info$trader_name[2]`](`r sharpe_ordered_info$website[2]`)
+### 2nd Place: [Channing Spencer](`r sharpe_ordered_info$website[2]`)
 `r sharpe_ordered_info$university[2]`
 
 ### 3rd Place: [`r sharpe_ordered_info$trader_name[3]`](`r sharpe_ordered_info$website[3]`)
