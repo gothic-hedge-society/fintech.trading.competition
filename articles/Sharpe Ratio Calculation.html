@@ -6,14 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sharpe Ratio Calculation • fintech.trading.competition</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/darkly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/darkly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Sharpe Ratio Calculation">
-<meta property="og:description" content="fintech.trading.competition">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -26,7 +25,7 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -55,7 +54,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Scoring
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -84,13 +83,13 @@
 <li>
   <a href="https://www.youtube.com/@DukeFintechCompetition" class="external-link">
     <span class="fa fa-youtube"></span>
-     
+
   </a>
 </li>
 <li>
   <a href="https://github.com/gothic-hedge-society/fintech.trading.competition" class="external-link">
     <span class="fa fa-github"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -101,11 +100,12 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><link href="Sharpe%20Ratio%20Calculation_files/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<link href="Sharpe%20Ratio%20Calculation_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
 <script src="Sharpe%20Ratio%20Calculation_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="Sharpe%20Ratio%20Calculation_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="Sharpe%20Ratio%20Calculation_files/datatables-binding-0.31/datatables.js"></script><link href="Sharpe%20Ratio%20Calculation_files/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="Sharpe%20Ratio%20Calculation_files/datatables-binding-0.33/datatables.js"></script><link href="Sharpe%20Ratio%20Calculation_files/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="Sharpe%20Ratio%20Calculation_files/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="Sharpe%20Ratio%20Calculation_files/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="Sharpe%20Ratio%20Calculation_files/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
 <script src="Sharpe%20Ratio%20Calculation_files/crosstalk-1.2.1/js/crosstalk.min.js"></script><div class="row">
@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Sharpe Ratio Calculation</h1>
             
       
-      
+
       <div class="hidden name"><code>Sharpe Ratio Calculation.Rmd</code></div>
 
     </div>
@@ -150,17 +150,17 @@ the Sharpe Ratio would be calculated for an example contest
 participant.</p>
 <p>As a reminder, here’s the Sharpe Ratio definition that we came up
 with at the end of that section:</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">$$\begin{align*}
 {\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma_{p}}
-\end{align*}\]</span></p>
+\end{align*}$$</span></p>
 <div class="section level5">
 <h5 id="wherein">Wherein:<a class="anchor" aria-label="anchor" href="#wherein"></a>
 </h5>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">$$\begin{align*}
 R_{p} &amp; {\sf: Portfolio\ Return} \\
 r_{f} &amp; {\sf: Risk\ free\ rate\ of\ return} \\
 \sigma_{p} &amp; {\sf: Volatility\ of\ portfolio\ return}
-\end{align*}\]</span></p>
+\end{align*}$$</span></p>
 </div>
 <div class="section level4">
 <h4 id="what-risk-free-rate-do-we-use">What risk-free rate do we use?<a class="anchor" aria-label="anchor" href="#what-risk-free-rate-do-we-use"></a>
@@ -172,16 +172,21 @@ into risk-free debt with a maturity near the Competition’s end date.</p>
 <p>Sounds like not a lot of fun and not a good way to make a fortune…
 but since about half of the participants will <em>lose</em> money in
 this contest, the idea isn’t actually as bad as it might sound.</p>
-<p>Regardless, for the duration of the Competition, the value of <span class="math inline">\(r_{f}\)</span> used to calculate Sharpes does not
-change, even though new risk-free rates will be published every day by
-the USDT. The reason why we keep <span class="math inline">\(r_{f}\)</span> fixed is because we’re comparing
-your performance as a trader to the “base strategy”: simply buying debt
-earning <span class="math inline">\(r_{f}\)</span> on Day 1, which would
-tie up all your capital for trading until maturity on the last day.</p>
+<p>Regardless, for the duration of the Competition, the value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mi>f</mi></msub><annotation encoding="application/x-tex">r_{f}</annotation></semantics></math>
+used to calculate Sharpes does not change, even though new risk-free
+rates will be published every day by the USDT. The reason why we keep
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mi>f</mi></msub><annotation encoding="application/x-tex">r_{f}</annotation></semantics></math>
+fixed is because we’re comparing your performance as a trader to the
+“base strategy”: simply buying debt earning
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mi>f</mi></msub><annotation encoding="application/x-tex">r_{f}</annotation></semantics></math>
+on Day 1, which would tie up all your capital for trading until maturity
+on the last day.</p>
 <p>Since the Competition lasts about <strong>3 months</strong>, the
-value we’ll use for <span class="math inline">\(r_{f}\)</span> will be
-whatever the USDT publishes as the 3-month CMT rate on the day the
-Competition starts. This value will be will be posted clearly and
+value we’ll use for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mi>f</mi></msub><annotation encoding="application/x-tex">r_{f}</annotation></semantics></math>
+will be whatever the USDT publishes as the 3-month CMT rate on the day
+the Competition starts. This value will be will be posted clearly and
 conspicuously for everyone.</p>
 <p><strong>For this example</strong>, let’s suppose that on Day 1 we
 visited the USDT’s website and found that the 3-month CMT rate was 0.04%
@@ -189,7 +194,9 @@ visited the USDT’s website and found that the 3-month CMT rate was 0.04%
 <p>We want that on a trading day basis, so we’ll convert: since there
 are 252 trading days in a year, we divide by 252 (and by 100 because
 it’s a percent):</p>
-<p>Let’s do that now, and store <span class="math inline">\(r_{f}\)</span> as a variable:</p>
+<p>Let’s do that now, and store
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mi>f</mi></msub><annotation encoding="application/x-tex">r_{f}</annotation></semantics></math>
+as a variable:</p>
 <pre><code><span><span class="co">## [1] "The risk-free rate is 0.0001587% / trading day."</span></span></code></pre>
 <p>–&gt; Now let’s suppose some trading data for a hypothetical Contest
 participant.</p>
@@ -201,8 +208,8 @@ participant.</p>
 participating in the competition for seven days.</p>
 <p>Her end-of-day (EoD) Net Asset Value (NAV) and daily log returns
 are:</p>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-186d34dd1e585a403a0f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-186d34dd1e585a403a0f">{"x":{"filter":"none","vertical":false,"data":[["2021-03-23","2021-03-22","2021-03-19","2021-03-18","2021-03-17","2021-03-16","2021-03-15"],[1000301,1000075,1000250,1000050,1000100,999890,999950],[0.0002259575209476716,-0.0001749715675667512,0.0001999700051658001,-4.999625029165153e-05,0.000210001050776989,-6.000480040199383e-05,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>EoD NAV<\/th>\n      <th>Port. Return (%/trd day)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 5, 3, \",\", \".\", null);\n  }"},{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"$\", 2, 3, \",\", \".\", true, null);\n  }"},{"className":"dt-center","targets":"_all"},{"name":"Date","targets":0},{"name":"EoD NAV","targets":1},{"name":"Port. Return (%/trd day)","targets":2}],"initComplete":"\n      function(settings, json) {\n          $(this.api().table().header()).css({\n              'color' : 'greenyellow'\n          });\n      }\n      ","dom":"Bt","ordering":false,"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.initComplete"],"jsHooks":[]}</script><p>Note that there’s no way to calculate a return on the very first day
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"filter":"none","vertical":false,"data":[["2021-03-23","2021-03-22","2021-03-19","2021-03-18","2021-03-17","2021-03-16","2021-03-15"],[1000301,1000075,1000250,1000050,1000100,999890,999950],[0.0002259575209476716,-0.0001749715675667512,0.0001999700051658001,-4.999625029165153e-05,0.000210001050776989,-6.000480040199383e-05,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>EoD NAV<\/th>\n      <th>Port. Return (%/trd day)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 5, 3, \",\", \".\", null);\n  }"},{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"$\", 2, 3, \",\", \".\", true, null);\n  }"},{"className":"dt-center","targets":"_all"},{"name":"Date","targets":0},{"name":"EoD NAV","targets":1},{"name":"Port. Return (%/trd day)","targets":2}],"initComplete":"\n      function(settings, json) {\n          $(this.api().table().header()).css({\n              'color' : 'greenyellow'\n          });\n      }\n      ","dom":"Bt","ordering":false,"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.initComplete"],"jsHooks":[]}</script><p>Note that there’s no way to calculate a return on the very first day
 because there’s nothing to compare it to.</p>
 <p>The student’s <strong>daily portfolio returns</strong> are the log
 returns of her daily portfolio value. For example, on 18 March 2021, she
@@ -215,16 +222,18 @@ portfolio value. Therefore the return she sees at end-of-day on 18 March
 <span><span class="fu">format_percent</span><span class="op">(</span><span class="va">rtn_18_mar_2021</span>, <span class="st">"% / trading day."</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "-0.005% / trading day."</span></span></code></pre>
 <p>Let’s check that, because why not? She started the day with
-$1,000,100.00 NAV, so that number * (1 + <span class="math inline">\(return\)</span>) should equal the $1,000,050.00
-NAV that her account posted at day’s end:</p>
+$1,000,100.00 NAV, so that number * (1 +
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>e</mi><mi>t</mi><mi>u</mi><mi>r</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">return</annotation></semantics></math>)
+should equal the $1,000,050.00 NAV that her account posted at day’s
+end:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># check</span></span>
 <span><span class="fl">1000100.00</span> <span class="op">*</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">rtn_18_mar_2021</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 1000050</span></span></code></pre>
 <p>–&gt; Looks good.</p>
 <p>The student’s overall <strong>geometric mean rate of return</strong>
-<span class="math inline">\(R_{p}\)</span> for the entire time period
-is:</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mi>p</mi></msub><annotation encoding="application/x-tex">R_{p}</annotation></semantics></math>
+for the entire time period is:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">student_gmrr</span> <span class="op">&lt;-</span> <span class="va">student_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="st">"Port. Return (%/trd day)"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
@@ -239,8 +248,9 @@ is:</p>
 <code class="sourceCode R"><span><span class="va">student_excess_return</span> <span class="op">&lt;-</span> <span class="va">student_gmrr</span> <span class="op">-</span> <span class="va">rf</span></span>
 <span><span class="fu">format_percent</span><span class="op">(</span><span class="va">student_excess_return</span>, <span class="st">"% / trading day."</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "0.005689% / trading day."</span></span></code></pre>
-<p>The students <strong>volatility of returns</strong> <span class="math inline">\(\sigma_{p}\)</span> is the standard deviation of
-her portfolio returns:</p>
+<p>The students <strong>volatility of returns</strong>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>σ</mi><mi>p</mi></msub><annotation encoding="application/x-tex">\sigma_{p}</annotation></semantics></math>
+is the standard deviation of her portfolio returns:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">student_vol</span> <span class="op">&lt;-</span> <span class="va">student_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="st">"Port. Return (%/trd day)"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
@@ -251,17 +261,17 @@ her portfolio returns:</p>
 <pre><code><span><span class="co">## [1] "0.0174% / trading day."</span></span></code></pre>
 <p>Now we have what we need to calculate the Sharpe Ratio for this
 student:</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">$$\begin{align*}
 {\tt Sharpe\ Ratio} = \frac{R_{p} - r_{f}}{\sigma_{p}}
-\end{align*}\]</span></p>
+\end{align*}$$</span></p>
 <div class="section level5">
 <h5 id="wherein-1">Wherein:<a class="anchor" aria-label="anchor" href="#wherein-1"></a>
 </h5>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">$$\begin{align*}
 R_{p} &amp; {\sf: Portfolio\ Return} \\
 r_{f} &amp; {\sf: Risk\ free\ rate\ of\ return} \\
 \sigma_{p} &amp; {\sf: Volatility\ of\ portfolio\ return}
-\end{align*}\]</span></p>
+\end{align*}$$</span></p>
 </div>
 </div>
 <div class="section level3">
@@ -294,9 +304,7 @@ function in R.</p>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -309,16 +317,16 @@ function in R.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>
