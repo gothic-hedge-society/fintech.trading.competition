@@ -10,21 +10,6 @@ Read the official press releases
 </p>
 </div>
 <div class="row">
-<div class="col-sm-12" style="text-align:center;">
-<div class="vembedr">
-<div>
-<iframe src="https://www.youtube.com/embed/n2MROQhO1JY" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<p style="text-align:center; font-size:20px;border: 1px solid gold; background:#686877">
-<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up</a>
-today for the 2023 Fall Competition!
-</p>
-</div>
-<div class="row">
 <h2 style="color:gold;">2023 Sponsors:</h2>
 <div class="row" style="text-align:center;">
 <div class="col-sm-4" style="margin-right:5px; margin-left:5px">
