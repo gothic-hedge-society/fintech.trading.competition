@@ -7,16 +7,16 @@ output: html_document
 library(magrittr)
 ```
 
-# 2022 Winners
+<!-- # 2022 Winners -->
 
-* 1st Place $3,000 Prize: **Hoppity** of Harvard University 
-* 2nd Place $2,000 Prize: **bubbles** of Texas A&M University
-* 3rd Place $1,250 Prize: **Dennishhh** of Vanderbilt University
-* 4th Place $750 Prize: **James Liao** of Washington University in St. Louis
-* 5th Place $500 Prize: **Nonfortissimus** of UNC Chapel Hill
+<!-- * 1st Place $3,000 Prize: **Hoppity** of Harvard University  -->
+<!-- * 2nd Place $2,000 Prize: **bubbles** of Texas A&M University -->
+<!-- * 3rd Place $1,250 Prize: **Dennishhh** of Vanderbilt University -->
+<!-- * 4th Place $750 Prize: **James Liao** of Washington University in St. Louis -->
+<!-- * 5th Place $500 Prize: **Nonfortissimus** of UNC Chapel Hill -->
 
-Congratulations to all who participated and thanks again to our generous
-sponsors! Be sure to check them out using the links in the sidebar.
+<!-- Congratulations to all who participated and thanks again to our generous -->
+<!-- sponsors! Be sure to check them out using the links in the sidebar. -->
 
 # Keep in Touch!
 
