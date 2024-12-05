@@ -1,90 +1,48 @@
 
 <div class="container-fluid">
 <div class="row">
-<p>
-Read the official press releases 
-<a href="https://fintech.meng.duke.edu/news/students-around-world-are-invited-sign-duke-fintech-trading-competition">here</a>
- and 
-<a href="https://fintech.meng.duke.edu/news/students-top-universities-signed-duke-fintech-trading-competition">here</a>
- on Duke University's FinTech Departmental website.
-</p>
-</div>
-<div class="row">
-<h2 style="color:gold;">2023 Sponsors:</h2>
-<div class="row" style="text-align:center;">
-<div class="col-sm-4" style="margin-right:5px; margin-left:5px">
-<div class="row">
-<a href="https://www.schonfeld.com/" style="font-size:20px;">Schonfeld Strategic Advisors</a>
-</div>
-<div class="row">
-<a href="https://www.schonfeld.com/">
-<img src="man/figures/schonfeld_logo.png" alt="Schonfeld Logo" style="width:100%;background-color:white;padding:5px;"/>
-</a>
-</div>
-</div>
-<div class="col-sm-1"></div>
-<div class="col-sm-4">
-<div class="row">Thank you, Schonfeld, for your generous cash contribution!!!</div>
-</div>
-</div>
+<h2 style="color:gold;">2025 Competition Information</h2>
+<p>We are pleased to announce that by popular demand, the trading compeition WILL be taking place in 2025! Check back here for updates as we prepare for another exciting competition. </p>
 <hr/>
-<div class="row" style="text-align:center;">
-<div class="col-sm-4" style="margin-right:5px; margin-left:5px">
-<div class="row">
-<a href="https://www.dtcc.com/" style="font-size:20px;">Depository Trust &amp; Clearing Corporation (DTCC)</a>
-</div>
-<div class="row">
-<a href="https://www.dtcc.com/">
-<img src="man/figures/dtcc.png" alt="DTCC Logo" style="width:100%;background-color:white;padding:5px;"/>
-</a>
-</div>
-</div>
-<div class="col-sm-1"></div>
-<div class="col-sm-4">
-<div class="row">
-DTCC has committed to interviewing top traders for early career paths in quantitative risk! For more info, 
-<a href="https://www.youtube.com/watch?v=BM5LVqf_sBg">see our interview with DTCC's Sara Mados</a>
-</div>
-</div>
-<div class="col-sm-8"></div>
-</div>
-</div>
-<div class="row">
-<h2 style="color:#beff00; font-weight:bold">2023 Cash Prizes</h2>
-</div>
-<div class="row">
-<div class="col-sm-4">
-<h3>1st Place: $2,000.00</h3>
-</div>
-<div class="col-sm-4">
-<h3>2nd Place: $1,333.33</h3>
-</div>
-<div class="col-sm-4">
-<h3>3rd Place: $833.33</h3>
-</div>
-</div>
-<div class="row">
-<div class="col-sm-4">
-<h3>4th Place: $500.00</h3>
-</div>
-<div class="col-sm-4">
-<h3>5th Place: $333.33</h3>
-</div>
-<div class="col-sm-4"></div>
-</div>
 <div class="row">
 <h2 style="color:#ff32c8; font-weight:bold">Important Dates</h2>
 </div>
 <div class="row">
-<h3>06 Oct 2023: Registration closes</h3>
+<h3>15 Jan 2025: Installfest</h3>
 <p>
-No new registrants will be accepted. 
-<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up here!!!</a>
+Those located near the Durham NC area are invited to join us at 
+<b>2PM EST</b>
+ in the 
+<b>Fitzpatrick Atrium</b>
+ for refreshments. We'll help you install what you need to get 
+ signed up for the competition and trading.
 </p>
-<h3>11 Oct 2023: COMPETITION STARTS</h3>
-<p>This is when we’ll begin keeping score. Use the week betwen 06 Oct and 11 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc.</p>
-<h3>15 Dec 2023: COMPETITION ENDS</h3>
-<p>All of your end-of-day Net Account Values between 11 Oct and 15 Dec will be used in the calculation of your scores, with 15 Dec being the final date. After that day the competition will be over and winners will be declared.</p>
+<p>
+Starting at 
+<b>4pm EST</b>
+ we'll be available on the Discord channel to provide support 
+and answer questions for those unable to attend in person.
+</p>
+<h3>19 Jan 2025: Registration Closes</h3>
+<p>
+Registration for the 2025 Competition shuts down at midnight on 
+<b>Sunday, 19 Jan</b>
+</p>
+<h3>22 Jan 2025: COMPETITION STARTS</h3>
+<p>
+This is when we’ll begin keeping score. Between registration 
+close on the 19th and competition open on the 22nd, we will hold 
+a few popup help sessions on Discord to help you get set up.
+</p>
+<h3>03 May 2025: COMPETITION ENDS</h3>
+<p>
+All of your end-of-day Net Account Values between 22 Jan and 
+03 May 2025 will be used in the calculation of your scores, with 
+03 May being the final date. After that day the competition will 
+be over and winners will be declared.
+</p>
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up here!!!</a>
+</div>
 </div>
 </div>
 
@@ -117,13 +75,13 @@ As a participating trader in this competition you will:
 - Download Trader Workstation (Interactive Brokers’ professional-grade
   trading platform) and use it to trade real assets with real market
   prices using simulated money
-  - Join the Gothic Hedge Hub (our companion Discord Server) which you
-    can use to communicate with other traders, the Competition admins,
-    and industry sponsors
-  - Gain a chance to show recruiters and the world your trading skills
+- Join the Gothic Hedge Hub (our companion Discord Server) which you can
+  use to communicate with other traders, the Competition admins, and
+  industry sponsors
+- Gain a chance to show recruiters and the world your trading skills
 
-  Go ahead and join now! We’ll look forward to seeing you in the Discord
-  server :)
+Go ahead and join now! We’ll look forward to seeing you in the Discord
+server :)
 
 # ELIGIBILITY
 
@@ -133,6 +91,10 @@ The Duke FINTECH Trading Competition is a free competition hosted by the
 The Competition is open to any currently enrolled graduate or
 undergraduate student so long as they have an email address with a .edu
 extension.
+
+**STARTING THIS YEAR** we will be extending registration eligibility to
+all members of the United States Military with an active email address
+(e.g., .mil).
 
 Participating students are issued \$1 million in simulated currency
 within a paper trading account provided by [Interactive

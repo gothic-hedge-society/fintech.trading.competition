@@ -4,14 +4,14 @@ output: html_document
 ---
 
 ```{r echo=FALSE}
-shiny::fluidRow(
-  shiny::column(2),
-  shiny::column(
-    8,
-    vembedr::embed_url("https://youtu.be/nBQPcMIqqOs")
-  ),
-  shiny::column(2)
-)
+# shiny::fluidRow(
+#   shiny::column(2),
+#   shiny::column(
+#     8,
+#     vembedr::embed_url("https://youtu.be/nBQPcMIqqOs")
+#   ),
+#   shiny::column(2)
+# )
 ```
 
 This page walks through what you as a participating trader need to do to fully 
@@ -38,17 +38,12 @@ Competition, then you may use it.
 If not, then you must create one. Discord accounts are required for the
 competition this year for several reasons:
 
- - Jake Vestal (The Architect) and Zoe Kim (The Artist) -- the Competition 
- admins -- are going to be doing Discord livestreams at various times for 
- various reasons (or for no reason at all) throughout this Competition. Not all 
- these will be posted to YouTube. These sessions are sure to be helpful at best, 
- and entertaining at a minimum :)
+ - The Competition admins are going to be doing Discord livestreams at various 
+ times throughout this Competition. Not all these will be posted to YouTube. 
+ These sessions are sure to be helpful at best, and entertaining at a minimum :)
  - You'll use Discord to communicate with each other...
  - ...receive Competition announcements as they take place...
  - ...and communicate with Competition admins in case you encounter an issue.
- 
-But perhaps most importantly: **We're allowing some sponsors to join certain 
-channels on the Hedge Hub for recruiting purposes**.
 
 You can make an account and download Discord [here](https://discord.com/). You 
 are probably going to want to download the app on your desktop and your phone.
@@ -56,8 +51,7 @@ are probably going to want to download the app on your desktop and your phone.
 Once you've got your Discord username, proceed to Step 2.
 
 ### Step 2: Fill out & submit this form:
-<div id="wufoo-div" style="background-color:#fff;border-style:ridge;">
-<div id="wufoo-q7j67ol08e8luq" style => Fill out my <a href="https://dukefinance.wufoo.com/forms/q7j67ol08e8luq">online form</a>. </div> <script type="text/javascript"> var q7j67ol08e8luq; (function(d, t) { var s = d.createElement(t), options = { 'userName':'dukefinance', 'formHash':'q7j67ol08e8luq', 'autoResize':true, 'height':'866', 'async':true, 'host':'wufoo.com', 'header':'show', 'ssl':true }; s.src = ('https:' == d.location.protocol ?'https://':'http://') + 'secure.wufoo.com/scripts/embed/form.js'; s.onload = s.onreadystatechange = function() { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { q7j67ol08e8luq = new WufooForm(); q7j67ol08e8luq.initialize(options); q7j67ol08e8luq.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script'); </script></div>
+<div id="wufoo-xi09vqi1wmt7cs"> Fill out my <a href="https://dukefinance.wufoo.com/forms/xi09vqi1wmt7cs">online form</a>. </div> <script type="text/javascript"> var xi09vqi1wmt7cs; (function(d, t) { var s = d.createElement(t), options = { 'userName':'dukefinance', 'formHash':'xi09vqi1wmt7cs', 'autoResize':true, 'height':'760', 'async':true, 'host':'wufoo.com', 'header':'show', 'ssl':true }; s.src = ('https:' == d.location.protocol ?'https://':'http://') + 'secure.wufoo.com/scripts/embed/form.js'; s.onload = s.onreadystatechange = function() { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { xi09vqi1wmt7cs = new WufooForm(); xi09vqi1wmt7cs.initialize(options); xi09vqi1wmt7cs.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script'); </script>
 
 After you complete Step 2, the Competition admins will receive it and send you 
 two things:

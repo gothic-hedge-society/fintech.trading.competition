@@ -2,6 +2,9 @@
 output: github_document
 always_allow_html: yes
 ---
+```{r}
+
+```
 
 ```{r echo=FALSE}
 library(magrittr)
@@ -27,27 +30,6 @@ library(magrittr)
 #   as.numeric()
 
 shiny::fluidPage(
-  shiny::fluidRow(
-    shiny::tags$p(
-      "Read the official press releases ",
-      shiny::tags$a(
-        "here",
-        href = paste0(
-          "https://fintech.meng.duke.edu/news/students-around-world-are-",
-          "invited-sign-duke-fintech-trading-competition"
-        )
-      ),
-      " and ",
-      shiny::tags$a(
-        "here",
-        href = paste0(
-          "https://fintech.meng.duke.edu/news/students-top-universities-",
-          "signed-duke-fintech-trading-competition"
-        )
-      ),
-      " on Duke University's FinTech Departmental website."
-    )
-  ),
   # shiny::fluidRow(
   #   shiny::tags$p(
   #     shiny::tags$b(entries_count),
@@ -62,129 +44,61 @@ shiny::fluidPage(
   #   )
   # ),
   shiny::fluidRow(
-    shiny::tags$h2("2023 Sponsors:", style="color:gold;"),
-    shiny::fluidRow(
-      style = "text-align:center;",
-      shiny::column(
-        4,
-        shiny::fluidRow(
-          shiny::a(
-            "Schonfeld Strategic Advisors",
-            href = "https://www.schonfeld.com/",
-            style = "font-size:20px;"
-          )
-        ),
-        shiny::fluidRow(
-          shiny::a(
-            shiny::img(
-              src="man/figures/schonfeld_logo.png",
-              alt="Schonfeld Logo",
-              style="width:100%;background-color:white;padding:5px;"
-            ),
-            href = "https://www.schonfeld.com/"
-          )
-        ),
-        style = "margin-right:5px; margin-left:5px"
-      ),
-      shiny::column(1),
-      shiny::column(
-        4,
-        shiny::fluidRow(
-          "Thank you, Schonfeld, for your generous cash contribution!!!"
-        )
+    shiny::tags$h2("2025 Competition Information", style="color:gold;"),
+    shiny::tags$p(
+      paste0(
+        "We are pleased to announce that by popular demand, the trading ",
+        "compeition WILL be taking place in 2025! Check back here for updates ",
+        "as we prepare for another exciting competition. "
       )
     ),
     shiny::hr(),
+    shiny::fluidRow( 
+      shiny::tags$h2('Important Dates', style="color:#ff32c8; font-weight:bold")
+    ),
     shiny::fluidRow(
-      style = "text-align:center;",
-      shiny::column(
-        4,
-        shiny::fluidRow(
-          shiny::a(
-            "Depository Trust & Clearing Corporation (DTCC)",
-            href = "https://www.dtcc.com/",
-            style = "font-size:20px;"
-          )
+      shiny::tagList(
+        shiny::tags$h3('15 Jan 2025: Installfest'),
+        shiny::tags$p(
+          "Those located near the Durham NC area are invited to join us at ",
+          shiny::tags$b('2PM EST'),
+          " in the ",
+          shiny::tags$b("Fitzpatrick Atrium"),
+          " for refreshments. We'll help you install what you need to get ",
+          " signed up for the competition and trading."
         ),
-        shiny::fluidRow(
-          shiny::a(
-            shiny::img(
-              src = "man/figures/dtcc.png",
-              alt = "DTCC Logo",
-              style="width:100%;background-color:white;padding:5px;"
-            ),
-            href = "https://www.dtcc.com/"
-          )
+        shiny::tags$p(
+          "Starting at ",
+          shiny::tags$b("4pm EST"),
+          " we'll be available on the Discord channel to provide support ",
+          "and answer questions for those unable to attend in person."
         ),
-        style = "margin-right:5px; margin-left:5px"
-      ),
-      shiny::column(1),
-      shiny::column(
-        4,
-        shiny::fluidRow(
-          "DTCC has committed to interviewing top traders for early career paths in quantitative risk! For more info, ",
-          shiny::a("see our interview with DTCC's Sara Mados", href="https://www.youtube.com/watch?v=BM5LVqf_sBg")
-        )
-      ),
-      shiny::column(8)
-    )
-  ),
-  shiny::fluidRow(
-    shiny::tags$h2(
-      '2023 Cash Prizes', 
-      style="color:#beff00; font-weight:bold"
-    )
-  ),
-  shiny::fluidRow(
-    shiny::column(
-      4,
-      shiny::tags$h3('1st Place: $2,000.00')
-    ),
-    shiny::column(
-      4,
-      shiny::tags$h3('2nd Place: $1,333.33')
-    ),
-    shiny::column(
-      4,
-      shiny::tags$h3('3rd Place: $833.33')
-    )
-  ),
-  shiny::fluidRow(
-    shiny::column(
-      4,
-      shiny::tags$h3('4th Place: $500.00')
-    ),
-    shiny::column(
-      4,
-      shiny::tags$h3('5th Place: $333.33')
-    ),
-    shiny::column(4)
-  ),
-  shiny::fluidRow( 
-    shiny::tags$h2('Important Dates', style="color:#ff32c8; font-weight:bold")
-  ),
-  shiny::fluidRow(
-    shiny::tagList(
-      shiny::tags$h3('06 Oct 2023: Registration closes'),
-      shiny::tags$p(
-        "No new registrants will be accepted. ",
+        shiny::tags$h3('19 Jan 2025: Registration Closes'),
+        shiny::tags$p(
+          "Registration for the 2025 Competition shuts down at midnight on ",
+          shiny::tags$b("Sunday, 19 Jan")
+        ),
+        shiny::tags$h3('22 Jan 2025: COMPETITION STARTS'),
+        shiny::tags$p(
+          "This is when we’ll begin keeping score. Between registration ",
+          "close on the 19th and competition open on the 22nd, we will hold ",
+          "a few popup help sessions on Discord to help you get set up."
+        ),
+        shiny::tags$h3('03 May 2025: COMPETITION ENDS'),
+        shiny::tags$p(
+          "All of your end-of-day Net Account Values between 22 Jan and ",
+          "03 May 2025 will be used in the calculation of your scores, with ",
+          "03 May being the final date. After that day the competition will ",
+          "be over and winners will be declared."
+        ),
         shiny::tags$a(
           "Sign up here!!!",
           href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html"
         )
-      ),
-      shiny::tags$h3('11 Oct 2023: COMPETITION STARTS'),
-      shiny::tags$p(
-        "This is when we’ll begin keeping score. Use the week betwen 06 Oct and 11 Oct to get used to the Trader Workstation, interact on Discord, troubleshoot, etc."
-      ),
-      shiny::tags$h3('15 Dec 2023: COMPETITION ENDS'),
-      shiny::tags$p(
-        "All of your end-of-day Net Account Values between 11 Oct and 15 Dec will be used in the calculation of your scores, with 15 Dec being the final date. After that day the competition will be over and winners will be declared."
-      ) 
+      )
     )
   )
 )
-
 ```
 
 # ABOUT:
@@ -196,8 +110,8 @@ currencies, crypto, and [any of the other products offered by Interactive
 Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
 
 Due to the way in which we score & rank our participants, if you do well in this competition, it's because you're a good trader. Furthermore, we've introduced a
-  *bracket* system this year to keep ALL of our traders interested and engaged. In
-  the new system, even if you don't stand much chance of taking the #1 spot
+*bracket* system this year to keep ALL of our traders interested and engaged. In
+the new system, even if you don't stand much chance of taking the #1 spot
 overall, you can still compete for a top rank *within your bracket*, giving you
 a hard-earned accomplishment that you can report on your resume or CV.
 
@@ -206,20 +120,23 @@ To see how we accompilsh all this -- and what makes us special -- check out our 
 As a participating trader in this competition you will:
 
 - Download Trader Workstation (Interactive Brokers' professional-grade trading
-  platform) and use it to trade real assets with real market prices using 
-  simulated money
-  - Join the Gothic Hedge Hub (our companion Discord Server) which you can use 
-  to communicate with other traders, the Competition admins, and industry 
-  sponsors
-  - Gain a chance to show recruiters and the world your trading skills
-  
-  Go ahead and join now! We'll look forward to seeing you in the Discord server :)
+platform) and use it to trade real assets with real market prices using 
+simulated money
+- Join the Gothic Hedge Hub (our companion Discord Server) which you can use 
+to communicate with other traders, the Competition admins, and industry 
+sponsors
+- Gain a chance to show recruiters and the world your trading skills
+
+Go ahead and join now! We'll look forward to seeing you in the Discord server :)
 
 # ELIGIBILITY
 The Duke FINTECH Trading Competition is a free competition hosted by the [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
 
 The Competition is open to any currently enrolled graduate or undergraduate
 student so long as they have an email address with a .edu extension. 
+
+**STARTING THIS YEAR** we will be extending registration eligibility to all 
+members of the United States Military with an active email address (e.g., .mil).
 
 Participating students are issued $1 million in simulated currency within a
 paper trading account provided by [Interactive Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).

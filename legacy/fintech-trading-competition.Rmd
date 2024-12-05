@@ -16,8 +16,7 @@ three (3) components that make up this competition:
   Interactive Brokers (IBKR). This is what participants will use to make their 
   trades and monitor market data.
 - The **Gothic Hedge Hub**: our official Discord server for this event, where 
-  participants can interact with each other, the competition admins, and 
-  sponsors (when they choose to sign in and make themselves available)
+  participants can interact with each other and the competition admins (when they choose to sign in and make themselves available)
   
 **If you're a currently enrolled university student (grad or undergrad) then 
 you're eligible to participate in the competition!**
@@ -29,11 +28,9 @@ Competition, then you may use it.
 If not, then you must create one. Discord accounts are required for the
 competition this year for several reasons:
 
- - Jake Vestal (The Architect) and Zoe Kim (The Artist) -- the Competition 
- admins -- are going to be doing Discord livestreams at various times and 
- various reasons (or no reason at all) throughout this Competition, some of 
- which won't be posted to YouTube. They're sure to be helpful at best, 
- entertaining at a minimum :)
+ - The Competition admins are going to be doing Discord livestreams at various 
+ times throughout this Competition, some of which won't be posted to YouTube. 
+ They're sure to be helpful at best, entertaining at a minimum :)
  - You'll use Discord to communicate with each other...
  - ...receive Competition announcements as they take place...
  - ...and communicate with Competition admins in case you encounter an issue.
@@ -120,5 +117,5 @@ IBKR maintains a set of videos on their [Traders' University](https://www.intera
 site where you can learn about the different financial instruments and how to
 trade them using your system of choice.
 
-Also be aware that Jake & Zoe will be giving educational sessions on how to use 
+Also be aware that admins will be giving educational sessions on how to use 
 IBKR's system on Discord from time to time.
