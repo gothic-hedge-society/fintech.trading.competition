@@ -1,8 +1,7 @@
 pandoc: 3.1.11
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  Become a Sponsor: Become a Sponsor.html
   excess_rtn_vol_and_sharpe: excess_rtn_vol_and_sharpe.html
   incentives: incentives.html
   other_rules: other_rules.html
@@ -12,7 +11,7 @@ articles:
   Scoring: Scoring.html
   Sharpe Ratio Calculation: Sharpe Ratio Calculation.html
   sign_up: sign_up.html
-last_built: 2024-08-01T20:20Z
+last_built: 2024-12-05T19:37Z
 urls:
   reference: https://gothic-hedge-society.github.io/fintech.trading.competition/reference
   article: https://gothic-hedge-society.github.io/fintech.trading.competition/articles
