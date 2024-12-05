@@ -2,7 +2,10 @@
 <div class="container-fluid">
 <div class="row">
 <h2 style="color:gold;">2025 Competition Information</h2>
-<p>We are pleased to announce that by popular demand, the trading compeition WILL be taking place in 2025! Check back here for updates as we prepare for another exciting competition. </p>
+<p>
+We are pleased to announce that by popular demand, the trading compeition WILL be taking place in 2025! Check back here for updates as we prepare for another exciting competition. 
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up here!!!</a>
+</p>
 <hr/>
 <div class="row">
 <h2 style="color:#ff32c8; font-weight:bold">Important Dates</h2>
@@ -41,7 +44,6 @@ All of your end-of-day Net Account Values between 22 Jan and
 03 May being the final date. After that day the competition will 
 be over and winners will be declared.
 </p>
-<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up here!!!</a>
 </div>
 </div>
 </div>
