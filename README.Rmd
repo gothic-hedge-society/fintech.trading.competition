@@ -8,7 +8,6 @@ always_allow_html: yes
 
 ```{r echo=FALSE}
 library(magrittr)
-
 # base_url <- "https://dukefinance.wufoo.com/api/v3/"
 # username <- Sys.getenv("WUFOO_REGISTRATION_KEY")
 # password <- "footastic"
@@ -45,18 +44,93 @@ shiny::fluidPage(
   # ),
   shiny::fluidRow(
     shiny::tags$h2("2025 Competition Information", style="color:gold;"),
+    shiny::tags$a(
+      "Sign up here!!!",
+      href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html",
+      style="font-size:30px"        
+    ),
     shiny::tags$p(
       paste0(
         "We are pleased to announce that by popular demand, the trading ",
         "compeition WILL be taking place in 2025! Check back here for updates ",
-        "as we prepare for another exciting competition. "
+        "as we prepare for another exciting competition. \n\n"
       ),
-      shiny::tags$a(
-        "Sign up here!!!",
-        href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html"
-      )
+      style="font-size:30px"
     ),
     shiny::hr(),
+    shiny::tags$h2("Prize Bells", style="color:gold;"),
+    shiny::fluidRow(
+      shiny::column(
+        7,
+        shiny::tags$div(
+          paste0(
+            "This year, Duke has ordered a custom made bell engraved with the ",
+            "Fintech Department logo to be permenantly displayed in our Atrium at ",
+            "Duke. Winning traders will have their name engraved on a plaque ",
+            "under the bell and can bask in glory over the years!\n"
+          ),
+          style = "display:inline-block;font-size:20px"
+        ),
+        shiny::tags$div(
+          paste0(
+            "Our official Trading Competition Bell looks like the one ",
+            "pictured to the right. When the completed bell arrives, we will ",
+            "be sure to post here when it is installed in its permanent ",
+            "location at our university.\n"
+          ),
+          style = "display:inline-block;font-size:20px"
+        )
+      ),
+      shiny::column(
+        5,
+        shiny::tags$div(
+          shiny::h3(
+            "Winner's Bell", 
+            style="padding-top:5px;padding-left:51px"
+          ),
+          shiny::img(
+            src='man/figures/bell_example.jpeg', 
+            width="260px",
+            style = "display:inline;"
+          )
+        )
+      )
+    ),
+    shiny::fluidRow(
+      shiny::column(
+        5,
+        shiny::tags$div(
+          shiny::h3(
+            "Individual Winner's Bell", 
+            style="padding-top:46px"
+          ),
+          shiny::img(
+            src='man/figures/prize_bell_example.jpeg', 
+            width="200",
+            style = "display:inline;"
+          )
+        )
+      ),
+      shiny::column(
+        7,
+        shiny::tags$div(
+          paste0(
+            "Traders placing in 1st, 2nd, and 3rd Place will also receive ",
+            "thier own custom engraved bells to display in their offices to ",
+            "memorialize their trading prowess.\n"
+          ),
+          style = "display:inline-block;font-size:20px;margin-top:41px"
+        ),
+        shiny::tags$div(
+          paste0(
+            "Each winning trader's individual bell bells may be engraved ",
+            "however the winner chooses and will look like the one pictured ",
+            "to the left."
+          ),
+          style = "display:inline-block;font-size:20px"
+        )
+      )
+    ),
     shiny::fluidRow( 
       shiny::tags$h2('Important Dates', style="color:#ff32c8; font-weight:bold")
     ),
@@ -147,4 +221,5 @@ using the same user interface and features utilized by professional traders.
 The FINTECH program at Duke is inclusive and welcoming. Participation is welcome
 and encouraged, so please help spread the word! Standings for traders will be posted here and updated daily as data become available. This site will continue to grow as 
 new features are brought onboard so be sure to check back often for updates!!!
+
 

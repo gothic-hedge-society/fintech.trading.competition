@@ -2,11 +2,38 @@
 <div class="container-fluid">
 <div class="row">
 <h2 style="color:gold;">2025 Competition Information</h2>
-<p>
-We are pleased to announce that by popular demand, the trading compeition WILL be taking place in 2025! Check back here for updates as we prepare for another exciting competition. 
-<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html">Sign up here!!!</a>
-</p>
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html" style="font-size:30px">Sign up here!!!</a>
+<p style="font-size:30px">We are pleased to announce that by popular demand, the trading compeition WILL be taking place in 2025! Check back here for updates as we prepare for another exciting competition. 
+&#10;</p>
 <hr/>
+<h2 style="color:gold;">Prize Bells</h2>
+<div class="row">
+<div class="col-sm-7">
+<div style="display:inline-block;font-size:20px">This year, Duke has ordered a custom made bell engraved with the Fintech Department logo to be permenantly displayed in our Atrium at Duke. Winning traders will have their name engraved on a plaque under the bell and can bask in glory over the years!
+</div>
+<div style="display:inline-block;font-size:20px">Our official Trading Competition Bell looks like the one pictured to the right. When the completed bell arrives, we will be sure to post here when it is installed in its permanent location at our university.
+</div>
+</div>
+<div class="col-sm-5">
+<div>
+<h3 style="padding-top:5px;padding-left:51px">Winner's Bell</h3>
+<img src="man/figures/bell_example.jpeg" width="260px" style="display:inline;"/>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-5">
+<div>
+<h3 style="padding-top:46px">Individual Winner's Bell</h3>
+<img src="man/figures/prize_bell_example.jpeg" width="200" style="display:inline;"/>
+</div>
+</div>
+<div class="col-sm-7">
+<div style="display:inline-block;font-size:20px;margin-top:41px">Traders placing in 1st, 2nd, and 3rd Place will also receive thier own custom engraved bells to display in their offices to memorialize their trading prowess.
+</div>
+<div style="display:inline-block;font-size:20px">Each winning trader's individual bell bells may be engraved however the winner chooses and will look like the one pictured to the left.</div>
+</div>
+</div>
 <div class="row">
 <h2 style="color:#ff32c8; font-weight:bold">Important Dates</h2>
 </div>
