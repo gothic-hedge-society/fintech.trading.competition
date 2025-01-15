@@ -13,7 +13,7 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       WUFOO_REGISTRATION_KEY: ${{ secrets.WUFOO_TC_KEY }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-r@v2
 
