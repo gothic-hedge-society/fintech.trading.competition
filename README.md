@@ -53,20 +53,32 @@ Starting at
  we'll be available on the Discord channel to provide support 
 and answer questions for those unable to attend in person.
 </p>
-<h3>19 Jan 2025: Registration Closes</h3>
+<h3>22 Jan 2025: PHASE 1: Experimental Trading</h3>
 <p>
-Registration for the 2025 Competition shuts down at midnight on 
-<b>Sunday, 19 Jan</b>
+Many traders have expressed an interest in having an experimental 
+phase in which they practice with the Trader Workstation. Based 
+on this feedback we'll allow an experimental phase this year. 
+During this period we'll still be posting weekly scores as they 
+become available.
 </p>
-<h3>22 Jan 2025: COMPETITION STARTS</h3>
+<h3>02 Feb 2025: LAST DAY TO REGISTER / RESET ACCOUNT</h3>
 <p>
-This is when we’ll begin keeping score. Between registration 
-close on the 19th and competition open on the 22nd, we will hold 
-a few popup help sessions on Discord to help you get set up.
+We'll accept new registrants up to the end of the experimental 
+phase. Traders will have the right -- but not the obligation -- 
+to request one account reset, which will delete all of your 
+positions and reset your account balance to $1 million cash. 
+If you're happy with your positions, however, you don't have to 
+take a reset if you don't want it.
+</p>
+<h3>05 Feb 2025: PHASE 2: SCORING STARTS</h3>
+<p>
+This is when we’ll begin keeping score. We will hold a few popup 
+help sessions on Discord to help you get set up during the 
+experimental phase.
 </p>
 <h3>03 May 2025: COMPETITION ENDS</h3>
 <p>
-All of your end-of-day Net Account Values between 22 Jan and 
+All of your end-of-day Net Account Values between 05 Feb and 
 03 May 2025 will be used in the calculation of your scores, with 
 03 May being the final date. After that day the competition will 
 be over and winners will be declared.
