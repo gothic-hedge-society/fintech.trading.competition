@@ -7,19 +7,19 @@ template:
 
 navbar:
   structure:
-    # left:  [scoreboard, become-a-sponsor, articles, past-winners]
-    left:  [signup, articles, past-winners]
+    left:  [signup, articles, 2023-winners]
+    # left:  [signup, articles, past-winners]
     right: [youtube, github]
   components:
     signup:
       text: Sign Up
       href: articles/sign_up.html
-    scoreboard:
-      text: SCOREBOARD
-      href: articles/scoreboard.html
-    become-a-sponsor:
-      text: Become a Sponsor
-      href: articles/Become a Sponsor.html
+    2023-winners:
+      text: 2023 Winners
+      href: articles/2023-winners.html
+    # become-a-sponsor:
+    #   text: Become a Sponsor
+    #   href: articles/Become a Sponsor.html
     articles:
       text: Scoring
       menu:

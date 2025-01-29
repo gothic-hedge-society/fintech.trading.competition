@@ -1,0 +1,1018 @@
+---
+title: "Scoreboard 2023"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Scoreboard 2023}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+devtools::load_all('.')
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+options(knitr.table.format = "html") 
+
+```
+
+```{css, echo = FALSE}
+button.dt-button {
+font-size: 14px;
+color: greenyellow;
+border: 1px solid white;
+}
+.dataTables_filter label{
+font-size: 18px;
+color: greenyellow;
+}
+h1, h2 {
+text-align: center;
+}
+.intro-text {
+font-size: large;
+color: beige;
+text-align: center;
+padding-top:12px;
+padding-bottom:12px;
+}
+.fp-title, .ee-title {
+font-size: x-large;
+color: white;
+text-align: center;
+font-weight: bold;
+}
+.fp-tradername {
+padding-top: 16px;
+font-size: xx-large;  
+color: greenyellow;
+text-align: center;
+font-weight: bold;
+}
+.fp-school {
+font-size: x-large;
+text-align: center;
+}
+.fp-country {
+font-size: x-large;
+text-align: center;
+}
+.fp-sharpe {
+font-size: x-large;
+text-align: center;
+}
+.update-info-row {
+font-size: x-large;
+text-align: center;
+font-weight: bold;
+}
+.last-updated-time{
+color: greenyellow;
+}
+.leaderboard {
+border-style: solid;
+border-color: #FFD960;
+}
+
+.dygraph-ylabel {
+color: greenyellow;
+}
+
+.dylegend-div {
+text-align: center;
+background-color: darkgrey;
+border-radius: 7px;
+}
+
+```
+
+```{r echo=FALSE}
+n_traders <- 10
+
+shiny::tagList(
+  # shiny::fluidRow(
+  #   shiny::tags$h2("2023 Sponsors:", style="color:gold;"),
+  #   shiny::fluidRow(
+  #     style = "text-align:center;",
+  #     shiny::column(
+  #       2,
+  #       shiny::fluidRow(
+  #         shiny::a(
+  #           "Schonfeld Strategic Advisors",
+  #           href = "https://www.schonfeld.com/"
+  #         )
+  #       ),
+  #       shiny::fluidRow(
+  #         shiny::a(
+  #           shiny::img(
+  #             src="schonfeld.png",
+  #             alt="Schonfeld Logo",
+  #             style="width:100%"
+  #           ),
+  #           href = "https://www.schonfeld.com/"
+  #         )
+  #       ),
+  #       style = "margin-right:5px; margin-left:5px"
+  #     ),
+  #     shiny::column(
+  #       2,
+  #       shiny::fluidRow(
+  #         shiny::a(
+  #           "Depository Trust & Clearing Corporation",
+  #           href = "https://www.dtcc.com/"
+  #         )
+  #       ),
+  #       shiny::fluidRow(
+  #         shiny::a(
+  #           shiny::img(
+  #             src = "dtcc.png",
+  #             alt = "DTCC Logo",
+  #             style = "width:100%"
+  #           ),
+  #           href = "https://www.dtcc.com/"
+  #         )
+  #       ),
+  #       style = "margin-right:5px; margin-left:5px"
+  #     )
+  #   )
+  # ),
+  # shiny::fluidRow(
+  #   shiny::tags$p(
+  #     shiny::tags$span(
+  #       "Last Updated: ", 
+  #       class = "last-updated"
+  #     ),
+  #     shiny::tags$span(
+  #       lubridate::with_tz(Sys.time(), tzone = "EST"), 
+  #       class = "last-updated-time"
+  #     ),
+  #     class = "update-info-row"
+  #   )  
+  # ),
+  shiny::fluidRow(
+    shiny::tags$p(
+      paste0(
+        "Analysis of the 2023 Duke FINTECH Spring Trading Competition is ",
+        "posted here. This section is frequently updated and expanded, so be",
+        " sure to check back often. Don't forget to check out our generous ",
+        "sponsors who made it all possible! Visit their websites by clicking ",
+        "on the logos above."
+      ),
+      class = "intro-text"
+    )  
+  ),
+  # shiny::fluidRow(
+  #   shiny::column(
+  #     width = 6, 
+  #     shiny::fluidRow(
+  #       shiny::column(
+  #         width = 9,
+  #         shiny::p("First Place", class = "fp-title"),
+  #         shiny::p(standings[1,'tradername'], class = "fp-tradername"),
+  #         shiny::p(standings[1,'school'], class = "fp-school"),
+  #         shiny::p(standings[1,'country'], class = "fp-country"),
+  #         shiny::p(
+  #           paste0("Sharpe: ", signif(standings[1,'Sharpe'], 5)), 
+  #           class = "fp-sharpe"
+  #         ),
+  #       )
+  #     )
+  #   ),
+  #   shiny::column(
+  #     width = 6, 
+  #     shiny::p("Runner-Ups", class = "ee-title"),
+  #     shiny::HTML(
+  #       standings[2:5,] %>%
+  #         dplyr::select(Rank, tradername, school, country, Sharpe) %>%
+  #         dplyr::mutate(
+  #           "Sharpe" = signif(Sharpe, 5)
+  #         ) %>%
+  #         kableExtra::kbl(align="rcccc") %>%
+  #         kableExtra::kable_minimal() %>%
+  #         kableExtra::row_spec(
+  #           0, color = "greenyellow"
+  #         ) %>%
+  #         kableExtra::column_spec(
+  #           1,
+  #           extra_css = "font-weight:bold; color:#FFD960;"
+  #         ) %>%
+  #         kableExtra::column_spec(
+  #           1:5,
+  #           extra_css = "vertical-align:middle;"
+  #         )
+  #     )
+  #   ),
+  #   class = "leaderboard"
+  # )
+)
+```
+
+# FINAL Top 10 Rankings
+
+### 1st Place: `r sharpe_ordered_info$trader_name[1]`
+`r sharpe_ordered_info$university[1]`
+
+### 2nd Place: [Channing Spencer](`r sharpe_ordered_info$website[2]`)
+`r sharpe_ordered_info$university[2]`
+
+### 3rd Place: [`r sharpe_ordered_info$trader_name[3]`](`r sharpe_ordered_info$website[3]`)
+`r sharpe_ordered_info$university[3]`
+
+### 4th Place: [`r sharpe_ordered_info$trader_name[4]`](`r sharpe_ordered_info$website[4]`)
+`r sharpe_ordered_info$university[4]`
+
+### 5th Place: [`r sharpe_ordered_info$trader_name[5]`](`r sharpe_ordered_info$website[5]`)
+`r sharpe_ordered_info$university[5]`
+
+### 6th Place: [`r sharpe_ordered_info$trader_name[6]`](`r sharpe_ordered_info$website[6]`)
+`r sharpe_ordered_info$university[6]`
+
+### 7th Place: `r sharpe_ordered_info$trader_name[7]`
+`r sharpe_ordered_info$university[7]`
+
+### 8th Place: [`r sharpe_ordered_info$trader_name[8]`](`r sharpe_ordered_info$website[8]`)
+`r sharpe_ordered_info$university[8]`
+
+### 9th Place: `r sharpe_ordered_info$trader_name[9]`
+`r sharpe_ordered_info$university[9]`
+
+### 10th Place: [`r sharpe_ordered_info$trader_name[10]`](`r sharpe_ordered_info$website[10]`)
+`r sharpe_ordered_info$university[10]`
+
+# Sharpe Ratios of the Top Tier over Time
+```{r echo=FALSE}
+
+# sharpes %>% {
+#     
+#     x <- .
+#     
+#     padding_row_1 <-  stats::setNames(
+#       rep(NA_integer_, length(sharpe_traders)), 
+#       colnames(x)[-1]
+#     ) %>%
+#       tibble::as_tibble_row() %>%
+#       tibble::add_column("Date" = x$Date[1] - 1) %>%
+#       dplyr::select(colnames(x))
+#     
+#     padding_row_2 <-  stats::setNames(
+#       rep(NA_integer_, length(sharpe_traders)), 
+#       colnames(x)[-1]
+#     ) %>%
+#       tibble::as_tibble_row() %>%
+#       tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+#       dplyr::select(colnames(x))
+#     
+#     padding_row_1 %>%
+#       dplyr::bind_rows(x) %>%
+#       dplyr::bind_rows(padding_row_2)
+#     
+#   } %>%
+#   unique() %>%
+#   tibble::column_to_rownames("Date") %>%
+#   xts::as.xts(periodicity = "daily") %>%
+sharpes %>%
+  dygraphs::dygraph(width = "100%") %>% 
+  dygraphs::dyOptions(
+    strokeWidth            = 3,
+    drawPoints             = TRUE, 
+    pointSize              = 4,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dygraphs::dyAxis(
+    "y", 
+    label             = "Sharpe Ratio",
+    logscale          = TRUE,
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923",
+  ) %>%
+  dygraphs::dyAxis(
+    "x", 
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923"
+  ) %>%
+  dygraphs::dyLegend(labelsDiv = "top-sharpes-legend") %>% 
+  dygraphs::dyRangeSelector(height = 50, strokeColor = "") %>% {
+    shiny::tagList(
+      shiny::fluidRow(
+        shiny::p("Mouse over the figure below for trader-level data."),
+        shiny::p("Use the range selector to zoom in on a particular area."),
+        style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        id    = "top-sharpes-legend",
+        class = "dylegend-div"
+      ),
+      shiny::fluidRow(
+        shiny::column(width = 12, . )  
+      )
+    ) 
+  }
+```
+
+
+# Daily Geometric Mean Returns of the Top Tier Over Time
+
+```{r echo=FALSE}
+returns %>%
+  dygraphs::dygraph(width = "100%") %>% 
+  dygraphs::dyOptions(
+    strokeWidth            = 3,
+    drawPoints             = TRUE, 
+    pointSize              = 4,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dygraphs::dyAxis(
+    "y", 
+    label             = "returns",
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923",
+  ) %>%
+  dygraphs::dyAxis(
+    "x", 
+    axisLabelFontSize = 16,
+    axisLabelColor    = "#FFD960",
+    axisLineWidth     = 3,
+    axisLineColor     = "#E89923"
+  ) %>%
+  dygraphs::dyLegend(labelsDiv = "top-returns-legend") %>% 
+  dygraphs::dyRangeSelector(height = 50, strokeColor = "") %>% {
+    shiny::tagList(
+      shiny::fluidRow(
+        shiny::p("Mouse over the figure below for trader-level data."),
+        shiny::p("Use the range selector to zoom in on a particular area."),
+        style = "text-align:center;"
+      ),
+      shiny::fluidRow(
+        id    = "top-returns-legend",
+        class = "dylegend-div"
+      ),
+      shiny::fluidRow(
+        shiny::column(width = 12, . )  
+      )
+    ) 
+  }
+```
+
+
+
+```{r echo = FALSE}
+# # Honorable Mentions
+# hm_depth <- 5
+# shiny::tagList(
+#   shiny::fluidRow(
+#     shiny::column(
+#       width = 6,
+#       shiny::p("Highest-Returning Traders", class = "ee-title"),
+#       shiny::p(
+#         "geometric mean(all daily excess returns observed so far)",
+#         style = "text-align:center;"
+#       ),
+#       shiny::HTML(
+#         standings %>%
+#           dplyr::arrange(dplyr::desc(return)) %>%
+#           head(hm_depth) %>%
+#           dplyr::mutate(
+#             "Rank"   = 1:hm_depth,
+#             "return" = paste0(signif(return, 3)*100, "%")
+#           ) %>%
+#           dplyr::select(Rank, tradername, school, country, return) %>%
+#           kableExtra::kbl(align="rccc") %>%
+#           kableExtra::kable_minimal() %>%
+#           kableExtra::row_spec(
+#             0, color = "greenyellow"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1,
+#             extra_css = "font-weight:bold; color:#FFD960;"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1:5,
+#             extra_css = "vertical-align:middle;"
+#           )
+#       )
+#     ),
+#     shiny::column(
+#       width = 6,
+#       shiny::p("Lowest Volatility Traders", class = "ee-title"),
+#       shiny::p(
+#         "Standard deviation of daily non-excess portfolio returns.",
+#         style = "text-align:center;"
+#       ),
+#       shiny::HTML(
+#         standings %>%
+#           dplyr::arrange(volatility) %>%
+#           head(hm_depth) %>%
+#           dplyr::mutate(
+#             "Rank"       = 1:hm_depth,
+#             "volatility" = paste0(signif(volatility, 3)*100, "%")
+#           ) %>%
+#           dplyr::select(Rank, tradername, school, country, volatility) %>%
+#           kableExtra::kbl(align="rccc") %>%
+#           kableExtra::kable_minimal() %>%
+#           kableExtra::row_spec(
+#             0, color = "greenyellow"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1,
+#             extra_css = "font-weight:bold; color:#FFD960;"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1:5,
+#             extra_css = "vertical-align:middle;"
+#           )
+#       )
+#     )
+#   ),
+#   shiny::fluidRow(
+#     shiny::column(
+#       width = 6,
+#       shiny::p("Highest α, SP500", class = "ee-title"),
+#       shiny::p(
+#         "Y-intercept of linear model fitted to x=SP500 daily returns; ",
+#         "y=trader's daily returns",
+#         style = "text-align:center;"
+#       ),
+#       shiny::HTML(
+#         standings %>%
+#           dplyr::arrange(dplyr::desc(alpha_SP500)) %>%
+#           head(hm_depth) %>%
+#           dplyr::mutate(
+#             "Rank"  = 1:hm_depth,
+#             "alpha" = paste0(signif(alpha_SP500, 3)*100, "%")
+#           ) %>%
+#           dplyr::select(Rank, tradername, school, country, alpha) %>%
+#           kableExtra::kbl(align="rccc") %>%
+#           kableExtra::kable_minimal() %>%
+#           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+#           kableExtra::row_spec(
+#             0, color = "greenyellow"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1,
+#             extra_css = "font-weight:bold; color:#FFD960;"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1:5,
+#             extra_css = "vertical-align:middle;"
+#           )
+#       )
+#     ),
+#     shiny::column(
+#       width = 6,
+#       shiny::p("Lowest abs(β), SP500", class = "ee-title"),
+#       shiny::p(
+#         "Slope of linear model fitted to x=SP500 daily returns; ",
+#         "y=trader's daily returns",
+#         style = "text-align:center;"
+#       ),
+#       shiny::HTML(
+#         standings %>%
+#           dplyr::arrange(abs(beta_SP500)) %>%
+#           head(hm_depth) %>%
+#           dplyr::mutate(
+#             "Rank" = 1:hm_depth,
+#             "beta" = signif(beta_SP500, 3)
+#           ) %>%
+#           dplyr::select(Rank, tradername, school, country, beta) %>%
+#           kableExtra::kbl(align="rccc") %>%
+#           kableExtra::kable_minimal() %>%
+#           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+#           kableExtra::row_spec(
+#             0, color = "greenyellow"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1,
+#             extra_css = "font-weight:bold; color:#FFD960;"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1:5,
+#             extra_css = "vertical-align:middle;"
+#           )
+#       )
+#     )
+#   ),
+#   shiny::fluidRow(
+#     shiny::column(
+#       width = 6,
+#       shiny::p("Highest α, SHY", class = "ee-title"),
+#       shiny::p(
+#         "Y-intercept of linear model fitted to x=SHY daily returns; ",
+#         "y=trader's daily returns",
+#         style = "text-align:center;"
+#       ),
+#       shiny::HTML(
+#         standings %>%
+#           dplyr::arrange(dplyr::desc(alpha_SHY)) %>%
+#           head(hm_depth) %>%
+#           dplyr::mutate(
+#             "Rank"  = 1:hm_depth,
+#             "alpha" = paste0(signif(alpha_SHY, 3)*100, "%")
+#           ) %>%
+#           dplyr::select(Rank, tradername, school, country, alpha) %>%
+#           kableExtra::kbl(align="rccc") %>%
+#           kableExtra::kable_minimal() %>%
+#           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+#           kableExtra::row_spec(
+#             0, color = "greenyellow"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1,
+#             extra_css = "font-weight:bold; color:#FFD960;"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1:5,
+#             extra_css = "vertical-align:middle;"
+#           )
+#       )
+#     ),
+#     shiny::column(
+#       width = 6,
+#       shiny::p("Lowest abs(β), SHY", class = "ee-title"),
+#       shiny::p(
+#         "Slope of linear model fitted to x=SHY daily returns; ",
+#         "y=trader's daily returns",
+#         style = "text-align:center;"
+#       ),
+#       shiny::HTML(
+#         standings %>%
+#           dplyr::arrange(abs(beta_SHY)) %>%
+#           head(hm_depth) %>%
+#           dplyr::mutate(
+#             "Rank" = 1:hm_depth,
+#             "beta" = signif(beta_SHY, 3)
+#           ) %>%
+#           dplyr::select(Rank, tradername, school, country, beta) %>%
+#           kableExtra::kbl(align="rccc") %>%
+#           kableExtra::kable_minimal() %>%
+#           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+#           kableExtra::row_spec(
+#             0, color = "greenyellow"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1,
+#             extra_css = "font-weight:bold; color:#FFD960;"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1:5,
+#             extra_css = "vertical-align:middle;"
+#           )
+#       )
+#     )
+#   ),
+#   shiny::fluidRow(
+#     shiny::column(
+#       width = 6,
+#       shiny::p("Highest α, BTC", class = "ee-title"),
+#       shiny::p(
+#         "Y-intercept of linear model fitted to x=BTC-USD daily returns; ",
+#         "y=trader's daily returns",
+#         style = "text-align:center;"
+#       ),
+#       shiny::HTML(
+#         standings %>%
+#           dplyr::arrange(dplyr::desc(alpha_BTC)) %>%
+#           head(hm_depth) %>%
+#           dplyr::mutate(
+#             "Rank"  = 1:hm_depth,
+#             "alpha" = paste0(signif(alpha_BTC, 3)*100, "%")
+#           ) %>%
+#           dplyr::select(Rank, tradername, school, country, alpha) %>%
+#           kableExtra::kbl(align="rccc") %>%
+#           kableExtra::kable_minimal() %>%
+#           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+#           kableExtra::row_spec(
+#             0, color = "greenyellow"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1,
+#             extra_css = "font-weight:bold; color:#FFD960;"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1:5,
+#             extra_css = "vertical-align:middle;"
+#           )
+#       )
+#     ),
+#     shiny::column(
+#       width = 6,
+#       shiny::p("Lowest abs(β), BTC", class = "ee-title"),
+#       shiny::p(
+#         "Slope of linear model fitted to x=BTC-USD daily returns; ",
+#         "y=trader's daily returns",
+#         style = "text-align:center;"
+#       ),
+#       shiny::HTML(
+#         standings %>%
+#           dplyr::arrange(abs(beta_BTC)) %>%
+#           head(hm_depth) %>%
+#           dplyr::mutate(
+#             "Rank" = 1:hm_depth,
+#             "beta" = signif(beta_BTC, 3)
+#           ) %>%
+#           dplyr::select(Rank, tradername, school, country, beta) %>%
+#           kableExtra::kbl(align="rccc") %>%
+#           kableExtra::kable_minimal() %>%
+#           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
+#           kableExtra::row_spec(
+#             0, color = "greenyellow"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1,
+#             extra_css = "font-weight:bold; color:#FFD960;"
+#           ) %>%
+#           kableExtra::column_spec(
+#             1:5,
+#             extra_css = "vertical-align:middle;"
+#           )
+#       )
+#     )
+#   )
+# )
+```
+
+
+
+```{r echo=FALSE}
+# # Top Returning Portfolios Over Time
+# cumulative_eod_excess_returns %>%
+#   dplyr::select(
+#     Date,
+#     .[nrow(.),-1] %>%
+#       unlist() %>% {
+#         .[
+#           intersect(
+#             names(.),
+#             trader_key$tradername[which(trader_key$participating_S2022)]
+#           )
+#         ]
+#       } %>%
+#       sort(decreasing = TRUE) %>%
+#       head(n_traders) %>%
+#       names() %>%
+#       unique()
+#   ) %>% {
+#     
+#     x <- .
+#     
+#     padding_row_1 <-  stats::setNames(
+#       rep(NA_integer_, n_traders),
+#       colnames(x)[-1]
+#     ) %>%
+#       tibble::as_tibble_row() %>%
+#       tibble::add_column("Date" = x$Date[1] - 1) %>%
+#       dplyr::select(colnames(x))
+#     
+#     padding_row_2 <-  stats::setNames(
+#       rep(NA_integer_, n_traders),
+#       colnames(x)[-1]
+#     ) %>%
+#       tibble::as_tibble_row() %>%
+#       tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+#       dplyr::select(colnames(x))
+#     
+#     padding_row_1 %>%
+#       dplyr::bind_rows(x) %>%
+#       dplyr::bind_rows(padding_row_2)
+#     
+#   } %>%
+#   unique() %>%
+#   tibble::column_to_rownames("Date") %>%
+#   xts::as.xts() %>%
+#   dygraphs::dygraph(width = "100%") %>%
+#   dygraphs::dyOptions(
+#     strokeWidth            = 3,
+#     drawPoints             = TRUE,
+#     pointSize              = 7,
+#     connectSeparatedPoints = TRUE
+#   ) %>%
+#   dygraphs::dyAxis(
+#     "y",
+#     valueFormatter     = "function(v){return (v*100).toFixed(2) + '%'}",
+#     axisLabelFormatter = "function(v){return (v*100).toFixed(2) + '%'}",
+#     label              = "Cumulative EoD Excess Return (%/day)",
+#     axisLabelFontSize  = 16,
+#     axisLabelColor     = "#FFD960",
+#     axisLineWidth      = 3,
+#     axisLineColor      = "#E89923",
+#   ) %>%
+#   dygraphs::dyAxis(
+#     "x",
+#     axisLabelFontSize = 16,
+#     axisLabelColor    = "#FFD960",
+#     axisLineWidth     = 3,
+#     axisLineColor     = "#E89923"
+#   ) %>%
+#   dygraphs::dyLegend(labelsDiv = "top-gmrr-legend") %>% {
+#     shiny::tagList(
+#       shiny::fluidRow(
+#         shiny::p("Cumulative EoD Excess Return (%/day)"),
+#         shiny::p("Mouse over the figure below for trader-level data."),
+#         style = "text-align:center;"
+#       ),
+#       shiny::fluidRow(
+#         id    = "top-gmrr-legend",
+#         class = "dylegend-div"
+#       ),
+#       shiny::fluidRow(
+#         shiny::column(width = 12, . )
+#       )
+#     )
+#   }
+```
+
+
+
+```{r echo=FALSE}
+# # Lowest Vol Portfolios Over Time
+# cumulative_vol %>%
+#   dplyr::select(
+#     Date,
+#     .[nrow(.),-1] %>%
+#       unlist() %>%  {
+#         .[
+#           intersect(
+#             names(.),
+#             trader_key$tradername[which(trader_key$participating_S2022)]
+#           )  
+#         ]
+#       } %>%
+#       sort() %>%
+#       head(n_traders) %>%
+#       names() %>%
+#       unique()
+#   ) %>% {
+#     
+#     x <- .
+#     
+#     padding_row_1 <-  stats::setNames(
+#       rep(NA_integer_, n_traders),
+#       colnames(x)[-1]
+#     ) %>%
+#       tibble::as_tibble_row() %>%
+#       tibble::add_column("Date" = x$Date[1] - 1) %>%
+#       dplyr::select(colnames(x))
+#     
+#     padding_row_2 <-  stats::setNames(
+#       rep(NA_integer_, n_traders),
+#       colnames(x)[-1]
+#     ) %>%
+#       tibble::as_tibble_row() %>%
+#       tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+#       dplyr::select(colnames(x))
+#     
+#     padding_row_1 %>%
+#       dplyr::bind_rows(x) %>%
+#       dplyr::bind_rows(padding_row_2)
+#     
+#   } %>%
+#   unique() %>%
+#   tibble::column_to_rownames("Date") %>%
+#   xts::as.xts() %>%
+#   dygraphs::dygraph(width = "100%") %>%
+#   dygraphs::dyOptions(
+#     strokeWidth            = 3,
+#     drawPoints             = TRUE,
+#     pointSize              = 7,
+#     connectSeparatedPoints = TRUE
+#   ) %>%
+#   dygraphs::dyAxis(
+#     "y",
+#     valueFormatter     = "function(v){return (v*10000).toFixed(3) + '&#8241 '}",
+#     axisLabelFormatter = "function(v){return (v*10000).toFixed(1) + '&#8241 '}",
+#     label              = "Sample Standard Deviation of Daily Returns (vol)",
+#     axisLabelFontSize  = 16,
+#     axisLabelColor     = "#FFD960",
+#     axisLineWidth      = 3,
+#     axisLineColor      = "#E89923",
+#   ) %>%
+#   dygraphs::dyAxis(
+#     "x",
+#     axisLabelFontSize = 16,
+#     axisLabelColor    = "#FFD960",
+#     axisLineWidth     = 3,
+#     axisLineColor     = "#E89923"
+#   ) %>%
+#   dygraphs::dyLegend(labelsDiv = "lowest-vol-legend") %>% {
+#     shiny::tagList(
+#       shiny::fluidRow(
+#         shiny::p("Mouse over the figure below for trader-level data."),
+#         shiny::p(
+#           shiny::span("\""),
+#           shiny::span(shiny::HTML("&#8241"), style = "font-weight:bold;"),
+#           shiny::span("\""),
+#           shiny::span("is the "),
+#           shiny::a(
+#             "permyriad", 
+#             href = "https://en.wikipedia.org/wiki/Basis_point#Permyriad"
+#           ),
+#           shiny::span(
+#             "symbol, used here for convenience. One permyriad = 1 100th of a ", 
+#             "percent; i.e., 0.02% == 2"
+#           ),
+#           shiny::HTML("&#8241"),
+#           shiny::span(".")
+#         ),
+#         style = "text-align:center;"
+#       ),
+#       shiny::fluidRow(
+#         id    = "lowest-vol-legend",
+#         class = "dylegend-div"
+#       ),
+#       shiny::fluidRow(
+#         shiny::column(width = 12, . )
+#       )
+#     )
+#   }
+```
+
+
+
+```{r echo=FALSE}
+# # Top Portfolio Values Over Time
+# eod_account_value %>%
+#   dplyr::select(
+#     Date,
+#     .[nrow(.),-1] %>%
+#       unlist() %>%  {
+#         .[
+#           intersect(
+#             names(.),
+#             trader_key$tradername[which(trader_key$participating_S2022)]
+#           )  
+#         ]
+#       } %>%
+#       sort(decreasing = TRUE) %>%
+#       head(n_traders) %>%
+#       names() %>%
+#       unique()
+#   ) %>% {
+#     
+#     x <- .
+#     
+#     padding_row_1 <-  stats::setNames(
+#       rep(NA_integer_, n_traders),
+#       colnames(x)[-1]
+#     ) %>%
+#       tibble::as_tibble_row() %>%
+#       tibble::add_column("Date" = x$Date[1] - 1) %>%
+#       dplyr::select(colnames(x))
+#     
+#     padding_row_2 <-  stats::setNames(
+#       rep(NA_integer_, n_traders),
+#       colnames(x)[-1]
+#     ) %>%
+#       tibble::as_tibble_row() %>%
+#       tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
+#       dplyr::select(colnames(x))
+#     
+#     padding_row_1 %>%
+#       dplyr::bind_rows(x) %>%
+#       dplyr::bind_rows(padding_row_2)
+#     
+#   } %>%
+#   unique() %>%
+#   tibble::column_to_rownames("Date") %>%
+#   xts::as.xts() %>%
+#   dygraphs::dygraph(width = "100%") %>%
+#   dygraphs::dyOptions(
+#     strokeWidth            = 3,
+#     drawPoints             = TRUE,
+#     pointSize              = 7,
+#     connectSeparatedPoints = TRUE
+#   ) %>%
+#   dygraphs::dyAxis(
+#     "y",
+#     valueFormatter     = "function(v){return '$' + (v/1000000).toFixed(3)}",
+#     axisLabelFormatter = "function(v){return '$' + (v/1000000).toFixed(2)}",
+#     label              = "Portfolio Value ($MM)",
+#     axisLabelFontSize  = 16,
+#     axisLabelColor     = "#FFD960",
+#     axisLineWidth      = 3,
+#     axisLineColor      = "#E89923",
+#   ) %>%
+#   dygraphs::dyAxis(
+#     "x",
+#     axisLabelFontSize = 16,
+#     axisLabelColor    = "#FFD960",
+#     axisLineWidth     = 3,
+#     axisLineColor     = "#E89923"
+#   ) %>%
+#   dygraphs::dyLegend(labelsDiv = "top-value-legend") %>% {
+#     shiny::tagList(
+#       shiny::fluidRow(
+#         shiny::p("Reported in millions ($MM)"),
+#         shiny::p("Mouse over the figure below for trader-level data."),
+#         style = "text-align:center;"
+#       ),
+#       shiny::fluidRow(
+#         id    = "top-value-legend",
+#         class = "dylegend-div"
+#       ),
+#       shiny::fluidRow(
+#         shiny::column(width = 12, . )
+#       )
+#     )
+#   }
+```
+
+<!-- # Trader Correlations -->
+
+<!-- ```{r echo = FALSE} -->
+
+
+
+<!-- shiny::tagList( -->
+<!--   shiny::fluidRow( -->
+<!--     shiny::column( -->
+<!--       width = 4,♣ -->
+<!--       shiny::p( -->
+<!--         "Top Positive Correlation", -->
+<!--         class = "correl-section-heading" -->
+<!--       ), -->
+<!--       shiny::p( -->
+<!--         paste0( -->
+<!--           "These traders' returns are highly correlated -- when one does", -->
+<!--           " well, so does the other." -->
+<!--         ) -->
+<!--       ) -->
+<!--     ), -->
+<!--     shiny::column( -->
+<!--       width = 4, -->
+<!--       shiny::p( -->
+<!--         "Least Correlation", -->
+<!--         class = "correl-section-heading" -->
+<!--       ), -->
+<!--       shiny::p( -->
+<!--         paste0( -->
+<!--           "These traders' returns have little to do with each other, ", -->
+<!--           "probably because their strategies are quite different." -->
+<!--         ) -->
+<!--       ) -->
+<!--     ), -->
+<!--     shiny::column( -->
+<!--       width = 4, -->
+<!--       shiny::p( -->
+<!--         "Top Inverse Correlation", -->
+<!--         class = "correl-section-heading" -->
+<!--       ), -->
+<!--       shiny::p( -->
+<!--         paste0( -->
+<!--           "These traders' returns have a contrary relationship -- when one ", -->
+<!--           "does well, the other one does not." -->
+<!--         ) -->
+<!--       ) -->
+<!--     ) -->
+<!--   ) -->
+<!-- ) -->
+<!-- ``` -->
+
+
+```{r echo=FALSE}
+# # Full Ranking
+# standings %>%
+#   dplyr::filter(tradername %in% trader_key$tradername[
+#     which(trader_key$participating_S2022)]
+#   ) %>%
+#   dplyr::select(-country) %>%
+#   tibble::column_to_rownames("Rank") %>%
+#   DT::datatable(
+#     .,
+#     extensions = c('Buttons', 'Responsive'),
+#     options = list(
+#       columnDefs   = list(
+#         list(className = 'dt-center', targets = '_all')
+#       ),
+#       initComplete = DT::JS(
+#         "
+#       function(settings, json) {
+#           $(this.api().table().header()).css({
+#               'font-size' : '20px', 
+#               'color' : 'greenyellow'
+#           });
+#       }
+#       "
+#       ),
+#       paging      = FALSE,
+#       dom         = 'Bft',
+#       buttons     = c('csv', 'excel', 'copy'),
+#       ordering    = FALSE,
+#       deferRender = TRUE,
+#       scrollY     = 200
+#     )
+#   ) %>%
+#   DT::formatSignif(
+#     c('Sharpe', 'beta_SP500', 'beta_SHY', 'beta_BTC'), 
+#     digits = 5
+#   ) %>%
+#   DT::formatPercentage(
+#     c('return', 'volatility', 'alpha_SP500', 'alpha_SHY', 'alpha_BTC'),
+#     digits = 5
+#   ) 
+```
