@@ -210,10 +210,10 @@ shiny::tagList(
 
 # Current Top 10 Rankings
 
-### 1st Place: `r sharpe_ordered_info$trader_name[1]`
+### 1st Place: [`r sharpe_ordered_info$trader_name[1]`](`r sharpe_ordered_info$website[1]`)
 `r sharpe_ordered_info$university[1]`
 
-### 2nd Place: [Channing Spencer](`r sharpe_ordered_info$website[2]`)
+### 2nd Place: [`r sharpe_ordered_info$trader_name[2]`](`r sharpe_ordered_info$website[2]`)
 `r sharpe_ordered_info$university[2]`
 
 ### 3rd Place: [`r sharpe_ordered_info$trader_name[3]`](`r sharpe_ordered_info$website[3]`)
@@ -228,13 +228,13 @@ shiny::tagList(
 ### 6th Place: [`r sharpe_ordered_info$trader_name[6]`](`r sharpe_ordered_info$website[6]`)
 `r sharpe_ordered_info$university[6]`
 
-### 7th Place: `r sharpe_ordered_info$trader_name[7]`
+### 7th Place: [`r sharpe_ordered_info$trader_name[7]`](`r sharpe_ordered_info$website[7]`)
 `r sharpe_ordered_info$university[7]`
 
 ### 8th Place: [`r sharpe_ordered_info$trader_name[8]`](`r sharpe_ordered_info$website[8]`)
 `r sharpe_ordered_info$university[8]`
 
-### 9th Place: `r sharpe_ordered_info$trader_name[9]`
+### 9th Place: [`r sharpe_ordered_info$trader_name[9]`](`r sharpe_ordered_info$website[9]`)
 `r sharpe_ordered_info$university[9]`
 
 ### 10th Place: [`r sharpe_ordered_info$trader_name[10]`](`r sharpe_ordered_info$website[10]`)
