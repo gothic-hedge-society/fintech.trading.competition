@@ -153,11 +153,11 @@ shiny::tagList(
   shiny::fluidRow(
     shiny::tags$p(
       paste0(
-        "Analysis of the 2023 Duke FINTECH Spring Trading Competition is ",
-        "posted here. This section is frequently updated and expanded, so be",
-        " sure to check back often. Don't forget to check out our generous ",
-        "sponsors who made it all possible! Visit their websites by clicking ",
-        "on the logos above."
+        "These are the results posted during the TRIAL PERIOD of the 2025 ",
+        "Trading Competition. Once account resets have processed and the ",
+        "competition gets underway, you will find weekly standings updated ",
+        "here every Monday. We will be extending this report page to ",
+        "include more traders and more information in the coming weeks!"
       ),
       class = "intro-text"
     )  

@@ -45,17 +45,9 @@ shiny::fluidPage(
   shiny::fluidRow(
     shiny::tags$h2("2025 Competition Information", style="color:gold;"),
     shiny::tags$a(
-      "Sign up here!!!",
-      href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html",
+      "VISIT THE SCOREBOARD HERE",
+      href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html",
       style="font-size:30px"        
-    ),
-    shiny::tags$p(
-      paste0(
-        "We are pleased to announce that by popular demand, the trading ",
-        "compeition WILL be taking place in 2025! Check back here for updates ",
-        "as we prepare for another exciting competition. \n\n"
-      ),
-      style="font-size:30px"
     ),
     shiny::hr(),
     shiny::tags$h2("Prize Bells", style="color:gold;"),

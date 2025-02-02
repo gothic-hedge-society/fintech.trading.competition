@@ -2,9 +2,7 @@
 <div class="container-fluid">
 <div class="row">
 <h2 style="color:gold;">2025 Competition Information</h2>
-<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html" style="font-size:30px">Sign up here!!!</a>
-<p style="font-size:30px">We are pleased to announce that by popular demand, the trading compeition WILL be taking place in 2025! Check back here for updates as we prepare for another exciting competition. 
-&#10;</p>
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html" style="font-size:30px">VISIT THE SCOREBOARD HERE</a>
 <hr/>
 <h2 style="color:gold;">Prize Bells</h2>
 <div class="row">
