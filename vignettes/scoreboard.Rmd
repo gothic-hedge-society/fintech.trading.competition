@@ -1,8 +1,8 @@
 ---
-title: "Scoreboard 2023"
+title: "Scoreboard 2025"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Scoreboard 2023}
+  %\VignetteIndexEntry{Scoreboard 2025}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -640,7 +640,7 @@ returns %>%
 
 
 ```{r echo=FALSE}
-# # Top Returning Portfolios Over Time
+# Top Returning Portfolios Over Time
 # cumulative_eod_excess_returns %>%
 #   dplyr::select(
 #     Date,
@@ -658,9 +658,9 @@ returns %>%
 #       names() %>%
 #       unique()
 #   ) %>% {
-#     
+# 
 #     x <- .
-#     
+# 
 #     padding_row_1 <-  stats::setNames(
 #       rep(NA_integer_, n_traders),
 #       colnames(x)[-1]
@@ -668,7 +668,7 @@ returns %>%
 #       tibble::as_tibble_row() %>%
 #       tibble::add_column("Date" = x$Date[1] - 1) %>%
 #       dplyr::select(colnames(x))
-#     
+# 
 #     padding_row_2 <-  stats::setNames(
 #       rep(NA_integer_, n_traders),
 #       colnames(x)[-1]
@@ -676,11 +676,11 @@ returns %>%
 #       tibble::as_tibble_row() %>%
 #       tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
 #       dplyr::select(colnames(x))
-#     
+# 
 #     padding_row_1 %>%
 #       dplyr::bind_rows(x) %>%
 #       dplyr::bind_rows(padding_row_2)
-#     
+# 
 #   } %>%
 #   unique() %>%
 #   tibble::column_to_rownames("Date") %>%
@@ -740,7 +740,7 @@ returns %>%
 #           intersect(
 #             names(.),
 #             trader_key$tradername[which(trader_key$participating_S2022)]
-#           )  
+#           )
 #         ]
 #       } %>%
 #       sort() %>%
@@ -748,9 +748,9 @@ returns %>%
 #       names() %>%
 #       unique()
 #   ) %>% {
-#     
+# 
 #     x <- .
-#     
+# 
 #     padding_row_1 <-  stats::setNames(
 #       rep(NA_integer_, n_traders),
 #       colnames(x)[-1]
@@ -758,7 +758,7 @@ returns %>%
 #       tibble::as_tibble_row() %>%
 #       tibble::add_column("Date" = x$Date[1] - 1) %>%
 #       dplyr::select(colnames(x))
-#     
+# 
 #     padding_row_2 <-  stats::setNames(
 #       rep(NA_integer_, n_traders),
 #       colnames(x)[-1]
@@ -766,11 +766,11 @@ returns %>%
 #       tibble::as_tibble_row() %>%
 #       tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
 #       dplyr::select(colnames(x))
-#     
+# 
 #     padding_row_1 %>%
 #       dplyr::bind_rows(x) %>%
 #       dplyr::bind_rows(padding_row_2)
-#     
+# 
 #   } %>%
 #   unique() %>%
 #   tibble::column_to_rownames("Date") %>%
@@ -809,11 +809,11 @@ returns %>%
 #           shiny::span("\""),
 #           shiny::span("is the "),
 #           shiny::a(
-#             "permyriad", 
+#             "permyriad",
 #             href = "https://en.wikipedia.org/wiki/Basis_point#Permyriad"
 #           ),
 #           shiny::span(
-#             "symbol, used here for convenience. One permyriad = 1 100th of a ", 
+#             "symbol, used here for convenience. One permyriad = 1 100th of a ",
 #             "percent; i.e., 0.02% == 2"
 #           ),
 #           shiny::HTML("&#8241"),
@@ -835,7 +835,7 @@ returns %>%
 
 
 ```{r echo=FALSE}
-# # Top Portfolio Values Over Time
+# Top Portfolio Values Over Time
 # eod_account_value %>%
 #   dplyr::select(
 #     Date,
@@ -845,7 +845,7 @@ returns %>%
 #           intersect(
 #             names(.),
 #             trader_key$tradername[which(trader_key$participating_S2022)]
-#           )  
+#           )
 #         ]
 #       } %>%
 #       sort(decreasing = TRUE) %>%
@@ -853,9 +853,9 @@ returns %>%
 #       names() %>%
 #       unique()
 #   ) %>% {
-#     
+# 
 #     x <- .
-#     
+# 
 #     padding_row_1 <-  stats::setNames(
 #       rep(NA_integer_, n_traders),
 #       colnames(x)[-1]
@@ -863,7 +863,7 @@ returns %>%
 #       tibble::as_tibble_row() %>%
 #       tibble::add_column("Date" = x$Date[1] - 1) %>%
 #       dplyr::select(colnames(x))
-#     
+# 
 #     padding_row_2 <-  stats::setNames(
 #       rep(NA_integer_, n_traders),
 #       colnames(x)[-1]
@@ -871,11 +871,11 @@ returns %>%
 #       tibble::as_tibble_row() %>%
 #       tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
 #       dplyr::select(colnames(x))
-#     
+# 
 #     padding_row_1 %>%
 #       dplyr::bind_rows(x) %>%
 #       dplyr::bind_rows(padding_row_2)
-#     
+# 
 #   } %>%
 #   unique() %>%
 #   tibble::column_to_rownames("Date") %>%

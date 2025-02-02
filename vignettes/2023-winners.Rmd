@@ -1,8 +1,8 @@
 ---
-title: "Scoreboard 2023"
+title: "Winners 2023"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Scoreboard 2023}
+  %\VignetteIndexEntry{Winners 2023}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
