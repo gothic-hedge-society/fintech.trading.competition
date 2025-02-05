@@ -61,7 +61,14 @@ shiny::fluidPage(
             "FinTech Departmental logo. The official Trading Competition Bell ",
             "will be permenantly displayed in a public location at our ",
             "beautiful university once a suitable place for it has been ",
-            "determined.<br>Winning traders will have their name engraved on a ",
+            "determined."
+          ),
+          style = "display:inline-block;font-size:20px"
+        ),
+        shiny::hr(),
+        shiny::tags$div(
+          paste0(
+            "Winning traders will have their name engraved on a ",
             "plaque under the bell where they will bask in glory over the ",
             "years to come!\n"
           ),
@@ -83,6 +90,7 @@ shiny::fluidPage(
         )
       )
     ),
+    shiny::hr(),
     shiny::fluidRow(
       shiny::column(
         5,
@@ -147,7 +155,7 @@ shiny::fluidPage(
           "become available."
         ),
         shiny::tags$h3('02 Feb 2025: LAST DAY TO REGISTER / RESET ACCOUNT'),
-                shiny::tags$p(
+        shiny::tags$p(
           "We'll accept new registrants up to the end of the experimental ",
           "phase. Traders will have the right -- but not the obligation -- ",
           "to request one account reset, which will delete all of your ",

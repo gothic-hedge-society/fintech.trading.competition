@@ -8,9 +8,9 @@
 <h2 style="color:gold;">Prize Bells</h2>
 <div class="row">
 <div class="col-sm-7">
-<div style="display:inline-block;font-size:20px">This year, Duke has ordered a custom-made bell engraved with the Fintech Department logo to be permenantly displayed in a public location at our beautiful university (yet to be determined). Winning traders will have their name engraved on a plaque under the bell where they will bask in glory over the years to come!
-</div>
-<div style="display:inline-block;font-size:20px">Our official Trading Competition Bell looks like the one pictured to the right. When the completed bell arrives, we will be sure to post here when it is installed in its permanent location at our university.
+<div style="display:inline-block;font-size:20px">This year, Duke has ordered a custom-made bell engraved with the FinTech Departmental logo. The official Trading Competition Bell will be permenantly displayed in a public location at our beautiful university once a suitable place for it has been determined.</div>
+<hr/>
+<div style="display:inline-block;font-size:20px">Winning traders will have their name engraved on a plaque under the bell where they will bask in glory over the years to come!
 </div>
 </div>
 <div class="col-sm-5">
@@ -20,6 +20,7 @@
 </div>
 </div>
 </div>
+<hr/>
 <div class="row">
 <div class="col-sm-5">
 <div>
