@@ -44,6 +44,7 @@ shiny::fluidPage(
   # ),
   shiny::fluidRow(
     shiny::tags$h2("2025 Competition Information", style="color:gold;"),
+    shiny::tags$p("The 2025 Duke FinTech Trading Competition is underway."),
     shiny::tags$a(
       "VISIT THE SCOREBOARD HERE",
       href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html",
@@ -56,22 +57,16 @@ shiny::fluidPage(
         7,
         shiny::tags$div(
           paste0(
-            "This year, Duke has ordered a custom made bell engraved with the ",
-            "Fintech Department logo to be permenantly displayed in our Atrium at ",
-            "Duke. Winning traders will have their name engraved on a plaque ",
-            "under the bell and can bask in glory over the years!\n"
+            "This year, Duke has ordered a custom-made bell engraved with the ",
+            "FinTech Departmental logo. The official Trading Competition Bell ",
+            "will be permenantly displayed in a public location at our ",
+            "beautiful university once a suitable place for it has been ",
+            "determined.<br>Winning traders will have their name engraved on a ",
+            "plaque under the bell where they will bask in glory over the ",
+            "years to come!\n"
           ),
           style = "display:inline-block;font-size:20px"
         ),
-        shiny::tags$div(
-          paste0(
-            "Our official Trading Competition Bell looks like the one ",
-            "pictured to the right. When the completed bell arrives, we will ",
-            "be sure to post here when it is installed in its permanent ",
-            "location at our university.\n"
-          ),
-          style = "display:inline-block;font-size:20px"
-        )
       ),
       shiny::column(
         5,

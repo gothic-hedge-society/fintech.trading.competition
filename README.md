@@ -2,12 +2,13 @@
 <div class="container-fluid">
 <div class="row">
 <h2 style="color:gold;">2025 Competition Information</h2>
+<p>The 2025 Duke FinTech Trading Competition is underway.</p>
 <a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html" style="font-size:30px">VISIT THE SCOREBOARD HERE</a>
 <hr/>
 <h2 style="color:gold;">Prize Bells</h2>
 <div class="row">
 <div class="col-sm-7">
-<div style="display:inline-block;font-size:20px">This year, Duke has ordered a custom made bell engraved with the Fintech Department logo to be permenantly displayed in our Atrium at Duke. Winning traders will have their name engraved on a plaque under the bell and can bask in glory over the years!
+<div style="display:inline-block;font-size:20px">This year, Duke has ordered a custom-made bell engraved with the Fintech Department logo to be permenantly displayed in a public location at our beautiful university (yet to be determined). Winning traders will have their name engraved on a plaque under the bell where they will bask in glory over the years to come!
 </div>
 <div style="display:inline-block;font-size:20px">Our official Trading Competition Bell looks like the one pictured to the right. When the completed bell arrives, we will be sure to post here when it is installed in its permanent location at our university.
 </div>
