@@ -153,11 +153,10 @@ shiny::tagList(
   shiny::fluidRow(
     shiny::tags$p(
       paste0(
-        "These are the results posted during the TRIAL PERIOD of the 2025 ",
-        "Trading Competition. Once account resets have processed and the ",
-        "competition gets underway, you will find weekly standings updated ",
-        "here every Monday. We will be extending this report page to ",
-        "include more traders and more information in the coming weeks!"
+        "These are the final results of the TRIAL PERIOD of the 2025 ",
+        "Trading Competition. Scoring started last week on Thursday, 06 Feb, ",
+        "so come back on Monday, 17 Feb to view the official ",
+        "standings for the first week of the scored Competition!"
       ),
       class = "intro-text"
     )  
