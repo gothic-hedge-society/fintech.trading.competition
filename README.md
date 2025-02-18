@@ -1,11 +1,20 @@
 
 <div class="container-fluid">
+<hr/>
 <div class="row">
-<h2 style="color:gold;">2025 Competition Information</h2>
-<p>The 2025 Duke FinTech Trading Competition is underway.</p>
-<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html" style="font-size:30px">VISIT THE SCOREBOARD HERE</a>
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html" style="font-size:30px">VISIT THE 2025 SCOREBOARD HERE</a>
+<hr/>
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+<div style="display:inline-block;text-align:center;">Official bell-ringing to mark the start of the competition!</div>
+<img src="man/figures/bell_ringing.jpeg"/>
+<div style="display:inline-block">Left to right: Duke FinTech professor Jake Vestal (The Architect), Duke FinTech students Nurken Abeuov (Quant Finance TA), and Mario Treviño (The Artilleryman).</div>
+</div>
+</div>
 <hr/>
 <h2 style="color:gold;">Prize Bells</h2>
+<div class="row"></div>
 <div class="row">
 <div class="col-sm-7">
 <div style="display:inline-block;font-size:20px">This year, Duke has ordered a custom-made bell engraved with the FinTech Departmental logo. The official Trading Competition Bell will be permenantly displayed in a public location at our beautiful university once a suitable place for it has been determined.</div>

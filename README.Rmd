@@ -42,16 +42,38 @@ shiny::fluidPage(
   #     style = "text-align:center; font-size:18px;"
   #   )
   # ),
+  shiny::hr(),
   shiny::fluidRow(
-    shiny::tags$h2("2025 Competition Information", style="color:gold;"),
-    shiny::tags$p("The 2025 Duke FinTech Trading Competition is underway."),
     shiny::tags$a(
-      "VISIT THE SCOREBOARD HERE",
+      "VISIT THE 2025 SCOREBOARD HERE",
       href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html",
       style="font-size:30px"        
     ),
     shiny::hr(),
+    shiny::fluidRow(
+      shiny::column(1),
+      shiny::column(
+        10,
+        shiny::tags$div(
+          paste0(
+            "Official bell-ringing to mark the start of the competition!"
+          ),
+          style = "display:inline-block;text-align:center;"
+        ),
+        shiny::img(src='man/figures/bell_ringing.jpeg'),
+        shiny::tags$div(
+          paste0(
+            "Left to right: Duke FinTech professor Jake Vestal (The ",
+            "Architect), Duke FinTech students Nurken Abeuov (Quant Finance ",
+            "TA), and Mario Treviño (The Artilleryman)."
+          ),
+          style = "display:inline-block"
+        )
+      )
+    ),
+    shiny::hr(),
     shiny::tags$h2("Prize Bells", style="color:gold;"),
+    shiny::fluidRow(),
     shiny::fluidRow(
       shiny::column(
         7,

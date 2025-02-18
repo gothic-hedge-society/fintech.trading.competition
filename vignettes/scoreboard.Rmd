@@ -6,12 +6,13 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
+  
+  
 ```{r, include = FALSE}
 devtools::load_all('.')
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+collapse = TRUE,
+comment = "#>"
 )
 options(knitr.table.format = "html") 
 
@@ -153,10 +154,8 @@ shiny::tagList(
   shiny::fluidRow(
     shiny::tags$p(
       paste0(
-        "These are the final results of the TRIAL PERIOD of the 2025 ",
-        "Trading Competition. Scoring started last week on Thursday, 06 Feb, ",
-        "so come back on Monday, 17 Feb to view the official ",
-        "standings for the first week of the scored Competition!"
+        "Below is the data from the first week of official trading! Congrats ",
+        "to all of our traders."
       ),
       class = "intro-text"
     )  
@@ -209,34 +208,47 @@ shiny::tagList(
 
 # Current Top 10 Rankings
 
-### 1st Place: [`r sharpe_ordered_info$trader_name[1]`](`r sharpe_ordered_info$website[1]`)
+```{r echo=FALSE}
+sharpe_ordered_info$rank_display <-  purrr::map2(
+  sharpe_ordered_info$trader_name,
+  sharpe_ordered_info$website,
+  function(tn, ws){
+    if(ws == ""){
+      return(tn)
+    }
+    shiny::a(href=ws, tn)
+  }
+)
+```
+
+### 1st Place: `r sharpe_ordered_info$rank_display[1]`
 `r sharpe_ordered_info$university[1]`
 
-### 2nd Place: [`r sharpe_ordered_info$trader_name[2]`](`r sharpe_ordered_info$website[2]`)
+### 2nd Place: `r sharpe_ordered_info$rank_display[2]`
 `r sharpe_ordered_info$university[2]`
 
-### 3rd Place: [`r sharpe_ordered_info$trader_name[3]`](`r sharpe_ordered_info$website[3]`)
+### 3rd Place: `r sharpe_ordered_info$rank_display[3]`
 `r sharpe_ordered_info$university[3]`
 
-### 4th Place: [`r sharpe_ordered_info$trader_name[4]`](`r sharpe_ordered_info$website[4]`)
+### 4th Place: `r sharpe_ordered_info$rank_display[4]`
 `r sharpe_ordered_info$university[4]`
 
-### 5th Place: [`r sharpe_ordered_info$trader_name[5]`](`r sharpe_ordered_info$website[5]`)
+### 5th Place: `r sharpe_ordered_info$rank_display[5]`
 `r sharpe_ordered_info$university[5]`
 
-### 6th Place: [`r sharpe_ordered_info$trader_name[6]`](`r sharpe_ordered_info$website[6]`)
+### 6th Place: `r sharpe_ordered_info$rank_display[6]`
 `r sharpe_ordered_info$university[6]`
 
-### 7th Place: [`r sharpe_ordered_info$trader_name[7]`](`r sharpe_ordered_info$website[7]`)
+### 7th Place: `r sharpe_ordered_info$rank_display[7]`
 `r sharpe_ordered_info$university[7]`
 
-### 8th Place: [`r sharpe_ordered_info$trader_name[8]`](`r sharpe_ordered_info$website[8]`)
+### 8th Place: `r sharpe_ordered_info$rank_display[8]`
 `r sharpe_ordered_info$university[8]`
 
-### 9th Place: [`r sharpe_ordered_info$trader_name[9]`](`r sharpe_ordered_info$website[9]`)
+### 9th Place: `r sharpe_ordered_info$rank_display[9]`
 `r sharpe_ordered_info$university[9]`
 
-### 10th Place: [`r sharpe_ordered_info$trader_name[10]`](`r sharpe_ordered_info$website[10]`)
+### 10th Place: `r sharpe_ordered_info$rank_display[10]`
 `r sharpe_ordered_info$university[10]`
 
 # Sharpe Ratios of the Top Tier over Time
