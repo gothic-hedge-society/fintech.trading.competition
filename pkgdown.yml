@@ -9,10 +9,11 @@ articles:
   past_winners: past_winners.html
   ranking: ranking.html
   scoreboard: scoreboard.html
+  traderpages/scoreboard: traderpages/scoreboard.html
   Scoring: Scoring.html
   Sharpe Ratio Calculation: Sharpe Ratio Calculation.html
   sign_up: sign_up.html
-last_built: 2025-02-18T15:27Z
+last_built: 2025-02-24T21:51Z
 urls:
   reference: https://gothic-hedge-society.github.io/fintech.trading.competition/reference
   article: https://gothic-hedge-society.github.io/fintech.trading.competition/articles
