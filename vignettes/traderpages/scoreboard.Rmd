@@ -154,7 +154,7 @@ shiny::tagList(
   shiny::fluidRow(
     shiny::tags$p(
       paste0(
-        "Below is the data from the first week of official trading! Congrats ",
+        "Official standings below! Congrats ",
         "to all of our traders."
       ),
       class = "intro-text"
