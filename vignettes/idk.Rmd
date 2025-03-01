@@ -1,0 +1,35 @@
+---
+title: "idk"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{idk}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+print('hello')
+print(getwd())
+```
+
+<!-- index.html -->
+<html>
+<head>
+  <title>Interactive Shiny App</title>
+  <script src="/Users/jacob/Desktop/fintech.trading.competition/experimental/shinylive/shinylive.js"></script>
+</head>
+<body>
+  <div id="shiny-app"></div>
+  <script>
+    const app = new Shinylive.App("#shiny-app");
+    app.run();
+  </script>
+</body>
+</html>
