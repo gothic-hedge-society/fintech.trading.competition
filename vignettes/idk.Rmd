@@ -23,7 +23,7 @@ print(getwd())
 <html>
 <head>
   <title>Interactive Shiny App</title>
-  <script src="/Users/jacob/Desktop/fintech.trading.competition/experimental/shinylive/shinylive.js"></script>
+  <script src="https://github.com/gothic-hedge-society/fintech.trading.competition/blob/master/experimental/shinylive/shinylive.js"></script>
 </head>
 <body>
   <div id="shiny-app"></div>
