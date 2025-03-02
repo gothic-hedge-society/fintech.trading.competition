@@ -1,125 +1,65 @@
-#' Update the student.statements.rda and benchmark.rda package data objects
-#'
-#' Imports the results of a Flex Query run within IBKR and downloaded as an xml
-#' file, fetches the relevant data, and saves a \link[tibble]{tibble} containing
-#' the student statement information needed to calculate standings and
-#' performance metrics as the package data object *student_reports.rda*. Same
-#' for the benchmark.
-#'
-#' @param filename Name of the xml file containing student statement data.
-#'
-#' Refreshes benchmark.rda, gspc.rda, performance_reports.rda, rfr.rda, and
-#' student_reports.rda. Stores as package data objects.
+#' Updates all base data that the app needs to generate the site.
 #'
 #' @export
 #'
 refresh_base_data <- function(){
 
-  devtools::load_all(".")
-
   start_date <- as.Date("2025-02-07")
   rf         <- 0.0433/252
 
-  # Send the GET request
-  flex_req <- httr::GET(
-    url = paste0(
-      "https://ndcdyn.interactivebrokers.com/",
-      "AccountManagement/FlexWebService/SendRequest"
-    ),
-    query = list(
-      t = ibkr_flex_web_token,   # configured API token in Client Portal
-      q = 1142446,               # id of saved query created in Client Portal
-      v = 3                      # flex version
-    )
+  secrets_path <- file.path(rprojroot::find_package_root_file(), 'secrets')
+
+  NAV_and_CASH <- fintech.trading.competition::fetch_flex_query(1142446)
+  save(NAV_and_CASH, file = file.path(secrets_path, 'NAV_and_CASH.xml'))
+
+  library(quantmod)
+
+  # Set the date range (6 months back from today)
+  end_date <- Sys.Date()
+  start_date <- end_date - 180
+
+  # Fetch S&P 500 data using the ticker ^GSPC
+  getSymbols(
+    "^GSPC",
+    src = "yahoo",
+    from = start_date,
+    to = end_date
   )
 
-  # Error codes found here:
-  # https://www.interactivebrokers.com/campus/ibkr-api-page/flex-web-service/#error-codes
+  # Extract closing prices
+  sp500_closing <- Cl(GSPC)  # Cl() extracts closing prices
 
-  xml_content <- httr::content(flex_req, "text", encoding = "UTF-8")
-
-  # Check the response
-  if (httr::status_code(flex_req) == 200) {
-    usethis::ui_done(paste0("Request successful:\n", xml_content))
-  } else {
-    usethis::ui_oops(paste0("Error:", httr::status_code(flex_req)))
-    usethis::ui_oops(xml_content)
-  }
-
-  # Parse the XML from the response text
-  tree <- xml2::read_xml(xml_content)
-  root <- xml2::xml_root(tree)
-
-  # Loop through child nodes to check status and get ReferenceCode
-  ref_code <- NULL
-  for (child in xml2::xml_children(root)) {
-    tag  <- xml2::xml_name(child)
-    text <- xml2::xml_text(child)
-
-    if (tag == "Status") {
-      if (text != "Success") {
-        cat("Failed to generate Flex statement. Stopping...\n")
-        stop("Script terminated due to failure in Flex statement generation")
-      }
-    } else if (tag == "ReferenceCode") {
-      ref_code <- text
-    }
-  }
-
-  # Check if ref_code was found (optional safety check)
-  if (is.null(ref_code)) {
-    stop("ReferenceCode not found in the response")
-  }
-
-  # Print status and wait 20 seconds
-  usethis::ui_info("Hold for Request")
-  Sys.sleep(20)
-
-  # Send the GET request to retrieve the statement
-  receive_url <- httr::GET(
-    url = paste0(
-      "https://ndcdyn.interactivebrokers.com/AccountManagement/",
-      "FlexWebService/GetStatement"
-    ),
-    query = list(
-      t = ibkr_flex_web_token,
-      q = ref_code,
-      v = 3
-    ),
-    config = httr::config(followlocation = TRUE)
+  # Create a simple data frame with dates and closing prices
+  sp500 <- data.frame(
+    Date = index(sp500_closing),
+    Closing_Price = as.numeric(sp500_closing)
   )
-
-  # Check if request was successful
-  if (httr::status_code(receive_url) != 200) {
-    stop("Failed to retrieve statement: ", httr::status_code(receive_url))
-  }
-
-  flex_query <- httr::content(receive_url)
-  usethis::use_data()
-
+  usethis::use_data(sp500)
 
 
 
   # Participants ---------------------------------------------------------------
-  participants <- rprojroot::find_package_root_file() %>%
+  participants <- readr::read_csv(
     file.path(
-      ., "inst", "duke-fintech-trading-competition-2025_entries.csv"
-    ) %>%
-    readr::read_csv(show_col_types = FALSE)
+      secrets_path, "duke-fintech-trading-competition-2025_entries.csv"
+    ),
+    show_col_types = FALSE
+  )
+
 
   # Discord Members ------------------------------------------------------------
-  discord_members <- rprojroot::find_package_root_file() %>%
-    file.path(
-      ., "inst", "discord_member_dump.txt"
-    ) %>%
-    readr::read_csv(col_names = "discord_name", show_col_types = FALSE) %>%
+  discord_members <- readr::read_csv(
+    file.path(secrets_path, "discord_member_dump.txt"),
+    col_names = "discord_name",
+    show_col_types = FALSE
+  ) %>%
     tidyr::separate("discord_name", c("discord_name", "id"), sep = " ")
 
+
   # participating_student_reports ----------------------------------------------
-  participating_student_reports <- rprojroot::find_package_root_file() %>%
-    file.path(
-      ., "inst", "ibkr_trade_statements", "tcom2025.xml"
-    ) %>%
+  participating_student_reports <- readLines(
+    file.path(secrets_path, )
+  ) %>%
     xml2::read_xml() %>%
     xml2::xml_child("FlexStatements") %>%
     xml2::xml_children() %>%
