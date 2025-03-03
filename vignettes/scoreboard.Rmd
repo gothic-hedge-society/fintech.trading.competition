@@ -1,21 +1,15 @@
 ---
 title: "Scoreboard 2025"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Scoreboard 2025}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: html_document
 ---
-  
-  
+
+
 ```{r, include = FALSE}
-devtools::load_all('.')
 knitr::opts_chunk$set(
-collapse = TRUE,
-comment = "#>"
+  collapse = TRUE,
+  comment = "#>"
 )
 options(knitr.table.format = "html") 
-
 ```
 
 ```{css, echo = FALSE}
@@ -24,12 +18,12 @@ font-size: 14px;
 color: greenyellow;
 border: 1px solid white;
 }
-.dataTables_filter label{
-font-size: 18px;
-color: greenyellow;
-}
 h1, h2 {
 text-align: center;
+}
+.datatables {
+background-color: aliceblue;
+border: 3px solid yellow;
 }
 .intro-text {
 font-size: large;
@@ -75,11 +69,9 @@ color: greenyellow;
 border-style: solid;
 border-color: #FFD960;
 }
-
 .dygraph-ylabel {
 color: greenyellow;
 }
-
 .dylegend-div {
 text-align: center;
 background-color: darkgrey;
@@ -89,256 +81,136 @@ border-radius: 7px;
 ```
 
 ```{r echo=FALSE}
-n_traders <- 10
-
-shiny::tagList(
-  # shiny::fluidRow(
-  #   shiny::tags$h2("2023 Sponsors:", style="color:gold;"),
-  #   shiny::fluidRow(
-  #     style = "text-align:center;",
-  #     shiny::column(
-  #       2,
-  #       shiny::fluidRow(
-  #         shiny::a(
-  #           "Schonfeld Strategic Advisors",
-  #           href = "https://www.schonfeld.com/"
-  #         )
-  #       ),
-  #       shiny::fluidRow(
-  #         shiny::a(
-  #           shiny::img(
-  #             src="schonfeld.png",
-  #             alt="Schonfeld Logo",
-  #             style="width:100%"
-  #           ),
-  #           href = "https://www.schonfeld.com/"
-  #         )
-  #       ),
-  #       style = "margin-right:5px; margin-left:5px"
-  #     ),
-  #     shiny::column(
-  #       2,
-  #       shiny::fluidRow(
-  #         shiny::a(
-  #           "Depository Trust & Clearing Corporation",
-  #           href = "https://www.dtcc.com/"
-  #         )
-  #       ),
-  #       shiny::fluidRow(
-  #         shiny::a(
-  #           shiny::img(
-  #             src = "dtcc.png",
-  #             alt = "DTCC Logo",
-  #             style = "width:100%"
-  #           ),
-  #           href = "https://www.dtcc.com/"
-  #         )
-  #       ),
-  #       style = "margin-right:5px; margin-left:5px"
-  #     )
-  #   )
-  # ),
-  shiny::fluidRow(
-    shiny::tags$p(
-      shiny::tags$span(
-        "Last Updated: ", 
-        class = "last-updated"
-      ),
-      shiny::tags$span(
-        lubridate::with_tz(Sys.time(), tzone = "EST"), 
-        class = "last-updated-time"
-      ),
-      class = "update-info-row"
-    )  
-  ),
-  shiny::fluidRow(
-    shiny::tags$p(
-      paste0(
-        "Below is the data from the first week of official trading! Congrats ",
-        "to all of our traders."
-      ),
-      class = "intro-text"
-    )  
-  ),
-  # shiny::fluidRow(
-  #   shiny::column(
-  #     width = 6, 
-  #     shiny::fluidRow(
-  #       shiny::column(
-  #         width = 9,
-  #         shiny::p("First Place", class = "fp-title"),
-  #         shiny::p(standings[1,'tradername'], class = "fp-tradername"),
-  #         shiny::p(standings[1,'school'], class = "fp-school"),
-  #         shiny::p(standings[1,'country'], class = "fp-country"),
-  #         shiny::p(
-  #           paste0("Sharpe: ", signif(standings[1,'Sharpe'], 5)), 
-  #           class = "fp-sharpe"
-  #         ),
-  #       )
-  #     )
-  #   ),
-  #   shiny::column(
-  #     width = 6, 
-  #     shiny::p("Runner-Ups", class = "ee-title"),
-  #     shiny::HTML(
-  #       standings[2:5,] %>%
-  #         dplyr::select(Rank, tradername, school, country, Sharpe) %>%
-  #         dplyr::mutate(
-  #           "Sharpe" = signif(Sharpe, 5)
-  #         ) %>%
-  #         kableExtra::kbl(align="rcccc") %>%
-  #         kableExtra::kable_minimal() %>%
-  #         kableExtra::row_spec(
-  #           0, color = "greenyellow"
-  #         ) %>%
-  #         kableExtra::column_spec(
-  #           1,
-  #           extra_css = "font-weight:bold; color:#FFD960;"
-  #         ) %>%
-  #         kableExtra::column_spec(
-  #           1:5,
-  #           extra_css = "vertical-align:middle;"
-  #         )
-  #     )
-  #   ),
-  #   class = "leaderboard"
-  # )
+shiny::fluidRow(
+  shiny::tags$p(
+    shiny::tags$span(
+      "Last Updated: ", 
+      class = "last-updated"
+    ),
+    shiny::tags$span(
+      lubridate::with_tz(Sys.time(), tzone = "EST"), 
+      class = "last-updated-time"
+    ),
+    class = "update-info-row"
+  )  
 )
 ```
 
-# Current Top 10 Rankings
+This past week was one for the storybooks -- maybe the most difficult week to be a trader in the Competition's entire four year history. The market corrections that took place caused major shakeup in the rankings and caught everyone unawares...
 
+...except for one trader. Trader **161803**, who we'll call <a href='https://en.wikipedia.org/wiki/Phi'>'Phil'</a> for short, was hedged up. Phil and Phil alone is still standing with a positive Sharpe. Great job
+
+There are still 2 months left, so it remains ANYONE's game to win, 
+
+# Current Rankings
 ```{r echo=FALSE}
-sharpe_ordered_info$rank_display <-  purrr::map2(
-  sharpe_ordered_info$trader_name,
-  sharpe_ordered_info$website,
-  function(tn, ws){
-    if(ws == ""){
-      return(tn)
-    }
-    shiny::a(href=ws, tn)
+library(fintech.trading.competition)
+rankings <- standings[[length(standings)]]
+
+for(trader in rankings$trader){
+  website <- reports %>%
+    dplyr::filter(trader_name == trader) %>%
+    dplyr::select(website) %>%
+    unlist(use.names = FALSE)
+  if(!is.na(website)){
+    break
+    rankings$trader[rankings$trader == trader] <- paste0(
+      "<a href='", website, "'>", trader, "</a>"
+    )
   }
-)
+}
+
+DT::datatable(rankings) %>%
+  DT::formatPercentage(3, digits = 4) %>%
+  DT::formatSignif(4, digits = 4)
 ```
 
-### 1st Place: `r sharpe_ordered_info$rank_display[1]`
-`r sharpe_ordered_info$university[1]`
 
-### 2nd Place: `r sharpe_ordered_info$rank_display[2]`
-`r sharpe_ordered_info$university[2]`
-
-### 3rd Place: `r sharpe_ordered_info$rank_display[3]`
-`r sharpe_ordered_info$university[3]`
-
-### 4th Place: `r sharpe_ordered_info$rank_display[4]`
-`r sharpe_ordered_info$university[4]`
-
-### 5th Place: `r sharpe_ordered_info$rank_display[5]`
-`r sharpe_ordered_info$university[5]`
-
-### 6th Place: `r sharpe_ordered_info$rank_display[6]`
-`r sharpe_ordered_info$university[6]`
-
-### 7th Place: `r sharpe_ordered_info$rank_display[7]`
-`r sharpe_ordered_info$university[7]`
-
-### 8th Place: `r sharpe_ordered_info$rank_display[8]`
-`r sharpe_ordered_info$university[8]`
-
-### 9th Place: `r sharpe_ordered_info$rank_display[9]`
-`r sharpe_ordered_info$university[9]`
-
-### 10th Place: `r sharpe_ordered_info$rank_display[10]`
-`r sharpe_ordered_info$university[10]`
-
-# Sharpe Ratios of the Top Tier over Time
+# Daily Sharpe Ratio of the Top Tier Over Time
 ```{r echo=FALSE}
-
-# sharpes %>% {
-#     
-#     x <- .
-#     
-#     padding_row_1 <-  stats::setNames(
-#       rep(NA_integer_, length(sharpe_traders)), 
-#       colnames(x)[-1]
-#     ) %>%
-#       tibble::as_tibble_row() %>%
-#       tibble::add_column("Date" = x$Date[1] - 1) %>%
-#       dplyr::select(colnames(x))
-#     
-#     padding_row_2 <-  stats::setNames(
-#       rep(NA_integer_, length(sharpe_traders)), 
-#       colnames(x)[-1]
-#     ) %>%
-#       tibble::as_tibble_row() %>%
-#       tibble::add_column("Date" = x$Date[nrow(x)] + 1) %>%
-#       dplyr::select(colnames(x))
-#     
-#     padding_row_1 %>%
-#       dplyr::bind_rows(x) %>%
-#       dplyr::bind_rows(padding_row_2)
-#     
-#   } %>%
-#   unique() %>%
-#   tibble::column_to_rownames("Date") %>%
-#   xts::as.xts(periodicity = "daily") %>%
-sharpes %>%
-  dygraphs::dygraph(width = "100%") %>% 
+standings[[length(standings)]] %>%
+  head(10) %>%
+  dplyr::select(trader) %>%
+  unlist() %>%
+  lapply(
+    function(trader){
+      sharpes <- reports %>%
+        dplyr::filter(trader_name == trader) %>%
+        dplyr::select(statement) %>% {
+          .$statement[[1]]
+        } %>%
+        dplyr::select(date, sharpe) 
+      colnames(sharpes)[2] <- trader
+      na.omit(sharpes)
+    }
+  ) %>%
+  purrr::reduce(dplyr::inner_join, by = 'date') %>%
+  dygraphs::dygraph(width = "100%") %>%
   dygraphs::dyOptions(
     strokeWidth            = 3,
-    drawPoints             = TRUE, 
+    drawPoints             = TRUE,
     pointSize              = 4,
     connectSeparatedPoints = TRUE
   ) %>%
   dygraphs::dyAxis(
-    "y", 
+    "y",
     label             = "Sharpe Ratio",
-    logscale          = TRUE,
+    # logscale          = TRUE,
     axisLabelFontSize = 16,
     axisLabelColor    = "#FFD960",
     axisLineWidth     = 3,
     axisLineColor     = "#E89923",
   ) %>%
   dygraphs::dyAxis(
-    "x", 
+    "x",
     axisLabelFontSize = 16,
     axisLabelColor    = "#FFD960",
     axisLineWidth     = 3,
     axisLineColor     = "#E89923"
   ) %>%
-  dygraphs::dyLegend(labelsDiv = "top-sharpes-legend") %>% 
+  dygraphs::dyLegend(labelsDiv = "top-sharpes-legend") %>%
   dygraphs::dyRangeSelector(height = 50, strokeColor = "") %>% {
     shiny::tagList(
-      shiny::fluidRow(
-        shiny::p("Mouse over the figure below for trader-level data."),
-        shiny::p("Use the range selector to zoom in on a particular area."),
-        style = "text-align:center;"
-      ),
       shiny::fluidRow(
         id    = "top-sharpes-legend",
         class = "dylegend-div"
       ),
       shiny::fluidRow(
-        shiny::column(width = 12, . )  
+        shiny::column(width = 12, . )
       )
-    ) 
+    )
   }
 ```
 
 
 # Daily Geometric Mean Returns of the Top Tier Over Time
-
 ```{r echo=FALSE}
-returns %>%
-  dygraphs::dygraph(width = "100%") %>% 
+standings[[length(standings)]] %>%
+  head(10) %>%
+  dplyr::select(trader) %>%
+  unlist() %>%
+  lapply(
+    function(trader){
+      rtns <- reports %>%
+        dplyr::filter(trader_name == trader) %>%
+        dplyr::select(statement) %>% {
+          .$statement[[1]]
+        } %>%
+        dplyr::select(date, gmrr) 
+      colnames(rtns)[2] <- trader
+      na.omit(rtns)
+    }
+  ) %>%
+  purrr::reduce(dplyr::inner_join, by = 'date') %>%
+  dygraphs::dygraph(width = "100%") %>%
   dygraphs::dyOptions(
     strokeWidth            = 3,
-    drawPoints             = TRUE, 
+    drawPoints             = TRUE,
     pointSize              = 4,
     connectSeparatedPoints = TRUE
   ) %>%
   dygraphs::dyAxis(
-    "y", 
+    "y",
     label             = "returns",
     axisLabelFontSize = 16,
     axisLabelColor    = "#FFD960",
@@ -346,13 +218,13 @@ returns %>%
     axisLineColor     = "#E89923",
   ) %>%
   dygraphs::dyAxis(
-    "x", 
+    "x",
     axisLabelFontSize = 16,
     axisLabelColor    = "#FFD960",
     axisLineWidth     = 3,
     axisLineColor     = "#E89923"
   ) %>%
-  dygraphs::dyLegend(labelsDiv = "top-returns-legend") %>% 
+  dygraphs::dyLegend(labelsDiv = "top-returns-legend") %>%
   dygraphs::dyRangeSelector(height = 50, strokeColor = "") %>% {
     shiny::tagList(
       shiny::fluidRow(
@@ -365,9 +237,9 @@ returns %>%
         class = "dylegend-div"
       ),
       shiny::fluidRow(
-        shiny::column(width = 12, . )  
+        shiny::column(width = 12, . )
       )
-    ) 
+    )
   }
 ```
 

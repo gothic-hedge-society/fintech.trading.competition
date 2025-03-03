@@ -5,38 +5,16 @@
 refresh_base_data <- function(){
 
   start_date <- as.Date("2025-02-07")
-  rf         <- 0.0433/252
+  rf         <- 0.0433/25200
+  tier_size  <- 10
 
   secrets_path <- file.path(rprojroot::find_package_root_file(), 'secrets')
 
   NAV_and_CASH <- fintech.trading.competition::fetch_flex_query(1142446)
-  save(NAV_and_CASH, file = file.path(secrets_path, 'NAV_and_CASH.xml'))
-
-  library(quantmod)
-
-  # Set the date range (6 months back from today)
-  end_date <- Sys.Date()
-  start_date <- end_date - 180
-
-  # Fetch S&P 500 data using the ticker ^GSPC
-  getSymbols(
-    "^GSPC",
-    src = "yahoo",
-    from = start_date,
-    to = end_date
+  xml2::write_xml(
+    NAV_and_CASH,
+    file = file.path(secrets_path, 'NAV_and_CASH.xml')
   )
-
-  # Extract closing prices
-  sp500_closing <- Cl(GSPC)  # Cl() extracts closing prices
-
-  # Create a simple data frame with dates and closing prices
-  sp500 <- data.frame(
-    Date = index(sp500_closing),
-    Closing_Price = as.numeric(sp500_closing)
-  )
-  usethis::use_data(sp500)
-
-
 
   # Participants ---------------------------------------------------------------
   participants <- readr::read_csv(
@@ -55,133 +33,223 @@ refresh_base_data <- function(){
   ) %>%
     tidyr::separate("discord_name", c("discord_name", "id"), sep = " ")
 
+  # Benchmarks -----------------------------------------------------------------
+  library(quantmod)
+
+  # Fetch S&P 500 data using the ticker ^GSPC
+  getSymbols(
+    "^GSPC",
+    src = "yahoo",
+    from = start_date - 30,
+    to = Sys.Date()
+  )
+
+  # Extract closing prices
+  sp500_closing <- Cl(GSPC)  # Cl() extracts closing prices
+
+  # Create a simple data frame with dates and closing prices
+  sp500 <- data.frame(
+    date = index(sp500_closing),
+    Closing_Price = as.numeric(sp500_closing)
+  )
+  usethis::use_data(sp500, overwrite = TRUE)
+
 
   # participating_student_reports ----------------------------------------------
-  participating_student_reports <- readLines(
-    file.path(secrets_path, )
-  ) %>%
-    xml2::read_xml() %>%
+  participating_student_reports <- NAV_and_CASH %>%
     xml2::xml_child("FlexStatements") %>%
     xml2::xml_children() %>%
     lapply(
       function(xml_statement){
-        dplyr::inner_join(
-          xml_statement %>%
-            xml2::xml_child("AccountInformation ") %>%
-            xml2::xml_attrs() %>%
-            tibble::as_tibble_row(),
-          xml_statement %>%
-            xml2::xml_child("EquitySummaryInBase") %>%
-            xml2::xml_children() %>%
-            lapply(
-              function(EquitySummaryByReportDateInBase){
-                xml2::xml_attrs(EquitySummaryByReportDateInBase) %>%
-                  tibble::as_tibble_row()  %>%
-                  dplyr::select(accountId, reportDate, total)
-              }
-            ) %>%
-            purrr::reduce(dplyr::bind_rows),
-          by = "accountId"
-        )
-      }
-    ) %>%
-    purrr::reduce(dplyr::bind_rows) %>%
-    remove_empty_cols() %>%
-    dplyr::select(accountId, primaryEmail, reportDate, total) %>%
-    dplyr::mutate(
-      "reportDate" = as.Date(reportDate, format="%Y%m%d"),
-      "total"      = as.numeric(total)
-    ) %>%
-    dplyr::filter(
-      reportDate >= start_date &
-        accountId != "DIE581998"
-    ) %>%
-    dplyr::nest_by(accountId, primaryEmail, .key = "statement") %>%
-    dplyr::mutate(
-      "statement" = statement %>% {
-        .$total[.$total == 0] <- 1000000
-        tibble::column_to_rownames(., "reportDate") %>%
-          xts::as.xts()
-      } %>%
-        list(),
-      "daily_returns" = statement %>% {
-        daily_returns <- .
-        colnames(daily_returns) <- "daily_returns"
-        daily_rtns(daily_returns)
-      },
-      "cumulative_returns" = daily_returns %>% {
-        cumulative_returns <- .
-        colnames(cumulative_returns) <- "cumulative_returns"
-        for(i in 2:nrow(cumulative_returns)){
-          cumulative_returns[i,1] <- gmrr(cumulative_returns[1:i,1])
-        }
-        list(cumulative_returns)
-      },
-      "cumulative_vol" = daily_returns %>% {
-        cumulative_vol <- .
-        colnames(cumulative_vol) <- "cumulative_vol"
-        for(i in 2:nrow(cumulative_vol)){
-          cumulative_vol[i,1] <- sd(cumulative_vol[1:i,1])
-        }
-        list(cumulative_vol)
-      },
-      "cumulative_sharpe" = list(
-        "rtn" = cumulative_returns,
-        "vol" = cumulative_vol
-      ) %>% {
-        cumulative_sharpe <- (.$rtn - rf) / .$vol
-        colnames(cumulative_sharpe) <- "cumulative_sharpe"
-        list(cumulative_sharpe)
-      },
-      "ex_gmrr" = cumulative_returns %>% {
-        as.numeric(.$cumulative_returns[nrow(.)]) - rf
-      },
-      "sharpe" = cumulative_sharpe %>% {
-        as.numeric(.$cumulative_sharpe[nrow(.)])
-      }
-    ) %>%
-    dplyr::inner_join(
-      participants[, c("email", "trader_name")],
-      by           = dplyr::join_by(primaryEmail == email),
-      relationship = "many-to-many"
-    ) %>%
-    dplyr::arrange(dplyr::desc(ex_gmrr)) %>% {
 
-      .$tier <- head(
-        lapply(
-          1:ceiling(nrow(.) / 10),
-          FUN = function(x){
-            rep(x, 10)
+        statement_row <- xml_statement %>%
+          xml2::xml_child("AccountInformation ") %>%
+          xml2::xml_attrs() %>%
+          tibble::as_tibble_row() %>%
+          dplyr::inner_join(
+            participants,
+            by           = dplyr::join_by(primaryEmail == email),
+            relationship = "many-to-many"
+          ) %>%
+          head(1) %>%
+          dplyr::select(
+            -c(
+              'Last Page Accessed', 'Completion Status', 'Entry Id',
+              'Date Created', 'Created By', 'Date Updated', 'Updated By',
+              'IP Address', 'masterName'
+            )
+          )
+
+        if(nrow(statement_row) == 0){
+          return(
+            dplyr::mutate(
+              statement_row,
+              'statement' = list('No Matching Email')
+            )
+          )
+        }
+
+        statement <- xml_statement %>%
+          xml2::xml_child("EquitySummaryInBase") %>%
+          xml2::xml_children() %>%
+          lapply(
+            function(EquitySummaryByReportDateInBase){
+              xml2::xml_attrs(EquitySummaryByReportDateInBase) %>%
+                tibble::as_tibble_row()  %>%
+                dplyr::select(reportDate, total)
+            }
+          ) %>%
+          purrr::reduce(dplyr::bind_rows) %>%
+          dplyr::rename(date = 'reportDate', NAV = 'total') %>%
+          dplyr::mutate(
+            'date' = as.Date(date, format = "%Y%m%d"),
+            'NAV' = as.numeric(NAV)
+          ) %>%
+          dplyr::filter(date >= start_date) %>%
+          dplyr::left_join(sp500, by='date') %>%
+          dplyr::rename(sp500_close = "Closing_Price") %>%
+          dplyr::mutate(
+            'daily_return' = c(NA, log(NAV[-1]/NAV[-length(NAV)])),
+            'sp500_return' = c(
+              NA,
+              log(sp500_close[-1]/sp500_close[-length(sp500_close)])
+            ),
+            'gmrr'  = NA,
+            'vol'   = NA,
+            'alpha' = NA,
+            'beta'  = NA
+          )
+
+
+        for (i in 2:nrow(statement)){
+          statement[i, 'gmrr'] = prod(
+            statement$daily_return[2:i] + 1
+          )^(1/(i-1)) - 1
+          statement[i, 'vol'] = sd(statement$daily_return[2:i])
+        }
+
+        for (i in 3:nrow(statement)){
+          tryCatch(
+            {
+              fit <- lm(
+                statement$daily_return[2:i] ~ statement$sp500_return[2:i]
+              )
+              statement[i, 'alpha'] <- fit$coefficients[1]
+              statement[i, 'beta'] <- fit$coefficients[2]
+            }
+            ,
+            error = function(e){
+              usethis::ui_oops(e)
+              usethis::ui_info(statement_row)
+              usethis::ui_info(i)
+              statement[i, 'alpha'] <- NA
+              statement[i, 'beta']  <- NA
+            }
+          )
+        }
+
+        statement_row %>%
+          dplyr::mutate(
+            'statement' =  list(
+              dplyr::mutate(
+                statement,
+                'excess_rtn' = gmrr - rf,
+                'sharpe' = excess_rtn / vol,
+                'tier' = NA,
+                'rank' = NA
+              )
+            )
+          )
+
+      }
+    ) %>%
+    purrr::reduce(dplyr::bind_rows)
+
+
+  standings <- participating_student_reports$statement %>%
+    lapply(
+      function(stmt){
+        stmt %>%
+          dplyr::filter(!is.na(sharpe)) %>%
+          dplyr::select(date) %>%
+          tibble::deframe()
+      }
+    ) %>%
+    unlist() %>%
+    unique() %>%
+    sort() %>%
+    as.Date() %>%
+    stats::setNames(.,.) %>%
+    lapply(
+      function(trade_dt){
+
+        standings <- participating_student_reports$trader_name %>%
+          lapply(
+            function(trader){
+              tibble::tibble(
+                'trader' = trader,
+                'university' = participating_student_reports %>%
+                  dplyr::filter(trader_name == trader) %>%
+                  dplyr::select(university) %>% {
+                    .$university[[1]]
+                  },
+                'gmrr' = participating_student_reports %>%
+                  dplyr::filter(trader_name == trader) %>%
+                  dplyr::select(statement) %>% {
+                    .$statement[[1]]
+                  } %>%
+                  dplyr::filter(date == trade_dt) %>%
+                  dplyr::select(gmrr) %>%
+                  tibble::deframe(),
+                'sharpe' = participating_student_reports %>%
+                  dplyr::filter(trader_name == trader) %>%
+                  dplyr::select(statement) %>% {
+                    .$statement[[1]]
+                  } %>%
+                  dplyr::filter(date == trade_dt) %>%
+                  dplyr::select(sharpe) %>%
+                  tibble::deframe(),
+                'tier' = NA,
+                'rank' = NA
+              )
+            }
+          ) %>%
+          purrr::reduce(dplyr::bind_rows) %>%
+          dplyr::arrange(dplyr::desc(gmrr))
+
+        n_complete_tiers <- nrow(standings) %/% tier_size
+        n_in_last_tier <- nrow(standings) %% tier_size
+
+        standings$tier <- 1:n_complete_tiers %>%
+          lapply(
+            function(x){
+              rep(x, tier_size)
+            }
+          ) %>%
+          unlist() %>%
+          c(., rep(n_complete_tiers + 1, n_in_last_tier))
+
+        standings <- standings %>%
+          dplyr::group_by(tier) %>%
+          dplyr::arrange(dplyr::desc(sharpe), .by_group = TRUE) %>%
+          dplyr::ungroup()
+
+        standings$rank <- rep(1:tier_size, n_complete_tiers) %>% {
+          if(n_in_last_tier == 0){
+            .
+          } else {
+            c(., 1:n_in_last_tier)
           }
-        ) %>%
-          unlist(),
-        nrow(.)
-      )
-      .
-    } %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(tier) %>%
-    dplyr::arrange(dplyr::desc(sharpe)) %>% {
-      .$tier_rank <- head(
-        lapply(
-          1:ceiling(nrow(.) / 10),
-          FUN = function(x){
-            1:10
-          }
-        ) %>%
-          unlist(),
-        nrow(.)
-      )
-      .
-    } %>%
-    dplyr::ungroup() %>% {
-      .$rank <- 1:nrow(.)
-      .
-    } %>%
-    dplyr::select(
-      rank, tier, tier_rank, accountId, trader_name, ex_gmrr, sharpe,
-      dplyr::everything()
+        }
+
+        standings$overall_rank <- 1:nrow(standings)
+
+        standings
+
+      }
     )
+
+  usethis::use_data(standings, overwrite = TRUE)
 
   # In Discord but not Wufoo ---------------------------------------------------
   usethis::ui_info("Users in discord but not in Wufoo")
@@ -208,57 +276,17 @@ refresh_base_data <- function(){
     )
   )
 
-
-  sharpes <- participating_student_reports %>%
-    dplyr::filter(tier == 1) %>%
-    dplyr::select(cumulative_sharpe) %>%
-    unlist(recursive = FALSE) %>%
-    purrr::reduce(zoo::merge.zoo) %>%
-    stats::setNames(
-      participating_student_reports %>%
-        dplyr::filter(tier == 1) %>%
-        dplyr::select(trader_name) %>%
-        unlist()
-    )
-
-  returns <- participating_student_reports %>%
-    dplyr::filter(tier == 1) %>%
-    dplyr::select(cumulative_returns) %>%
-    unlist(recursive = FALSE) %>%
-    purrr::reduce(zoo::merge.zoo) %>%
-    stats::setNames(
-      participating_student_reports %>%
-        dplyr::filter(tier == 1) %>%
-        dplyr::select(trader_name) %>%
-        unlist()
-    )
-
-  sharpe_ordered_info <- participants[
-    match(colnames(sharpes), participants$trader_name),
-    c(
-      "trader_name",
-      "university",
-      "website"
-    )
-  ] %>% {
-    .[is.na(.)] <- ""
-    .
-  } %>%
-    dplyr::select(trader_name, university, website) %>%
-    dplyr::mutate(
-      "trader_name" = gsub("#(.*)$", "", trader_name)
-    )
-
-  file.copy(
-    rprojroot::find_package_root_file() %>%
-      file.path("data", "sharpe_ordered_info.rda"),
-    rprojroot::find_package_root_file() %>%
-      dirname() %>%
-      file.path(
-        "fintech.trading.competition", "data", "sharpe_ordered_info.rda"
-      ),
-    overwrite = TRUE
+  save(
+    participating_student_reports,
+    file = file.path(secrets_path, 'participating_student_reports.rda')
   )
+
+  reports <- participating_student_reports %>%
+    dplyr::select(trader_name, university, website, statement)
+
+  usethis::use_data(standings, overwrite = TRUE)
+  usethis::use_data(reports, overwrite = TRUE)
+
 
 }
 

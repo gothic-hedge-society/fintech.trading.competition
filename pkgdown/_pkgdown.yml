@@ -1,13 +1,14 @@
 url: https://gothic-hedge-society.github.io/fintech.trading.competition
 
 template:
+  bootstrap: 5
   params:
     bootswatch: darkly
     ganalytics: G-9X0K4G58XL
 
 navbar:
   structure:
-    left:  [scoreboard, articles, 2023-winners]
+    left:  [scoreboard, articles]
     # left:  [signup, articles, past-winners]
     right: [youtube, github]
   components:
@@ -17,9 +18,9 @@ navbar:
     scoreboard:
         text: SCOREBOARD
         href: articles/scoreboard.html
-    2023-winners:
-      text: 2023 Winners
-      href: articles/2023-winners.html
+    # 2023-winners:
+    #   text: 2023 Winners
+    #   href: articles/2023-winners.html
     # become-a-sponsor:
     #   text: Become a Sponsor
     #   href: articles/Become a Sponsor.html
