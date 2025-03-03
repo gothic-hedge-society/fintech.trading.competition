@@ -5,7 +5,7 @@
 refresh_base_data <- function(){
 
   start_date <- as.Date("2025-02-07")
-  rf         <- 0.0433/25200
+  rf         <- 0.0433/252
   tier_size  <- 10
 
   secrets_path <- file.path(rprojroot::find_package_root_file(), 'secrets')

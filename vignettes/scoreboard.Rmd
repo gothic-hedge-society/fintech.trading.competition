@@ -96,11 +96,17 @@ shiny::fluidRow(
 )
 ```
 
-This past week was one for the storybooks -- maybe the most difficult week to be a trader in the Competition's entire four year history. The market corrections that took place caused major shakeup in the rankings and caught everyone unawares...
+This past week was one for the storybooks -- maybe the most difficult week to be a trader in the Competition's entire four year history. The market corrections that took place caused major shakeup in the rankings.
 
-...except for one trader. Trader **161803**, who we'll call <a href='https://en.wikipedia.org/wiki/Phi'>'Phil'</a> for short, was hedged up. Phil and Phil alone is still standing with a positive Sharpe. Great job
+Many of the top-tier traders for this week have pursued a 'sit-and-wait' strategy. They're posting numbers that are identical to 4 digits of precision because they plan to earn the risk-free rate until they choose to take a position; until then, they plan to accumulate interest. Meanwhile, other traders in the competition who took positions -- and were doing well for the first few weeks -- posted losses last week due to the big correction and were knocked out of the top tier by the 'do nothing' strategy.
 
-There are still 2 months left, so it remains ANYONE's game to win, 
+It's expected that traders who post a return as a result of trading activity in the new market regime will replace the 'hold steady' group in the top tier, because membership in the top tier is based on overall achieved return. Furthermore, there exists real and increasing pressure for those in the 'wait-it-out' group to make an attempt to take the lead... which brings with it significant risk.
+
+With 2 months left in the competition it's still anyone's game! Check back here for more updates as well as additional analysis and reporting.
+
+Major congratulations this week to everyone in the top tier, but especially the top 3 traders that did **not** get demolished by the turmoil of 'interesting times'. Shoutout to **demdition**, **161803**, and **Timothy Nguyen** -- you guys are still standing. Posting a positive Sharpe in this market takes serious skill and you guys are to be commended.
+
+This year is truly fascinating. The winner will be the trader who adapts, lets go of past losses, and focuses on the future. Happy hunting to everyone!
 
 # Current Rankings
 ```{r echo=FALSE}
@@ -112,17 +118,16 @@ for(trader in rankings$trader){
     dplyr::filter(trader_name == trader) %>%
     dplyr::select(website) %>%
     unlist(use.names = FALSE)
-  if(!is.na(website)){
-    break
+  if(!any(is.na(website))){
     rankings$trader[rankings$trader == trader] <- paste0(
       "<a href='", website, "'>", trader, "</a>"
     )
   }
 }
 
-DT::datatable(rankings) %>%
+DT::datatable(rankings, escape = FALSE) %>%
   DT::formatPercentage(3, digits = 4) %>%
-  DT::formatSignif(4, digits = 4)
+  DT::formatSignif(4, digits = 4) 
 ```
 
 
