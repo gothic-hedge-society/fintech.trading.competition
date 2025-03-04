@@ -64,9 +64,17 @@ refresh_base_data <- function(){
 
 
   # participating_student_reports ----------------------------------------------
-  participating_student_reports <- NAV_and_CASH %>%
-    xml2::xml_child("FlexStatements") %>%
-    xml2::xml_children() %>%
+  NAV_and_CASH_xml <- NAV_and_CASH %>%
+    xml2::xml_child("FlexStatements")
+
+  xml2::xml_add_child(
+    NAV_and_CASH_xml,
+    xml2::read_xml(file.path(secrets_path, 'NAV_and_CASH_qfi.xml')) %>%
+      xml2::xml_child("FlexStatements")
+  )
+
+  participating_student_reports <- NAV_and_CASH_xml %>%
+    xml2::xml_find_all('//FlexStatement') %>%
     lapply(
       function(xml_statement){
 
@@ -155,7 +163,42 @@ refresh_base_data <- function(){
       }
     ) %>%
     purrr::reduce(dplyr::bind_rows)
+  # %>%
+  #   dplyr::filter(
+  #   !(accountId %in% c('DUH462396', 'DUH391881'))) # dedupe accounts
 
+  participating_student_reports$trader_name <- participants$trader_name[
+    match(
+      participating_student_reports$primaryEmail, participants$email
+    )
+  ]
+
+  acct_mask <-  file.path(secrets_path, 'supplemental_acct_map.csv') %>%
+    readr::read_csv()
+
+  participating_student_reports$trader_name[
+    match(
+      acct_mask$ibkr_id, participating_student_reports$accountId
+    )
+  ] <- acct_mask$trader_name
+
+  no_tradernames <- which(is.na(participating_student_reports$trader_name))
+  participating_student_reports$trader_name[
+    no_tradernames
+  ] <- participating_student_reports$accountId[no_tradernames]
+
+  participating_student_reports$university <- participants$university[
+    match(
+      participating_student_reports$trader_name,
+      participants$trader_name
+    )
+  ]
+  participating_student_reports$website <- participants$website[
+    match(
+      participating_student_reports$trader_name,
+      participants$trader_name
+    )
+  ]
 
   standings <- participating_student_reports$statement %>%
     lapply(
@@ -241,31 +284,6 @@ refresh_base_data <- function(){
     )
 
   usethis::use_data(standings, overwrite = TRUE)
-
-  # In Discord but not Wufoo ---------------------------------------------------
-  usethis::ui_info("Users in discord but not in Wufoo")
-  print(
-    sort(
-      setdiff(
-        discord_members$discord_name,
-        tolower(c(participants$discord_name, "Carl-bot", "jakevestal"))
-      )
-    )
-  )
-
-  # In Wufoo but not Discord ---------------------------------------------------
-  usethis::ui_info("Users in Wufoo but not in Discord")
-  print(
-    paste0(
-      participants$email[
-        tolower(participants$discord_name) %in% setdiff(
-          tolower(c(participants$discord_name, "Carl-bot", "jakevestal")),
-          discord_members$discord_name
-        )
-      ],
-      collapse = "; "
-    )
-  )
 
   save(
     participating_student_reports,
