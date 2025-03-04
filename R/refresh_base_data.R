@@ -24,6 +24,14 @@ refresh_base_data <- function(){
     show_col_types = FALSE
   )
 
+  # Supplemental Account Map ---------------------------------------------------
+  sup_acc_map <- readr::read_csv(
+    file.path(
+      secrets_path, "supplemental_acct_map.csv"
+    ),
+    show_col_types = FALSE
+  )
+
 
   # Discord Members ------------------------------------------------------------
   discord_members <- readr::read_csv(
@@ -65,29 +73,7 @@ refresh_base_data <- function(){
         statement_row <- xml_statement %>%
           xml2::xml_child("AccountInformation ") %>%
           xml2::xml_attrs() %>%
-          tibble::as_tibble_row() %>%
-          dplyr::inner_join(
-            participants,
-            by           = dplyr::join_by(primaryEmail == email),
-            relationship = "many-to-many"
-          ) %>%
-          head(1) %>%
-          dplyr::select(
-            -c(
-              'Last Page Accessed', 'Completion Status', 'Entry Id',
-              'Date Created', 'Created By', 'Date Updated', 'Updated By',
-              'IP Address', 'masterName'
-            )
-          )
-
-        if(nrow(statement_row) == 0){
-          return(
-            dplyr::mutate(
-              statement_row,
-              'statement' = list('No Matching Email')
-            )
-          )
-        }
+          tibble::as_tibble_row()
 
         statement <- xml_statement %>%
           xml2::xml_child("EquitySummaryInBase") %>%
@@ -105,7 +91,10 @@ refresh_base_data <- function(){
             'date' = as.Date(date, format = "%Y%m%d"),
             'NAV' = as.numeric(NAV)
           ) %>%
-          dplyr::filter(date >= start_date) %>%
+          dplyr::filter(date >= start_date) %>% {
+            .$NAV[.$NAV == 0] <- 1000000
+            .
+          } %>%
           dplyr::left_join(sp500, by='date') %>%
           dplyr::rename(sp500_close = "Closing_Price") %>%
           dplyr::mutate(
@@ -139,11 +128,13 @@ refresh_base_data <- function(){
             }
             ,
             error = function(e){
+              bad_xml_statement <<- xml_statement
               usethis::ui_oops(e)
               usethis::ui_info(statement_row)
               usethis::ui_info(i)
               statement[i, 'alpha'] <- NA
               statement[i, 'beta']  <- NA
+              stop('global var bad_xml_statement assigned')
             }
           )
         }
