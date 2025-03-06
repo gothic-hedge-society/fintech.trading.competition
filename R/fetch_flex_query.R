@@ -24,7 +24,7 @@ fetch_flex_query <- function(q_id){
     ),
     query = list(
       t = ibkr_flex_web_token,   # configured API token in Client Portal
-      q = q_id,               # id of saved query created in Client Portal
+      q = q_id,                  # id of saved query created in Client Portal
       v = 3                      # flex version
     )
   )

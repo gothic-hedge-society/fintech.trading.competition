@@ -113,12 +113,6 @@ This year is truly fascinating. The winner will be the trader who adapts, lets g
 # Current Rankings
 ```{r echo=FALSE}
 rankings <- standings[[length(standings)]]
-rankings$trader[
-  rankings$trader == 'Timothy Nguyen'
-] <- 'Duc Thanh (Timothy) Nguyen'
-reports$trader[
-  reports$trader == 'Timothy Nguyen'
-] <- 'Duc Thanh (Timothy) Nguyen'
 for(trader in rankings$trader){
   website <- reports %>%
     dplyr::filter(trader_name == trader) %>%
@@ -253,8 +247,6 @@ standings[[length(standings)]] %>%
     )
   }
 ```
-
-
 
 ```{r echo = FALSE}
 # # Honorable Mentions
