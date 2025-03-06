@@ -81,14 +81,16 @@ border-radius: 7px;
 ```
 
 ```{r echo=FALSE}
+library(fintech.trading.competition)
+
 shiny::fluidRow(
   shiny::tags$p(
     shiny::tags$span(
-      "Last Updated: ", 
+      "Results current as of ", 
       class = "last-updated"
     ),
     shiny::tags$span(
-      lubridate::with_tz(Sys.time(), tzone = "EST"), 
+      strftime(names(standings)[length(standings)], format="%a, %d %b %Y"), 
       class = "last-updated-time"
     ),
     class = "update-info-row"
@@ -110,9 +112,13 @@ This year is truly fascinating. The winner will be the trader who adapts, lets g
 
 # Current Rankings
 ```{r echo=FALSE}
-library(fintech.trading.competition)
 rankings <- standings[[length(standings)]]
-
+rankings$trader[
+  rankings$trader == 'Timothy Nguyen'
+] <- 'Duc Thanh (Timothy) Nguyen'
+reports$trader[
+  reports$trader == 'Timothy Nguyen'
+] <- 'Duc Thanh (Timothy) Nguyen'
 for(trader in rankings$trader){
   website <- reports %>%
     dplyr::filter(trader_name == trader) %>%
