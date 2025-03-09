@@ -5,16 +5,7 @@
 #'
 #' @export
 #'
-fetch_flex_query <- function(q_id){
-  # q_id <- 1142446
-
-  load(
-    file.path(
-      rprojroot::find_package_root_file(),
-      'secrets',
-      'ibkr_flex_web_token.rda'
-    )
-  )
+fetch_flex_query <- function(q_id, flex_web_token){
 
   # Send the GET request
   flex_req <- httr::GET(
@@ -23,9 +14,9 @@ fetch_flex_query <- function(q_id){
       "AccountManagement/FlexWebService/SendRequest"
     ),
     query = list(
-      t = ibkr_flex_web_token,   # configured API token in Client Portal
-      q = q_id,                  # id of saved query created in Client Portal
-      v = 3                      # flex version
+      t = flex_web_token,   # configured API token in Client Portal
+      q = q_id,             # id of saved query created in Client Portal
+      v = 3                 # flex version
     )
   )
 
@@ -90,7 +81,7 @@ fetch_flex_query <- function(q_id){
       "FlexWebService/GetStatement"
     ),
     query = list(
-      t = ibkr_flex_web_token,
+      t = flex_web_token,
       q = ref_code,
       v = 3
     ),

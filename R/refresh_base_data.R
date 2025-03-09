@@ -3,17 +3,28 @@
 #' @export
 #'
 refresh_base_data <- function(){
+  library(magrittr)
 
   start_date <- as.Date("2025-02-07")
   rf         <- 0.0433/252
   tier_size  <- 10
 
+  known_duplicates <- c('DUH279253', 'DUH462396', 'DUH232073', 'DUH465763')
   secrets_path <- file.path(rprojroot::find_package_root_file(), 'secrets')
+  shiny_path <- file.path(
+    rprojroot::find_package_root_file(), "..", 'ftc.shinyapp', 'data'
+  )
 
-  NAV_and_CASH <- fintech.trading.competition::fetch_flex_query(1142446)
-  xml2::write_xml(
-    NAV_and_CASH,
-    file = file.path(secrets_path, 'NAV_and_CASH.xml')
+  load(
+    file.path(
+      rprojroot::find_package_root_file(),
+      'secrets',
+      'ibkr_flex_web_token.rda'
+    )
+  )
+
+  NAV_and_CASH <- fintech.trading.competition::fetch_flex_query(
+    q_id = 1142446, flex_web_token = ibkr_flex_web_token
   )
 
   # Participants ---------------------------------------------------------------
@@ -31,15 +42,6 @@ refresh_base_data <- function(){
     ),
     show_col_types = FALSE
   )
-
-
-  # Discord Members ------------------------------------------------------------
-  discord_members <- readr::read_csv(
-    file.path(secrets_path, "discord_member_dump.txt"),
-    col_names = "discord_name",
-    show_col_types = FALSE
-  ) %>%
-    tidyr::separate("discord_name", c("discord_name", "id"), sep = " ")
 
   # Benchmarks -----------------------------------------------------------------
   library(quantmod)
@@ -60,20 +62,10 @@ refresh_base_data <- function(){
     date = index(sp500_closing),
     Closing_Price = as.numeric(sp500_closing)
   )
-  usethis::use_data(sp500, overwrite = TRUE)
-
 
   # participating_student_reports ----------------------------------------------
-  NAV_and_CASH_xml <- NAV_and_CASH %>%
-    xml2::xml_child("FlexStatements")
-
-  xml2::xml_add_child(
-    NAV_and_CASH_xml,
-    xml2::read_xml(file.path(secrets_path, 'NAV_and_CASH_qfi.xml')) %>%
-      xml2::xml_child("FlexStatements")
-  )
-
-  participating_student_reports <- NAV_and_CASH_xml %>%
+  participating_student_reports <- NAV_and_CASH %>%
+    xml2::xml_child("FlexStatements") %>%
     xml2::xml_find_all('//FlexStatement') %>%
     lapply(
       function(xml_statement){
@@ -162,10 +154,8 @@ refresh_base_data <- function(){
 
       }
     ) %>%
-    purrr::reduce(dplyr::bind_rows)
-  # %>%
-  #   dplyr::filter(
-  #   !(accountId %in% c('DUH462396', 'DUH391881'))) # dedupe accounts
+    purrr::reduce(dplyr::bind_rows) %>%
+    dplyr::filter(!(accountId %in% known_duplicates))
 
   participating_student_reports$trader_name <- participants$trader_name[
     match(
@@ -174,12 +164,14 @@ refresh_base_data <- function(){
   ]
 
   acct_mask <-  file.path(secrets_path, 'supplemental_acct_map.csv') %>%
-    readr::read_csv()
+    readr::read_csv(show_col_types = FALSE) %>%
+    dplyr::mutate(
+      'mask' = match(ibkr_id, participating_student_reports$accountId)
+    ) %>%
+    tidyr::drop_na()
 
   participating_student_reports$trader_name[
-    match(
-      acct_mask$ibkr_id, participating_student_reports$accountId
-    )
+    acct_mask$mask
   ] <- acct_mask$trader_name
 
   no_tradernames <- which(is.na(participating_student_reports$trader_name))
@@ -193,6 +185,7 @@ refresh_base_data <- function(){
       participants$trader_name
     )
   ]
+
   participating_student_reports$website <- participants$website[
     match(
       participating_student_reports$trader_name,
@@ -243,7 +236,6 @@ refresh_base_data <- function(){
                   dplyr::filter(date == trade_dt) %>%
                   dplyr::select(sharpe) %>%
                   tibble::deframe(),
-                'tier' = NA,
                 'rank' = NA
               )
             }
@@ -276,25 +268,61 @@ refresh_base_data <- function(){
           }
         }
 
-        standings$overall_rank <- 1:nrow(standings)
+        standings %>%
+          tidyr::unite('rank', tier, rank, sep = ".") %>%
+          dplyr::select(rank, dplyr::everything())
 
-        standings
 
       }
     )
 
-  usethis::use_data(standings, overwrite = TRUE)
+  for(competition_date in names(standings)){
+    standings_on_cdate <- standings[[competition_date]]
+    for(trader_ in standings_on_cdate$trader){
+      chonk <- standings_on_cdate[
+        standings_on_cdate$trader == trader_,
+        'rank'
+      ] %>%
+        tibble::deframe() %>%
+        as.numeric()
+      if(length(chonk) > 1){
+        usethis::ui_info(trader_)
+        stop('duplicate account')
+      }
+      participating_student_reports[
+        participating_student_reports$trader_name == trader_,
+        'statement'
+      ][[1]][[1]]$rank[
+        participating_student_reports[
+          participating_student_reports$trader_name == trader_,
+          'statement'
+        ][[1]][[1]]$date == as.Date(competition_date)
+      ] <- chonk
+    }
+  }
 
+
+  reports <- participating_student_reports %>%
+    dplyr::select(trader_name, university, website, statement)
+
+  # This package
+  usethis::use_data(sp500, overwrite = TRUE)
+  usethis::use_data(standings, overwrite = TRUE)
+  usethis::use_data(reports, overwrite = TRUE)
   save(
     participating_student_reports,
     file = file.path(secrets_path, 'participating_student_reports.rda')
   )
 
-  reports <- participating_student_reports %>%
-    dplyr::select(trader_name, university, website, statement)
-
-  usethis::use_data(standings, overwrite = TRUE)
-  usethis::use_data(reports, overwrite = TRUE)
+  # Shiny App
+  save(
+    standings,
+    file = file.path(secrets_path, 'participating_student_reports.rda')
+  )
+  save(
+    participating_student_reports,
+    file = file.path(secrets_path, 'participating_student_reports.rda')
+  )
 
 
 }
