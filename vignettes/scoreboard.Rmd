@@ -97,17 +97,11 @@ shiny::fluidRow(
 )
 ```
 
-This past week was one for the storybooks -- maybe the most difficult week to be a trader in the Competition's entire four year history. The market corrections that took place caused major shakeup in the rankings.
+Another rough week brought in some new faces to the top tier! Welcome to **Boluo**, **usersandra**, **Dhanush Binu**, **z6fan**. Markets remain volatile as we enter into a new regime, and the competition is still anyone's game to win. Special congratulations go out to **161803** (who we'll call '[Phil](https://en.wikipedia.org/wiki/Phi)' for posting a massive GMRR of 0.8% *per trading day*. Let's see if Phil can keep it up!
 
-Many of the top-tier traders for this week have pursued a 'sit-and-wait' strategy. They're posting numbers that are identical to 4 digits of precision because they plan to earn the risk-free rate until they choose to take a position; until then, they plan to accumulate interest. Meanwhile, other traders in the competition who took positions -- and were doing well for the first few weeks -- posted losses last week due to the big correction and were knocked out of the top tier by the 'do nothing' strategy.
+It's impressive how many traders have managed to hedge out volatility and remain posting positive returns with good Sharpes. Congrats to all!
 
-It's expected that traders who post a return as a result of trading activity in the new market regime will replace the 'hold steady' group in the top tier, because membership in the top tier is based on overall achieved return. Furthermore, there exists real and increasing pressure for those in the 'wait-it-out' group to make an attempt to take the lead... which brings with it significant risk.
-
-With 2 months left in the competition it's still anyone's game! Check back here for more updates as well as additional analysis and reporting.
-
-Major congratulations this week to everyone in the top tier, but especially the traders who did **not** get demolished by the turmoil of 'interesting times'. Posting a positive Sharpe in this market takes serious skill and you guys are to be commended.
-
-This year is truly fascinating. The winner will be the trader who adapts, lets go of past losses, and focuses on the future. Happy hunting to everyone!
+**be sure to check out our new feature:** [traderpages](https://fintechtradingcompetition.com/articles/traderpage.html)
 
 # Current Rankings
 
