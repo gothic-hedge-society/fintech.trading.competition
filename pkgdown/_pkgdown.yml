@@ -8,7 +8,7 @@ template:
 
 navbar:
   structure:
-    left:  [scoreboard, articles]
+    left:  [scoreboard, traderpage, articles]
     # left:  [signup, articles, past-winners]
     right: [youtube, github]
   components:
@@ -18,6 +18,9 @@ navbar:
     scoreboard:
         text: SCOREBOARD
         href: articles/scoreboard.html
+    traderpage:
+        text: Trader Page
+        href: articles/traderpage.html
     # 2023-winners:
     #   text: 2023 Winners
     #   href: articles/2023-winners.html

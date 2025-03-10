@@ -23,7 +23,6 @@ text-align: center;
 }
 .datatables {
 background-color: aliceblue;
-border: 3px solid yellow;
 }
 .intro-text {
 font-size: large;
@@ -111,6 +110,17 @@ Major congratulations this week to everyone in the top tier, but especially the 
 This year is truly fascinating. The winner will be the trader who adapts, lets go of past losses, and focuses on the future. Happy hunting to everyone!
 
 # Current Rankings
+
+**gmrr**, **vol**, and **sharpe** are calculated on a per-trading day basis using end-of-day Net Asset Values of each trader's account. See [the scoring section](https://fintechtradingcompetition.com/articles/Scoring.html) for an in-depth explaination.
+
+* **rank**: overall ranking in the competition. Your tier appears as the whole number and your ranking within your tier appears as a decimal; for example, Trader 3.4 is ranked #4 in the 4th tier.
+
+* **gmrr**: Geometric mean of rate of return
+
+* **vol**: Volatility of returns
+
+* **sharpe**: (*gmrr* - *rf*) / *vol*
+
 ```{r echo=FALSE}
 rankings <- standings[[length(standings)]]
 for(trader in rankings$trader){
@@ -125,9 +135,21 @@ for(trader in rankings$trader){
   }
 }
 
-DT::datatable(rankings, escape = FALSE) %>%
-  DT::formatPercentage(3, digits = 4) %>%
-  DT::formatSignif(4, digits = 4) 
+rankings %>%
+  dplyr::select(-vol) %>%
+  DT::datatable(
+    escape   = FALSE,
+    rownames = FALSE,
+    extensions = 'Scroller',
+    options  = list(
+      dom          = 'ft',
+      pageLength   = nrow(rankings),
+      scrollY      = 600,
+      scrollX      = FALSE
+    )
+  ) %>%
+  DT::formatPercentage(4, digits = 4) %>%
+  DT::formatSignif(5, digits = 4) 
 ```
 
 
@@ -160,7 +182,7 @@ standings[[length(standings)]] %>%
   dygraphs::dyAxis(
     "y",
     label             = "Sharpe Ratio",
-    # logscale          = TRUE,
+    logscale          = TRUE,
     axisLabelFontSize = 16,
     axisLabelColor    = "#FFD960",
     axisLineWidth     = 3,

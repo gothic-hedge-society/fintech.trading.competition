@@ -146,7 +146,6 @@ refresh_base_data <- function(){
                 statement,
                 'excess_rtn' = gmrr - rf,
                 'sharpe' = excess_rtn / vol,
-                'tier' = NA,
                 'rank' = NA
               )
             )
@@ -227,6 +226,14 @@ refresh_base_data <- function(){
                   } %>%
                   dplyr::filter(date == trade_dt) %>%
                   dplyr::select(gmrr) %>%
+                  tibble::deframe(),
+                'vol' = participating_student_reports %>%
+                  dplyr::filter(trader_name == trader) %>%
+                  dplyr::select(statement) %>% {
+                    .$statement[[1]]
+                  } %>%
+                  dplyr::filter(date == trade_dt) %>%
+                  dplyr::select(vol) %>%
                   tibble::deframe(),
                 'sharpe' = participating_student_reports %>%
                   dplyr::filter(trader_name == trader) %>%
@@ -317,11 +324,11 @@ refresh_base_data <- function(){
   # Shiny App
   save(
     standings,
-    file = file.path(secrets_path, 'participating_student_reports.rda')
+    file = file.path(shiny_path, 'standings.rda')
   )
   save(
-    participating_student_reports,
-    file = file.path(secrets_path, 'participating_student_reports.rda')
+    reports,
+    file = file.path(shiny_path, 'reports.rda')
   )
 
 
