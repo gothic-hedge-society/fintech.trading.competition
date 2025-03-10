@@ -107,7 +107,7 @@ It's impressive how many traders have managed to hedge out volatility and remain
 
 **gmrr**, **vol**, and **sharpe** are calculated on a per-trading day basis using end-of-day Net Asset Values of each trader's account. See [the scoring section](https://fintechtradingcompetition.com/articles/Scoring.html) for an in-depth explaination.
 
-* **rank**: overall ranking in the competition. Your tier appears as the whole number and your ranking within your tier appears as a decimal; for example, Trader 3.4 is ranked #4 in the 4th tier.
+* **rank**: overall ranking in the competition. Your tier appears as the whole number and your ranking within your tier appears as a decimal; for example, Trader 3.4 is ranked #4 in the 3rd tier.
 
 * **gmrr**: Geometric mean of rate of return
 
