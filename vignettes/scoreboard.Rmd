@@ -97,7 +97,7 @@ shiny::fluidRow(
 )
 ```
 
-Another rough week brought in some new faces to the top tier! Welcome to **Boluo**, **usersandra**, **Dhanush Binu**, **z6fan**. Markets remain volatile as we enter into a new regime, and the competition is still anyone's game to win. Special congratulations go out to **161803** (who we'll call '[Phil](https://en.wikipedia.org/wiki/Phi)' for posting a massive GMRR of 0.8% *per trading day*. Let's see if Phil can keep it up!
+Another rough week brought in some new faces to the top tier! Welcome to **Boluo**, **usersandra**, **Dhanush Binu**, **z6fan**. Markets remain volatile as we enter into a new regime, and the competition is still anyone's game to win. Special congratulations go out to **161803** (who we'll call '[Phil](https://en.wikipedia.org/wiki/Phi)' for posting a massive GMRR of 0.8% *per trading day*. Phil earned this return by betting against the SP500 with a beta of -1.05, which so far has been a winning bet. Let's see if he can keep it up!
 
 It's impressive how many traders have managed to hedge out volatility and remain posting positive returns with good Sharpes. Congrats to all!
 
