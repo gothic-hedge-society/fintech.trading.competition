@@ -82,6 +82,8 @@ border-radius: 7px;
 ```{r echo=FALSE}
 library(fintech.trading.competition)
 
+as_of_index <- length(standings)
+
 shiny::fluidRow(
   shiny::tags$p(
     shiny::tags$span(
@@ -89,7 +91,7 @@ shiny::fluidRow(
       class = "last-updated"
     ),
     shiny::tags$span(
-      strftime(names(standings)[length(standings)], format="%a, %d %b %Y"), 
+      strftime(names(standings)[as_of_index], format="%a, %d %b %Y"), 
       class = "last-updated-time"
     ),
     class = "update-info-row"
@@ -116,7 +118,7 @@ It's impressive how many traders have managed to hedge out volatility and remain
 * **sharpe**: (*gmrr* - *rf*) / *vol*
 
 ```{r echo=FALSE}
-rankings <- standings[[length(standings)]]
+rankings <- standings[[as_of_index]]
 for(trader in rankings$trader){
   website <- reports %>%
     dplyr::filter(trader_name == trader) %>%
@@ -149,7 +151,7 @@ rankings %>%
 
 # Daily Sharpe Ratio of the Top Tier Over Time
 ```{r echo=FALSE}
-standings[[length(standings)]] %>%
+standings[[as_of_index]] %>%
   head(10) %>%
   dplyr::select(trader) %>%
   unlist() %>%
@@ -206,7 +208,7 @@ standings[[length(standings)]] %>%
 
 # Daily Geometric Mean Returns of the Top Tier Over Time
 ```{r echo=FALSE}
-standings[[length(standings)]] %>%
+standings[[as_of_index]] %>%
   head(10) %>%
   dplyr::select(trader) %>%
   unlist() %>%

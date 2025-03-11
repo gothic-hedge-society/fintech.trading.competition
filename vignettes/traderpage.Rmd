@@ -7,22 +7,56 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
+idk wut
+
 ```{r, include = FALSE}
+devtools::load_all('.')
+selected_trader <- 'Atom'
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
-Use this page to obtain detailed information about an individual trader.
-This page may take a minute or two to load. Please be patient.
-
-```{css, echo = FALSE}
-.holds-the-iframe {
-  background:url(../images/loader.gif) center center no-repeat;
-}
+```{r, echo = FALSE}
+reports %>%
+  dplyr::filter(trader_name == selected_trader) %>% {
+    .$statement[[1]]
+  } %>%
+  dplyr::arrange(dplyr::desc(date)) %>%
+  dplyr::select(date, rank, dplyr::everything())  %>%
+  kableExtra::kbl(
+    # align="rccc"
+  )
+# # %>%
+# #   kableExtra::kable_minimal() %>%
+# #   kableExtra::row_spec(
+# #     0, color = "greenyellow"
+# #   ) %>%
+# #   kableExtra::column_spec(
+# #     1,
+# #     extra_css = "font-weight:bold; color:#FFD960;"
+# #   ) %>%
+# #   kableExtra::column_spec(
+# #     1:5,
+# #     extra_css = "vertical-align:middle;"
+# #   )
+# DT::datatable(
+#   rownames = FALSE,
+#   extensions = c('Scroller', 'FixedColumns'),
+#   options  = list(
+#     dom          = 't',
+#     pageLength   = nrow(.),
+#     scrollY      = 500,
+#     scrollX      = TRUE,
+#     fixedColumns = TRUE
+#   )
+# ) %>%
+# DT::formatDate(1) %>%
+# DT::formatCurrency(c(3,4)) %>%
+# DT::formatPercentage(c(5,6,7,8,9,11), digits = 4) %>%
+# DT::formatSignif(c(10, 12), digits = 4) 
 ```
 
-<div class="holds-the-iframe">
-<iframe class="html-fill-item" src="https://gothic-hedge-society.github.io/ftc.shinyapp/" height="700" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
-</div>
+

@@ -15,18 +15,6 @@ refresh_base_data <- function(){
     rprojroot::find_package_root_file(), "..", 'ftc.shinyapp', 'data'
   )
 
-  load(
-    file.path(
-      rprojroot::find_package_root_file(),
-      'secrets',
-      'ibkr_flex_web_token.rda'
-    )
-  )
-
-  NAV_and_CASH <- fintech.trading.competition::fetch_flex_query(
-    q_id = 1142446, flex_web_token = ibkr_flex_web_token
-  )
-
   # Participants ---------------------------------------------------------------
   participants <- readr::read_csv(
     file.path(
@@ -63,98 +51,38 @@ refresh_base_data <- function(){
     Closing_Price = as.numeric(sp500_closing)
   )
 
+  # Perform Flex Queries -------------------------------------------------------
+  load(
+    file.path(
+      rprojroot::find_package_root_file(),
+      'secrets',
+      'ibkr_flex_web_token.rda'
+    )
+  )
+  load(
+    file.path(
+      rprojroot::find_package_root_file(),
+      'secrets',
+      'ibkr_flex_web_token_1.rda'
+    )
+  )
+
+  NAV_and_CASH <- fintech.trading.competition::fetch_flex_query(
+    flex_params = stats::setNames(
+      c(1142446, 1165361),
+      c(ibkr_flex_web_token, ibkr_flex_web_token_1)
+    ),
+    start_date = start_date,
+    sp500      = sp500,
+    rf         = rf
+  )
+
   # participating_student_reports ----------------------------------------------
+  # for now, just NAV_and_CASH
+  # will splice in trades later(?)
   participating_student_reports <- NAV_and_CASH %>%
-    xml2::xml_child("FlexStatements") %>%
-    xml2::xml_find_all('//FlexStatement') %>%
-    lapply(
-      function(xml_statement){
-
-        statement_row <- xml_statement %>%
-          xml2::xml_child("AccountInformation ") %>%
-          xml2::xml_attrs() %>%
-          tibble::as_tibble_row()
-
-        statement <- xml_statement %>%
-          xml2::xml_child("EquitySummaryInBase") %>%
-          xml2::xml_children() %>%
-          lapply(
-            function(EquitySummaryByReportDateInBase){
-              xml2::xml_attrs(EquitySummaryByReportDateInBase) %>%
-                tibble::as_tibble_row()  %>%
-                dplyr::select(reportDate, total)
-            }
-          ) %>%
-          purrr::reduce(dplyr::bind_rows) %>%
-          dplyr::rename(date = 'reportDate', NAV = 'total') %>%
-          dplyr::mutate(
-            'date' = as.Date(date, format = "%Y%m%d"),
-            'NAV' = as.numeric(NAV)
-          ) %>%
-          dplyr::filter(date >= start_date) %>% {
-            .$NAV[.$NAV == 0] <- 1000000
-            .
-          } %>%
-          dplyr::left_join(sp500, by='date') %>%
-          dplyr::rename(sp500_close = "Closing_Price") %>%
-          dplyr::mutate(
-            'daily_return' = c(NA, log(NAV[-1]/NAV[-length(NAV)])),
-            'sp500_return' = c(
-              NA,
-              log(sp500_close[-1]/sp500_close[-length(sp500_close)])
-            ),
-            'gmrr'  = NA,
-            'vol'   = NA,
-            'alpha' = NA,
-            'beta'  = NA
-          )
-
-
-        for (i in 2:nrow(statement)){
-          statement[i, 'gmrr'] = prod(
-            statement$daily_return[2:i] + 1
-          )^(1/(i-1)) - 1
-          statement[i, 'vol'] = sd(statement$daily_return[2:i])
-        }
-
-        for (i in 3:nrow(statement)){
-          tryCatch(
-            {
-              fit <- lm(
-                statement$daily_return[2:i] ~ statement$sp500_return[2:i]
-              )
-              statement[i, 'alpha'] <- fit$coefficients[1]
-              statement[i, 'beta'] <- fit$coefficients[2]
-            }
-            ,
-            error = function(e){
-              bad_xml_statement <<- xml_statement
-              usethis::ui_oops(e)
-              usethis::ui_info(statement_row)
-              usethis::ui_info(i)
-              statement[i, 'alpha'] <- NA
-              statement[i, 'beta']  <- NA
-              stop('global var bad_xml_statement assigned')
-            }
-          )
-        }
-
-        statement_row %>%
-          dplyr::mutate(
-            'statement' =  list(
-              dplyr::mutate(
-                statement,
-                'excess_rtn' = gmrr - rf,
-                'sharpe' = excess_rtn / vol,
-                'rank' = NA
-              )
-            )
-          )
-
-      }
-    ) %>%
-    purrr::reduce(dplyr::bind_rows) %>%
     dplyr::filter(!(accountId %in% known_duplicates))
+
 
   participating_student_reports$trader_name <- participants$trader_name[
     match(
@@ -307,7 +235,6 @@ refresh_base_data <- function(){
       ] <- chonk
     }
   }
-
 
   reports <- participating_student_reports %>%
     dplyr::select(trader_name, university, website, statement)
