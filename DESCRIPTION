@@ -32,7 +32,8 @@ Imports:
     shiny,
     shinylive,
     progress,
-    quantmod
+    quantmod,
+    crosstalk
 Depends: 
     R (>= 3.5)
 URL: https://gothic-hedge-society.github.io/fintech.trading.competition

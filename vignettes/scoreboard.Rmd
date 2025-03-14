@@ -10,6 +10,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 options(knitr.table.format = "html") 
+library(fintech.trading.competition)
 ```
 
 ```{css, echo = FALSE}
@@ -80,8 +81,6 @@ border-radius: 7px;
 ```
 
 ```{r echo=FALSE}
-library(fintech.trading.competition)
-
 as_of_index <- length(standings)
 
 shiny::fluidRow(

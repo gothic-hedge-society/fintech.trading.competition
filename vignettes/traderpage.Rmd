@@ -7,22 +7,81 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+  
 ```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+library(fintech.trading.competition)
+library(crosstalk)
+sd <- SharedData$new(
+  reports %>% 
+    tidyr::unnest(statement) %>%
+    dplyr::select(date, rank, dplyr::everything()) %>%
+    dplyr::rename(α = alpha, β = beta) %>%
+    dplyr::arrange(trader_name, dplyr::desc(date))
 )
+page_length <- reports$statement %>%
+  vapply(
+    function(x){nrow(x)},
+    numeric(1)
+  ) %>%
+  unique()
 ```
 
-Use this page to obtain detailed information about an individual trader.
-This page may take a minute or two to load. Please be patient.
-
-```{css, echo = FALSE}
-.holds-the-iframe {
-  background:url(../images/loader.gif) center center no-repeat;
+```{css, echo=FALSE}
+th {
+  background-color: #222 !important;
 }
 ```
 
-<div class="holds-the-iframe">
-<iframe class="html-fill-item" src="https://gothic-hedge-society.github.io/ftc.shinyapp/" height="700" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
-</div>
+
+Use this page to obtain detailed information about an individual trader.
+
+
+
+```{r echo=FALSE}
+shiny::fluidRow(
+  filter_select(
+    id         = "trader", 
+    label      = "Select Trader", 
+    sharedData = sd, 
+    group      = ~trader_name,
+    multiple   = FALSE
+  ),
+  sd %>%
+    DT::datatable(
+      rownames = FALSE,
+      extensions = 'FixedColumns',
+      options = list(
+        dom          = 't',
+        scrollX      = TRUE,
+        scrollY      = '350px',
+        ordering     = FALSE,
+        fixedColumns = TRUE,
+        pageLength   = page_length,
+        initComplete = DT::JS(
+          "function(settings, json) {",
+          "$(this.api().table().header()).css(",
+          "{'color': 'greenyellow', 'background-color': '#222'});",
+          "}"
+        ),
+        columnDefs = list(
+          list(visible=FALSE, targets=c(2,3,4,6,8,11,12))
+        )
+      )
+    ) %>%
+    DT::formatCurrency(c('NAV', 'sp500_close')) %>%
+    DT::formatPercentage(
+      c('daily_return', 'sp500_return', 'gmrr', 'vol', 'α', 'excess_rtn'), 
+      digits=4
+    ) %>%
+    DT::formatSignif(c('β', 'sharpe'), digits=4) %>%
+    DT::formatStyle('date', color = 'goldenrod', backgroundColor = '#222') %>%
+    DT::formatStyle(
+      c(
+        'rank', 'NAV', 'sp500_close', 'daily_return', 'sp500_return', 'gmrr',
+        'vol', 'α', 'β', 'excess_rtn', 'sharpe'
+      ),
+      color    = '#f0f0f0',
+      fontSize = '0.75em'
+    )
+)
+```
