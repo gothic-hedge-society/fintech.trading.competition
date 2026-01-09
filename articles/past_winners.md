@@ -1,0 +1,55 @@
+# Past Winners
+
+## 2025 Winners
+
+### 1st Place
+
+[Asprose](https://www.linkedin.com/in/junjie-li-547136221/)  
+Duke University
+
+### 2nd Place
+
+[Duc Thanh (Timothy)
+Nguyen](https://www.linkedin.com/in/timothynguyen689/)  
+Boston University
+
+### 3rd Place
+
+161803  
+Duke University
+
+### 4th Place
+
+[ak60](https://www.linkedin.com/in/aliabbaskhalfan/)  
+Fordham University
+
+### 5th Place
+
+masterquant  
+Rutgers Business School-Newark and New Brunswick
+
+### 6th Place
+
+cc_wong  
+Duke University
+
+### 7th Place
+
+[Nathan
+Michael](https://www.linkedin.com/in/nathan-goetten-aa0085227/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)  
+The University of Texas at Austin
+
+### 8th Place
+
+[https://www.linkedin.com/in/zihan-zhang-42a97420b/](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Boluo)  
+Duke University
+
+### 9th Place
+
+breadomatic  
+Duke University
+
+### 10th Place
+
+[https://www.linkedin.com/in/sam-fan-a8141a290/](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/z6fan)  
+Duke University

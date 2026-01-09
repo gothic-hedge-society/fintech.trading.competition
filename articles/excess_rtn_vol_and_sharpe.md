@@ -1,0 +1,170 @@
+# Calculating Excess Return, Volatility & Sharpe
+
+# An error occurred.
+
+Unable to execute JavaScript.
+
+At the end of every trading day – as soon as a new end-of-day Net
+Account Value (NAV) for all the traders in the competition becomes
+available (usually around 7pm EST) – the following process is run to
+calculate the **Excess Return** and **Volatility** for every
+participant.
+
+- **Excess Return** ($R_{p} - r_{f}$) is the difference between the
+  return your portfolio earned ($R_{p}$) and the risk free rate
+  ($r_{f}$)
+- **volatility** of returns ($\sigma_{p}$) is defined as the standard
+  deviation of your portfolio’s daily log returns.
+
+In this section we’ll demonstrate how we calculate these numbers using
+some made-up example data for a hypothetical trader.
+
+## Example Trader’s Data
+
+Let’s say that today’s date is 23 March 2021, and a student has been
+participating in the competition for seven days.
+
+Her end-of-day (EoD) Net Asset Value (NAV) and daily log returns are:
+
+Note that there’s no way to calculate a return on the very first day
+because there’s nothing to compare it to.
+
+The student’s **daily portfolio returns** are the log returns of her
+daily portfolio value. For example, on 18 March 2021, she started the
+day with \$1,000,100.00 and ended with \$1,000,050.00 in total portfolio
+value. Therefore the return she sees at end-of-day on 18 March 2021 was:
+
+``` r
+# 'log()' here is the natural log, not base 10.
+rtn_18_mar_2021 <- log(1000050.00 / 1000100.00)
+format_percent(rtn_18_mar_2021, "% / trading day.")
+```
+
+    ## [1] "-0.005% / trading day."
+
+Let’s check that, because why not? She started the day with
+\$1,000,100.00 NAV, so that number \* (1 + $return$) should equal the
+\$1,000,050.00 NAV that her account posted at day’s end:
+
+``` r
+# check
+1000100.00 * (1 + rtn_18_mar_2021)
+```
+
+    ## [1] 1000050
+
+–\> Looks good.
+
+The student’s overall **geometric mean rate of return** $R_{p}$ for the
+entire time period is:
+
+``` r
+student_gmrr <- student_data %>%
+  dplyr::select("Port. Return (%/trd day)") %>%
+  dplyr::filter(!is.na(`Port. Return (%/trd day)`)) %>% 
+  tibble::deframe() %>% {
+    prod(1 + .)^(1/length(.)) - 1
+  }
+format_percent(student_gmrr, "% / trading day.")
+```
+
+    ## [1] "0.005848% / trading day."
+
+## What risk-free rate do we use?
+
+The Gothic Hedge Society (who runs the trading competition) reasons that
+on Day 1, all participants implicitly decide if they’re going to
+actively trade at all, as opposed to simply putting all of their money
+into risk-free debt with a maturity near the Competition’s end date.
+
+Sounds like not a lot of fun and not a good way to make a fortune… but
+since about half of the participants will *lose* money in this contest,
+the idea isn’t actually as bad as it might sound.
+
+Regardless, for the duration of the Competition, the value of $r_{f}$
+used to calculate Sharpes does not change, even though new risk-free
+rates will be published every day by the USDT. The reason why we keep
+$r_{f}$ fixed is because we’re comparing your performance as a trader to
+the “base strategy”: simply buying debt earning $r_{f}$ on Day 1, which
+would tie up all your capital for trading until maturity on the last
+day.
+
+Since the Competition lasts about **3 months**, the value we’ll use for
+$r_{f}$ will be whatever the USDT publishes as the 3-month CMT rate on
+the day the Competition starts. This value will be will be posted
+clearly and conspicuously for everyone.
+
+**For this example**, let’s suppose that on Day 1 we visited the USDT’s
+website and found that the 3-month CMT rate was 0.04% (annualized).
+
+We want that on a trading day basis, so we’ll convert: since there are
+252 trading days in a year, we divide by 252 (and by 100 because it’s a
+percent):
+
+Let’s do that now, and store $r_{f}$ as a variable:
+
+    ## [1] "The risk-free rate is 0.0001587% / trading day."
+
+## Excess Return
+
+Now that we have values for $R_{p}$ and $r_{f}$ student’s **excess
+return** is
+
+``` r
+student_excess_return <- student_gmrr - rf
+format_percent(student_excess_return, "% / trading day.")
+```
+
+    ## [1] "0.005689% / trading day."
+
+## Volatility
+
+The students **volatility of returns** $\sigma_{p}$ is the standard
+deviation of her portfolio returns:
+
+``` r
+student_vol <- student_data %>%
+  dplyr::select("Port. Return (%/trd day)") %>%
+  dplyr::filter(!is.na(`Port. Return (%/trd day)`)) %>% 
+  tibble::deframe() %>%
+  sd()
+format_percent(student_vol, "% / trading day.")
+```
+
+    ## [1] "0.0174% / trading day."
+
+## Sharpe ratio
+
+We now have everything we need to calculate this trader’s Sharpe ratio:
+
+\$\$\begin{align\*} {\tt Sharpe\\ Ratio} = \frac{R\_{p} -
+r\_{f}}{\sigma\_{p}} \end{align\*}\$\$
+
+#### Wherein:
+
+\$\$\begin{align\*} R\_{p} & {\sf: Portfolio\\ Return} \\ r\_{f} & {\sf:
+Risk\\ free\\ rate\\ of\\ return} \\ \sigma\_{p} & {\sf: Volatility\\
+of\\ portfolio\\ return} \end{align\*}\$\$
+
+## Her Sharpe is therefore:
+
+``` r
+student_Sharpe <- (student_gmrr - rf) / student_vol
+print(student_Sharpe)
+```
+
+    ## [1] 0.3270215
+
+#### Matching up Calculations w/ Excel and Other Programs (a quick note)
+
+As simple as it may seem, calculating logarithms can differ slightly (or
+sometimes, significantly) depending on the precision of the program you
+use. It’s possible to get different answers for the same log calcs in
+Excel, R, and Python, and the difference gets magnified when calculating
+GMRR.
+
+Therefore, don’t worry too much if you try to follow along this example
+and wind up with numbers that differ slightly. For the purposes of
+fairness in the competition, it only matters that we use the same
+program for everyone – which, in this case, is the *log*() function in
+R.

@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.1.2
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   excess_rtn_vol_and_sharpe: excess_rtn_vol_and_sharpe.html
@@ -12,7 +12,7 @@ articles:
   Sharpe Ratio Calculation: Sharpe Ratio Calculation.html
   sign_up: sign_up.html
   traderpage: traderpage.html
-last_built: 2025-05-15T21:10Z
+last_built: 2026-01-09T20:45Z
 urls:
   reference: https://gothic-hedge-society.github.io/fintech.trading.competition/reference
   article: https://gothic-hedge-society.github.io/fintech.trading.competition/articles

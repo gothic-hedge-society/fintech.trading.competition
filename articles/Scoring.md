@@ -1,0 +1,270 @@
+# Scoring - General Idea & Concepts
+
+# An error occurred.
+
+Unable to execute JavaScript.
+
+TLDR: **You win by making as much money as you possibly can – using all
+means available to you – but you’re penalized for risk**.
+
+## Reward skill, not luck.
+
+Earning returns by managing risk with aplomb is part of the bedrock of
+the core values of the Duke FINTECH Program and the Gothic Hedge
+Society. We don’t mind taking on risk – so long as we’re appropriately
+paid for it. The scoring system used by this Competition was written to
+put that principle into practice.
+
+To see the big picture, let’s start with an example. Suppose that at the
+end of the Competition we have two students: a reckless gambler named
+Wild Bill and a shrewd trader named Clever Susan.
+
+#### Wild Bill
+
+Bill puts all of his money into a tiny, risky startup that has just been
+listed on the NASDAQ. He then forgets about it and lets it ride all
+semester until the end of the competition, at which time he’s earned an
+amazing 250% return!!!! He clearly should win the competition, right?
+
+Well… when you look at the value of Wild Bill’s performance, it was all
+over the map during the competition. As news was released about the
+startup, Bill was down as much as -300% on some days, and up as high as
+375% because the tiny company’s price was fluctuating so much.
+
+That means, that if Wild Bill had had a cash emergency or needed to
+close his position and withdraw his investment at any time, there’s no
+telling how much he’d have had available on a given day. Maybe he’d have
+a lot of cash, maybe not much at all.
+
+In fact, the next day after the competition, Bill’s gains were wiped out
+and he was down a full -50% from where he started, meaning that in
+reality, Bill just got lucky that the competition ended when it did.
+Clearly, there’s more to the story here.
+
+#### Clever Susan
+
+Susan takes a different approach. She creates a well-balanced portfolio
+of different assets in different market sectors, and at the end of the
+competition she posts a very healthy 12% return – much less than Wild
+Bill.
+
+However, the value of Susan’s portfolio grew steadily and predictably
+through the competition. On her worst day, she had still earned a return
+of 8%, but upon the whole it never varied too much from 12%.
+
+## So who should win– Wild Bill or Clever Susan?
+
+The Gothic Hedge Society believes it should be Susan because otherwise
+the Competition turns into a simple gamble on who’s NAV will be the
+highest on the day the Competition ends.
+
+That poses the following problem when it comes to designing a scoring
+system: how do we rank trader performance in a way that is:
+
+- consistent & fair for all traders
+- quantifiable
+- relatively straightforward to calculate, communicate, and understand?
+
+We’ll need a metric somewhat more sophisticated than simple return to
+satisfy those requirements, one that takes into account both **average
+return** of a trader’s porfolio over time as well as the **volatility**
+of those returns.
+
+Fortunately, the **Sharpe Ratio** is just such a metric. For you, the
+trader, your Sharpe Ratio is a measure of your *risk-adjusted return*;
+in other words, how much money you made vs. the risk that you took on.
+
+There are two main postulates behind the Sharpe ratio that you should
+think about deeply if you’re new to this. They are:
+
+- volatility is defined as the standard deviation of the returns that a
+  portfolio earns over time
+- volatility is a good measure of risk
+
+Posting a high Sharpe ratio during a time period means that your
+portfolio earned a big return comparable to the volatility of your
+account’s value during that time – and that’s good.
+
+Before we move on to **calculating** the Sharpe ratio with concrete
+numbers, there are a few more concepts you should become familiar with.
+Read on!
+
+## CONCEPT: The Risk-Free Rate $r_{f}$
+
+Think about all the investments out there – is there one that will earn
+you a GAURANTEED return – a sure thing, with zero volatility?
+
+The answer, of course, is “no”, but US Treasury bills (T-Bills) come
+pretty close for practical purposes.
+
+At any time, just about anybody can simply buy a
+[T-Bill](https://www.investopedia.com/terms/t/treasurybill.asp#:~:text=Frequently%20Asked%20Questions-,What%20Is%20a%20Treasury%20Bill%3F,sold%20in%20denominations%20of%20%241%2C000)
+from the US Government or another large sovereign nation. The thinking
+is that if a big country like the US defaults (doesn’t pay) a T-Bill
+debt at maturity, then something is so terribly wrong with the economy,
+the world political situation, etc., that nobody is worried about
+finance anymore… they’re worried about surviving the space alien
+invasion, global war, or other major disaster that must have taken place
+to cause the country to default. Obviously this turn of events would be
+very bad, but fortunately, the prevailing financial thinking is that the
+likelihood of such an occurrence is so low that its probability can be
+assumed to be 0.
+
+In other words, these investments are thought of as **risk free**.
+
+Holders of these assets receive a return, of course. The exact
+percentage varies but whatever its value, we refer to it using the
+symbol $r_{f}$.
+
+Since they’re ‘risk-free’, traders should just buy government bonds,
+earn a zero-risk return, and forget about complex strategies, right?
+Well… you could do that, but because the investment is risk-free and
+easily available, it doesn’t (historically) pay very much.
+
+The US Department of the Treasury compiles daily risk-free rates and
+publishes them on their
+[website](https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/textview.aspx?data=yield),
+where you can go to view & download the rates and learn about the
+methodology the USDT uses to calculate them.
+
+## CONCEPT: Daily Log Returns
+
+In the Competition, your return is calculated each day by observing the
+Net Asset Value (NAV) of your account – the total end-of-day value of
+everything you own.
+
+“Today’s” NAV is compared to “yesterday’s” to calculate the percent
+return you realized “today”.
+
+That means that over a period of $N$ days, we’ll have $N - 1$ total
+observations of a portfolio’s return because you can’t measure a return
+for the very first day – you have nothing to compare it to.
+
+The formula used to calculate the return you earned on your portfolio is
+the log ratio of $V_{N}$ – the value of your portfolio on Day $N$ –
+divided by $V_{N - 1}$ – the portfolio’s value on the previous day;
+i.e., $R_{N} = \log\left( \frac{V_{N}}{V_{N - 1}} \right)$.
+
+In the competition, daily log returns are calculated for every student’s
+portfolio as soon as the data becomes available for that day (usually
+after about 6pm EST on a trading day).
+
+## CONCEPT: Average (“Expected”) Return
+
+**TLDR**: We use the geometric mean of period-over-period log returns.
+
+**Details**: Let’s say you invest \$100k into an investment portfolio.
+Each quarter, you measure the return you earned at the quarter’s end
+with respect to the how much the portfolio was worth at the beginning of
+the portfolio. You observe the returns +25%, -25%, +25%, -25% for each
+quarter. In other words, an initial investment of \$100k would be worth
+\$125k, \$100k, \$125k, and \$100k at the ends of quarters 1, 2, 3, and
+4, respectively.
+
+In this context, when you discuss means of a sample of returns, what
+you’re really asking is something like , **what’s the overall return
+that characterizes this investment’s performance at any given time over
+the period**?
+
+There are infinite ways of answering this question (the doubters may
+start by Googling “Harmonic Mean”, or maybe “Lehmer Mean” to start
+convincing themselves of the truth of this statement).
+
+This vignette focuses on only two means, discussed below.
+
+#### Arithmetic Mean
+
+You might think: “just take the average” of the returns, which works out
+to 2.5%. But that’s not quite descriptive of the whole picture is it…
+after all, if you tell a client that you earned an average of 2.5% on
+their investment of \$100k, then they’d naturally expect to see
+something around \$102.5k when they look up the value of the account
+right?
+
+…but the value of the account is \$100k, meaning that you’re probably
+going to have a client banging your door down wondering where their
+\$2,500 went. The “normal average”, more properly called the
+**arithmetic mean** of the returns is therefore misleading in this way!
+
+#### Geometric Mean Rate of Return (GMRR)
+
+A better way to assign an overall characteristic (“expected”) return for
+a time series of returns is to use the [geometric
+mean](https://www.investopedia.com/ask/answers/06/geometricmean.asp#:~:text=The%20geometric%20mean%20differs%20from,returns%20than%20the%20arithmetic%20mean),
+calculated by converting all of the returns into *factors* by adding 1,
+multiplying them all together, and taking the $n$th root, where $n$ is
+the number of returns observed in the period. Finally, convert resulting
+factor back into a percent by subtracting 1.
+
+In symbols, the **geometric mean** of a series of returns over $n$
+periods can be expressed as
+$\left( \prod_{i = 1}^{n}R_{i} \right)^{\frac{1}{n}}$, or, equivelantly:
+$\sqrt[n]{R_{1}R_{1}R_{1}...R_{n}}$.
+
+You can check the numbers from the example above to see that the GMRR
+for the investment is 0, just as it should be.
+
+## CONCEPT: Excess Return
+
+You’re going to be managing a portfolio – some set of bonds, stocks,
+currency trades, etc, on which you earn a **portfolio return** $R_{p}$.
+As an investor, you only care about earning a return that is *better*
+than the risk-free rate $r_{f}$ because otherwise, why are you even
+bothering to invest? Better to just buy government debt.
+
+In other words, what you really care about is your portfolio’s **Excess
+Return** over the risk free rate.
+
+**Excess Return is defined as the difference between the return your
+portfolio earned and the return that was available by buying sovereign
+debt during a certain time period**; in other words, $R_{p} - r_{f}$.
+
+## Volatility defined
+
+Earlier in this vignette we presented the two postulates that amount to
+the idea that, for a trader’s account, if we measure the return earned
+each day with respect to the day before, then **volatility =
+standard_deviation(returns) = risk**. Standard deviation of a
+portfolio’s returns is a concrete value that we can understand and
+calculate, and we assign to it the symbol $\sigma_{p}$.
+
+## Finally… The Sharpe Ratio Defined
+
+Now we can put it all together and, [as William Sharpe did in
+1966](http://web.stanford.edu/~wfsharpe/art/sr/SR.htm), write down a
+metric that goes *down* when expected return goes down & volatility goes
+up, and *up* when expected return goes up and volatility goes down:
+
+\$\$\begin{align\*} {\tt Sharpe\\ Ratio} = \frac{R\_{p} -
+r\_{f}}{\sigma\_{p}} \end{align\*}\$\$
+
+#### Wherein:
+
+\$\$\begin{align\*} R\_{p} & {\sf: Portfolio\\ Return} \\ r\_{f} & {\sf:
+Risk\\ free\\ rate\\ of\\ return} \\ \sigma\_{p} & {\sf: Volatility\\
+of\\ portfolio\\ return} \end{align\*}\$\$
+
+## Conceptually, the Sharpe ratio is a ‘price’
+
+Let’s say you go to a market that is selling “return”, which it
+quantifies in units of percent “%”. You can buy returns of 5%, 500%,
+-0.2%, and so on, but you have to pay. But what payment will the market
+accept?
+
+The idea behind Sharpe’s ratio is: *you can buy (or sell) ‘return’, but
+you have to pay by taking on (or divesting) ‘risk’, of which volatility
+is a measure*.
+
+Look back at the definition of the Sharpe ratio and see that it has
+units of “% return” in the numerator, and “% risk” in the denominator.
+That’s not an accident- the Sharpe ratio is, at it’s core, the “price”
+of an asset or portfolio in terms of its “risk”.
+
+In general, better traders have higher Sharpe ratios because they’re
+able get the best “price” (in terms of risk) that the market will give
+in exchange for the returns they earn.
+
+Now you’re ready to move on to
+[calculation](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/excess_rtn_vol_and_sharpe.html)
+to see worked examples showing how these parameters are calculated in
+the Competition.
