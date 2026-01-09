@@ -8,13 +8,13 @@ template:
 
 navbar:
   structure:
-    left:  [scoreboard, traderpage, articles]
-    # left:  [signup, articles, past-winners]
+    # left:  [scoreboard, traderpage, articles]
+    left:  [signup, articles, past-winners]
     right: [youtube, github]
   components:
-    # signup:
-    #   text: Sign Up
-    #   href: articles/sign_up.html
+    signup:
+        text: Sign Up
+        href: articles/sign_up.html
     scoreboard:
         text: SCOREBOARD
         href: articles/scoreboard.html

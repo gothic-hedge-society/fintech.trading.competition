@@ -2,52 +2,6 @@
 output: github_document
 always_allow_html: yes
 ---
-```{r}
-
-```
-
-# 2025 Winners Announced!
-
-## 1st Place
-[Asprose](https://www.linkedin.com/in/junjie-li-547136221/)\
-Duke University
-
-## 2nd Place
-[Duc Thanh (Timothy) Nguyen](https://www.linkedin.com/in/timothynguyen689/)\
-Boston University
-
-## 3rd Place
-161803\
-Duke University
-
-## 4th Place
-[ak60](https://www.linkedin.com/in/aliabbaskhalfan/)\
-Fordham University
-
-## 5th Place
-masterquant\
-Rutgers Business School-Newark and New Brunswick
-
-## 6th Place
-cc_wong\
-Duke University
-
-## 7th Place
-[Nathan Michael](https://www.linkedin.com/in/nathan-goetten-aa0085227/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)\
-The University of Texas at Austin
-
-## 8th Place
-[https://www.linkedin.com/in/zihan-zhang-42a97420b/](Boluo)\
-Duke University
-
-## 9th Place
-breadomatic\
-Duke University
-
-## 10th Place
-[https://www.linkedin.com/in/sam-fan-a8141a290/](z6fan)\
-Duke University
-
 
 ```{r echo=FALSE}
 library(magrittr)
@@ -87,8 +41,13 @@ shiny::fluidPage(
   # ),
   shiny::hr(),
   shiny::fluidRow(
+    shiny::h2(
+      "The Duke FinTech Trading Competition 2026 is now live!"
+    )
+  ),
+  shiny::fluidRow(
     shiny::tags$a(
-      "VISIT THE 2025 SCOREBOARD HERE",
+      "Click this link to sign up",
       href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html",
       style="font-size:30px"        
     ),
@@ -97,45 +56,34 @@ shiny::fluidPage(
       shiny::column(1),
       shiny::column(
         10,
-        shiny::tags$div(
-          paste0(
-            "Official bell-ringing to mark the start of the competition!"
-          ),
-          style = "display:inline-block;text-align:center;"
-        ),
-        shiny::img(src='man/figures/bell_ringing.jpeg'),
-        shiny::tags$div(
-          paste0(
-            "Left to right: Duke FinTech professor Jake Vestal (The ",
-            "Architect), Duke FinTech students Nurken Abeuov (Quant Finance ",
-            "TA), and Mario Treviño (The Artilleryman)."
-          ),
-          style = "display:inline-block"
-        )
+        # shiny::tags$div(
+        #   paste0(
+        #     "Official bell-ringing to mark the start of the competition!"
+        #   ),
+        #   style = "display:inline-block;text-align:center;"
+        # ),
+        shiny::img(src='man/figures/bell_ringing.jpeg')
       )
     ),
     shiny::hr(),
-    shiny::tags$h2("Prize Bells", style="color:gold;"),
-    shiny::fluidRow(),
     shiny::fluidRow(
       shiny::column(
         7,
+        shiny::tags$br(),
         shiny::tags$div(
           paste0(
-            "This year, Duke has ordered a custom-made bell engraved with the ",
-            "FinTech Departmental logo. The official Trading Competition Bell ",
-            "will be permenantly displayed in a public location at our ",
-            "beautiful university once a suitable place for it has been ",
-            "determined."
+            "Back by popular demand, the world-famous Duke FinTech Trading ",
+            "Competition is set to kick off just in a few weeks!"
           ),
           style = "display:inline-block;font-size:20px"
         ),
-        shiny::hr(),
+        shiny::tags$br(),
         shiny::tags$div(
           paste0(
             "Winning traders will have their name engraved on a ",
-            "plaque under the bell where they will bask in glory over the ",
-            "years to come!\n"
+            "plaque under our official Trading Competition  bell where they ",
+            "will bask in glory alongside other past winners over the ",
+            "years to come.\n"
           ),
           style = "display:inline-block;font-size:20px"
         ),
@@ -156,62 +104,25 @@ shiny::fluidPage(
       )
     ),
     shiny::hr(),
-    shiny::fluidRow(
-      shiny::column(
-        5,
-        shiny::tags$div(
-          shiny::h3(
-            "Individual Winner's Bell", 
-            style="padding-top:46px"
-          ),
-          shiny::img(
-            src='man/figures/prize_bell_example.jpeg', 
-            width="200",
-            style = "display:inline;"
-          )
-        )
-      ),
-      shiny::column(
-        7,
-        shiny::tags$div(
-          paste0(
-            "Traders placing in 1st, 2nd, and 3rd Place will also receive ",
-            "thier own custom engraved bells to display in their offices to ",
-            "memorialize their trading prowess.\n"
-          ),
-          style = "display:inline-block;font-size:20px;margin-top:41px"
-        ),
-        shiny::tags$div(
-          paste0(
-            "Each winning trader's individual bell bells may be engraved ",
-            "however the winner chooses and will look like the one pictured ",
-            "to the left."
-          ),
-          style = "display:inline-block;font-size:20px"
-        )
-      )
-    ),
     shiny::fluidRow( 
       shiny::tags$h2('Important Dates', style="color:#ff32c8; font-weight:bold")
     ),
     shiny::fluidRow(
       shiny::tagList(
-        shiny::tags$h3('15 Jan 2025: Installfest'),
+        shiny::tags$h3('14 Jan 2026: Installfest'),
         shiny::tags$p(
           "Those located near the Durham NC area are invited to join us at ",
-          shiny::tags$b('2PM EST'),
-          " in the ",
-          shiny::tags$b("Fitzpatrick Atrium"),
+          shiny::tags$b('5PM EST'),
+          " in ",
+          shiny::tags$b("Wilkinson Building room 136"),
           " for refreshments. We'll help you install what you need to get ",
           " signed up for the competition and trading."
         ),
         shiny::tags$p(
-          "Starting at ",
-          shiny::tags$b("4pm EST"),
-          " we'll be available on the Discord channel to provide support ",
+          "We'll be available on the Discord channel to provide support ",
           "and answer questions for those unable to attend in person."
         ),
-        shiny::tags$h3('22 Jan 2025: PHASE 1: Experimental Trading'),
+        shiny::tags$h3('21 Jan 2026: PHASE 1: Experimental Trading'),
         shiny::tags$p(
           "Many traders have expressed an interest in having an experimental ",
           "phase in which they practice with the Trader Workstation. Based ",
@@ -219,7 +130,7 @@ shiny::fluidPage(
           "During this period we'll still be posting weekly scores as they ",
           "become available."
         ),
-        shiny::tags$h3('02 Feb 2025: LAST DAY TO REGISTER / RESET ACCOUNT'),
+        shiny::tags$h3('02 Feb 2026: LAST DAY TO REGISTER / RESET ACCOUNT'),
         shiny::tags$p(
           "We'll accept new registrants up to the end of the experimental ",
           "phase. Traders will have the right -- but not the obligation -- ",
@@ -228,17 +139,17 @@ shiny::fluidPage(
           "If you're happy with your positions, however, you don't have to ",
           "take a reset if you don't want it."
         ),
-        shiny::tags$h3('05 Feb 2025: PHASE 2: SCORING STARTS'),
+        shiny::tags$h3('08 Feb 2026: PHASE 2: SCORING STARTS'),
         shiny::tags$p(
           "This is when we’ll begin keeping score. We will hold a few popup ",
           "help sessions on Discord to help you get set up during the ",
           "experimental phase."
         ),
-        shiny::tags$h3('03 May 2025: COMPETITION ENDS'),
+        shiny::tags$h3('04 May 2025: COMPETITION ENDS'),
         shiny::tags$p(
           "All of your end-of-day Net Account Values between 05 Feb and ",
-          "03 May 2025 will be used in the calculation of your scores, with ",
-          "03 May being the final date. After that day the competition will ",
+          "04 May 2025 will be used in the calculation of your scores, with ",
+          "04 May being the final date. After that day the competition will ",
           "be over and winners will be declared."
         )
       )
@@ -278,13 +189,9 @@ Go ahead and join now! We'll look forward to seeing you in the Discord server :)
 # ELIGIBILITY
 The Duke FINTECH Trading Competition is a free competition hosted by the [FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
 
-The Competition is open to any currently enrolled graduate or undergraduate
-student so long as they have an email address with a .edu extension. 
+The Competition is FREE and available to anyone!
 
-**STARTING THIS YEAR** we will be extending registration eligibility to all 
-members of the United States Military with an active email address (e.g., .mil).
-
-Participating students are issued $1 million in simulated currency within a
+Participants are issued $1 million in simulated currency within a
 paper trading account provided by [Interactive Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
 Students will have the opportunity to trade equities, fixed income, derivatives,
 ETFs, cryptocurrencies, and more, all based on real-time streaming market data
