@@ -5,7 +5,7 @@
 ## The Duke FinTech Trading Competition 2026 is now live!
 
 [Click this link to sign
-up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html)
+up](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html)
 
 ------------------------------------------------------------------------
 
