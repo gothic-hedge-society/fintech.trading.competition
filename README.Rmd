@@ -48,7 +48,7 @@ shiny::fluidPage(
   shiny::fluidRow(
     shiny::tags$a(
       "Click this link to sign up",
-      href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html",
+      href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html",
       style="font-size:30px"        
     ),
     shiny::hr(),

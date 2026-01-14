@@ -5,7 +5,7 @@
 <h2>The Duke FinTech Trading Competition 2026 is now live!</h2>
 </div>
 <div class="row">
-<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.html" style="font-size:30px">Click this link to sign up</a>
+<a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html" style="font-size:30px">Click this link to sign up</a>
 <hr/>
 <div class="row">
 <div class="col-sm-1"></div>
