@@ -18,7 +18,7 @@ refresh_base_data <- function(){
   # Participants ---------------------------------------------------------------
   participants <- readr::read_csv(
     file.path(
-      secrets_path, "duke-fintech-trading-competition-2025_entries.csv"
+      secrets_path, "duke+fintech+trading+competition+2025_entries.csv"
     ),
     show_col_types = FALSE
   )
@@ -59,13 +59,9 @@ refresh_base_data <- function(){
       'ibkr_flex_web_token.rda'
     )
   )
-  load(
-    file.path(
-      rprojroot::find_package_root_file(),
-      'secrets',
-      'ibkr_flex_web_token_1.rda'
-    )
-  )
+
+  # 1380818 is names only
+  # 1142446 is names and nav
 
   NAV_and_CASH <- fintech.trading.competition::fetch_flex_query(
     flex_params = stats::setNames(

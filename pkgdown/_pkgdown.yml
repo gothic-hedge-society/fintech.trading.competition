@@ -9,7 +9,7 @@ template:
 navbar:
   structure:
     # left:  [scoreboard, traderpage, articles]
-    left:  [signup, articles, past-winners]
+    left:  [signup, articles, traderpage, past-winners]
     right: [youtube, github]
   components:
     signup:
