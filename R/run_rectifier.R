@@ -65,6 +65,12 @@ run_rectifier <- function(){
     )
 
   ibkr_info <- fetch_account_information()
+  ibkr_info %>%
+    readr::write_csv(
+      file=file.path(
+        rprojroot::find_package_root_file(), 'secrets', 'ibkr_info.csv'
+      )
+    )
 
   dplyr::inner_join(
     ibkr_info[c("accountId", "primaryEmail")],
@@ -72,13 +78,19 @@ run_rectifier <- function(){
     by = c("primaryEmail" = "email")
   ) %>%
     dplyr::select(accountId, tradername, discord_username) %>%
-    readr::write_csv2(file="./secrets/has_ibkr_accounts.csv")
+    readr::write_csv(
+      file=file.path(
+        rprojroot::find_package_root_file(), 'secrets', 'has_ibkr_accounts.csv'
+      )
+    )
 
 
   setdiff(registrants$email, ibkr_info$primaryEmail) %>%
     paste0(collapse = "; ") %>%
-    writeLines("secrets/no_ibkr_account.txt")
-
-
+    writeLines(
+      file.path(
+        rprojroot::find_package_root_file(), 'secrets', 'no_ibkr_account.csv'
+      )
+    )
 
 }

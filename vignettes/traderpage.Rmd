@@ -9,80 +9,124 @@ vignette: >
 
   
 ```{r, include = FALSE}
-library(fintech.trading.competition)
-library(crosstalk)
-sd <- SharedData$new(
-  reports %>% 
-    tidyr::unnest(statement) %>%
-    dplyr::select(date, rank, dplyr::everything()) %>%
-    dplyr::rename(α = alpha, β = beta) %>%
-    dplyr::arrange(trader_name, dplyr::desc(date))
-)
-page_length <- reports$statement %>%
-  vapply(
-    function(x){nrow(x)},
-    numeric(1)
-  ) %>%
-  unique()
+devtools::load_all(".")
+# library(crosstalk)
+# sd <- SharedData$new(
+#   reports %>% 
+#     tidyr::unnest(statement) %>%
+#     dplyr::select(date, rank, dplyr::everything()) %>%
+#     dplyr::rename(α = alpha, β = beta) %>%
+#     dplyr::arrange(trader_name, dplyr::desc(date))
+# )
+# page_length <- reports$statement %>%
+#   vapply(
+#     function(x){nrow(x)},
+#     numeric(1)
+#   ) %>%
+#   unique()
 ```
 
 ```{css, echo=FALSE}
 th {
   background-color: #222 !important;
 }
+div.dataTables_filter label {
+    color: goldenrod !important;
+  }
 ```
 
 
-Use this page to obtain detailed information about an individual trader.
+Use this page to check on your registration! You can search for your tradername 
+using the search bar. 
 
+Timestamp of last update: **`r Sys.time()`**
 
+This page is updated every evening until the start of the competition. 
+
+Please check that you're able to sign in to the account listed beside your 
+tradername. If you have more than one account, contact the admins on Discord 
+and let us know which account you want to use. 
+
+If your name does *not* appear on this list, check the timestamp of last update,
+above. If you created your account near that time, then its possible that the 
+system can't see it yet; just wait a day. If you created your account more than 
+3 hours before the timestamp, then post in the Discord. 
 
 ```{r echo=FALSE}
-shiny::fluidRow(
-  filter_select(
-    id         = "trader", 
-    label      = "Select Trader", 
-    sharedData = sd, 
-    group      = ~trader_name,
-    multiple   = FALSE
-  ),
-  sd %>%
-    DT::datatable(
-      rownames = FALSE,
-      extensions = 'FixedColumns',
-      options = list(
-        dom          = 't',
-        scrollX      = TRUE,
-        scrollY      = '350px',
-        ordering     = FALSE,
-        fixedColumns = TRUE,
-        pageLength   = page_length,
-        initComplete = DT::JS(
-          "function(settings, json) {",
-          "$(this.api().table().header()).css(",
-          "{'color': 'greenyellow', 'background-color': '#222'});",
-          "}"
-        ),
-        columnDefs = list(
-          list(className = 'dt-center', targets=1:14),
-          list(visible=FALSE, targets=c(2,3,4,6,8,11,12))
-        )
-      )
-    ) %>%
-    DT::formatCurrency(c('NAV', 'sp500_close')) %>%
-    DT::formatPercentage(
-      c('daily_return', 'sp500_return', 'gmrr', 'vol', 'α', 'excess_rtn'), 
-      digits=4
-    ) %>%
-    DT::formatSignif(c('β', 'sharpe'), digits=4) %>%
-    DT::formatStyle('date', color = 'goldenrod', backgroundColor = '#222') %>%
-    DT::formatStyle(
-      c(
-        'rank', 'NAV', 'sp500_close', 'daily_return', 'sp500_return', 'gmrr',
-        'vol', 'α', 'β', 'excess_rtn', 'sharpe'
-      ),
-      color    = '#f0f0f0',
-      fontSize = '0.75em'
+has_accounts <- file.path(
+  rprojroot::find_package_root_file(), 'secrets', 'has_ibkr_accounts.csv'
+) %>%
+  readr::read_csv(show_col_types = FALSE)
+DT::datatable(
+  has_accounts,
+  rownames = FALSE,
+  extensions = 'FixedColumns',
+  options = list(
+    dom          = 'ft',
+    scrollX      = TRUE,
+    scrollY      = '350px',
+    ordering     = FALSE,
+    pageLength   = nrow(has_accounts),
+    initComplete = DT::JS(
+      "function(settings, json) {",
+      "$(this.api().table().header()).css(",
+      "{'color': 'greenyellow', 'background-color': '#222'});",
+      "}"
+    ),
+    columnDefs = list(
+      list(className = 'dt-center', targets=0:2)
     )
-)
+  )
+) %>%
+  DT::formatStyle(
+    columns = c('accountId', 'tradername', 'discord_username'), 
+    color = 'lightgoldenrodyellow'
+  )
+# shiny::fluidRow(
+#   filter_select(
+#     id         = "trader", 
+#     label      = "Select Trader", 
+#     sharedData = sd, 
+#     group      = ~trader_name,
+#     multiple   = FALSE
+#   ),
+#   sd %>%
+#     DT::datatable(
+#       rownames = FALSE,
+#       extensions = 'FixedColumns',
+#       options = list(
+#         dom          = 't',
+#         scrollX      = TRUE,
+#         scrollY      = '350px',
+#         ordering     = FALSE,
+#         fixedColumns = TRUE,
+#         pageLength   = page_length,
+#         initComplete = DT::JS(
+#           "function(settings, json) {",
+#           "$(this.api().table().header()).css(",
+#           "{'color': 'greenyellow', 'background-color': '#222'});",
+#           "}"
+#         ),
+#         columnDefs = list(
+#           list(className = 'dt-center', targets=1:14),
+#           list(visible=FALSE, targets=c(2,3,4,6,8,11,12))
+#         )
+#       )
+#     ) %>%
+#     DT::formatCurrency(c('NAV', 'sp500_close')) %>%
+#     DT::formatPercentage(
+#       c('daily_return', 'sp500_return', 'gmrr', 'vol', 'α', 'excess_rtn'), 
+#       digits=4
+#     ) %>%
+#     DT::formatSignif(c('β', 'sharpe'), digits=4) %>%
+#     DT::formatStyle('date', color = 'goldenrod', backgroundColor = '#222') %>%
+#     DT::formatStyle(
+#       c(
+#         'rank', 'NAV', 'sp500_close', 'daily_return', 'sp500_return', 'gmrr',
+#         'vol', 'α', 'β', 'excess_rtn', 'sharpe'
+#       ),
+#       color    = '#f0f0f0',
+#       fontSize = '0.75em'
+#     )
+# )
 ```
