@@ -54,7 +54,7 @@ system can't see it yet; just wait a day. If you created your account more than
 
 ```{r echo=FALSE}
 has_accounts <- file.path(
-  rprojroot::find_package_root_file(), 'secrets', 'has_ibkr_accounts.csv'
+  rprojroot::find_package_root_file(), 'inst', 'has_ibkr_accounts.csv'
 ) %>%
   readr::read_csv(show_col_types = FALSE)
 DT::datatable(

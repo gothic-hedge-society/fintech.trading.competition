@@ -80,7 +80,7 @@ run_rectifier <- function(){
     dplyr::select(accountId, tradername, discord_username) %>%
     readr::write_csv(
       file=file.path(
-        rprojroot::find_package_root_file(), 'secrets', 'has_ibkr_accounts.csv'
+        rprojroot::find_package_root_file(), 'inst', 'has_ibkr_accounts.csv'
       )
     )
 
