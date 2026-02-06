@@ -72,8 +72,6 @@ run_rectifier <- function(){
       )
     )
 
-  print(ibkr_info)
-
   multi_account_tracker <- file.path(
     rprojroot::find_package_root_file(), 'secrets', 'multi_account_tracker.csv'
   ) %>% readr::read_csv(
@@ -81,15 +79,18 @@ run_rectifier <- function(){
   )
 
   replace_emails <- tidyr::drop_na(
-    multi_account_tracker[,c("ibkr_email", "wufoo_email")]
+    multi_account_tracker[,c("registrants_email", "ibkr_info_email")]
   )
 
   cleaned_ibkr_info <- ibkr_info
 
   for(i in 1:nrow(replace_emails)){
+    print(replace_emails$ibkr_info_email[i])
     cleaned_ibkr_info$primaryEmail[
-      which(cleaned_ibkr_info$primaryEmail == replace_emails$ibkr_email[i])
-      ] <- replace_emails$wufoo_email[i]
+      which(
+        cleaned_ibkr_info$primaryEmail == replace_emails$registrants_email[i]
+      )
+    ] <- replace_emails$ibkr_info_email[i]
   }
 
   cleaned_ibkr_info <- cleaned_ibkr_info %>%
@@ -98,7 +99,7 @@ run_rectifier <- function(){
   cleaned_ibkr_info %>%
     readr::write_csv(
       file=file.path(
-        rprojroot::find_package_root_file(), 'inst', 'has_ibkr_accounts.csv'
+        rprojroot::find_package_root_file(), 'secrets', 'cleaned_ibkr_info.csv'
       )
     )
 
