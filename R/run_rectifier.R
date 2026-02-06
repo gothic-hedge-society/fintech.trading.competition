@@ -72,8 +72,38 @@ run_rectifier <- function(){
       )
     )
 
+  print(ibkr_info)
+
+  multi_account_tracker <- file.path(
+    rprojroot::find_package_root_file(), 'secrets', 'multi_account_tracker.csv'
+  ) %>% readr::read_csv(
+    show_col_types = FALSE
+  )
+
+  replace_emails <- tidyr::drop_na(
+    multi_account_tracker[,c("ibkr_email", "wufoo_email")]
+  )
+
+  cleaned_ibkr_info <- ibkr_info
+
+  for(i in 1:nrow(replace_emails)){
+    cleaned_ibkr_info$primaryEmail[
+      which(cleaned_ibkr_info$primaryEmail == replace_emails$ibkr_email[i])
+      ] <- replace_emails$wufoo_email[i]
+  }
+
+  cleaned_ibkr_info <- cleaned_ibkr_info %>%
+    dplyr::filter(! accountId %in% multi_account_tracker$ignore)
+
+  cleaned_ibkr_info %>%
+    readr::write_csv(
+      file=file.path(
+        rprojroot::find_package_root_file(), 'secrets', 'cleaned_ibkr_info.csv'
+      )
+    )
+
   has_ibkr_accounts <- dplyr::inner_join(
-    ibkr_info[c("accountId", "primaryEmail")],
+    cleaned_ibkr_info[c("accountId", "primaryEmail")],
     registrants,
     by = c("primaryEmail" = "email")
   )
@@ -89,10 +119,9 @@ run_rectifier <- function(){
     paste0(collapse = "; ") %>%
     writeLines(
       file.path(
-        rprojroot::find_package_root_file(), 'secrets', 'has_ibkr_accounts.txt'
+        rprojroot::find_package_root_file(), 'secrets', 'everyones_email.txt'
       )
     )
-
 
   setdiff(registrants$email, ibkr_info$primaryEmail) %>%
     paste0(collapse = "; ") %>%
