@@ -98,7 +98,7 @@ run_rectifier <- function(){
   cleaned_ibkr_info %>%
     readr::write_csv(
       file=file.path(
-        rprojroot::find_package_root_file(), 'secrets', 'cleaned_ibkr_info.csv'
+        rprojroot::find_package_root_file(), 'inst', 'has_ibkr_accounts.csv'
       )
     )
 
