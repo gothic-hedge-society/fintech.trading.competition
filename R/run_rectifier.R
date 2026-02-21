@@ -59,9 +59,10 @@ run_rectifier <- function(){
       }
     ) %>%
     purrr::reduce(dplyr::bind_rows) %>%
-    dplyr::select(Field635, Field5, Field532) %>%
+    dplyr::select(Field635, Field5, Field532, Field126, Field4) %>%
     dplyr::rename(
-      email = "Field635", tradername = "Field5", discord_username = "Field532"
+      email = "Field635", tradername = "Field5", discord_username = "Field532",
+      website = "Field126", organization = "Field4"
     )
 
   ibkr_info <- fetch_account_information()
@@ -110,7 +111,10 @@ run_rectifier <- function(){
   )
 
   has_ibkr_accounts %>%
-    dplyr::select(accountId, tradername, discord_username) %>%
+    dplyr::select(
+      accountId, tradername, discord_username, website, organization
+    ) %>%
+    dplyr::rename(trader_name = tradername) %>%
     readr::write_csv(
       file=file.path(
         rprojroot::find_package_root_file(), 'inst', 'has_ibkr_accounts.csv'

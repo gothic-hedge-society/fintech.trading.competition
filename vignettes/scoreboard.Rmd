@@ -1,5 +1,5 @@
 ---
-title: "Scoreboard 2025"
+title: "Scoreboard"
 output: html_document
 ---
 
@@ -38,7 +38,7 @@ color: white;
 text-align: center;
 font-weight: bold;
 }
-.fp-tradername {
+.fp-trader_name {
 padding-top: 16px;
 font-size: xx-large;  
 color: greenyellow;
@@ -139,8 +139,8 @@ rankings %>%
       scrollX      = FALSE
     )
   ) %>%
-  DT::formatPercentage(4, digits = 4) %>%
-  DT::formatSignif(5, digits = 4) 
+  DT::formatPercentage(3, digits = 4) %>%
+  DT::formatSignif(4, digits = 4)
 ```
 
 
@@ -281,7 +281,7 @@ standings[[as_of_index]] %>%
 #             "Rank"   = 1:hm_depth,
 #             "return" = paste0(signif(return, 3)*100, "%")
 #           ) %>%
-#           dplyr::select(Rank, tradername, school, country, return) %>%
+#           dplyr::select(Rank, trader_name, school, country, return) %>%
 #           kableExtra::kbl(align="rccc") %>%
 #           kableExtra::kable_minimal() %>%
 #           kableExtra::row_spec(
@@ -312,7 +312,7 @@ standings[[as_of_index]] %>%
 #             "Rank"       = 1:hm_depth,
 #             "volatility" = paste0(signif(volatility, 3)*100, "%")
 #           ) %>%
-#           dplyr::select(Rank, tradername, school, country, volatility) %>%
+#           dplyr::select(Rank, trader_name, school, country, volatility) %>%
 #           kableExtra::kbl(align="rccc") %>%
 #           kableExtra::kable_minimal() %>%
 #           kableExtra::row_spec(
@@ -346,7 +346,7 @@ standings[[as_of_index]] %>%
 #             "Rank"  = 1:hm_depth,
 #             "alpha" = paste0(signif(alpha_SP500, 3)*100, "%")
 #           ) %>%
-#           dplyr::select(Rank, tradername, school, country, alpha) %>%
+#           dplyr::select(Rank, trader_name, school, country, alpha) %>%
 #           kableExtra::kbl(align="rccc") %>%
 #           kableExtra::kable_minimal() %>%
 #           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
@@ -379,7 +379,7 @@ standings[[as_of_index]] %>%
 #             "Rank" = 1:hm_depth,
 #             "beta" = signif(beta_SP500, 3)
 #           ) %>%
-#           dplyr::select(Rank, tradername, school, country, beta) %>%
+#           dplyr::select(Rank, trader_name, school, country, beta) %>%
 #           kableExtra::kbl(align="rccc") %>%
 #           kableExtra::kable_minimal() %>%
 #           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
@@ -414,7 +414,7 @@ standings[[as_of_index]] %>%
 #             "Rank"  = 1:hm_depth,
 #             "alpha" = paste0(signif(alpha_SHY, 3)*100, "%")
 #           ) %>%
-#           dplyr::select(Rank, tradername, school, country, alpha) %>%
+#           dplyr::select(Rank, trader_name, school, country, alpha) %>%
 #           kableExtra::kbl(align="rccc") %>%
 #           kableExtra::kable_minimal() %>%
 #           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
@@ -447,7 +447,7 @@ standings[[as_of_index]] %>%
 #             "Rank" = 1:hm_depth,
 #             "beta" = signif(beta_SHY, 3)
 #           ) %>%
-#           dplyr::select(Rank, tradername, school, country, beta) %>%
+#           dplyr::select(Rank, trader_name, school, country, beta) %>%
 #           kableExtra::kbl(align="rccc") %>%
 #           kableExtra::kable_minimal() %>%
 #           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
@@ -482,7 +482,7 @@ standings[[as_of_index]] %>%
 #             "Rank"  = 1:hm_depth,
 #             "alpha" = paste0(signif(alpha_BTC, 3)*100, "%")
 #           ) %>%
-#           dplyr::select(Rank, tradername, school, country, alpha) %>%
+#           dplyr::select(Rank, trader_name, school, country, alpha) %>%
 #           kableExtra::kbl(align="rccc") %>%
 #           kableExtra::kable_minimal() %>%
 #           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
@@ -515,7 +515,7 @@ standings[[as_of_index]] %>%
 #             "Rank" = 1:hm_depth,
 #             "beta" = signif(beta_BTC, 3)
 #           ) %>%
-#           dplyr::select(Rank, tradername, school, country, beta) %>%
+#           dplyr::select(Rank, trader_name, school, country, beta) %>%
 #           kableExtra::kbl(align="rccc") %>%
 #           kableExtra::kable_minimal() %>%
 #           kableExtra::kable_styling(bootstrap_options = "condensed") %>%
@@ -548,7 +548,7 @@ standings[[as_of_index]] %>%
 #         .[
 #           intersect(
 #             names(.),
-#             trader_key$tradername[which(trader_key$participating_S2022)]
+#             trader_key$trader_name[which(trader_key$participating_S2022)]
 #           )
 #         ]
 #       } %>%
@@ -638,7 +638,7 @@ standings[[as_of_index]] %>%
 #         .[
 #           intersect(
 #             names(.),
-#             trader_key$tradername[which(trader_key$participating_S2022)]
+#             trader_key$trader_name[which(trader_key$participating_S2022)]
 #           )
 #         ]
 #       } %>%
@@ -743,7 +743,7 @@ standings[[as_of_index]] %>%
 #         .[
 #           intersect(
 #             names(.),
-#             trader_key$tradername[which(trader_key$participating_S2022)]
+#             trader_key$trader_name[which(trader_key$participating_S2022)]
 #           )
 #         ]
 #       } %>%
@@ -876,7 +876,7 @@ standings[[as_of_index]] %>%
 ```{r echo=FALSE}
 # # Full Ranking
 # standings %>%
-#   dplyr::filter(tradername %in% trader_key$tradername[
+#   dplyr::filter(trader_name %in% trader_key$trader_name[
 #     which(trader_key$participating_S2022)]
 #   ) %>%
 #   dplyr::select(-country) %>%

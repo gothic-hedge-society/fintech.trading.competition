@@ -5,28 +5,19 @@
 refresh_base_data <- function(){
   library(magrittr)
 
-  start_date <- as.Date("2025-02-07")
-  rf         <- 0.0433/252
+  start_date <- as.Date("2026-02-07")
+  rf         <- 0.0369/252
   tier_size  <- 10
 
-  known_duplicates <- c('DUH279253', 'DUH462396', 'DUH232073', 'DUH465763')
-  secrets_path <- file.path(rprojroot::find_package_root_file(), 'secrets')
   shiny_path <- file.path(
     rprojroot::find_package_root_file(), "..", 'ftc.shinyapp', 'data'
   )
+  secrets_path <- file.path(rprojroot::find_package_root_file(), 'secrets')
 
   # Participants ---------------------------------------------------------------
   participants <- readr::read_csv(
     file.path(
-      secrets_path, "duke+fintech+trading+competition+2025_entries.csv"
-    ),
-    show_col_types = FALSE
-  )
-
-  # Supplemental Account Map ---------------------------------------------------
-  sup_acc_map <- readr::read_csv(
-    file.path(
-      secrets_path, "supplemental_acct_map.csv"
+      rprojroot::find_package_root_file(), 'inst', 'has_ibkr_accounts.csv'
     ),
     show_col_types = FALSE
   )
@@ -63,58 +54,24 @@ refresh_base_data <- function(){
   # 1380818 is names only
   # 1142446 is names and nav
 
-  NAV_and_CASH <- fintech.trading.competition::fetch_flex_query(
+  full_nav_query <- fintech.trading.competition::fetch_flex_query(
     flex_params = stats::setNames(
-      c(1142446, 1165361),
-      c(ibkr_flex_web_token, ibkr_flex_web_token_1)
+      1142446, ibkr_flex_web_token
     ),
     start_date = start_date,
     sp500      = sp500,
     rf         = rf
-  )
+  ) %>%
+    purrr::reduce(dplyr::bind_rows)
 
-  # participating_student_reports ----------------------------------------------
-  # for now, just NAV_and_CASH
-  # will splice in trades later(?)
-  participating_student_reports <- NAV_and_CASH %>%
-    dplyr::filter(!(accountId %in% known_duplicates))
+  participating_student_reports <- dplyr::inner_join(
+    full_nav_query,
+    participants,
+    by = dplyr::join_by(accountId)
+  ) %>%
+    dplyr::select(-masterName, -primaryEmail) %>%
+    dplyr::distinct(trader_name, .keep_all = TRUE)
 
-
-  participating_student_reports$trader_name <- participants$trader_name[
-    match(
-      participating_student_reports$primaryEmail, participants$email
-    )
-  ]
-
-  acct_mask <-  file.path(secrets_path, 'supplemental_acct_map.csv') %>%
-    readr::read_csv(show_col_types = FALSE) %>%
-    dplyr::mutate(
-      'mask' = match(ibkr_id, participating_student_reports$accountId)
-    ) %>%
-    tidyr::drop_na()
-
-  participating_student_reports$trader_name[
-    acct_mask$mask
-  ] <- acct_mask$trader_name
-
-  no_tradernames <- which(is.na(participating_student_reports$trader_name))
-  participating_student_reports$trader_name[
-    no_tradernames
-  ] <- participating_student_reports$accountId[no_tradernames]
-
-  participating_student_reports$university <- participants$university[
-    match(
-      participating_student_reports$trader_name,
-      participants$trader_name
-    )
-  ]
-
-  participating_student_reports$website <- participants$website[
-    match(
-      participating_student_reports$trader_name,
-      participants$trader_name
-    )
-  ]
 
   standings <- participating_student_reports$statement %>%
     lapply(
@@ -138,11 +95,11 @@ refresh_base_data <- function(){
             function(trader){
               tibble::tibble(
                 'trader' = trader,
-                'university' = participating_student_reports %>%
-                  dplyr::filter(trader_name == trader) %>%
-                  dplyr::select(university) %>% {
-                    .$university[[1]]
-                  },
+                # 'organization' = participating_student_reports %>%
+                #   dplyr::filter(trader_name == trader) %>%
+                #   dplyr::select(organization) %>% {
+                #     .$organization[[1]]
+                #   },
                 'gmrr' = participating_student_reports %>%
                   dplyr::filter(trader_name == trader) %>%
                   dplyr::select(statement) %>% {
@@ -218,7 +175,7 @@ refresh_base_data <- function(){
         as.numeric()
       if(length(chonk) > 1){
         usethis::ui_info(trader_)
-        stop('duplicate account')
+        usethis::ui_warn('duplicate account')
       }
       participating_student_reports[
         participating_student_reports$trader_name == trader_,
@@ -233,7 +190,8 @@ refresh_base_data <- function(){
   }
 
   reports <- participating_student_reports %>%
-    dplyr::select(trader_name, university, website, statement)
+    dplyr::select(trader_name, statement, website, organization)
+
 
   # This package
   usethis::use_data(sp500, overwrite = TRUE)
