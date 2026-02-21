@@ -1,6 +1,6 @@
-# Scoreboard 2025
+# Scoreboard
 
-Results current as of Mon, 05 May 2025
+Results current as of Thu, 19 Feb 2026
 
 **be sure to check out our new feature:**
 [traderpages](https://fintechtradingcompetition.com/articles/traderpage.html)

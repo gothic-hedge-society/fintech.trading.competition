@@ -12,8 +12,7 @@
   Winners](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/past_winners.md):
 - [Fully Worked Scoring & Ranking
   Example](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/ranking.md):
-- [Scoreboard
-  2025](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.md):
+- [Scoreboard](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/scoreboard.md):
 - [Scoring - General Idea &
   Concepts](https://gothic-hedge-society.github.io/fintech.trading.competition/articles/Scoring.md):
 - [Sharpe Ratio

@@ -1,14 +1,14 @@
 # traderpage
 
 Use this page to check on your registration! You can search for your
-tradername using the search bar.
+trader_name using the search bar.
 
-Timestamp of last update: **2026-02-06 23:24:36.708879**
+Timestamp of last update: **2026-02-21 01:30:39.756424**
 
 This page is updated every evening until the start of the competition.
 
 Please check that you’re able to sign in to the account listed beside
-your tradername. If you have more than one account, contact the admins
+your trader_name. If you have more than one account, contact the admins
 on Discord and let us know which account you want to use.
 
 If your name does *not* appear on this list, check the timestamp of last
