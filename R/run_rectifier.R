@@ -86,7 +86,15 @@ run_rectifier <- function(){
   cleaned_ibkr_info <- ibkr_info
 
   for(i in 1:nrow(replace_emails)){
-    print(replace_emails$ibkr_info_email[i])
+    usethis::ui_info(
+      paste0(
+        "Replacing ", cleaned_ibkr_info$primaryEmail[
+          which(
+            cleaned_ibkr_info$primaryEmail == replace_emails$registrants_email[i]
+          )
+        ], " with ", replace_emails$ibkr_info_email[i]
+      )
+    )
     cleaned_ibkr_info$primaryEmail[
       which(
         cleaned_ibkr_info$primaryEmail == replace_emails$registrants_email[i]
