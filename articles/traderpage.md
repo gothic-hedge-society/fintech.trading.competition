@@ -3,7 +3,7 @@
 Use this page to check on your registration! You can search for your
 trader_name using the search bar.
 
-Timestamp of last update: **2026-03-20 18:52:16.027497**
+Timestamp of last update: **2026-03-20 19:11:24.070456**
 
 This page is updated every evening until the start of the competition.
 
