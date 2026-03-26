@@ -1,6 +1,6 @@
 # Scoreboard
 
-Results current as of Fri, 20 Mar 2026
+Results current as of Wed, 25 Mar 2026
 
 **be sure to check out our new feature:**
 [traderpages](https://fintechtradingcompetition.com/articles/traderpage.html)
