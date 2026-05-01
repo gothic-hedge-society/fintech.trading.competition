@@ -4,6 +4,7 @@
 #'
 refresh_base_data <- function(){
   library(magrittr)
+  devtools::load_all(".")
 
   start_date <- as.Date("2026-02-07")
   rf         <- 0.0369/252
