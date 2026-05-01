@@ -89,7 +89,7 @@ Before we move on to **calculating** the Sharpe ratio with concrete
 numbers, there are a few more concepts you should become familiar with.
 Read on!
 
-## CONCEPT: The Risk-Free Rate $r_{f}$
+## CONCEPT: The Risk-Free Rate $`r_{f}`$
 
 Think about all the investments out there – is there one that will earn
 you a GAURANTEED return – a sure thing, with zero volatility?
@@ -114,7 +114,7 @@ In other words, these investments are thought of as **risk free**.
 
 Holders of these assets receive a return, of course. The exact
 percentage varies but whatever its value, we refer to it using the
-symbol $r_{f}$.
+symbol $`r_{f}`$.
 
 Since they’re ‘risk-free’, traders should just buy government bonds,
 earn a zero-risk return, and forget about complex strategies, right?
@@ -136,14 +136,15 @@ everything you own.
 “Today’s” NAV is compared to “yesterday’s” to calculate the percent
 return you realized “today”.
 
-That means that over a period of $N$ days, we’ll have $N - 1$ total
+That means that over a period of $`N`$ days, we’ll have $`N - 1`$ total
 observations of a portfolio’s return because you can’t measure a return
 for the very first day – you have nothing to compare it to.
 
 The formula used to calculate the return you earned on your portfolio is
-the log ratio of $V_{N}$ – the value of your portfolio on Day $N$ –
-divided by $V_{N - 1}$ – the portfolio’s value on the previous day;
-i.e., $R_{N} = \log\left( \frac{V_{N}}{V_{N - 1}} \right)$.
+the log ratio of $`V_{N}`$ – the value of your portfolio on Day $`N`$ –
+divided by $`V_{N-1}`$ – the portfolio’s value on the previous day;
+i.e., $`R_{N} =
+\log(\frac{V_{N}}{V_{N-1}})`$.
 
 In the competition, daily log returns are calculated for every student’s
 portfolio as soon as the data becomes available for that day (usually
@@ -192,14 +193,14 @@ A better way to assign an overall characteristic (“expected”) return for
 a time series of returns is to use the [geometric
 mean](https://www.investopedia.com/ask/answers/06/geometricmean.asp#:~:text=The%20geometric%20mean%20differs%20from,returns%20than%20the%20arithmetic%20mean),
 calculated by converting all of the returns into *factors* by adding 1,
-multiplying them all together, and taking the $n$th root, where $n$ is
-the number of returns observed in the period. Finally, convert resulting
-factor back into a percent by subtracting 1.
+multiplying them all together, and taking the $`n`$th root, where $`n`$
+is the number of returns observed in the period. Finally, convert
+resulting factor back into a percent by subtracting 1.
 
-In symbols, the **geometric mean** of a series of returns over $n$
+In symbols, the **geometric mean** of a series of returns over $`n`$
 periods can be expressed as
-$\left( \prod_{i = 1}^{n}R_{i} \right)^{\frac{1}{n}}$, or, equivelantly:
-$\sqrt[n]{R_{1}R_{1}R_{1}...R_{n}}$.
+$`\left(\prod_{i=1}^{n}R_{i}\right)^\frac{1}{n}`$, or, equivelantly:
+$`\sqrt[n]{R_{1}R_{1}R_{1}...R_{n}}`$.
 
 You can check the numbers from the example above to see that the GMRR
 for the investment is 0, just as it should be.
@@ -207,17 +208,17 @@ for the investment is 0, just as it should be.
 ## CONCEPT: Excess Return
 
 You’re going to be managing a portfolio – some set of bonds, stocks,
-currency trades, etc, on which you earn a **portfolio return** $R_{p}$.
-As an investor, you only care about earning a return that is *better*
-than the risk-free rate $r_{f}$ because otherwise, why are you even
-bothering to invest? Better to just buy government debt.
+currency trades, etc, on which you earn a **portfolio return**
+$`R_{p}`$. As an investor, you only care about earning a return that is
+*better* than the risk-free rate $`r_{f}`$ because otherwise, why are
+you even bothering to invest? Better to just buy government debt.
 
 In other words, what you really care about is your portfolio’s **Excess
 Return** over the risk free rate.
 
 **Excess Return is defined as the difference between the return your
 portfolio earned and the return that was available by buying sovereign
-debt during a certain time period**; in other words, $R_{p} - r_{f}$.
+debt during a certain time period**; in other words, $`R_{p} - r_{f}`$.
 
 ## Volatility defined
 
@@ -226,7 +227,7 @@ the idea that, for a trader’s account, if we measure the return earned
 each day with respect to the day before, then **volatility =
 standard_deviation(returns) = risk**. Standard deviation of a
 portfolio’s returns is a concrete value that we can understand and
-calculate, and we assign to it the symbol $\sigma_{p}$.
+calculate, and we assign to it the symbol $`\sigma_{p}`$.
 
 ## Finally… The Sharpe Ratio Defined
 

@@ -10,10 +10,10 @@ available (usually around 7pm EST) – the following process is run to
 calculate the **Excess Return** and **Volatility** for every
 participant.
 
-- **Excess Return** ($R_{p} - r_{f}$) is the difference between the
-  return your portfolio earned ($R_{p}$) and the risk free rate
-  ($r_{f}$)
-- **volatility** of returns ($\sigma_{p}$) is defined as the standard
+- **Excess Return** ($`R_{p} - r_{f}`$) is the difference between the
+  return your portfolio earned ($`R_{p}`$) and the risk free rate
+  ($`r_{f}`$)
+- **volatility** of returns ($`\sigma_{p}`$) is defined as the standard
   deviation of your portfolio’s daily log returns.
 
 In this section we’ll demonstrate how we calculate these numbers using
@@ -35,6 +35,7 @@ day with \$1,000,100.00 and ended with \$1,000,050.00 in total portfolio
 value. Therefore the return she sees at end-of-day on 18 March 2021 was:
 
 ``` r
+
 # 'log()' here is the natural log, not base 10.
 rtn_18_mar_2021 <- log(1000050.00 / 1000100.00)
 format_percent(rtn_18_mar_2021, "% / trading day.")
@@ -43,10 +44,11 @@ format_percent(rtn_18_mar_2021, "% / trading day.")
     ## [1] "-0.005% / trading day."
 
 Let’s check that, because why not? She started the day with
-\$1,000,100.00 NAV, so that number \* (1 + $return$) should equal the
+\$1,000,100.00 NAV, so that number \* (1 + $`return`$) should equal the
 \$1,000,050.00 NAV that her account posted at day’s end:
 
 ``` r
+
 # check
 1000100.00 * (1 + rtn_18_mar_2021)
 ```
@@ -55,10 +57,11 @@ Let’s check that, because why not? She started the day with
 
 –\> Looks good.
 
-The student’s overall **geometric mean rate of return** $R_{p}$ for the
-entire time period is:
+The student’s overall **geometric mean rate of return** $`R_{p}`$ for
+the entire time period is:
 
 ``` r
+
 student_gmrr <- student_data %>%
   dplyr::select("Port. Return (%/trd day)") %>%
   dplyr::filter(!is.na(`Port. Return (%/trd day)`)) %>% 
@@ -81,16 +84,16 @@ Sounds like not a lot of fun and not a good way to make a fortune… but
 since about half of the participants will *lose* money in this contest,
 the idea isn’t actually as bad as it might sound.
 
-Regardless, for the duration of the Competition, the value of $r_{f}$
+Regardless, for the duration of the Competition, the value of $`r_{f}`$
 used to calculate Sharpes does not change, even though new risk-free
 rates will be published every day by the USDT. The reason why we keep
-$r_{f}$ fixed is because we’re comparing your performance as a trader to
-the “base strategy”: simply buying debt earning $r_{f}$ on Day 1, which
-would tie up all your capital for trading until maturity on the last
-day.
+$`r_{f}`$ fixed is because we’re comparing your performance as a trader
+to the “base strategy”: simply buying debt earning $`r_{f}`$ on Day 1,
+which would tie up all your capital for trading until maturity on the
+last day.
 
 Since the Competition lasts about **3 months**, the value we’ll use for
-$r_{f}$ will be whatever the USDT publishes as the 3-month CMT rate on
+$`r_{f}`$ will be whatever the USDT publishes as the 3-month CMT rate on
 the day the Competition starts. This value will be will be posted
 clearly and conspicuously for everyone.
 
@@ -101,16 +104,17 @@ We want that on a trading day basis, so we’ll convert: since there are
 252 trading days in a year, we divide by 252 (and by 100 because it’s a
 percent):
 
-Let’s do that now, and store $r_{f}$ as a variable:
+Let’s do that now, and store $`r_{f}`$ as a variable:
 
     ## [1] "The risk-free rate is 0.0001587% / trading day."
 
 ## Excess Return
 
-Now that we have values for $R_{p}$ and $r_{f}$ student’s **excess
+Now that we have values for $`R_{p}`$ and $`r_{f}`$ student’s **excess
 return** is
 
 ``` r
+
 student_excess_return <- student_gmrr - rf
 format_percent(student_excess_return, "% / trading day.")
 ```
@@ -119,10 +123,11 @@ format_percent(student_excess_return, "% / trading day.")
 
 ## Volatility
 
-The students **volatility of returns** $\sigma_{p}$ is the standard
+The students **volatility of returns** $`\sigma_{p}`$ is the standard
 deviation of her portfolio returns:
 
 ``` r
+
 student_vol <- student_data %>%
   dplyr::select("Port. Return (%/trd day)") %>%
   dplyr::filter(!is.na(`Port. Return (%/trd day)`)) %>% 
@@ -149,6 +154,7 @@ of\\ portfolio\\ return} \end{align\*}\$\$
 ## Her Sharpe is therefore:
 
 ``` r
+
 student_Sharpe <- (student_gmrr - rf) / student_vol
 print(student_Sharpe)
 ```

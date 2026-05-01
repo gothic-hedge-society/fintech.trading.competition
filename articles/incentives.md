@@ -21,8 +21,8 @@ bracket – which you can only accomplish if you post a big return.
 **BUT**, within that bracket you’re placed towards the bottom if you
 have a high volatility, meaning that you won’t win any real money.
 
-This is the reason why we chose $n$ = 10 for the bracket sizes – that’s
-2x the number of paid cash slots available.
+This is the reason why we chose $`n`$ = 10 for the bracket sizes –
+that’s 2x the number of paid cash slots available.
 
 Those traders who are **not** in the top bracket are incentivized to get
 there by making more money.
