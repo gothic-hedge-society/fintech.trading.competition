@@ -2,7 +2,7 @@
 <div class="container-fluid">
 <hr/>
 <div class="row">
-<h2>The Duke FinTech Trading Competition 2026 is now live!</h2>
+<h2>The Duke FinTech Trading Competition now operates on a continual rolling basis!</h2>
 </div>
 <div class="row">
 <a href="https://gothic-hedge-society.github.io/fintech.trading.competition/articles/sign_up.html" style="font-size:30px">Click this link to sign up</a>
@@ -17,8 +17,15 @@
 <div class="row">
 <div class="col-sm-7">
 <br/>
-<div style="display:inline-block;font-size:20px">Back by popular demand, the world-famous Duke FinTech Trading Competition is set to kick off just in a few weeks!</div>
+<div style="display:inline-block;font-size:20px">We now support signing up throughout the year for any and all who wish to participate, regardless of university student status.</div>
 <br/>
+<div style="display:inline-block;font-size:20px">
+Rules regarding the Fall 2026 competition will be updated here 
+in August 2026. Until then, congratulations to our 2026 winners! 
+You can view the standings in the 
+<a href="https://fintechtradingcompetition.com/articles/scoreboard.html" style="font-size:24px">Standings</a>
+page. 
+</div>
 <div style="display:inline-block;font-size:20px">Winning traders will have their name engraved on a plaque under our official Trading Competition  bell where they will bask in glory alongside other past winners over the years to come.
 </div>
 </div>
@@ -30,54 +37,6 @@
 </div>
 </div>
 <hr/>
-<div class="row">
-<h2 style="color:#ff32c8; font-weight:bold">Important Dates</h2>
-</div>
-<div class="row">
-<h3>14 Jan 2026: Installfest</h3>
-<p>
-Those located near the Durham NC area are invited to join us at 
-<b>5PM EST</b>
- in 
-<b>Wilkinson Building room 136</b>
- for refreshments. We'll help you install what you need to get 
- signed up for the competition and trading.
-</p>
-<p>
-We'll be available on the Discord channel to provide support 
-and answer questions for those unable to attend in person.
-</p>
-<h3>21 Jan 2026: PHASE 1: Experimental Trading</h3>
-<p>
-Many traders have expressed an interest in having an experimental 
-phase in which they practice with the Trader Workstation. Based 
-on this feedback we'll allow an experimental phase this year. 
-During this period we'll still be posting weekly scores as they 
-become available.
-</p>
-<h3>02 Feb 2026: LAST DAY TO REGISTER / RESET ACCOUNT</h3>
-<p>
-We'll accept new registrants up to the end of the experimental 
-phase. Traders will have the right -- but not the obligation -- 
-to request one account reset, which will delete all of your 
-positions and reset your account balance to $1 million cash. 
-If you're happy with your positions, however, you don't have to 
-take a reset if you don't want it.
-</p>
-<h3>08 Feb 2026: PHASE 2: SCORING STARTS</h3>
-<p>
-This is when we’ll begin keeping score. We will hold a few popup 
-help sessions on Discord to help you get set up during the 
-experimental phase.
-</p>
-<h3>04 May 2025: COMPETITION ENDS</h3>
-<p>
-All of your end-of-day Net Account Values between 05 Feb and 
-04 May 2025 will be used in the calculation of your scores, with 
-04 May being the final date. After that day the competition will 
-be over and winners will be declared.
-</p>
-</div>
 </div>
 </div>
 
@@ -117,24 +76,3 @@ As a participating trader in this competition you will:
 
 Go ahead and join now! We’ll look forward to seeing you in the Discord
 server :)
-
-# ELIGIBILITY
-
-The Duke FINTECH Trading Competition is a free competition hosted by the
-[FINTECH Program at Duke University](https://fintech.meng.duke.edu/).
-
-The Competition is FREE and available to anyone!
-
-Participants are issued \$1 million in simulated currency within a paper
-trading account provided by [Interactive
-Brokers](https://www.interactivebrokers.com/en/trading/products-invest-prod.php).
-Students will have the opportunity to trade equities, fixed income,
-derivatives, ETFs, cryptocurrencies, and more, all based on real-time
-streaming market data using the same user interface and features
-utilized by professional traders.
-
-The FINTECH program at Duke is inclusive and welcoming. Participation is
-welcome and encouraged, so please help spread the word! Standings for
-traders will be posted here and updated daily as data become available.
-This site will continue to grow as new features are brought onboard so
-be sure to check back often for updates!!!
